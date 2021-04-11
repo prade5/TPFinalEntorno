@@ -11,12 +11,14 @@ import { appRoutes } from './route/route';
 import { AppComponent } from './app.component';
 import { UserComponent } from './components/user/user.component';
 import { AdminComponent } from './components/admin/admin.component';
+import { ActionuserComponent } from './components/user/actionuser/actionuser.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     UserComponent,
-    AdminComponent
+    AdminComponent,
+    ActionuserComponent
   ],
   imports: [
     BrowserModule,

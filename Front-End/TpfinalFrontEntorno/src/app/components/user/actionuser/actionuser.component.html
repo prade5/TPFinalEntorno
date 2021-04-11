@@ -1,0 +1,76 @@
+<section id="cover" class="min-vh-100">
+  <div id="cover-caption">
+      <div class="container">
+          <div class="row text-white">
+              <div class="col-xl-10 col-lg-6 col-md-8 col-sm-10 mx-auto text-center form">
+                  <h1 class="display-4 py-2 text-truncate">{{Option}}</h1>
+                  <div class="px-4">
+                      <form action="" class="justify-content-center">
+                          <!-- <div class="form-group">
+                              <label class="sr-only">Name</label>
+                              <input type="text" class="form-control" placeholder="Jane Doe">
+                          </div>
+                          <div class="form-group">
+                              <label class="sr-only">Email</label>
+                              <input type="text" class="form-control" placeholder="jane.doe@example.com">
+                          </div> -->
+                          <div class="form-row">
+                            <div class="form-group col-md-6">
+                              <label for="inputfirstName">Nombre</label>
+                              <input type="text" class="form-control" id="inputfirstName" placeholder="Nombre">
+                            </div>
+                            <div class="form-group col-md-6">
+                              <label for="inputlastName">Apellido</label>
+                              <input type="text" class="form-control" id="inputlastName" placeholder="Apellido">
+                            </div>
+                          </div>
+
+                          <div class="form-row">
+                            <div class="form-group col-md-6">
+                              <label for="inputEmail">Email</label>
+                              <input type="email" class="form-control" id="inputEmail" placeholder="Correo electronico">
+                            </div>
+                            <div class="form-group col-md-6">
+                              <label for="inputaddress">Domicilio</label>
+                              <input type="text" class="form-control" id="inputaddress" placeholder="Domicilio">
+                            </div>
+                          </div>
+
+                          <div class="form-row">
+                            <div class="form-group col-md-6">
+                              <label for="inputphone">Telefono</label>
+                              <input type="text" class="form-control" id="inputphone" placeholder="Telefono">
+                            </div>
+                            <div class="form-group col-md-6">
+                              <label for="inputRole">Acceso</label>
+                              <select class="form-control" id="inputRole">
+                                <option>Admin</option>
+                                <option>Jefe de catedra</option>
+                                <option>Postulante</option>
+                              </select>
+                              <!-- <input type="text" class="form-control" id="inputaddress" placeholder="Domicilio"> -->
+                            </div>
+                          </div>
+
+                          <div class="form-row">
+                            <div class="form-group col-md-6">
+                              <label for="inputUserName">Nombre usuario</label>
+                              <input type="text" class="form-control" id="inputUserName" placeholder="Nombre usuario">
+                            </div>
+                            <div class="form-group col-md-6">
+                              <label for="inputUserPass">Contraseñ usuario</label>
+                              <input type="password" class="form-control" id="inputUserPass" placeholder="Contraseñ usuario">
+                            </div>
+                          </div>
+
+                          <div class="float-right mb-3">
+                            <button [routerLink]="['/User']" class="btn btn-primary mr-3">Cancelar</button>
+                            <button type="submit" class="btn btn-primary">{{OptionBtn == false ? "Guardar" : "Actualizar"}}</button>
+                          </div>
+                      </form>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</section>

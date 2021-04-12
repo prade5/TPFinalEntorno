@@ -44,9 +44,8 @@
                             <div class="form-group col-md-6">
                               <label for="inputRole">Acceso</label>
                               <select class="form-control" id="inputRole">
-                                <option>Admin</option>
-                                <option>Jefe de catedra</option>
-                                <option>Postulante</option>
+                                <option value="">Seleccionar el role</option>
+                                <option value="{{role.id}}" *ngFor ="let role of rolelist">{{role.name}}</option>
                               </select>
                               <!-- <input type="text" class="form-control" id="inputaddress" placeholder="Domicilio"> -->
                             </div>

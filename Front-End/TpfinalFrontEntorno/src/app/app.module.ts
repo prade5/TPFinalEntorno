@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule, Title } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import {PreloadAllModules, RouterModule} from '@angular/router';
@@ -7,6 +7,8 @@ import { FormsModule} from '@angular/forms';
 import {AccordionModule} from 'primeng/accordion';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ButtonModule} from 'primeng/button';
+
+import { ToastrModule } from 'ngx-toastr';
 
 import {ReactiveFormsModule} from '@angular/forms';
 
@@ -34,10 +36,13 @@ import { ActionroleComponent } from './components/role/actionrole/actionrole.com
         relativeLinkResolution: 'legacy'
       }),
     TableModule,AccordionModule,ButtonModule,
-    HttpClientModule,BrowserAnimationsModule
+    HttpClientModule,BrowserAnimationsModule,ToastrModule.forRoot({
+      progressBar: true,
+    })
   ],
   exports:[RouterModule],
   providers: [Title],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })
 export class AppModule { }

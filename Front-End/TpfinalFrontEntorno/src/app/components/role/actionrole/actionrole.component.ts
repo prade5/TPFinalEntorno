@@ -3,6 +3,7 @@ import { RoleService } from '../../../services/role/role.service';
 import { Role } from '../../../classes/role';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
+import { MessageService } from '../../../services/message/message.service';
 
 @Component({
   selector: 'app-actionrole',
@@ -14,7 +15,8 @@ export class ActionroleComponent implements OnInit {
   OptionBtn: boolean = false;
   browserForm: FormGroup;
 
-  constructor(private roleService: RoleService, private fb:FormBuilder) {
+  constructor(private roleService: RoleService, private fb:FormBuilder,
+    private messageService: MessageService) {
     this.initForm();
   }
 
@@ -35,13 +37,14 @@ export class ActionroleComponent implements OnInit {
   Create (){
     if(this.browserForm.valid) {
 
-      this.roleService.Post(this.browserForm.value).subscribe((response) =>{
-        if(response === 'OK'){
-
+      this.roleService.Post(this.browserForm.value).subscribe((data:any) =>{
+        debugger;
+        if(data.result === 'Ok'){
+          this.messageService.Success('Crear permiso', data.message);
         }
       },
       (err: HttpErrorResponse) => {
-        debugger;
+
       });
     }
 

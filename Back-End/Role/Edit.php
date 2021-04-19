@@ -16,14 +16,16 @@
         $response->message="Ingrese el nombre";      
     }
     else{
-        $result = mysqli_query($cnn,"insert into Roles (name,description,state) values('$params->name' , '$params->description',1)");
+        $result = mysqli_query($cnn,"update Roles set name ='$params->name',
+                                             description='$params->description'
+                                             where id =$params->id");
         if($result){
             $response ->result = 'Ok';
-            $response->message="El permiso fue guardado con exito";
+            $response->message="El permiso fue modificado con exito";
         }
         else{
             $response ->result = 'Error';
-            $response->message="El permiso no fue guardado con exito";
+            $response->message="El permiso no fue modificado con exito";
         }
     }  
     // header('Content-Type:application/json');    

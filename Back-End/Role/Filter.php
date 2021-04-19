@@ -6,7 +6,7 @@
     require("../Config/db.php");
     $cnn = Connection();
 
-    $userRegisteries = mysqli_query($cnn,"select * from roles where state = 1");
+    $userRegisteries = mysqli_query($cnn,"select * from roles where id = $_GET[id]");
     $userList = [];
 
     while($reg = mysqli_fetch_array($userRegisteries)){

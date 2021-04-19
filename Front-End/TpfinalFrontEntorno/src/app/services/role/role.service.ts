@@ -19,8 +19,14 @@ export class RoleService {
 
    return this.http.get<Role[]>(`${this.urlBase}List.php`, {headers: headers});
   }
-
+  GetById(id){
+    return this.http.get(`${this.urlBase}Filter.php?id=${id}`);
+  }
   Post(role){
     return this.http.post(`${this.urlBase}Create.php`,JSON.stringify(role));
+  }
+  Put(role){
+    debugger;
+    return this.http.post(`${this.urlBase}Edit.php`,JSON.stringify(role));
   }
 }

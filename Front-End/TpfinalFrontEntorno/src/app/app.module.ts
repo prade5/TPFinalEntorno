@@ -3,6 +3,8 @@ import { BrowserModule, Title } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import {PreloadAllModules, RouterModule} from '@angular/router';
 import {TableModule} from 'primeng/table';
+import { MessagesModule } from 'primeng/messages';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { FormsModule} from '@angular/forms';
 import {AccordionModule} from 'primeng/accordion';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -38,7 +40,13 @@ import { ActionroleComponent } from './components/role/actionrole/actionrole.com
     TableModule,AccordionModule,ButtonModule,
     HttpClientModule,BrowserAnimationsModule,ToastrModule.forRoot({
       progressBar: true,
-    })
+      timeOut: 5000,
+      enableHtml: true,
+      preventDuplicates: true,
+      progressAnimation:'increasing'
+    }),
+    MessagesModule,
+    ConfirmDialogModule,
   ],
   exports:[RouterModule],
   providers: [Title],

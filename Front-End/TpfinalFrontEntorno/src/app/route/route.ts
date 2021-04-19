@@ -26,6 +26,11 @@ export const appRoutes: Routes = [
      data: {title: 'Acceder permiso'}
   },
   {
+    path: 'ActionRole/:id',
+    component: ActionroleComponent,
+     data: {title: 'Acceder permiso'}
+  },
+  {
     path: 'ActionUser',
     component: ActionuserComponent,
     data: {title: 'Acción usuario'}

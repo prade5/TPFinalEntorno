@@ -1,4 +1,5 @@
 import { Routes } from "@angular/router";
+import { LoginComponent } from "../components/login/login.component";
 import { ActionroleComponent } from "../components/role/actionrole/actionrole.component";
 import { RoleComponent } from "../components/role/role.component";
 import { ActionuserComponent } from "../components/user/actionuser/actionuser.component";
@@ -24,6 +25,11 @@ export const appRoutes: Routes = [
     path: 'ActionRole',
     component: ActionroleComponent,
      data: {title: 'Acceder permiso'}
+  },
+  {
+    path: 'Account',
+    component: LoginComponent,
+     data: {title: 'Acceder al sistema'}
   },
   {
     path: 'ActionRole/:id',

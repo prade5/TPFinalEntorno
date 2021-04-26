@@ -21,6 +21,7 @@ import { AdminComponent } from './components/admin/admin.component';
 import { ActionuserComponent } from './components/user/actionuser/actionuser.component';
 import { RoleComponent } from './components/role/role.component';
 import { ActionroleComponent } from './components/role/actionrole/actionrole.component';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { ActionroleComponent } from './components/role/actionrole/actionrole.com
     AdminComponent,
     ActionuserComponent,
     RoleComponent,
-    ActionroleComponent
+    ActionroleComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,FormsModule,ReactiveFormsModule,

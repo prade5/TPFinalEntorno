@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Role } from '../../classes/role';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RoleService {
 
-  private urlBase ="http://localhost:8080/TPFinal/TPFinalEntorno/Back-End/Role/";
+  private urlBase = environment.api_url;
   constructor(private http: HttpClient) { }
 
   GetAll(): Observable<Role[]> {
@@ -17,16 +18,18 @@ export class RoleService {
     headers.append('Access-Control-Allow-Methods', 'GET');
     headers.append('Access-Control-Allow-Origin', '*');
 
-   return this.http.get<Role[]>(`${this.urlBase}List.php`, {headers: headers});
+   return this.http.get<Role[]>(`${this.urlBase}role.php`, {headers: headers});
   }
   GetById(id){
-    return this.http.get(`${this.urlBase}Filter.php?id=${id}`);
+    return this.http.get(`${this.urlBase}role.php?id=${id}`);
   }
   Post(role){
-    return this.http.post(`${this.urlBase}Create.php`,JSON.stringify(role));
+    return this.http.post(`${this.urlBase}role.php`,JSON.stringify(role));
   }
   Put(role){
-    debugger;
-    return this.http.post(`${this.urlBase}Edit.php`,JSON.stringify(role));
+    return this.http.put(`${this.urlBase}role.php?id=${role.id}`,JSON.stringify(role));
+  }
+  Delete(role){
+    return this.http.delete(`${this.urlBase}role.php?id=${role.id}`);
   }
 }

@@ -55,16 +55,13 @@ export class ActionroleComponent implements OnInit {
 
 GetById(id){
   this.roleService.GetById(id).subscribe(result =>{
-    debugger;
     this.role = JSON.parse(JSON.stringify(result));
-    // this.browserForm.value(this.role.name)
-    let val = this.role[0];
     let roleid ={
-      id:  this.role[0].id,
-      name:  this.role[0].name,
-      description:  this.role[0].description,
-      creationDate:  this.role[0].creationDate,
-      state:  this.role[0].state
+      id:  this.role.id,
+      name:  this.role.name,
+      description:  this.role.description,
+      creationDate:  this.role.creationDate,
+      state:  this.role.state
     }
     this.browserForm.patchValue(roleid);
   })

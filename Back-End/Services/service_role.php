@@ -82,7 +82,7 @@
         //method     
         public static function Get(){
             require("../Config/db.php");
-            $cnn = Connection();
+            $cnn = connect();
             $userRegisteries = mysqli_query($cnn,"select * from roles where state = 1 ORDER BY id DESC");
             $userList = [];
 

@@ -18,6 +18,7 @@
 	define('API_DOST_NOT_EXIST', 					107);
 	define('INVALID_USER_PASS', 					108);
 	define('USER_NOT_ACTIVE', 						109);
+	define('USER_ALREADY_EXIST', 					110);
 
 	define('SUCCESS_RESPONSE', 						200);
 
@@ -26,4 +27,6 @@
 	define('JWT_PROCESSING_ERROR',					300);
 	define('ATHORIZATION_HEADER_NOT_FOUND',			301);
 	define('ACCESS_TOKEN_ERRORS',					302);	
+
+	define('ERROR_RESPONSE', 						400);
 ?>

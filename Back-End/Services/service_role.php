@@ -1,8 +1,9 @@
 <?php
-    require("../Config/db.php");
+    include_once("../Config/db.php");
+    include_once('../middleware/genericMethod.php');
+    include_once('../Config/constant.php');
 
-    class Result{};
-    class Role{
+    class Role extends genericMethod{
         private $id;
         private $name;
         private $description;
@@ -17,69 +18,7 @@
             $this->creationDate = $creationDate;
             $this->state = $state;
         }
-        // Get
-        public function getId(){
-            return $this->id;
-        }
-         /**
-         * Set the value of id
-         * 
-         * @return self
-         */
-        public function setId($id){
-            $this->id = $id;
-            return $this;
-        }
-
-        public function getName(){
-            return $this->name;
-        }        
-           /**
-         * Set the value of name
-         * 
-         * @return self
-         */
-        public function setName($name){
-            $this->name = $name;
-            return $this;
-        }
-        public function getDescription(){
-            return $this->description;
-        }
-        /**
-       * Set the value of desacription
-       * 
-       * @return self
-       */
-      public function setDescription($description){
-          $this->description = $description;
-          return $this;
-      }
         
-        public function getCreationDate(){
-            return $this->creationDate;
-        } 
-        /**
-       * Set the value of creation date
-       * 
-       * @return self
-       */
-        public function setCreationDate($creationDate){
-            $this->creationDate = $creationDate;
-            return $this;
-        }        
-        public function getState(){
-            return $this->state;
-        } 
-        /**
-       * Set the value of state
-       * 
-       * @return self
-       */
-        public function setState($state){
-            $this->state = $state;
-            return $this;
-        }
         //method     
         public static function Get(){
             $cnn = Connection();
@@ -106,63 +45,41 @@
         }
         public function Post(){
             $cnn = Connection();
-            $response = new Result();
-            $result = false;
-            if($this->name === ''){
-                $response->result = 'error';
-                $response->message="Ingrese el nombre";      
+            $this->ValidateParameter('name', $this->name, STRING);
+            $this->checkroleNonerepeat('roles', 'name', $this->name);
+           
+            $result = mysqli_query($cnn,"insert into Roles (name,description,state) values('$this->name' , '$this->description',1)");
+            if($result){
+                $this->ReturnReponse(SUCCESS_RESPONSE, "El permiso fue guardado con exito");
             }
             else{
-                $result = mysqli_query($cnn,"insert into Roles (name,description,state) values('$this->name' , '$this->description',1)");
-                if($result){
-                    $response->result = 'Ok';
-                    $response->message="El permiso fue guardado con exito";
-                }
-                else{
-                    $response->result = 'Error';
-                    $response->message="El permiso no fue guardado con exito";
-                }
-            }     
-            echo json_encode($response);
+                $this->ReturnReponse(ERROR_RESPONSE, "El permiso no fue guardado con exito");
+            }    
         }
         public function Put($idrole){
             $cnn = Connection();
-            $response = new Result();
-            $result = false;
-            if($this->name === ''){
-                $response->result = 'error';
-                $response->message="Ingrese el nombre";      
+            $this->ValidateParameter('name', $this->name, STRING);
+
+            $result = mysqli_query($cnn,"update Roles set name ='$this->name',
+                                                description='$this->description'
+                                                where id =".$idrole);
+            if($result){
+                $this->ReturnReponse(SUCCESS_RESPONSE, "El permiso fue modificado con exito");
             }
             else{
-                $result = mysqli_query($cnn,"update Roles set name ='$this->name',
-                                                    description='$this->description'
-                                                    where id =".$idrole);
-                if($result){
-                    $response->result = 'Ok';
-                    $response->message="El permiso fue modificado con exito";
-                }
-                else{
-                    $response->result = 'Error';
-                    $response->message="El permiso no fue modificado con exito";
-                }
-            }     
-            echo json_encode($response);
+                $this->ReturnReponse(ERROR_RESPONSE, "El permiso no fue modificado con exito");
+            }
         }
         public static function Delete($idrole){ 
-            $cnn = Connection();   
-            $response = new Result();
-            $result = false;
-
+            $cnn = Connection();            
             $result = mysqli_query($cnn,"update Roles set state = 2 where id =".$idrole);
+           
             if($result){
-                $response->result = 'Ok';
-                $response->message="El permiso fue eliminado con exito";
+                $this->ReturnReponse(SUCCESS_RESPONSE, "El permiso fue eliminado con exito");
             }
             else{
-                $response->result = 'Error';
-                $response->message="El permiso no fue eliminado con exito";
-            }
-            echo json_encode($response);
-        }        
+                $this->ReturnReponse(ERROR_RESPONSE, "El permiso no fue eliminado con exito");
+            }            
+        }      
     }
 ?>

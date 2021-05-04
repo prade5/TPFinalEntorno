@@ -1,0 +1,103 @@
+<?php
+    include_once('../Config/constant.php');
+    include_once("../Config/db.php");
+    // require("../Config/cors.php");
+    class genericMethod{
+        protected $request;
+        protected $serviceName;
+        protected $param;
+
+        public function __construct(){           
+        }
+
+        public function ValidateParameter($fieldName, $value, $dataType, $required = true){
+            if($required == true && empty($value) == true){
+                $this->throwError(VALIDATE_PARAMETER_REQUIRED, $fieldName . " parameter is required.");
+            }
+            switch ($dataType) {
+				case BOOLEAN:
+					if(!is_bool($value)) {
+						$this->throwError(VALIDATE_PARAMETER_DATATYPE, "Datatype is not valid for " . $fieldName . '. It should be boolean.');
+					}
+					break;
+				case INTEGER:
+					if(!is_numeric($value)) {
+						$this->throwError(VALIDATE_PARAMETER_DATATYPE, "Datatype is not valid for " . $fieldName . '. It should be numeric.');
+					}
+					break;
+
+				case STRING:
+					if(!is_string($value)) {
+						$this->throwError(VALIDATE_PARAMETER_DATATYPE, "Datatype is not valid for " . $fieldName . '. It should be string.');
+					}
+					break;
+				
+				default:
+					$this->throwError(VALIDATE_PARAMETER_DATATYPE, "Datatype is not valid for " . $fieldName);
+					break;
+			}
+
+			return $value;
+        }
+		public function checkroleNonerepeat($tableme, $fieldname, $filter){
+			$cnn = Connection();
+            $checkRoleNonerepeat = mysqli_query($cnn,"select * from ".$tableme ." where " .$fieldname ." = '$filter'");
+            $userList = [];
+            while($reg = mysqli_fetch_array($checkRoleNonerepeat)){
+                $userList = $reg;
+            }
+            $check = count($userList);
+            if($check === 0){
+                return true;
+            }                   
+			$this->throwError(USER_ALREADY_EXIST, "A role with that name '$filter' already existed.");
+        }
+        public function ThrowError($code, $msg){
+            header("Content-Type: application/json; charset=UTF-8");
+            $errormsg = json_encode(['error'=>['status'=>$code, 'message'=>$msg]]);
+            echo $errormsg;
+            exit;
+        }
+
+        public function ReturnReponse($code, $data){
+            header("content-type: application/json");
+			$response = json_encode(['response' => ['status' => $code, "result" => $data]]);
+			echo $response; 
+            exit;
+        }
+
+        /**
+	    * Get hearder Authorization
+	    * */
+	    public function GetAuthorizationHeader(){
+	        $headers = null;
+	        if (isset($_SERVER['Authorization'])) {
+	            $headers = trim($_SERVER["Authorization"]);
+	        }
+	        else if (isset($_SERVER['HTTP_AUTHORIZATION'])) { //Nginx or fast CGI
+	            $headers = trim($_SERVER["HTTP_AUTHORIZATION"]);
+	        } elseif (function_exists('apache_request_headers')) {
+	            $requestHeaders = apache_request_headers();
+	            // Server-side fix for bug in old Android versions (a nice side-effect of this fix means we don't care about capitalization for Authorization)
+	            $requestHeaders = array_combine(array_map('ucwords', array_keys($requestHeaders)), array_values($requestHeaders));
+	            if (isset($requestHeaders['Authorization'])) {
+	                $headers = trim($requestHeaders['Authorization']);
+	            }
+	        }
+	        return $headers;
+	    }
+	    /**
+	     * get access token from header
+	     * */
+	    public function GetBearerToken() {
+	        $headers = $this->GetAuthorizationHeader();
+	        // HEADER: Get the access token from the header
+	        if (!empty($headers)) {
+	            if (preg_match('/Bearer\s(\S+)/', $headers, $matches)) {
+	                return $matches[1];
+	            }
+	        }
+	        $this->throwError( ATHORIZATION_HEADER_NOT_FOUND, 'Access Token Not found');
+	    }
+    }
+?>

@@ -2,7 +2,8 @@
     include_once("../Config/db.php");
     include_once('../middleware/genericMethod.php');
     include_once('../Config/constant.php');
-
+    
+    class Result{}
     class Role extends genericMethod{
         private $id;
         private $name;
@@ -46,7 +47,7 @@
         public function Post(){
             $cnn = Connection();
             $this->ValidateParameter('name', $this->name, STRING);
-            $this->checkroleNonerepeat('roles', 'name', $this->name);
+            $this->checkNonerepeat('roles', 'name', $this->name);
            
             $result = mysqli_query($cnn,"insert into Roles (name,description,state) values('$this->name' , '$this->description',1)");
             if($result){
@@ -58,7 +59,7 @@
         }
         public function Put($idrole){
             $cnn = Connection();
-            $this->ValidateParameter('name', $this->name, STRING);
+            $this->ValidateParameter('nombre', $this->name, STRING);
 
             $result = mysqli_query($cnn,"update Roles set name ='$this->name',
                                                 description='$this->description'
@@ -71,15 +72,20 @@
             }
         }
         public static function Delete($idrole){ 
-            $cnn = Connection();            
+            $cnn = Connection(); 
+            $response = new Result();        
             $result = mysqli_query($cnn,"update Roles set state = 2 where id =".$idrole);
            
             if($result){
-                $this->ReturnReponse(SUCCESS_RESPONSE, "El permiso fue eliminado con exito");
+                $response->result = 'Ok';
+                $response->message="El permiso fue eliminado con exito";
             }
             else{
-                $this->ReturnReponse(ERROR_RESPONSE, "El permiso no fue eliminado con exito");
-            }            
+                $response->result = 'Error';
+                $response->message="El permiso no fue eliminado con exito";
+            }  
+            
+            echo json_encode($response);          
         }      
     }
 ?>

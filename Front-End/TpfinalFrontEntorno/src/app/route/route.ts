@@ -1,4 +1,6 @@
 import { Routes } from "@angular/router";
+import { AuthGuard } from "../components/auth/auth.guard";
+import { RoleGuardGuard } from "../components/auth/role-guard.guard";
 import { LoginComponent } from "../components/login/login.component";
 import { ActionroleComponent } from "../components/role/actionrole/actionrole.component";
 import { RoleComponent } from "../components/role/role.component";
@@ -13,13 +15,18 @@ export const appRoutes: Routes = [
   },
   {
     path: '',
-    redirectTo: `/User`,
+    redirectTo: `/Account`,
     pathMatch: 'full',
   },
   {
     path: 'Role',
     component: RoleComponent,
-     data: {title: 'Permiso'}
+    canLoad: [AuthGuard],
+    canActivate: [RoleGuardGuard],
+    data: {
+      expectedRole: 'admin',
+      title: 'Permiso'
+    }
   },
   {
     path: 'ActionRole',

@@ -1,6 +1,8 @@
 <?php 
 	/*Security*/
-	define('SECRETE_KEY', 'legajosalumnos');
+	define('SECRET_KEY', 'legajosalumnos');
+	define('SECRET_IV', '25102012');
+	define('METHOD','AES-256-CBC');
 	
 	/*Data Type*/
 	define('BOOLEAN', 	'1');
@@ -19,6 +21,7 @@
 	define('INVALID_USER_PASS', 					108);
 	define('USER_NOT_ACTIVE', 						109);
 	define('USER_ALREADY_EXIST', 					110);
+	define('E_MAIL_ALREADY_EXIST', 					111);
 
 	define('SUCCESS_RESPONSE', 						200);
 

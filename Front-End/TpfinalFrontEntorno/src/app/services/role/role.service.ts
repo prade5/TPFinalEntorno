@@ -18,6 +18,7 @@ export class RoleService {
     headers.append('Access-Control-Allow-Methods', 'GET');
     headers.append('Access-Control-Allow-Origin', '*');
 
+    debugger;
    return this.http.get<Role[]>(`${this.urlBase}role.php`, {headers: headers});
   }
   GetById(id){

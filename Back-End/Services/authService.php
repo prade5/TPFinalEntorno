@@ -1,0 +1,74 @@
+<?php
+    include_once("../Config/db.php");
+    include_once('../middleware/genericMethod.php');
+    include_once('../middleware/JWT.php');
+    include_once('../Config/constant.php');
+    include_once('../Helpers/Security/Securitypass.php');
+    
+    class Auth extends genericMethod{
+        private $id;  
+        private $userName;
+        private $userPass;
+
+        public function __construct ($id, $userName, $userPass){
+            #region initial
+            $this->id = $id;           
+            $this->userName = $userName;
+            $this->userPass = $userPass;
+            #endregion
+        }
+
+        //method  
+        public function Login(){
+            try{
+                $cnn = Connection();
+                
+                $passencrypt = Security::Encrypt($this->userPass);                
+               
+                $users = mysqli_query($cnn,"select *, r.name as role from users u inner join roles r on u.idRole = r.id where (userName ='$this->userName'  OR mail ='$this->userName') AND userPass='$passencrypt'");
+                $userlogin = ""; 
+                while($reg = mysqli_fetch_array($users)){
+                    $userlogin = $reg;
+                }   
+                
+                if($userlogin != ""){
+                    $paylod = [
+                        'iat' => time(),
+                        'iss' => 'localhost',
+                        'exp' => time() + (24*3600),
+                        'userId' => $userlogin['id'],
+                        'role' => $userlogin['role']
+                    ];
+                    $token = JWT::encode($paylod, SECRET_KEY);   
+                    $data = ['jwt' => $token, 'role' =>$userlogin['role']];
+                    $this->ReturnReponse(SUCCESS_RESPONSE, $data);                
+                   
+                }
+                else{
+                    $this->ReturnReponse(ERROR_RESPONSE, "Usuario y/o contraseña incorrecto.".$this->userPass);                  
+                }  
+            } catch (\Exception $e) {
+                $this->ReturnReponse(ERROR_RESPONSE, $e->getMessage());
+            }
+        }
+
+        public static function ChangePassword($id, $userPass){
+            $cnn = Connection();
+            
+            if($userPass == ""){
+                echo json_encode(['response' => ['status' => 301, "message" => "Ingresa la contraseña."]]);
+                exit;
+            }     
+            $result = mysqli_query($cnn,"update users set userPass ='$userPass'
+                                    where id =".$id);
+            if($result){
+                echo json_encode(['response' => ['status' => SUCCESS_RESPONSE, "message" => "La contraseña fue modificada con exito."]]);
+                exit;
+            }
+            else{
+                echo json_encode(['response' => ['status' => SUCCESS_RESPONSE, "message" => "NO se pudo modificar la contraseña."]]);
+                exit;
+            }    
+        }  
+    }
+?>

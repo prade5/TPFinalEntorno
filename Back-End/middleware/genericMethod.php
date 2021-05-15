@@ -39,7 +39,7 @@
 
 			return $value;
         }
-		public function checkroleNonerepeat($tableme, $fieldname, $filter){
+		public function checkNonerepeat($tableme, $fieldname, $filter){
 			$cnn = Connection();
             $checkRoleNonerepeat = mysqli_query($cnn,"select * from ".$tableme ." where " .$fieldname ." = '$filter'");
             $userList = [];
@@ -51,6 +51,36 @@
                 return true;
             }                   
 			$this->throwError(USER_ALREADY_EXIST, "A role with that name '$filter' already existed.");
+        }
+		
+        public function checkuserNonerepeat($userName){
+            $cnn = Connection();  
+            $userNonerepeat = mysqli_query($cnn,"select * from users where userName =".$userName);
+            $userList = [];
+			if($userNonerepeat == '')
+				return true;
+            while($reg = mysqli_fetch_array($userNonerepeat)){
+                $userList = $reg;
+            }
+			
+            $check = json_encode(count($userList));
+            if($check == 0)
+                return true;
+            $this->ThrowError(E_MAIL_ALREADY_EXIST, "Ya existio un usuario con ese nombre de usuario : '$userName'");
+        }
+        public function checkmailNonerepeat($mail){
+            $cnn = Connection();  
+            $checkmailNonerepeat = mysqli_query($cnn,"select * from users where mail =".$mail);
+            $userList = [];
+			if($checkmailNonerepeat == '')
+				return true;
+            while($reg = mysqli_fetch_array($checkmailNonerepeat)){
+                $userList = $reg;
+            }
+            $check = json_encode(count($userList));
+            if($check == 0)
+                return true;
+            $this->ThrowError(E_MAIL_ALREADY_EXIST, "Ya existio un usuario con ese correo: '$this->emal'");
         }
         public function ThrowError($code, $msg){
             header("Content-Type: application/json; charset=UTF-8");
@@ -65,7 +95,12 @@
 			echo $response; 
             exit;
         }
-
+		public function ReturnToken($code, $data){
+            header("content-type: application/json");
+			$response = json_encode(['response' => ['status' => $code, "token" => $data]]);
+			echo $response; 
+            exit;
+        }
         /**
 	    * Get hearder Authorization
 	    * */

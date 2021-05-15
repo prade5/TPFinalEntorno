@@ -26,8 +26,8 @@ export class RoleComponent implements OnInit {
   }
 
   GetAll(){
+    debugger;
     this.roleService.GetAll().subscribe((role) =>{
-      debugger;
       this.rolelist = role;
     });
   }

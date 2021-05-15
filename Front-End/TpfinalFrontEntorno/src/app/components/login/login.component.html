@@ -23,13 +23,20 @@
 </div> -->
 
 <div class="login-form">
-    <form action="" method="post">
+    <form id="formulario" [formGroup]="accountForm"  class="form" (ngSubmit)="OnSubmit()">
         <h2 class="text-center">Cuenta</h2>
         <div class="form-group">
-            <input type="text" class="form-control" placeholder="Nombre usuario" required="required">
+            <input type="text"  name="userName" id="userName" class="form-control email-login" formControlName="userName"
+            [class]="isValidField('userName')">
+            <div class="invalid-feedback">
+              <span *ngIf="accountForm.get('userName').errors?.required">
+                  this field is rquired
+              </span>
+            </div>
         </div>
         <div class="form-group">
-            <input type="password" class="form-control" placeholder="Contraseña" required="required">
+            <input type="password" name="userPass" id="userPass" class="form-control password-login"
+            formControlName="userPass" [class]="isValidField('userPass')">
         </div>
         <div class="form-group">
             <button type="submit" class="btn btn-primary btn-block">Ingresar</button>

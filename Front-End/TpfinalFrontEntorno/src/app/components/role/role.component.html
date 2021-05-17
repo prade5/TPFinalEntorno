@@ -1,11 +1,10 @@
-<p-table #dt [value]="rolelist"  dataKey="id" styleClass="p-datatable-customers" [rowHover]="true"
+<div class="container">
+    <p-table #dt [value]="rolelist"  dataKey="id" styleClass="p-datatable-customers" [rowHover]="true"
     [rows]="10" [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50]"
     [paginator]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
     [filterDelay]="0" [globalFilterFields]="['name','description','creationDate']">
     <ng-template pTemplate="caption">
         <div class="table-header">
-          <!-- <div class="col-md-6 col-sm-6"></div>
-          <div class="col-md-6 col-sm-6 pull-right"> Button</div> -->
           <div class="row">
             <div class="col-md-12 col-md-offset-2">
               <!-- <div class="card"> -->
@@ -13,7 +12,6 @@
                   <strong>Lista de permiso</strong>
                   <a href="/ActionRole" class="btn btn-primary btn-sm">Nuevo permiso</a>
                 </div>
-              <!-- </div> -->
             </div>
           </div>
         </div>
@@ -79,5 +77,6 @@
             <td colspan="8">No hay permiso.</td>
         </tr>
     </ng-template>
-</p-table>
+    </p-table>
+</div>
 

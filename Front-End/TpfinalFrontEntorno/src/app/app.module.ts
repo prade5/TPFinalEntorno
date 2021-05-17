@@ -25,11 +25,13 @@ import { RoleComponent } from './components/role/role.component';
 import { ActionroleComponent } from './components/role/actionrole/actionrole.component';
 import { LoginComponent } from './components/login/login.component';
 import { StateloginService } from './services/auth/Statelogin.service';
+import { PrincipalComponent } from './components/menu/principal/principal.component';
+import { NavbarComponent } from './components/menu/navbar/navbar.component';
 
 @NgModule({
   declarations: [
     AppComponent,UserComponent,AdminComponent,ActionuserComponent,
-    RoleComponent,ActionroleComponent,LoginComponent
+    RoleComponent,ActionroleComponent,LoginComponent, PrincipalComponent, NavbarComponent
   ],
   imports: [
     BrowserModule,FormsModule,ReactiveFormsModule,
@@ -49,11 +51,13 @@ import { StateloginService } from './services/auth/Statelogin.service';
     ConfirmDialogModule,
   ],
   exports:[RouterModule],
-  providers: [Title, {provide:JWT_OPTIONS, useValue:JWT_OPTIONS},JwtHelperService,AuthGuard,StateloginService, {
-    provide: HTTP_INTERCEPTORS,
-    useClass: TokenInterceptorService,
-    multi: true
-  }],
+  providers: [Title, {provide:JWT_OPTIONS, useValue:JWT_OPTIONS},JwtHelperService,AuthGuard,StateloginService
+  //    {
+  //   provide: HTTP_INTERCEPTORS,
+  //   useClass: TokenInterceptorService,
+  //   multi: true
+  // }
+],
   bootstrap: [AppComponent],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })

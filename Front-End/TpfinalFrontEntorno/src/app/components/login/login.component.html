@@ -1,49 +1,29 @@
-<!-- <div class="row">
-  <div class="col-md-6 mx-auto p-0">
-      <div class="card">
-          <div class="login-box">
-              <div class="login-snip">
-                <input id="tab-1" type="radio" name="tab" class="sign-in" checked>
-                <label for="tab-1" class="tab"></label>
-                 <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab"></label>
-                  <div class="login-space">
-                      <div class="login">
-                          <div class="group"> <label for="user" class="label">Usuario</label> <input id="user" type="text" class="input" placeholder="Ingresa usuario"> </div>
-                          <div class="group"> <label for="pass" class="label">Contraseña</label> <input id="pass" type="password" class="input" data-type="password" placeholder="Ingresa contraseña"> </div>
-                          <div class="group"> <input id="check" type="checkbox" class="check" checked> <label for="check"><span class="icon"></span>Mantener sesion abierta</label> </div>
-                          <div class="group"> <input type="submit" class="button" value="Iniciar sesion"> </div>
-                          <div class="hr"></div>
-                          <div class="foot"> <a href="#">¿Olvidaste tu contraseña?</a> </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
+<div class="container">
+  <div class="abs-center">
+    <form id="formulario" [formGroup]="accountForm"  class="form border p-3 form" (ngSubmit)="OnSubmit()">
+      <h2 class="text-center">Cuenta</h2>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="text"  name="userName" id="userName" class="form-control email-login" formControlName="userName"
+        [class]="isValidField('userName')">
+        <div class="invalid-feedback">
+          <span *ngIf="accountForm.get('userName').errors?.required">
+              this field is rquired
+          </span>
+        </div>
       </div>
-  </div>
-</div> -->
-
-<div class="login-form">
-    <form id="formulario" [formGroup]="accountForm"  class="form" (ngSubmit)="OnSubmit()">
-        <h2 class="text-center">Cuenta</h2>
-        <div class="form-group">
-            <input type="text"  name="userName" id="userName" class="form-control email-login" formControlName="userName"
-            [class]="isValidField('userName')">
-            <div class="invalid-feedback">
-              <span *ngIf="accountForm.get('userName').errors?.required">
-                  this field is rquired
-              </span>
-            </div>
-        </div>
-        <div class="form-group">
-            <input type="password" name="userPass" id="userPass" class="form-control password-login"
-            formControlName="userPass" [class]="isValidField('userPass')">
-        </div>
-        <div class="form-group">
-            <button type="submit" class="btn btn-primary btn-block">Ingresar</button>
-        </div>
-        <div class="clearfix">
-            <label class="pull-left checkbox-inline"><input type="checkbox">Recuerda</label>
-            <a href="#" class="pull-right">¿Olvidar contraseña?</a>
-        </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" name="userPass" id="userPass" class="form-control password-login"
+        formControlName="userPass" [class]="isValidField('userPass')">
+      </div>
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary btn-block">Ingresar</button>
+      </div>
+      <div class="clearfix">
+        <label class="pull-right"><input type="checkbox">Recuerda</label>
+        <a href="#" class="col-md-offset-2" style="float: right;">¿Olvidar contraseña?</a>
+      </div>
     </form>
+  </div>
 </div>

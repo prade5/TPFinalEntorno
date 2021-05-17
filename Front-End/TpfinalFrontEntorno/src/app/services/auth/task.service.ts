@@ -24,7 +24,7 @@ export class TaskService {
     this.doLogoutUser();
     return this.http.post<any>(`${this.urlBase}auth.php`, JSON.stringify(auth))
     .pipe(
-      tap( tokens => this.doLoginUser(auth.userName, tokens.response.result)),
+      tap( tokens => this.doLoginUser(auth.userName, tokens.response.message)),
       mapTo(true),
       catchError(error => {
         return of(false)
@@ -44,10 +44,12 @@ export class TaskService {
     debugger;
     localStorage.setItem(this.JWT_TOKEN, jwt);
   }
-
+  public Logout(){
+    localStorage.removeItem(this.JWT_TOKEN)
+    return true;
+  }
   private removeTokens() {
     localStorage.removeItem(this.JWT_TOKEN);
-    localStorage.removeItem(this.REFRESH_TOKEN);
     localStorage.removeItem(this.RoleUser);
   }
 

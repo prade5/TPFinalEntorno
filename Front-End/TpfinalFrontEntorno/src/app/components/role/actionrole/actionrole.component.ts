@@ -83,27 +83,28 @@ GetById(id){
 
   ActionCreate(){
     this.roleService.Post(this.browserForm.value).subscribe((data:any) =>{
-      if(data.result === 'Ok'){
-        this.messageService.Success('Crear permiso', data.message);
+      debugger;
+      if(data.response.status === 200){
+        this.messageService.Success('Crear permiso', data.response.message);
         this.router.navigate(['/Role']);
       }
       else{
-        this.messageService.Error('Error', data.message);
+        this.messageService.Error('Error', data.response.message);
       }
     },
     (err: HttpErrorResponse) => {
-
+      debugger;
     });
   }
 
   ActionUpdate(){
     this.roleService.Put(this.browserForm.value).subscribe((data:any) =>{
-      if(data.result === 'Ok'){
-        this.messageService.Success('Actualizar permiso', data.message);
+      if(data.response.status === 200){
+        this.messageService.Success('Actualizar permiso', data.response.message);
         this.router.navigate(['/Role']);
       }
       else{
-        this.messageService.Error('Error', data.message);
+        this.messageService.Error('Error', data.response.message);
       }
     },
     (err: HttpErrorResponse) => {

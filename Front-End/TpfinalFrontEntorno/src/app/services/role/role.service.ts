@@ -30,7 +30,7 @@ export class RoleService {
   Put(role){
     return this.http.put(`${this.urlBase}role.php?id=${role.id}`,JSON.stringify(role));
   }
-  Delete(role){
-    return this.http.delete(`${this.urlBase}role.php?id=${role.id}`);
+  Delete(id){
+    return this.http.delete(`${this.urlBase}role.php?id=${id}`);
   }
 }

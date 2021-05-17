@@ -2,6 +2,7 @@ import { Routes } from "@angular/router";
 import { AuthGuard } from "../components/auth/auth.guard";
 import { RoleGuardGuard } from "../components/auth/role-guard.guard";
 import { LoginComponent } from "../components/login/login.component";
+import { PrincipalComponent } from "../components/menu/principal/principal.component";
 import { ActionroleComponent } from "../components/role/actionrole/actionrole.component";
 import { RoleComponent } from "../components/role/role.component";
 import { ActionuserComponent } from "../components/user/actionuser/actionuser.component";
@@ -30,8 +31,23 @@ export const appRoutes: Routes = [
   },
   {
     path: 'ActionRole',
+    canLoad: [AuthGuard],
+    canActivate: [RoleGuardGuard],
     component: ActionroleComponent,
-     data: {title: 'Acceder permiso'}
+     data: {
+      expectedRole: 'admin',
+       title: 'Acceder permiso'
+      }
+  },
+  {
+    path: 'Principal',
+    canLoad: [AuthGuard],
+    canActivate: [RoleGuardGuard],
+    component: PrincipalComponent,
+     data: {
+      expectedRole: 'admin',
+       title: 'Menu principal'
+      }
   },
   {
     path: 'Account',
@@ -40,12 +56,22 @@ export const appRoutes: Routes = [
   },
   {
     path: 'ActionRole/:id',
+    canLoad: [AuthGuard],
+    canActivate: [RoleGuardGuard],
     component: ActionroleComponent,
-     data: {title: 'Acceder permiso'}
+     data: {
+      expectedRole: 'admin',
+       title: 'Acceder permiso'
+      }
   },
   {
     path: 'ActionUser',
+    canLoad: [AuthGuard],
+    canActivate: [RoleGuardGuard],
     component: ActionuserComponent,
-    data: {title: 'Acción usuario'}
+    data: {
+      expectedRole: 'admin',
+      title: 'Acción usuario'
+    }
   }
 ];

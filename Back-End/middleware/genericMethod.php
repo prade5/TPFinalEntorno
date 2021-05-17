@@ -84,14 +84,14 @@
         }
         public function ThrowError($code, $msg){
             header("Content-Type: application/json; charset=UTF-8");
-            $errormsg = json_encode(['error'=>['status'=>$code, 'message'=>$msg]]);
+            $errormsg = json_encode(['response'=>['status'=>$code, 'message'=>$msg]]);
             echo $errormsg;
             exit;
         }
 
         public function ReturnReponse($code, $data){
             header("content-type: application/json");
-			$response = json_encode(['response' => ['status' => $code, "result" => $data]]);
+			$response = json_encode(['response' => ['status' => $code, "message" => $data]]);
 			echo $response; 
             exit;
         }

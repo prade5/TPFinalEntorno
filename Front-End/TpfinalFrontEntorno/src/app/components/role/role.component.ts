@@ -1,27 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { RoleService } from '../../services/role/role.service';
 import { Role } from '../../classes/role';
-import { from } from 'rxjs';
-import {ConfirmationService} from 'primeng/api';
-import {Message} from 'primeng/api';
-import { PrimeNGConfig } from 'primeng/api';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-role',
   templateUrl: './role.component.html',
-  styleUrls: ['./role.component.css'],
-  providers: [ConfirmationService]
+  styleUrls: ['./role.component.css']
 })
 export class RoleComponent implements OnInit {
   rolelist :Array<Role> = [];
-  msgs: Message[] = [];
   position: string;
-  constructor(private roleService: RoleService,private confirmationService: ConfirmationService,
-             private primengConfig: PrimeNGConfig) {
+  constructor(private roleService: RoleService) {
              }
 
   ngOnInit(): void {
-    this.primengConfig.ripple = true;
     this.GetAll();
   }
 
@@ -33,17 +26,34 @@ export class RoleComponent implements OnInit {
   }
 
   Delete(id){
-    debugger;
-      this.confirmationService.confirm({
-        message: 'Are you sure that you want to proceed?',
-        header: 'Confirmation',
-        icon: 'pi pi-exclamation-triangle',
-        accept: () => {
-            this.msgs = [{severity:'info', summary:'Confirmed', detail:'You have accepted'}];
-        },
-        reject: () => {
-            this.msgs = [{severity:'info', summary:'Rejected', detail:'You have rejected'}];
-        }
-    });
+    Swal.fire({
+      title: '¿Esta seguro desea eliminarlo?',
+      text: 'Este archivo se va a eliminar para siempre',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Aceptar',
+      cancelButtonText: 'Cancel'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        debugger;
+        this.roleService.Delete(id).subscribe((data:any) =>{
+          if(data.result === 'OK')
+          debugger;
+          Swal.fire(
+            'Eliminado!',
+            'El archivo fue eliminado con exito',
+            'success'
+          ).then((result) =>{
+              this.GetAll();
+          })
+        });
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        Swal.fire(
+          'Cancelado',
+          'El archivo fue cancelado',
+          'error'
+        )
+      }
+    })
   }
 }

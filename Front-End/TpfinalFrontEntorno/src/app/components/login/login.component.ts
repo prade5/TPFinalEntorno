@@ -50,7 +50,7 @@ export class LoginComponent implements OnInit {
           let decodotken = decode(this.userService.getJwtToken());
            let role = decodotken['role'];
             if (this.userService.loggedIn() && role === 'admin'.toLowerCase()) {
-              this.router.navigate(['/Role']);
+              this.router.navigate(['/Principal']);
             } else if (
               this.userService.loggedIn() && role === 'jefe carrera'.toLowerCase()) {
               this.router.navigate(['/jefecarrera']);

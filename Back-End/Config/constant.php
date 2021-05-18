@@ -16,7 +16,7 @@
     define('VALIDATE_PARAMETER_REQUIRED', 			103);
 	define('VALIDATE_PARAMETER_DATATYPE', 			104);
 	define('API_NAME_REQUIRED', 					105);
-	define('API_PARAM_REQUIRED', 					106);
+	define('ERROR_NONE_VALID', 						106);
 	define('API_DOST_NOT_EXIST', 					107);
 	define('INVALID_USER_PASS', 					108);
 	define('USER_NOT_ACTIVE', 						109);

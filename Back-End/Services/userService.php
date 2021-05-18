@@ -72,10 +72,13 @@
                 $this->ValidateParameter('teléfono', $this->phone, STRING);
                 $this->ValidateParameter('nombre usuario', $this->userName, STRING);
                 $this->ValidateParameter('contraseña', $this->userPass, STRING);
-    
-                $this->checkNonerepeat('users', 'idRole', $this->idRole);
-                $this->checkuserNonerepeat($this->userName);
-                $this->checkmailNonerepeat($this->mail);
+                
+                $this->Validate_Email($this->mail);
+                $this->checkNonerepeat('users', 'mail', $this->mail, "Ya existio un usuario con ese mail : '$this->mail'");
+                $this->checkNonerepeat('users', 'userName', $this->userName, "Ya existio un usuario con ese nombre : '$this->userName'");
+                
+                // $this->checkmailNonerepeat($this->mail);
+                $this->ValidatePassWord($this->userPass);
     
                 $pass = Security::Encrypt($this->userPass); 
     

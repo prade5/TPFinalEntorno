@@ -39,7 +39,7 @@
 
 			return $value;
         }
-		public function checkNonerepeat($tableme, $fieldname, $filter){
+		public function checkNonerepeat($tableme, $fieldname, $filter, $message = ''){
 			$cnn = Connection();
             $checkRoleNonerepeat = mysqli_query($cnn,"select * from ".$tableme ." where " .$fieldname ." = '$filter'");
             $userList = [];
@@ -50,38 +50,18 @@
             if($check === 0){
                 return true;
             }                   
-			$this->throwError(USER_ALREADY_EXIST, "A role with that name '$filter' already existed.");
+			$this->throwError(USER_ALREADY_EXIST, $message);
         }
 		
-        public function checkuserNonerepeat($userName){
-            $cnn = Connection();  
-            $userNonerepeat = mysqli_query($cnn,"select * from users where userName =".$userName);
-            $userList = [];
-			if($userNonerepeat == '')
-				return true;
-            while($reg = mysqli_fetch_array($userNonerepeat)){
-                $userList = $reg;
+        public function Validate_Email($mail){
+           $result = filter_var($mail, FILTER_VALIDATE_EMAIL);
+            if ($result == false ) {
+                $this->ThrowError(E_MAIL_ALREADY_EXIST, "Esta dirección de correo '$mail' no es valida");
             }
-			
-            $check = json_encode(count($userList));
-            if($check == 0)
-                return true;
-            $this->ThrowError(E_MAIL_ALREADY_EXIST, "Ya existio un usuario con ese nombre de usuario : '$userName'");
+            return true;
+            
         }
-        public function checkmailNonerepeat($mail){
-            $cnn = Connection();  
-            $checkmailNonerepeat = mysqli_query($cnn,"select * from users where mail =".$mail);
-            $userList = [];
-			if($checkmailNonerepeat == '')
-				return true;
-            while($reg = mysqli_fetch_array($checkmailNonerepeat)){
-                $userList = $reg;
-            }
-            $check = json_encode(count($userList));
-            if($check == 0)
-                return true;
-            $this->ThrowError(E_MAIL_ALREADY_EXIST, "Ya existio un usuario con ese correo: '$this->emal'");
-        }
+
         public function ThrowError($code, $msg){
             header("Content-Type: application/json; charset=UTF-8");
             $errormsg = json_encode(['response'=>['status'=>$code, 'message'=>$msg]]);
@@ -95,6 +75,26 @@
 			echo $response; 
             exit;
         }
+
+        public function ValidatePassWord($pass){
+            if(strlen($pass) < 6){
+                $this->ThrowError(ERROR_NONE_VALID, "La clave debe tener al menos 6 caracteres");               
+            }
+            if(strlen($pass) > 16){
+                $this->ThrowError(ERROR_NONE_VALID, "La clave no puede tener más de 16 caracteres");
+            }
+            if (!preg_match('`[a-z]`',$pass)){
+                $this->ThrowError(ERROR_NONE_VALID, "La clave debe tener al menos una letra minúscula");
+            }
+            if (!preg_match('`[A-Z]`',$pass)){
+                $this->ThrowError(ERROR_NONE_VALID, "La clave debe tener al menos una letra mayúscula");
+            }
+            if (!preg_match('`[0-9]`',$pass)){
+                $this->ThrowError(ERROR_NONE_VALID, "La clave debe tener al menos un caracter numérico");
+            }
+            return true;
+        }
+        
 		public function ReturnToken($code, $data){
             header("content-type: application/json");
 			$response = json_encode(['response' => ['status' => $code, "token" => $data]]);

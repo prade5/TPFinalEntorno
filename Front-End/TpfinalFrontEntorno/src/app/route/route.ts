@@ -1,6 +1,7 @@
 import { Routes } from "@angular/router";
 import { AuthGuard } from "../components/auth/auth.guard";
 import { RoleGuardGuard } from "../components/auth/role-guard.guard";
+import { HomeComponent } from "../components/home/home.component";
 import { LoginComponent } from "../components/login/login.component";
 import { PrincipalComponent } from "../components/menu/principal/principal.component";
 import { ActionroleComponent } from "../components/role/actionrole/actionrole.component";
@@ -53,6 +54,11 @@ export const appRoutes: Routes = [
     path: 'Account',
     component: LoginComponent,
      data: {title: 'Acceder al sistema'}
+  },
+  {
+    path: 'Home',
+    component: HomeComponent,
+     data: {title: 'Bienvenido al Siste de concurso'}
   },
   {
     path: 'ActionRole/:id',

@@ -27,11 +27,12 @@ import { LoginComponent } from './components/login/login.component';
 import { StateloginService } from './services/auth/Statelogin.service';
 import { PrincipalComponent } from './components/menu/principal/principal.component';
 import { NavbarComponent } from './components/menu/navbar/navbar.component';
+import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,UserComponent,AdminComponent,ActionuserComponent,
-    RoleComponent,ActionroleComponent,LoginComponent, PrincipalComponent, NavbarComponent
+    RoleComponent,ActionroleComponent,LoginComponent, PrincipalComponent, NavbarComponent, HomeComponent
   ],
   imports: [
     BrowserModule,FormsModule,ReactiveFormsModule,

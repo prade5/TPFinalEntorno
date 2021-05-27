@@ -120,7 +120,7 @@
         public static function Delete($id){ 
             $cnn = Connection();   
             $response = new Result();
-            $result = mysqli_query($cnn,"update users set state = 2 where id =".$idrole);
+            $result = mysqli_query($cnn,"update users set state = 2 where id =".$id);
 
             if($result){
                 $response->result = 'Ok';

@@ -3,7 +3,7 @@
     include_once('../middleware/genericMethod.php');
     include_once('../Config/constant.php');
     include_once('../Helpers/Security/Securitypass.php');
-    
+    class Result{}
     class Subject extends genericMethod{
         private $id;
         private $idUser;
@@ -31,7 +31,7 @@
             $users = mysqli_query($cnn,"select * from subjects where state = 1 ORDER BY id DESC");
             $userList = [];
 
-            while($reg = mysqli_fetch_array($users)){
+            while($reg = mysqli_fetch_array($users,MYSQLI_ASSOC)){
                 $userList[] = $reg;
             }
 
@@ -43,7 +43,7 @@
             $user = mysqli_query($cnn,"select * from subjects where state = 1 and id =".$_id);
             $usersingle = "";
 
-            while($reg = mysqli_fetch_array($user)){
+            while($reg = mysqli_fetch_array($user,MYSQLI_ASSOC)){
                 $usersingle = $reg;
             }
             $single = json_encode($usersingle);
@@ -54,7 +54,7 @@
                 $cnn = Connection();
 
                 $this->ValidateParameter('nombre', $this->name, STRING);  
-                $this->checkNonerepeat('subjects', 'name', $this->mail, "Ya existio una materia con ese nombre : '$this->name'");
+                $this->checkNonerepeat('subjects', 'name', $this->name, "Ya existio una materia con ese nombre : '$this->name'");
                 
                 $result = mysqli_query($cnn,"insert into subjects (name, description, state, idUser) 
                 values('$this->name' , '$this->description' , 1 , $this->idUser)");

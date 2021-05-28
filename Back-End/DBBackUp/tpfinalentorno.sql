@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 17-05-2021 a las 02:56:22
+-- Tiempo de generación: 28-05-2021 a las 05:27:12
 -- Versión del servidor: 10.4.18-MariaDB
 -- Versión de PHP: 8.0.3
 
@@ -20,6 +20,53 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `tpfinalentorno`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `applicants`
+--
+
+CREATE TABLE `applicants` (
+  `id` bigint(20) NOT NULL,
+  `idUser` bigint(20) NOT NULL,
+  `idCompetition` bigint(20) NOT NULL,
+  `applicantDate` datetime NOT NULL DEFAULT current_timestamp(),
+  `state` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `applicants`
+--
+
+INSERT INTO `applicants` (`id`, `idUser`, `idCompetition`, `applicantDate`, `state`) VALUES
+(1, 4, 3, '2021-04-24 03:00:00', 1),
+(2, 4, 2, '2021-04-24 03:00:00', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `competitions`
+--
+
+CREATE TABLE `competitions` (
+  `id` bigint(20) NOT NULL,
+  `idSubject` bigint(20) NOT NULL,
+  `description` varchar(500) COLLATE utf8_unicode_ci NOT NULL,
+  `creationDate` datetime NOT NULL DEFAULT current_timestamp(),
+  `finalDate` datetime NOT NULL DEFAULT current_timestamp(),
+  `state` int(11) NOT NULL,
+  `idUser` bigint(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `competitions`
+--
+
+INSERT INTO `competitions` (`id`, `idSubject`, `description`, `creationDate`, `finalDate`, `state`, `idUser`) VALUES
+(1, 6, 'Muy buena electiva', '2021-05-27 23:12:58', '2021-05-27 23:12:58', 1, 4),
+(2, 4, 'Muy buena electiva', '2021-05-27 23:14:16', '2021-05-27 23:14:16', 1, 4),
+(3, 4, 'Muy buena electiva', '2021-05-27 23:15:36', '2021-05-27 23:15:36', 2, 4);
 
 -- --------------------------------------------------------
 
@@ -76,7 +123,7 @@ INSERT INTO `roles` (`id`, `name`, `description`, `creationDate`, `state`) VALUE
 (58, 'Pradel', 'Role Pradel', '2021-04-28 22:38:04', 1),
 (59, 'Pradel', 'Role Pradel', '2021-04-28 22:38:05', 1),
 (60, 'Pradel', 'Role Pradel', '2021-04-28 22:39:12', 1),
-(61, 'Pradel', 'Role Pradel', '2021-04-28 22:39:56', 1),
+(61, 'Pradel', 'Role Pradel', '2021-04-28 22:39:56', 2),
 (62, 'Pradel Eugene', 'Role Pradel', '2021-04-28 22:40:25', 2),
 (63, 'Pradel Eugene', 'Role Pradel', '2021-04-28 22:42:26', 2),
 (64, 'Pradel Eugene Modificado', 'Role Pradel', '2021-04-28 22:42:58', 2),
@@ -88,6 +135,31 @@ INSERT INTO `roles` (`id`, `name`, `description`, `creationDate`, `state`) VALUE
 (70, 'Admin 23', 'fdsfsdfsd', '2021-05-16 13:52:58', 2),
 (71, 'Pradel Admin actualizado', 'asdasdasd', '2021-05-16 13:57:58', 2),
 (72, 'Pradele', '', '2021-05-16 14:06:28', 2);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `subjects`
+--
+
+CREATE TABLE `subjects` (
+  `id` bigint(20) NOT NULL,
+  `name` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
+  `description` varchar(250) COLLATE utf8_unicode_ci NOT NULL,
+  `state` int(11) NOT NULL,
+  `idUser` bigint(20) NOT NULL,
+  `creationDate` datetime NOT NULL DEFAULT current_timestamp(),
+  `finalDate` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `subjects`
+--
+
+INSERT INTO `subjects` (`id`, `name`, `description`, `state`, `idUser`, `creationDate`, `finalDate`) VALUES
+(4, 'Quimica', 'Es una buena materia', 1, 4, '2021-05-27 22:52:24', '2021-05-27 22:52:24'),
+(5, 'SO', 'Materia complicada', 1, 4, '2021-05-27 22:54:30', '2021-05-27 22:54:30'),
+(6, 'Entorno Grafica', 'Muy buena electiva', 1, 4, '2021-05-27 22:55:00', '2021-05-27 22:55:00');
 
 -- --------------------------------------------------------
 
@@ -122,10 +194,31 @@ INSERT INTO `users` (`id`, `idRole`, `firstName`, `lastName`, `mail`, `address`,
 --
 
 --
+-- Indices de la tabla `applicants`
+--
+ALTER TABLE `applicants`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `competitions`
+--
+ALTER TABLE `competitions`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `competition_subject` (`idSubject`),
+  ADD KEY `competition_user` (`idUser`);
+
+--
 -- Indices de la tabla `roles`
 --
 ALTER TABLE `roles`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `subjects`
+--
+ALTER TABLE `subjects`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `subject_user` (`idUser`);
 
 --
 -- Indices de la tabla `users`
@@ -141,10 +234,28 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT de la tabla `applicants`
+--
+ALTER TABLE `applicants`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de la tabla `competitions`
+--
+ALTER TABLE `competitions`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT de la tabla `roles`
 --
 ALTER TABLE `roles`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
+
+--
+-- AUTO_INCREMENT de la tabla `subjects`
+--
+ALTER TABLE `subjects`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `users`
@@ -155,6 +266,19 @@ ALTER TABLE `users`
 --
 -- Restricciones para tablas volcadas
 --
+
+--
+-- Filtros para la tabla `competitions`
+--
+ALTER TABLE `competitions`
+  ADD CONSTRAINT `competition_subject` FOREIGN KEY (`idSubject`) REFERENCES `subjects` (`id`),
+  ADD CONSTRAINT `competition_user` FOREIGN KEY (`idUser`) REFERENCES `users` (`id`);
+
+--
+-- Filtros para la tabla `subjects`
+--
+ALTER TABLE `subjects`
+  ADD CONSTRAINT `subject_user` FOREIGN KEY (`idUser`) REFERENCES `subjects` (`id`);
 
 --
 -- Filtros para la tabla `users`

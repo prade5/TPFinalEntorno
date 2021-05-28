@@ -41,7 +41,7 @@
             $users = mysqli_query($cnn,"select * from users where state = 1 ORDER BY id DESC");
             $userList = [];
 
-            while($reg = mysqli_fetch_array($users)){
+            while($reg = mysqli_fetch_array($users,MYSQLI_ASSOC)){
                 $userList[] = $reg;
             }
 
@@ -53,7 +53,7 @@
             $user = mysqli_query($cnn,"select * from users where state = 1 and id =".$_id);
             $usersingle = "";
 
-            while($reg = mysqli_fetch_array($user)){
+            while($reg = mysqli_fetch_array($user,MYSQLI_ASSOC)){
                 $usersingle = $reg;
             }
             $single = json_encode($usersingle);

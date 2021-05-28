@@ -3,7 +3,7 @@
     include_once('../middleware/genericMethod.php');
     include_once('../Config/constant.php');
     include_once('../Helpers/Security/Securitypass.php');
-    
+    class Result{}
     class Competition extends genericMethod{
         private $id;
         private $idUser;
@@ -31,7 +31,7 @@
             $users = mysqli_query($cnn,"select * from competitions where state = 1 ORDER BY id DESC");
             $userList = [];
 
-            while($reg = mysqli_fetch_array($users)){
+            while($reg = mysqli_fetch_array($users,MYSQLI_ASSOC)){
                 $userList[] = $reg;
             }
 
@@ -43,7 +43,7 @@
             $user = mysqli_query($cnn,"select * from competitions where state = 1 and id =".$_id);
             $usersingle = "";
 
-            while($reg = mysqli_fetch_array($user)){
+            while($reg = mysqli_fetch_array($user,MYSQLI_ASSOC)){
                 $usersingle = $reg;
             }
             $single = json_encode($usersingle);
@@ -54,10 +54,10 @@
                 $cnn = Connection();
 
                 $this->ValidateParameter('materia', $this->idSubject, INTEGER);  
-                $this->checkNonerepeat('subjects', 'idSubject', $this->idSubject, "Ya tiene un concurso vigente para esa materia");
+                $this->checkNonerepeat('competitions', 'idSubject', $this->idSubject, "Ya tiene un concurso vigente para esa materia");
                 
                 $result = mysqli_query($cnn,"insert into competitions (idSubject, description, state, idUser) 
-                values('$this->idSubject' , '$this->description' , 1 , $this->idUser)");
+                values($this->idSubject , '$this->description' , 1 , $this->idUser)");
                 if($result){
                     $this->ReturnReponse(SUCCESS_RESPONSE, "El concurso fue guardado con exito.");
                 }
@@ -74,8 +74,8 @@
             $cnn = Connection();
             $this->ValidateParameter('materia', $this->idSubject, INTEGER); 
            
-            $result = mysqli_query($cnn,"update competitions set idSubject ='$this->idSubject',
-                                    description='$this->description', idUser='$this->idUser'
+            $result = mysqli_query($cnn,"update competitions set idSubject = $this->idSubject,
+                                    description='$this->description', idUser= $this->idUser
                                     where id =".$id);
             if($result){
                 $this->ReturnReponse(SUCCESS_RESPONSE, "El concurso fue modificado con exito.");

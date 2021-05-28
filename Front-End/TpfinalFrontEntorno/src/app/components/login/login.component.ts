@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import decode from 'jwt-decode';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TaskService } from '../../services/auth/task.service';
@@ -47,19 +46,10 @@ export class LoginComponent implements OnInit {
         (success) => {
           debugger;
           if (success) {
-          let decodotken = decode(this.userService.getJwtToken());
-           let role = decodotken['role'];
-            if (this.userService.loggedIn() && role === 'admin'.toLowerCase()) {
               this.router.navigate(['/Principal']);
-            } else if (
-              this.userService.loggedIn() && role === 'jefe carrera'.toLowerCase()) {
-              this.router.navigate(['/jefecarrera']);
-            } else if (this.userService.loggedIn() && role === 'postulante'.toLowerCase()) {
-              this.router.navigate(['/postulante']);
-            } else {
+            }else {
               this.router.navigate(['/error']);
             }
-          }
         },
         (err: HttpErrorResponse) => {
           debugger;

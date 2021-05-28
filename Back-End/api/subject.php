@@ -20,7 +20,7 @@
         //Update role
         case'PUT':
             $_PUT = json_decode(file_get_contents('php://input'), true);
-            $subject = new Subject($_PUT["id"],$_PUT['idUser'],$_PUT["name"],$_POST["description"],"","",0);  
+            $subject = new Subject($_PUT["id"],$_PUT['idUser'],$_PUT["name"],$_PUT["description"],"","",0);  
             $subject->Put($_GET['id']);       
         break;
         //Delete role

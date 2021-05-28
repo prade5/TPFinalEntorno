@@ -27,7 +27,7 @@
                
                 $users = mysqli_query($cnn,"select *, r.name as role from users u inner join roles r on u.idRole = r.id where (userName ='$this->userName'  OR mail ='$this->userName') AND userPass='$passencrypt'");
                 $userlogin = ""; 
-                while($reg = mysqli_fetch_array($users)){
+                while($reg = mysqli_fetch_array($users,MYSQLI_ASSOC)){
                     $userlogin = $reg;
                 }   
                 

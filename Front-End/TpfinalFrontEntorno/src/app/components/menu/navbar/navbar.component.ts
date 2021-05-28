@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { TaskService } from '../../../services/auth/task.service';
 
@@ -11,6 +11,7 @@ export class NavbarComponent implements OnInit {
   visible: boolean = true;
   @Output() menu: EventEmitter<any> = new EventEmitter();
   @Output() Logout: EventEmitter<any> = new EventEmitter();
+  @Input() menunav:any;
 
   constructor(
     private task: TaskService,

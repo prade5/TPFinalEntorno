@@ -26,7 +26,7 @@
             $userRegisteries = mysqli_query($cnn,"select * from roles where state = 1 ORDER BY id DESC");
             $userList = [];
 
-            while($reg = mysqli_fetch_array($userRegisteries)){
+            while($reg = mysqli_fetch_array($userRegisteries,MYSQLI_ASSOC)){
                 $userList[] = $reg;
             }
 
@@ -38,7 +38,7 @@
             $userRegisteries = mysqli_query($cnn,"select * from roles where state = 1 and id =".$_id);
             $userList = "";
 
-            while($reg = mysqli_fetch_array($userRegisteries)){
+            while($reg = mysqli_fetch_array($userRegisteries,MYSQLI_ASSOC)){
                 $userList = $reg;
             }
             $finalList = json_encode($userList);

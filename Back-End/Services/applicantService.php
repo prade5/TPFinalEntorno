@@ -3,7 +3,7 @@
     include_once('../middleware/genericMethod.php');
     include_once('../Config/constant.php');
     include_once('../Helpers/Security/Securitypass.php');
-    
+    class Result{}
     class Applicant extends genericMethod{
         private $id;
         private $idUser;
@@ -16,6 +16,7 @@
             $this->id = $id;
             $this->idUser = $idUser;
             $this->idCompetition = $idCompetition;
+            $this->applicantDate = $applicantDate;
             $this->state = $state;
             #endregion
         }
@@ -23,10 +24,10 @@
         //method     
         public static function Get(){             
             $cnn = Connection();
-            $users = mysqli_query($cnn,"select * from competitions where state = 1 ORDER BY id DESC");
+            $users = mysqli_query($cnn,"select * from applicants where state = 1 ORDER BY id DESC");
             $userList = [];
 
-            while($reg = mysqli_fetch_array($users)){
+            while($reg = mysqli_fetch_array($users,MYSQLI_ASSOC)){
                 $userList[] = $reg;
             }
 
@@ -35,10 +36,10 @@
         }
         public static function GetById($_id){
             $cnn = Connection();
-            $user = mysqli_query($cnn,"select * from competitions where state = 1 and id =".$_id);
+            $user = mysqli_query($cnn,"select * from applicants where state = 1 and id =".$_id);
             $usersingle = "";
 
-            while($reg = mysqli_fetch_array($user)){
+            while($reg = mysqli_fetch_array($user,MYSQLI_ASSOC)){
                 $usersingle = $reg;
             }
             $single = json_encode($usersingle);
@@ -46,18 +47,16 @@
         }
         public function Post(){
             try{
-                $cnn = Connection();
-
-                $this->ValidateParameter('materia', $this->idSubject, INTEGER);  
-                $this->checkNonerepeat('subjects', 'idSubject', $this->idSubject, "Ya tiene un concurso vigente para esa materia");
+                $cnn = Connection(); 
+                $this->checkNonerepeat('applicants', 'idCompetition', $this->idCompetition, "Ya esta aplicado(a) para ese concurso");
                 
-                $result = mysqli_query($cnn,"insert into competitions (idSubject, description, state, idUser) 
-                values('$this->idSubject' , '$this->description' , 1 , $this->idUser)");
+                $result = mysqli_query($cnn,"insert into applicants (idUser,idCompetition,applicantDate, state) 
+                values($this->idUser , $this->idCompetition  , '$this->applicantDate', 1)");
                 if($result){
-                    $this->ReturnReponse(SUCCESS_RESPONSE, "El concurso fue guardado con exito.");
+                    $this->ReturnReponse(SUCCESS_RESPONSE, "La postulación fue guardada con exito.");
                 }
                 else{
-                    $this->ReturnReponse(ERROR_RESPONSE, "El concurso no fue guardado con exito.");
+                    $this->ReturnReponse(ERROR_RESPONSE, "La postulación no fue guardada con exito.");
                 }
             }
             catch(\Exception $e){
@@ -66,31 +65,29 @@
         }
 
         public function Put($id){
-            $cnn = Connection();
-            $this->ValidateParameter('materia', $this->idSubject, INTEGER); 
-           
-            $result = mysqli_query($cnn,"update competitions set idSubject ='$this->idSubject',
-                                    description='$this->description', idUser='$this->idUser'
+            $cnn = Connection();           
+            $result = mysqli_query($cnn,"update applicants set idCompetition =$this->idCompetition,
+                                    applicantDate='$this->applicantDate', idUser=$this->idUser
                                     where id =".$id);
             if($result){
-                $this->ReturnReponse(SUCCESS_RESPONSE, "El concurso fue modificado con exito.");
+                $this->ReturnReponse(SUCCESS_RESPONSE, "La postulación fue modificada con exito.");
             }
             else{
-                $this->ReturnReponse(ERROR_RESPONSE, "El concurso no fue modificado con exito.");
+                $this->ReturnReponse(ERROR_RESPONSE, "La postulación no fue modificada con exito.");
             }    
         }
         public static function Delete($id){ 
             $cnn = Connection();   
             $response = new Result();
-            $result = mysqli_query($cnn,"update competitions set state = 2 where id =".$id);
+            $result = mysqli_query($cnn,"update applicants set state = 2 where id =".$id);
 
             if($result){
                 $response->result = 'Ok';
-                $response->message="El concurso fue eliminado con exito";
+                $response->message="La postulación fue eliminada con exito";
             }
             else{
                 $response->result = 'Error';
-                $response->message="El concurso no fue eliminado con exito";
+                $response->message="La postulación no fue eliminada con exito";
             }
             echo json_encode($response);
         }         

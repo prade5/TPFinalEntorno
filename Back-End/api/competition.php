@@ -17,10 +17,10 @@
             $competition = new Competition($_POST["id"],$_POST['idUser'],$_POST["idSubject"],$_POST["description"],$_POST["creationDate"],$_POST["finalDate"],$_POST["state"]);         
             $competition->Post();
         break;
-        //Update role
+        //Update 
         case'PUT':
             $_PUT = json_decode(file_get_contents('php://input'), true);
-            $competition = new Competition($_PUT["id"],$_PUT['idUser'],$_PUT["idSubject"],$_POST["description"],"","",0);  
+            $competition = new Competition($_PUT["id"],$_PUT['idUser'],$_PUT["idSubject"],$_PUT["description"],"","",0);  
             $competition->Put($_GET['id']);       
         break;
         //Delete role

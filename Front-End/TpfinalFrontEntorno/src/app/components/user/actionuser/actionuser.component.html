@@ -45,7 +45,13 @@
                             </div>
                             <div class="form-group col-md-6">
                               <label for="inputaddress">Domicilio</label>
-                              <input type="text" class="form-control" id="inputaddress"  placeholder="Domicilio">
+                              <input type="text" class="form-control" id="inputaddress"  placeholder="Domicilio" name="address"
+                              formControlName="address"  [class]="isValidField('address')">
+                              <div class="invalid-feedback">
+                                <span *ngIf="browserForm.get('address').errors?.required">
+                                    Debe ingresar el Domicilio
+                                </span>
+                              </div>
                             </div>
                           </div>
 
@@ -60,7 +66,6 @@
                                 <option value="">Seleccionar el role</option>
                                 <option value="{{role.id}}" *ngFor ="let role of rolelist">{{role.name}}</option>
                               </select>
-                              <!-- <input type="text" class="form-control" id="inputaddress" placeholder="Domicilio"> -->
                             </div>
                           </div>
 
@@ -71,8 +76,8 @@
                               formControlName="userName" placeholder="Nombre usuario">
                             </div>
                             <div class="form-group col-md-6">
-                              <label for="inputUserPass">Contraseñ usuario</label>
-                              <input type="password" class="form-control" id="inputUserPass" placeholder="Contraseñ usuario">                              
+                              <label for="inputUserPass">Contraseña usuario</label>
+                              <input type="password" class="form-control" id="inputUserPass" placeholder="Contraseña usuario">                              
                               <i class="pi pi-info-circle info" pTooltip="La contraseña debe contener al menos un numero[0-9], una letra en mayuscula[A-Z], una letra minuscula[a-z] y debe tener como minimo 6 caracteres y maximo 50 caracteres"></i>
                             </div>
                           </div>

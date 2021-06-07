@@ -14,7 +14,6 @@ export class ActionuserComponent implements OnInit {
   Option: string ="Crear usuario";
   OptionBtn: boolean = false;
   rolelist :Array<Role> = [];
-  user:User;
 
   browserForm: FormGroup;
   private isEmail = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
@@ -45,7 +44,8 @@ export class ActionuserComponent implements OnInit {
       userName:['',[Validators.required]],
       userPass:['',[Validators.required, Validators.minLength(6),Validators.maxLength(50),Validators.pattern('/^([a-z])/'),Validators.pattern('/^([A-Z])/')]],
       state:1
-    });    
+    });  
+
     let useract ={
       id:0,      
       firstname:'',

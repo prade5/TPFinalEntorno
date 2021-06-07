@@ -21,7 +21,6 @@ export class ActionroleComponent implements OnInit {
     private messageService: MessageService, private route: ActivatedRoute,
     private router:Router) {
     let id = this.route.snapshot.paramMap.get('id');
-    this.initForm();
     if(id !== null){
       this.Option ="Actualizar permiso";
       this.OptionBtn = true;
@@ -34,6 +33,7 @@ export class ActionroleComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.initForm();
   }
 
   private initForm():void{

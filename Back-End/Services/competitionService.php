@@ -28,7 +28,8 @@
         //method     
         public static function Get(){             
             $cnn = Connection();
-            $users = mysqli_query($cnn,"select * from competitions where state = 1 ORDER BY id DESC");
+            $query = "select *, sub.name, sub.img from competitions comp inner join subjects sub on comp.idSubject = sub.id where comp.state = 1 ORDER BY comp.id DESC";
+            $users = mysqli_query($cnn,$query);
             $userList = [];
 
             while($reg = mysqli_fetch_array($users,MYSQLI_ASSOC)){

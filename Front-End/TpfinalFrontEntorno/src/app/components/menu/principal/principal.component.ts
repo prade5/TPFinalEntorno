@@ -2,20 +2,33 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TaskService } from '../../../services/auth/task.service';
 import decode from 'jwt-decode';
+import { UserService } from '../../../services/user/user.service';
+import {User} from '../../../classes/user';
 
+declare var $: any;
 @Component({
   selector: 'app-principal',
   templateUrl: './principal.component.html',
   styleUrls: ['./principal.component.css']
 })
 export class PrincipalComponent implements OnInit {
-  menunav:any
+  menunav:any;
+  linkprincipal:any;
+  userlist :Array<User> = [];
   constructor(
     private task: TaskService,
-    private router: Router) { }
+    private router: Router,private userService: UserService) { }
 
   ngOnInit(): void {
     this. GetTypeUser();
+    this.GetAllUser();
+    this.linkprincipal ="/User";
+  }
+  GetAllUser(){
+    this.userService.GetAll().subscribe( (user) =>{
+      debugger;
+      this.userlist = user;
+    });
   }
   GetTypeUser(){
     let decodotken = decode(this.task.getJwtToken());
@@ -41,7 +54,7 @@ export class PrincipalComponent implements OnInit {
       },
       {
         url:"#r",
-        displayName:"Crear solicitud",
+        displayName:"Crear concurso",
         active:""
       },
       {

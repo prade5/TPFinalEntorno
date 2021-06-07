@@ -3,12 +3,11 @@ import {  CompetitionService } from '../../services/competition/competition.serv
 import { Competition } from '../../classes/competition';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  selector: 'app-competition',
+  templateUrl: './competition.component.html',
+  styleUrls: ['./competition.component.css']
 })
-export class HomeComponent implements OnInit {
-
+export class CompetitionComponent implements OnInit {
   complist :Array<Competition> = [];
 
   constructor(private comp: CompetitionService) { }

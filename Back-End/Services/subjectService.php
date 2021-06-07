@@ -8,17 +8,19 @@
         private $id;
         private $idUser;
         private $name;
-        private $description;
+        private $description;        
+        private $img;
         private $creationDate;
         private $finalDate;
         private $state;
 
-        public function __construct ($id, $idUser,$name, $description, $creationDate, $finalDate, $state){
+        public function __construct ($id, $idUser,$name, $description, $img, $creationDate, $finalDate, $state){
             #region initial
             $this->id = $id;
             $this->idUser = $idUser;
             $this->name = $name;
             $this->description = $description;
+            $this->img = $img;
             $this->creationDate = $creationDate;
             $this->finalDate = $finalDate;
             $this->state = $state;
@@ -56,8 +58,8 @@
                 $this->ValidateParameter('nombre', $this->name, STRING);  
                 $this->checkNonerepeat('subjects', 'name', $this->name, "Ya existio una materia con ese nombre : '$this->name'");
                 
-                $result = mysqli_query($cnn,"insert into subjects (name, description, state, idUser) 
-                values('$this->name' , '$this->description' , 1 , $this->idUser)");
+                $result = mysqli_query($cnn,"insert into subjects (name, description, state, idUser, img) 
+                values('$this->name' , '$this->description' , 1 , $this->idUser, '$this->img')");
                 if($result){
                     $this->ReturnReponse(SUCCESS_RESPONSE, "La materia fue guardada con exito.");
                 }
@@ -75,7 +77,7 @@
             $this->ValidateParameter('nombre', $this->name, STRING); 
            
             $result = mysqli_query($cnn,"update subjects set name ='$this->name',
-                                    description='$this->description', idUser='$this->idUser'
+                                    description='$this->description', idUser='$this->idUser', img='$this->img'
                                     where id =".$id);
             if($result){
                 $this->ReturnReponse(SUCCESS_RESPONSE, "La materia fue modificada con exito.");

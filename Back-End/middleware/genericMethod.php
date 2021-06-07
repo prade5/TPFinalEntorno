@@ -80,8 +80,8 @@
             if(strlen($pass) < 6){
                 $this->ThrowError(ERROR_NONE_VALID, "La clave debe tener al menos 6 caracteres");               
             }
-            if(strlen($pass) > 16){
-                $this->ThrowError(ERROR_NONE_VALID, "La clave no puede tener más de 16 caracteres");
+            if(strlen($pass) > 50){
+                $this->ThrowError(ERROR_NONE_VALID, "La clave no puede tener más de 50 caracteres");
             }
             if (!preg_match('`[a-z]`',$pass)){
                 $this->ThrowError(ERROR_NONE_VALID, "La clave debe tener al menos una letra minúscula");

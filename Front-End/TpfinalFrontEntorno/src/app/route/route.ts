@@ -1,23 +1,23 @@
 import { Routes } from "@angular/router";
 import { AuthGuard } from "../components/auth/auth.guard";
 import { RoleGuardGuard } from "../components/auth/role-guard.guard";
+import { CompetitionComponent } from "../components/competition/competition.component";
 import { HomeComponent } from "../components/home/home.component";
 import { LoginComponent } from "../components/login/login.component";
 import { PrincipalComponent } from "../components/menu/principal/principal.component";
 import { ActionroleComponent } from "../components/role/actionrole/actionrole.component";
 import { RoleComponent } from "../components/role/role.component";
-import { ActionuserComponent } from "../components/user/actionuser/actionuser.component";
-import { UserComponent } from "../components/user/user.component";
 
 export const appRoutes: Routes = [
   {
     path: 'User',
-    component: UserComponent,
-     data: {title: 'Usuario'}
+    loadChildren:() => import("../modules/user/user.module").then((p) => p.UserModule)
+    // component: UserComponent,
+    //  data: {title: 'Usuario'}
   },
   {
     path: '',
-    redirectTo: `/Account`,
+    redirectTo: `/Home`,
     pathMatch: 'full',
   },
   {
@@ -60,21 +60,31 @@ export const appRoutes: Routes = [
     component: HomeComponent,
      data: {title: 'Bienvenido al Siste de concurso'}
   },
+  // {
+  //   path: 'ActionRole/:id',
+  //   canLoad: [AuthGuard],
+  //   canActivate: [RoleGuardGuard],
+  //   component: ActionroleComponent,
+  //    data: {
+  //     expectedRole: 'admin',
+  //      title: 'Acceder permiso'
+  //     }
+  // },
+  // {
+  //   path: 'ActionUser',
+  //   canLoad: [AuthGuard],
+  //   canActivate: [RoleGuardGuard],
+  //   component: ActionuserComponent,
+  //   data: {
+  //     expectedRole: 'admin',
+  //     title: 'Acción usuario'
+  //   }
+  // },
   {
-    path: 'ActionRole/:id',
+    path: 'Competition',
     canLoad: [AuthGuard],
     canActivate: [RoleGuardGuard],
-    component: ActionroleComponent,
-     data: {
-      expectedRole: 'admin',
-       title: 'Acceder permiso'
-      }
-  },
-  {
-    path: 'ActionUser',
-    canLoad: [AuthGuard],
-    canActivate: [RoleGuardGuard],
-    component: ActionuserComponent,
+    component: CompetitionComponent,
     data: {
       expectedRole: 'admin',
       title: 'Acción usuario'

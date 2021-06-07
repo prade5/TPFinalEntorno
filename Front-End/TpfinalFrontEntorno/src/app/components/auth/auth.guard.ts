@@ -12,7 +12,7 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanDeactivate<u
  canActivate(): boolean {
    debugger;
   if (!this.authService.isAuthenticated()) {
-    this.router.navigate(['Home']);
+    this.router.navigate(['Account']);
     return false;
   }
   return true;

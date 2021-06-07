@@ -1,0 +1,22 @@
+[
+    {
+      "name": "Quimica",
+      "url": "/Images/quimica.jpg"
+    },
+    {
+        "name": "Administracion de recurso",
+        "url": "/Images/ADR.jpeg"
+    },
+    {
+        "name": "Economia",
+        "url": "/Images/Economia.jpg"
+    },
+    {
+        "name": "ESTRUCTURA DE DATOS",
+        "url": "/Images/ed.jpg"
+    },
+    {
+        "name": "Legislation",
+        "url": "/Images/legislacion.png"
+    }
+  ]

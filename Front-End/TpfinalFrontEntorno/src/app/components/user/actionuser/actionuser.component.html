@@ -5,34 +5,47 @@
               <div class="col-xl-10 col-lg-6 col-md-8 col-sm-10 mx-auto text-center form">
                   <h1 class="display-4 py-2 text-truncate">{{Option}}</h1>
                   <div class="px-4">
-                      <form action="" class="justify-content-center">
-                          <!-- <div class="form-group">
-                              <label class="sr-only">Name</label>
-                              <input type="text" class="form-control" placeholder="Jane Doe">
-                          </div>
-                          <div class="form-group">
-                              <label class="sr-only">Email</label>
-                              <input type="text" class="form-control" placeholder="jane.doe@example.com">
-                          </div> -->
+                      <form action="" class="justify-content-center"  [formGroup]="browserForm" (ngSubmit)="Create()">
                           <div class="form-row">
                             <div class="form-group col-md-6">
                               <label for="inputfirstName">Nombre</label>
-                              <input type="text" class="form-control" id="inputfirstName" placeholder="Nombre">
+                              <input type="text" class="form-control" id="inputfirstName" placeholder="Nombre" name="firstName"
+                              formControlName="firstName"  [class]="isValidField('firstName')">
+                              <div class="invalid-feedback">
+                                <span *ngIf="browserForm.get('firstName').errors?.required">
+                                    Debe ingresar el nombre
+                                </span>
+                              </div>
                             </div>
                             <div class="form-group col-md-6">
                               <label for="inputlastName">Apellido</label>
-                              <input type="text" class="form-control" id="inputlastName" placeholder="Apellido">
+                              <input type="text" class="form-control" id="inputlastName" placeholder="Apellido" name="lastName"
+                              formControlName="lastName"  [class]="isValidField('lastName')">
+                              <div class="invalid-feedback">
+                                <span *ngIf="browserForm.get('lastName').errors?.required">
+                                    Debe ingresar el apellido
+                                </span>
+                              </div>
                             </div>
                           </div>
 
                           <div class="form-row">
                             <div class="form-group col-md-6">
                               <label for="inputEmail">Email</label>
-                              <input type="email" class="form-control" id="inputEmail" placeholder="Correo electronico">
+                              <input type="email" class="form-control" id="inputEmail" placeholder="Correo electronico" name="mail"
+                              formControlName="mail"  [class]="isValidField('mail')">
+                              <div class="invalid-feedback">
+                                <span *ngIf="browserForm.get('mail').errors?.required">
+                                    Debe ingresar el correo electronico
+                                </span>
+                                <span *ngIf="browserForm.get('mail').errors?.pattern">
+                                  Correo electronico invalido
+                                </span>
+                              </div>
                             </div>
                             <div class="form-group col-md-6">
                               <label for="inputaddress">Domicilio</label>
-                              <input type="text" class="form-control" id="inputaddress" placeholder="Domicilio">
+                              <input type="text" class="form-control" id="inputaddress"  placeholder="Domicilio">
                             </div>
                           </div>
 
@@ -54,16 +67,18 @@
                           <div class="form-row">
                             <div class="form-group col-md-6">
                               <label for="inputUserName">Nombre usuario</label>
-                              <input type="text" class="form-control" id="inputUserName" placeholder="Nombre usuario">
+                              <input type="text" class="form-control" id="inputUserName" name="userName"
+                              formControlName="userName" placeholder="Nombre usuario">
                             </div>
                             <div class="form-group col-md-6">
                               <label for="inputUserPass">Contraseñ usuario</label>
-                              <input type="password" class="form-control" id="inputUserPass" placeholder="Contraseñ usuario">
+                              <input type="password" class="form-control" id="inputUserPass" placeholder="Contraseñ usuario">                              
+                              <i class="pi pi-info-circle info" pTooltip="La contraseña debe contener al menos un numero[0-9], una letra en mayuscula[A-Z], una letra minuscula[a-z] y debe tener como minimo 6 caracteres y maximo 50 caracteres"></i>
                             </div>
                           </div>
 
                           <div class="float-right mb-3">
-                            <button [routerLink]="['/User']" class="btn btn-primary mr-3">Cancelar</button>
+                            <button [routerLink]="['/Principal']" class="btn btn-primary mr-3">Cancelar</button>
                             <button type="submit" class="btn btn-primary">{{OptionBtn == false ? "Guardar" : "Actualizar"}}</button>
                           </div>
                       </form>

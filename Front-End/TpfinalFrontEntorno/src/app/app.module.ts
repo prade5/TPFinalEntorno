@@ -12,6 +12,7 @@ import {ButtonModule} from 'primeng/button';
 import { JwtHelperService,  JWT_OPTIONS  } from '@auth0/angular-jwt';
 import { AuthGuard } from './components/auth/auth.guard';
 import { ToastrModule } from 'ngx-toastr';
+import { TooltipModule } from 'primeng/tooltip';
 import { TokenInterceptorService } from './services/auth/token-interceptor.service';
 
 import {ReactiveFormsModule} from '@angular/forms';
@@ -28,11 +29,12 @@ import { StateloginService } from './services/auth/Statelogin.service';
 import { PrincipalComponent } from './components/menu/principal/principal.component';
 import { NavbarComponent } from './components/menu/navbar/navbar.component';
 import { HomeComponent } from './components/home/home.component';
+import { CompetitionComponent } from './components/competition/competition.component';
 
 @NgModule({
   declarations: [
     AppComponent,UserComponent,AdminComponent,ActionuserComponent,
-    RoleComponent,ActionroleComponent,LoginComponent, PrincipalComponent, NavbarComponent, HomeComponent
+    RoleComponent,ActionroleComponent,LoginComponent, PrincipalComponent, NavbarComponent, HomeComponent, CompetitionComponent
   ],
   imports: [
     BrowserModule,FormsModule,ReactiveFormsModule,
@@ -40,7 +42,7 @@ import { HomeComponent } from './components/home/home.component';
       {
         relativeLinkResolution: 'legacy'
       }),
-    TableModule,AccordionModule,ButtonModule,
+    TableModule,AccordionModule,ButtonModule,TooltipModule,
     HttpClientModule,BrowserAnimationsModule,ToastrModule.forRoot({
       progressBar: true,
       timeOut: 5000,

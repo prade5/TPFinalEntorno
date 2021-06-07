@@ -12,6 +12,7 @@ export class NavbarComponent implements OnInit {
   @Output() menu: EventEmitter<any> = new EventEmitter();
   @Output() Logout: EventEmitter<any> = new EventEmitter();
   @Input() menunav:any;
+  @Input() linkprincipal:any;
 
   constructor(
     private task: TaskService,

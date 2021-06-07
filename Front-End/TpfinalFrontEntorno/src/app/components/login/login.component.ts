@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TaskService } from '../../services/auth/task.service';
 import { HttpErrorResponse } from '@angular/common/http';
+declare var  $: any;
 
 @Component({
   selector: 'app-login',
@@ -14,12 +15,14 @@ export class LoginComponent implements OnInit {
   password: string;
   confirmPassword: string;
   accountForm: FormGroup;
+  isLogin:string= 'none!important';
   constructor(
     private userService: TaskService,
     private router: Router, private fb:FormBuilder) {
     }
 
   ngOnInit(): void {
+    $('app-navbar').hide().css("visibility", "hidden");
     this.initForm();
   }
   register() {

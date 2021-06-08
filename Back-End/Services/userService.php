@@ -4,12 +4,15 @@
     include_once('../Config/constant.php');
     include_once('../Helpers/Security/Securitypass.php');
     
+    class Result{}
     class User extends genericMethod{
         private $id;
         private $idRole;
+        private $idDocumentType;
         private $firstName;
         private $lastName;
         private $mail;
+        private $docNumber;
         private $address;
         private $phone;
         private $userName;
@@ -18,13 +21,15 @@
         private $finalDate;
         private $state;
 
-        public function __construct ($id, $idRole,$firstName, $lastName, $mail, $address, $phone, $userName, $userPass, $creationDate, $finalDate, $state){
+        public function __construct ($id, $idRole,$firstName, $lastName, $mail, $address, $phone, $userName, $userPass,$idDocumentType,$docNumber, $creationDate, $finalDate, $state){
             #region initial
             $this->id = $id;
             $this->idRole = $idRole;
+            $this->idDocumentType = $idDocumentType;
             $this->firstName = $firstName;
             $this->lastName = $lastName;
             $this->mail = $mail;
+            $this->docNumber = $docNumber;
             $this->address = $address;
             $this->phone = $phone;
             $this->userName = $userName;
@@ -70,6 +75,10 @@
     
                 $this->ValidateParameter('address', $this->address, STRING);
                 $this->ValidateParameter('teléfono', $this->phone, STRING);
+                
+                $this->ValidateParameter('Documento', $this->idDocumentType, INTEGER);
+                $this->ValidateParameter('Nro Documento', $this->docNumber, STRING);
+
                 $this->ValidateParameter('nombre usuario', $this->userName, STRING);
                 $this->ValidateParameter('contraseña', $this->userPass, STRING);
                 
@@ -79,11 +88,12 @@
                 
                 // $this->checkmailNonerepeat($this->mail);
                 $this->ValidatePassWord($this->userPass);
+                $this->ValidateUser($this->userPass);
     
                 $pass = Security::Encrypt($this->userPass); 
     
-                $result = mysqli_query($cnn,"insert into users (idRole,firstName, lastName, mail, address, phone, userName, userPass,state) 
-                values('$this->idRole' , '$this->firstName' , '$this->lastName' , '$this->mail' , '$this->address', '$this->phone' , '$this->userName', '$pass',1)");
+                $result = mysqli_query($cnn,"insert into users (idRole, idDocumentType, firstName, lastName, docNumber, mail, address, phone, userName, userPass,state) 
+                values('$this->idRole','$this->idDocumentType' , '$this->firstName' , '$this->lastName','$this->docNumber' , '$this->mail' , '$this->address', '$this->phone' , '$this->userName', '$pass',1)");
                 if($result){
                     $this->ReturnReponse(SUCCESS_RESPONSE, "El usuario fue guardado con exito.");
                 }
@@ -105,8 +115,12 @@
 
             $this->ValidateParameter('address', $this->address, STRING);
             $this->ValidateParameter('teléfono', $this->phone, STRING);
+                
+            $this->ValidateParameter('Documento', $this->idDocumentType, INTEGER);
+            $this->ValidateParameter('Nro Documento', $this->docNumber, STRING);
            
             $result = mysqli_query($cnn,"update users set firstName ='$this->firstName',
+                                    idDocumentType='$this->idDocumentType', docNumber='$this->docNumber', 
                                     lastName='$this->lastName', mail='$this->mail', 
                                     address='$this->address', phone='$this->phone'
                                     where id =".$id);

@@ -4,6 +4,7 @@ import { TaskService } from '../../../services/auth/task.service';
 import decode from 'jwt-decode';
 import { UserService } from '../../../services/user/user.service';
 import {User} from '../../../classes/user';
+import Swal from 'sweetalert2'
 
 declare var $: any;
 @Component({
@@ -76,6 +77,39 @@ export class PrincipalComponent implements OnInit {
 
   GetHeadoftheChair(){
 
+  }
+
+  Delete(id){
+    Swal.fire({
+      title: '¿Esta seguro desea eliminarlo?',
+      text: 'Este archivo se va a eliminar para siempre',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Aceptar',
+      cancelButtonText: 'Cancel'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        debugger;
+        this.userService.Delete(id).subscribe((data:any) =>{
+          debugger;
+          if(data.result === 'OK')
+          debugger;
+          Swal.fire(
+            'Eliminado!',
+            'El archivo fue eliminado con exito',
+            'success'
+          ).then((result) =>{
+              this.GetAllUser();
+          })
+        });
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        Swal.fire(
+          'Cancelado',
+          'El archivo fue cancelado',
+          'error'
+        )
+      }
+    })
   }
   Logout(islogout = false){
     debugger;

@@ -94,6 +94,16 @@
             }
             return true;
         }
+
+        public function ValidateUser($user){
+            if(strlen($user) < 6){
+                $this->ThrowError(ERROR_NONE_VALID, "El usuario debe tener al menos 6 caracteres");               
+            }
+            if(strlen($user) > 50){
+                $this->ThrowError(ERROR_NONE_VALID, "El usuario no puede tener más de 50 caracteres");
+            }
+            return true;
+        }
         
 		public function ReturnToken($code, $data){
             header("content-type: application/json");

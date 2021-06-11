@@ -82,9 +82,7 @@ GetById(id){
       state:1
     });  
   }
-  get userName() {
-    return this.browserForm.get('userName');
-} 
+
   isValidField(field: string): string{
     const validatedField = this.browserForm.get(field);
     let result = (!validatedField.valid && validatedField.touched) ?
@@ -92,6 +90,7 @@ GetById(id){
     return result;
   }
   Create (){
+    debugger;
     if(this.browserForm.valid) {
       if(this.OptionBtn == false){
         this.ActionCreate();
@@ -119,6 +118,7 @@ GetById(id){
   }
 
   ActionUpdate(){
+    debugger;
     this.userService.Put(this.browserForm.value).subscribe((data:any) =>{
       if(data.response.status === 200){
         this.messageService.Success('Actualizar Usuario', data.response.message);

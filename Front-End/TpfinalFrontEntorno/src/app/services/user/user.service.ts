@@ -16,11 +16,12 @@ export class UserService {
   GetById(id){
     return this.http.get(`${environment.api_url}user.php?id=${id}`);
   }
-  Post(role){
-    return this.http.post(`${environment.api_url}user.php`,JSON.stringify(role));
+  Post(data){
+    return this.http.post(`${environment.api_url}user.php`,JSON.stringify(data));
   }
-  Put(role){
-    return this.http.put(`${environment.api_url}user.php?id=${role.id}`,JSON.stringify(role));
+  Put(data){
+    debugger;
+    return this.http.put(`${environment.api_url}user.php?id=${data.id}`,JSON.stringify(data));
   }
   Delete(id){
     return this.http.delete(`${environment.api_url}user.php?id=${id}`);

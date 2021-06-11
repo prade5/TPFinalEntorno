@@ -23,7 +23,7 @@ export class PrincipalComponent implements OnInit {
   ngOnInit(): void {
     this. GetTypeUser();
     this.GetAllUser();
-    this.linkprincipal ="/User";
+    this.linkprincipal ="/Principal";
   }
   GetAllUser(){
     this.userService.GetAll().subscribe( (user) =>{

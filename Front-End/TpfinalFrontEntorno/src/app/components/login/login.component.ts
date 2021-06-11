@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
     }
 
   ngOnInit(): void {
-    $('app-navbar').hide().css("visibility", "hidden");
+    // $('app-navbar').hide().css("visibility", "hidden");
     this.initForm();
   }
   register() {
@@ -49,7 +49,7 @@ export class LoginComponent implements OnInit {
         (success) => {
           debugger;
           if (success) {
-              this.router.navigate(['/Principal']);
+              this.router.navigate(['/MenuAdmin']);
             }else {
               this.router.navigate(['/error']);
             }

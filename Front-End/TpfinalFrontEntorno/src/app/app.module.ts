@@ -30,11 +30,12 @@ import { PrincipalComponent } from './components/menu/principal/principal.compon
 import { NavbarComponent } from './components/menu/navbar/navbar.component';
 import { HomeComponent } from './components/home/home.component';
 import { CompetitionComponent } from './components/competition/competition.component';
+import { MenuadminComponent } from './components/menu/menuadmin/menuadmin.component';
 
 @NgModule({
   declarations: [
     AppComponent,UserComponent,AdminComponent,ActionuserComponent,
-    RoleComponent,ActionroleComponent,LoginComponent, PrincipalComponent, NavbarComponent, HomeComponent, CompetitionComponent
+    RoleComponent,ActionroleComponent,LoginComponent, PrincipalComponent, NavbarComponent, HomeComponent, CompetitionComponent, MenuadminComponent
   ],
   imports: [
     BrowserModule,FormsModule,ReactiveFormsModule,
@@ -43,13 +44,7 @@ import { CompetitionComponent } from './components/competition/competition.compo
         relativeLinkResolution: 'legacy'
       }),
     TableModule,AccordionModule,ButtonModule,TooltipModule,
-    HttpClientModule,BrowserAnimationsModule,ToastrModule.forRoot({
-      progressBar: true,
-      timeOut: 5000,
-      enableHtml: true,
-      preventDuplicates: true,
-      progressAnimation:'increasing'
-    }),
+    HttpClientModule,BrowserAnimationsModule,
     MessagesModule,
     ConfirmDialogModule,
   ],

@@ -1,9 +1,11 @@
 import { Routes } from "@angular/router";
+import { AdminComponent } from "../components/admin/admin.component";
 import { AuthGuard } from "../components/auth/auth.guard";
 import { RoleGuardGuard } from "../components/auth/role-guard.guard";
 import { CompetitionComponent } from "../components/competition/competition.component";
 import { HomeComponent } from "../components/home/home.component";
 import { LoginComponent } from "../components/login/login.component";
+import { MenuadminComponent } from "../components/menu/menuadmin/menuadmin.component";
 import { PrincipalComponent } from "../components/menu/principal/principal.component";
 import { ActionroleComponent } from "../components/role/actionrole/actionrole.component";
 import { RoleComponent } from "../components/role/role.component";
@@ -60,16 +62,16 @@ export const appRoutes: Routes = [
     component: HomeComponent,
      data: {title: 'Bienvenido al Siste de concurso'}
   },
-  // {
-  //   path: 'ActionRole/:id',
-  //   canLoad: [AuthGuard],
-  //   canActivate: [RoleGuardGuard],
-  //   component: ActionroleComponent,
-  //    data: {
-  //     expectedRole: 'admin',
-  //      title: 'Acceder permiso'
-  //     }
-  // },
+  {
+    path: 'MenuAdmin',
+    canLoad: [AuthGuard],
+    canActivate: [RoleGuardGuard],
+    component: MenuadminComponent,
+     data: {
+      expectedRole: 'admin',
+       title: 'Acceder permiso'
+      }
+  },
   // {
   //   path: 'ActionUser',
   //   canLoad: [AuthGuard],

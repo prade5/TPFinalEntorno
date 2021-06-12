@@ -1,9 +1,9 @@
 export interface  Subject {
     id: number;
-    idUser:number;
+    idUser: number;
     name: string;
     description: string;
-    img:string;
+    img: string;
     creationDate: Date;
     finalDate: Date;
     state: number;

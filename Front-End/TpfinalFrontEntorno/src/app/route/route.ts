@@ -9,6 +9,7 @@ import { MenuadminComponent } from "../components/menu/menuadmin/menuadmin.compo
 import { PrincipalComponent } from "../components/menu/principal/principal.component";
 import { ActionroleComponent } from "../components/role/actionrole/actionrole.component";
 import { RoleComponent } from "../components/role/role.component";
+import {ActioncompetitionComponent} from "../components/competition/actioncompetition/actioncompetition.component";
 
 export const appRoutes: Routes = [
   {
@@ -91,5 +92,10 @@ export const appRoutes: Routes = [
       expectedRole: 'admin',
       title: 'Acción usuario'
     }
+  },
+  {
+    path: 'ActionCompetition',
+    component: ActioncompetitionComponent,
+    data: {title: 'Bienvenido a los concursos'}
   }
 ];

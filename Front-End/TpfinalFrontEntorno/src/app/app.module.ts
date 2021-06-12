@@ -31,11 +31,12 @@ import { NavbarComponent } from './components/menu/navbar/navbar.component';
 import { HomeComponent } from './components/home/home.component';
 import { CompetitionComponent } from './components/competition/competition.component';
 import { MenuadminComponent } from './components/menu/menuadmin/menuadmin.component';
+import {ActioncompetitionComponent} from "./components/competition/actioncompetition/actioncompetition.component";
 
 @NgModule({
   declarations: [
     AppComponent,UserComponent,AdminComponent,ActionuserComponent,
-    RoleComponent,ActionroleComponent,LoginComponent, PrincipalComponent, NavbarComponent, HomeComponent, CompetitionComponent, MenuadminComponent
+    RoleComponent,ActionroleComponent,LoginComponent, PrincipalComponent, NavbarComponent, HomeComponent, CompetitionComponent, MenuadminComponent, ActioncompetitionComponent
   ],
   imports: [
     BrowserModule,FormsModule,ReactiveFormsModule,

@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 12-06-2021 a las 21:13:05
--- Versión del servidor: 10.4.19-MariaDB
--- Versión de PHP: 8.0.6
+-- Tiempo de generación: 12-06-2021 a las 21:45:26
+-- Versión del servidor: 10.4.18-MariaDB
+-- Versión de PHP: 8.0.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -88,6 +88,19 @@ INSERT INTO `documenttype` (`id`, `name`, `description`, `state`, `creationDate`
 (2, 'PASAPORTE', 'PASAPORTE', 1, '2021-06-08 00:00:32'),
 (3, 'L.C', 'Libreta Cívica', 1, '2021-06-08 00:00:32'),
 (4, 'L.E.', 'Libreta de Enrolamiento', 1, '2021-06-08 00:00:32');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `jefedecatedra_materia`
+--
+
+CREATE TABLE `jefedecatedra_materia` (
+  `Id` bigint(20) NOT NULL,
+  `IdJefeDeCatedra` bigint(20) NOT NULL,
+  `IdSubject` bigint(20) NOT NULL,
+  `State` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -227,6 +240,14 @@ ALTER TABLE `documenttype`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indices de la tabla `jefedecatedra_materia`
+--
+ALTER TABLE `jefedecatedra_materia`
+  ADD PRIMARY KEY (`Id`),
+  ADD KEY `JefeDeCatedra_User` (`IdJefeDeCatedra`),
+  ADD KEY `Catedra_Subject` (`IdSubject`);
+
+--
 -- Indices de la tabla `positions`
 --
 ALTER TABLE `positions`
@@ -284,6 +305,12 @@ ALTER TABLE `documenttype`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
+-- AUTO_INCREMENT de la tabla `jefedecatedra_materia`
+--
+ALTER TABLE `jefedecatedra_materia`
+  MODIFY `Id` bigint(20) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `positions`
 --
 ALTER TABLE `positions`
@@ -324,6 +351,13 @@ ALTER TABLE `competitions`
   ADD CONSTRAINT `competition_Position` FOREIGN KEY (`idPostion`) REFERENCES `positions` (`id`),
   ADD CONSTRAINT `competition_subject` FOREIGN KEY (`idSubject`) REFERENCES `subjects` (`id`),
   ADD CONSTRAINT `competition_user` FOREIGN KEY (`idUser`) REFERENCES `users` (`id`);
+
+--
+-- Filtros para la tabla `jefedecatedra_materia`
+--
+ALTER TABLE `jefedecatedra_materia`
+  ADD CONSTRAINT `Catedra_Subject` FOREIGN KEY (`IdSubject`) REFERENCES `subjects` (`id`),
+  ADD CONSTRAINT `JefeDeCatedra_User` FOREIGN KEY (`IdJefeDeCatedra`) REFERENCES `users` (`id`);
 
 --
 -- Filtros para la tabla `subjects`

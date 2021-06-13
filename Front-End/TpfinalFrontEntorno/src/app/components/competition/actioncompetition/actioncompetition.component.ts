@@ -40,7 +40,7 @@ export class ActioncompetitionComponent implements OnInit {
     if (id !== null){
       this.Option = 'Actualizar Concurso';
       this.OptionBtn = true;
-      this.GetById(parseInt(id));
+      // this.GetById(parseInt(id));
     }
     else{
       this.Option = 'Crear Concurso';
@@ -69,21 +69,24 @@ export class ActioncompetitionComponent implements OnInit {
     return result;
   }
 
-  GetById(id){
-    this.competitionService.GetById(id).subscribe(result => {
-      this.Competition = JSON.parse(JSON.stringify(result));
-      const competitionThis = {
-        id:  this.Competition.id,
-        idSubject: this.Competition.idSubject,
-        name:  this.Competition.name,
-        img: this.Competition.img,
-        description:  this.Competition.description,
-        creationDate:  this.Competition.creationDate,
-        state:  this.Competition.state
-      };
-      this.browserForm.patchValue(competitionThis);
-    });
-  }
+  // GetById(id){
+  //   this.competitionService.GetById(id).subscribe(result => {
+  //     this.Competition = JSON.parse(JSON.stringify(result));
+  //     if (this.Competition != null){
+  //       const competitionThis = {
+  //         id:  this.Competition.id,
+  //         idSubject: this.Competition.idSubject,
+  //         name:  this.Competition.name,
+  //         img: this.Competition.img,
+  //         description:  this.Competition.description,
+  //         creationDate:  this.Competition.creationDate,
+  //         state:  this.Competition.state
+  //       };
+  //       this.browserForm.patchValue(competitionThis);
+  //     }
+  //
+  //   });
+  // }
 
   Create(){
     if (this.browserForm.valid) {

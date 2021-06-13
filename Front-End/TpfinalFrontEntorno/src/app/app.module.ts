@@ -48,6 +48,9 @@ import {ActioncompetitionComponent} from "./components/competition/actioncompeti
     HttpClientModule,BrowserAnimationsModule,
     MessagesModule,
     ConfirmDialogModule,
+    ToastrModule.forRoot({
+      positionClass : 'toast-bottom-right'
+    })
   ],
   exports:[RouterModule],
   providers: [Title, {provide:JWT_OPTIONS, useValue:JWT_OPTIONS},JwtHelperService,AuthGuard,StateloginService

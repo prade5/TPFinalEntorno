@@ -38,7 +38,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
       enableHtml: true,
       preventDuplicates: true,
       progressAnimation:'increasing'
-    }),TooltipModule,SubjectModule,BrowserAnimationsModule
+    }),TooltipModule,SubjectModule
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })

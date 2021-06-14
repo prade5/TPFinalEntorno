@@ -10,6 +10,8 @@ import { DocumenttypeService } from '../../../services/documenttype/documenttype
 import { HttpErrorResponse } from '@angular/common/http';
 import { MessageService } from '../../../services/message/message.service';
 
+declare var $: any;
+
 @Component({
   selector: 'app-actionuser',
   templateUrl: './actionuser.component.html',
@@ -29,6 +31,7 @@ export class ActionuserComponent implements OnInit {
     private router:Router,private userService: UserService,private messageService: MessageService,
     private docservice:DocumenttypeService) {
     let id = this.route.snapshot.paramMap.get('id');
+    Active();
     if(id !== null){
       this.Option ="Actualizar usuario";
       this.OptionBtn = true;
@@ -132,4 +135,8 @@ GetById(id){
 
     });
   }
+}
+function Active(){
+  $('.actionmenu').removeClass('active');
+  $('.user').addClass('active');
 }

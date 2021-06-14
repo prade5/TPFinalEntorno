@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import decode from 'jwt-decode';
 import { TaskService } from 'src/app/services/auth/task.service';
+import { LoadscriptService } from 'src/app/services/loadScript/loadscript.service';
+
+const urljs = '../../../../assets/js/menu.js';
 
 @Component({
   selector: 'app-menuadmin',
@@ -12,38 +15,37 @@ export class MenuadminComponent implements OnInit {
   menunav:any;
   linkprincipal:any;
   constructor(private task: TaskService,
-    private router: Router) { }
+    private router: Router, private loadscript: LoadscriptService) { }
 
   ngOnInit(): void {
     this.linkprincipal ="/Principal";
     this. GetTypeUser();
+    this.loadscript.loadScript(urljs);
   }
   GetTypeUser(){
-    let decodotken = decode(this.task.getJwtToken());
-    let role = decodotken['role'];
-     if (this.task.loggedIn() && role === 'admin'.toLowerCase()) {
-       this.GetAdmin();
-     } else if (
-       this.task.loggedIn() && role === 'jefe carrera'.toLowerCase()) {
-       this.GetHeadoftheChair();
-     } else if (this.task.loggedIn() && role === 'postulante'.toLowerCase()) {
-       this.GetApplicant();
-     } else {
-       this.router.navigate(['/error']);
-     }
+    if (this.task.loggedIn() && this.task.GetRole().toLowerCase() === ('admin').toLowerCase()) {
+      this.GetAdmin();
+    } else if (
+      this.task.loggedIn() && this.task.GetRole().toLowerCase() === ('jefe carrera').toLowerCase()) {
+      this.GetHeadoftheChair();
+    } else if (this.task.loggedIn() && this.task.GetRole().toLowerCase() === ('postulante').toLowerCase()) {
+      this.GetApplicant();
+    } else {
+      this.router.navigate(['/error']);
+    }
   }
 
   GetAdmin(){
     this.menunav=[
       {
-        url:"#",
+        url:"/User",
         displayName:"Crear usuario",
-        active:"active"
+        active:"active User"
       },
       {
-        url:"#r",
+        url:"/Competition",
         displayName:"Crear concurso",
-        active:""
+        active:"Competition"
       },
       {
         url:"#",
@@ -54,6 +56,11 @@ export class MenuadminComponent implements OnInit {
         url:"#",
         displayName:"Jefe de catedra",
         active:""
+      },
+      {
+        url:"/Subject",
+        displayName:"Crear materia",
+        active:"Subject"
       }
     ]
   }

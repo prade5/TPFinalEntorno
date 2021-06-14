@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TaskService } from '../../../services/auth/task.service';
-import decode from 'jwt-decode';
 import { UserService } from '../../../services/user/user.service';
 import {User} from '../../../classes/user';
 import Swal from 'sweetalert2'
@@ -21,7 +20,7 @@ export class PrincipalComponent implements OnInit {
     private router: Router,private userService: UserService) { }
 
   ngOnInit(): void {
-    this. GetTypeUser();
+    // this. GetTypeUser();
     this.GetAllUser();
     this.linkprincipal ="/Principal";
   }
@@ -32,14 +31,12 @@ export class PrincipalComponent implements OnInit {
     });
   }
   GetTypeUser(){
-    let decodotken = decode(this.task.getJwtToken());
-    let role = decodotken['role'];
-     if (this.task.loggedIn() && role === 'admin'.toLowerCase()) {
+     if (this.task.loggedIn() && this.task.GetRole().toLowerCase() === ('admin').toLowerCase()) {
        this.GetAdmin();
      } else if (
-       this.task.loggedIn() && role === 'jefe carrera'.toLowerCase()) {
+       this.task.loggedIn() && this.task.GetRole().toLowerCase() === ('jefe carrera').toLowerCase()) {
        this.GetHeadoftheChair();
-     } else if (this.task.loggedIn() && role === 'postulante'.toLowerCase()) {
+     } else if (this.task.loggedIn() && this.task.GetRole().toLowerCase() === ('postulante').toLowerCase()) {
        this.GetApplicant();
      } else {
        this.router.navigate(['/error']);
@@ -66,6 +63,11 @@ export class PrincipalComponent implements OnInit {
       {
         url:"#",
         displayName:"Jefe de catedra",
+        active:""
+      },
+      {
+        url:"#",
+        displayName:"Crear materia",
         active:""
       }
     ]

@@ -1,22 +1,29 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../../services/user/user.service';
-import {User} from '../../classes/user';
+import { SubjectService } from '../../services/subject/subject.service';
+import { Subject } from '../../classes/subject';
+
+declare var $: any;
 
 @Component({
-  selector: 'app-user',
-  templateUrl: './user.component.html',
-  styleUrls: ['./user.component.css']
+  selector: 'app-subject',
+  templateUrl: './subject.component.html',
+  styleUrls: ['./subject.component.css']
 })
-export class UserComponent implements OnInit {
-  userlist :Array<User> = [];
-  constructor(private userService: UserService) { }
+export class SubjectComponent implements OnInit {
+  subjectlist :Array<Subject> = [];
+
+  constructor(private subservice: SubjectService) { }
 
   ngOnInit(): void {
-    this.userService.GetAll().subscribe( (user) =>{
-      this.userlist = user;
-    });
+   this.GetAll();
   }
 
+  GetAll(): void{
+    this.subservice.GetAll().subscribe( (sub) =>{
+      this.subjectlist = sub;
+      Active();
+    });
+  }
 
   Delete(id){
     // Swal.fire({
@@ -49,4 +56,8 @@ export class UserComponent implements OnInit {
     //   }
     // })
   }
+}
+function Active(){
+  $('.actionmenu').removeClass('active');
+  $('.Subject').addClass('active');
 }

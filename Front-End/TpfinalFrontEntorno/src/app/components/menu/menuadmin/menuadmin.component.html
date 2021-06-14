@@ -1,5 +1,6 @@
-<app-navbar (Logout)="Logout($event)" [menunav]="menunav" [linkprincipal]="linkprincipal">
-</app-navbar>
-<div fxFlex="80" class="content">
+<app-header (Logout)="Logout($event)" [menunav]="menunav" [linkprincipal]="linkprincipal">
+</app-header>
+<div fxFlex="80" class="container content" >
     <router-outlet></router-outlet>
 </div>
+<!-- <app-footer flexLayout="column"></app-footer> -->

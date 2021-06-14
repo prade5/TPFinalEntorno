@@ -1,22 +1,22 @@
 [
     {
       "name": "Quimica",
-      "url": "/Images/quimica.jpg"
+      "url": "ttp://localhost:80/TPFinalEntorno/Back-End/Images/quimica.jpg"
     },
     {
         "name": "Administracion de recurso",
-        "url": "/Images/ADR.jpeg"
+        "url": "ttp://localhost:80/TPFinalEntorno/Back-End/Images/ADR.jpeg"
     },
     {
         "name": "Economia",
-        "url": "/Images/Economia.jpg"
+        "url": "ttp://localhost:80/TPFinalEntorno/Back-End/Images/Economia.jpg"
     },
     {
         "name": "ESTRUCTURA DE DATOS",
-        "url": "/Images/ed.jpg"
+        "url": "ttp://localhost:80/TPFinalEntorno/Back-End/Images/ed.jpg"
     },
     {
         "name": "Legislation",
-        "url": "/Images/legislacion.png"
+        "url": "ttp://localhost:80/TPFinalEntorno/Back-End/Images/legislacion.png"
     }
   ]

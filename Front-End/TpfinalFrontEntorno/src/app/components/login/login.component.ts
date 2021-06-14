@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TaskService } from '../../services/auth/task.service';
 import { HttpErrorResponse } from '@angular/common/http';
+
 declare var  $: any;
 
 @Component({

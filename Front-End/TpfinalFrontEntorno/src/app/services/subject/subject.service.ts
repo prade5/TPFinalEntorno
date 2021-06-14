@@ -12,11 +12,7 @@ export class SubjectService {
   constructor(private http: HttpClient) { }
 
   GetAll(): Observable<Subject[]> {
-    // const headers = new HttpHeaders();
-    // headers.append('Access-Control-Allow-Headers', 'Content-Type');
-    // headers.append('Access-Control-Allow-Methods', 'GET');
-    // headers.append('Access-Control-Allow-Origin', '*');
-    // , {headers: headers}
+    debugger;
    return this.http.get<Subject[]>(`${environment.api_url}subject.php`);
   }
   GetById(id){

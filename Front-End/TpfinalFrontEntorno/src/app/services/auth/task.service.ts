@@ -5,20 +5,17 @@ import { environment } from '../../../environments/environment';
 import {Tokens} from '../../classes/Tokens';
 import { Auth } from '../../classes/auth';
 import { tap, mapTo, catchError } from 'rxjs/operators';
+import { Constant } from '../../classes/constant';
+import decode from 'jwt-decode';
+import { LoadscriptService } from '../loadScript/loadscript.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TaskService {
-
-  private readonly JWT_TOKEN = 'JWT_TOKEN';
-  private readonly REFRESH_TOKEN = 'REFRESH_TOKEN';
-  private readonly RoleUser = 'RoleUser';
-  private loggedUser: string;
-
   private urlBase = environment.api_url;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private loadscript: LoadscriptService) { }
   Authentication(auth:Auth): Observable<boolean>{
     debugger;
     this.doLogoutUser();
@@ -37,35 +34,40 @@ export class TaskService {
   }
 
   getJwtToken() {
-    return localStorage.getItem(this.JWT_TOKEN);
+    return localStorage.getItem(Constant.JWT_TOKEN);
   }
 
-  private storeJwtToken(jwt: string) {
-    debugger;
-    localStorage.setItem(this.JWT_TOKEN, jwt);
+  public GetRole() {
+    return this.loadscript.Decrypt(localStorage.getItem(Constant.roleUser));
   }
+
   public Logout(){
-    localStorage.removeItem(this.JWT_TOKEN)
+    this.removeTokens();
     return true;
   }
   private removeTokens() {
-    localStorage.removeItem(this.JWT_TOKEN);
-    localStorage.removeItem(this.RoleUser);
+    localStorage.removeItem(Constant.idUser);
+    localStorage.removeItem(Constant.idRole);
+    localStorage.removeItem(Constant.roleUser);
+    localStorage.removeItem(Constant.JWT_TOKEN);
+    localStorage.removeItem(Constant.loggedUser);
   }
 
   private doLoginUser(username: string, tokens: Tokens) {
-    debugger;
-    this.loggedUser = username;
+    localStorage.setItem(Constant.loggedUser, this.loadscript.Encrypt(username));
     this.storeTokens(tokens);
   }
 
   public doLogoutUser() {
-    this.loggedUser = null;
     this.removeTokens();
   }
 
   private storeTokens(tokens: Tokens) {
-    localStorage.setItem(this.JWT_TOKEN, tokens.jwt);
+    let decodotken = decode(tokens.jwt);
+    localStorage.setItem(Constant.idUser, this.loadscript.Encrypt(decodotken['userId']));
+    localStorage.setItem(Constant.idRole, this.loadscript.Encrypt(decodotken['idRole']));
+    localStorage.setItem(Constant.roleUser, this.loadscript.Encrypt(decodotken['role']));
+    localStorage.setItem(Constant.JWT_TOKEN, tokens.jwt);
   }
 
 }

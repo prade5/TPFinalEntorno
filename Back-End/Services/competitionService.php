@@ -12,8 +12,9 @@
         private $creationDate;
         private $finalDate;
         private $state;
+        private $idPostion;
 
-        public function __construct ($id, $idUser,$idSubject, $description, $creationDate, $finalDate, $state){
+        public function __construct ($id, $idUser,$idSubject, $description, $creationDate, $finalDate, $state, $idPosition){
             #region initial
             $this->id = $id;
             $this->idUser = $idUser;
@@ -22,6 +23,7 @@
             $this->creationDate = $creationDate;
             $this->finalDate = $finalDate;
             $this->state = $state;
+            $this->idPostion = $idPosition;
             #endregion
         }
 
@@ -54,11 +56,11 @@
             try{
                 $cnn = Connection();
 
-                $this->ValidateParameter('materia', $this->idSubject, INTEGER);  
+                $this->ValidateParameter('idSubject', $this->idSubject, INTEGER);
                 $this->checkNonerepeat('competitions', 'idSubject', $this->idSubject, "Ya tiene un concurso vigente para esa materia");
                 
-                $result = mysqli_query($cnn,"insert into competitions (idSubject, description, state, idUser) 
-                values($this->idSubject , '$this->description' , 1 , $this->idUser)");
+                $result = mysqli_query($cnn,"insert into competitions (idSubject, description, state, idUser, idPostion, creationDate, finalDate) 
+                values($this->idSubject , '$this->description' , 1 , $this->idUser, $this->idPostion, $this->creationDate, $this->finalDate)");
                 if($result){
                     $this->ReturnReponse(SUCCESS_RESPONSE, "El concurso fue guardado con exito.");
                 }

@@ -10,6 +10,7 @@ import {Subject} from "../../../classes/subject";
 import {Position} from "../../../classes/position";
 import {SubjectService} from "../../../services/subject/subject.service";
 import {PositionService} from "../../../services/position/position.service";
+import {SelectItem} from 'primeng/api';
 
 @Component({
   selector: 'app-actioncompetition',
@@ -78,7 +79,7 @@ export class ActioncompetitionComponent implements OnInit {
       this.posiciones = JSON.parse(JSON.stringify(result));
     });
   }
-
+  
   // GetById(id){
   //   this.competitionService.GetById(id).subscribe(result => {
   //     this.Competition = JSON.parse(JSON.stringify(result));

@@ -5,6 +5,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { MessageService } from 'src/app/services/message/message.service';
 import { Subject } from '../../../classes/subject';
 import { SubjectService } from '../../../services/subject/subject.service';
+import { DynamicphotoService } from '../../../services/dynamicphoto/dynamicphoto.service';
+import { TaskService } from '../../../services/auth/task.service';
 
 declare var $: any;
 
@@ -18,10 +20,12 @@ export class ActionsubjectComponent implements OnInit {
   subject: Subject = null;
   OptionBtn: boolean = false;
   form : FormGroup;
+  photolist :Array<any> = [];
+  photostring:string;
 
   constructor(private fb:FormBuilder, private subservice:SubjectService,
     private messageService: MessageService, private route: ActivatedRoute,
-    private router:Router) {
+    private router:Router, private photoservice: DynamicphotoService, private taskservice:TaskService) {
       let id = this.route.snapshot.paramMap.get('id');
       if(id !== null){
         this.Option ="Actualizar materia";
@@ -37,20 +41,27 @@ export class ActionsubjectComponent implements OnInit {
 
   ngOnInit(): void {
     this.initForm();
+    this.GetAllPhotoDefault();
   }
 
   private initForm():void{
+    var f = new Date();
+    var fecha = f.getDate() + "-"+ f.getMonth()+ "-" + f.getFullYear();
     this.form  = this.fb.group({
       id:0,
       name: ['',[Validators.required]],
       description:'',
-      creationDate:'',
-      idUser:0,
+      creationDate: fecha,
+      idUser: this.taskservice.GetIdUser(),
       img:'',
-      state:''
+      state:1
     });
   }
-
+  GetAllPhotoDefault(): void {
+    this.photoservice.GetAll().subscribe( (photo) =>{
+      this.photolist = photo;
+    });
+  }
   isValidField(field: string): string{
     const validatedField = this.form .get(field);
     let result = (!validatedField.valid && validatedField.touched) ?
@@ -59,7 +70,7 @@ export class ActionsubjectComponent implements OnInit {
   }
 
   GetById(id){
-    this.subservice.GetById(id).subscribe(result =>{
+    this.subservice.GetById(id).subscribe((result:any) =>{
       // this.role = JSON.parse(JSON.stringify(result));
       // let roleid ={
       //   id:  this.role.id,
@@ -68,12 +79,36 @@ export class ActionsubjectComponent implements OnInit {
       //   creationDate:  this.role.creationDate,
       //   state:  this.role.state
       // }
-      // this.frForm.patchValue(roleid);
+      this.photostring = result.img;
+      this.form.patchValue(result);
     })
   }
 
+  SelectPhoto(photo):void{
+    this.photostring = photo.url;
+    this.form.value.img = this.photostring;
+    $('.modal').modal('toggle');
+  }
+
+  onFileChanged(event) {
+    var file = event.target.files[0];
+    var reader = new FileReader();
+    reader.onloadend = this.handleReaderLoaded.bind(this, "Id");
+    reader.readAsBinaryString(file);
+  }
+
+  handleReaderLoaded(readerEvt:string, indicator:any ) {
+    var binaryString = indicator.target.result;
+    if (readerEvt == "Id") {
+      this.photostring = "data:image/jpeg;base64," +btoa(binaryString);
+      this.form.value.img = this.photostring;
+      $('.modal').modal('toggle');
+    }
+  }
+
   Create (){
-    if(this.form .valid) {
+    debugger;
+    if(this.form.valid) {
       if(this.OptionBtn == false){
         this.ActionCreate();
       }
@@ -81,39 +116,40 @@ export class ActionsubjectComponent implements OnInit {
         this.ActionUpdate();
       }
     }
-    else {
-      this.messageService.Error('Error',"Ingrese el nombre");
-    }
   }
 
   ActionCreate(){
     this.subservice.Post(this.form .value).subscribe((data:any) =>{
       debugger;
       if(data.response.status === 200){
+        setTimeout(()=>{
+          this.router.navigate(['/Subject']);
+        }, 5000);
         this.messageService.Success('Crear materia', data.response.message);
-        this.router.navigate(['/Subject']);
       }
       else{
         this.messageService.Error('Error', data.response.message);
       }
     },
     (err: HttpErrorResponse) => {
-      debugger;
+      this.messageService.Error('Error', err.error.message);
     });
   }
 
   ActionUpdate(){
     this.subservice.Put(this.form .value).subscribe((data:any) =>{
-      if(data.response.status === 200){
+      if(data.response.status === 200){ 
+        setTimeout(()=>{
+          this.router.navigate(['/Subject']);
+        }, 5000);
         this.messageService.Success('Actualizar materia', data.response.message);
-        this.router.navigate(['/Subject']);
       }
       else{
         this.messageService.Error('Error', data.response.message);
       }
     },
     (err: HttpErrorResponse) => {
-
+      this.messageService.Error('Error', err.error.message);
     });
   }
 }

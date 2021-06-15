@@ -144,5 +144,13 @@
 	        }
 	        $this->throwError( ATHORIZATION_HEADER_NOT_FOUND, 'Access Token Not found');
 	    }
+
+        public static function base64_encode_image ($filename=string,$filetype=string) {
+            echo $filename;
+            if ($filename) {
+                $imgbinary = fread(fopen($filename, "r"), filesize($filename));
+                return 'data:image/' . $filetype . ';base64,' . base64_encode($imgbinary);
+            }
+        }
     }
 ?>

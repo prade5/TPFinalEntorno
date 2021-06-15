@@ -40,7 +40,9 @@ export class TaskService {
   public GetRole() {
     return this.loadscript.Decrypt(localStorage.getItem(Constant.roleUser));
   }
-
+  public GetIdUser() {
+    return this.loadscript.Decrypt(localStorage.getItem(Constant.idUser));
+  }
   public Logout(){
     this.removeTokens();
     return true;

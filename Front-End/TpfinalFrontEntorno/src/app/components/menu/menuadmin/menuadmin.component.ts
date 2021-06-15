@@ -48,9 +48,9 @@ export class MenuadminComponent implements OnInit {
         active:"Competition"
       },
       {
-        url:"#",
+        url:"/Applicant",
         displayName:"Postulante",
-        active:""
+        active:"Applicant"
       },
       {
         url:"#",

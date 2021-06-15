@@ -8,7 +8,6 @@ import { MenuadminComponent } from 'src/app/components/menu/menuadmin/menuadmin.
 import { PrincipalComponent } from 'src/app/components/menu/principal/principal.component';
 import { ActionroleComponent } from 'src/app/components/role/actionrole/actionrole.component';
 import { RoleComponent } from 'src/app/components/role/role.component';
-import { ActionuserComponent } from 'src/app/components/user/actionuser/actionuser.component';
 
 const routes: Routes = [
   {
@@ -47,34 +46,12 @@ const routes: Routes = [
         },
         {
           path: 'Competition',
-          canLoad: [AuthGuard],
-          canActivate: [RoleGuardGuard],
-          component: CompetitionComponent,
-          data: {
-            expectedRole: 'admin',
-            title: 'Acción usuario'
-          }
+          loadChildren: () => import("../../modules/competition/competition.module").then((c) => c.CompetitionModule)
         },
         {
-          path: 'ActionCompetition',
-          component: ActioncompetitionComponent,
-          data: {title: 'Bienvenido a los concursos'}
-        },
-        {
-          path: 'ActionCompetition',
-          component: ActioncompetitionComponent,
-          data: {title: 'Bienvenido a los concursos'}
-        },
-        {
-          path: 'ActionUser',
-          canLoad: [AuthGuard],
-          canActivate: [RoleGuardGuard],
-          component: ActionuserComponent,
-          data: {
-            expectedRole: 'admin',
-            title: 'Acción usuario'
-          }
-        },
+          path: 'Applicant',
+          loadChildren: () => import("../../modules/competition/competition.module").then((c) => c.CompetitionModule)
+        },      
         {
           path: 'Principal',
           canLoad: [AuthGuard],

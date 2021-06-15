@@ -7,13 +7,64 @@
           <div class="px-4">
             <form class="justify-content-center" [formGroup]="browserForm" (ngSubmit)="Create()">
               <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label for="inputcreationDate">Fecha de apertura</label>
+                  <input type="text" class="form-control" id="inputcreationDate" placeholder="Fecha de apertura" name="creationDate"
+                  formControlName="creationDate"  [class]="isValidField('creationDate')">
+                  <div class="invalid-feedback">
+                    <span *ngIf="browserForm.get('creationDate').errors?.required">
+                        Debe seleccionar la fecha de apertura
+                    </span>
+                  </div>
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="inputfinalDate">Fecha de cierre</label>
+                  <input type="text" class="form-control" id="inputfinalDate" placeholder="Fecha de cierre" name="finalDate"
+                  formControlName="finalDate"  [class]="isValidField('finalDate')">
+                  <div class="invalid-feedback">
+                    <span *ngIf="browserForm.get('finalDate').errors?.required">
+                        Debe ingresar el apellido
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <!-- <div class="form-row">
                 <div class="form-group col-md-12">
                   <select class="form-select" [formGroup]="browserForm" id="idSubject" formControlName="idSubject" name="idSubject" placeholder="Catedra">
                     <option *ngFor="let catedra of catedras" [value]="catedra.id">{{catedra.name}}</option>
                   </select>
                 </div>
-              </div>
+              </div> -->
+
               <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label for="idSubject">Sleccionar una materia</label>
+                  <select  formControlName="idSubject"  [class]="isValidField('idSubject')" class="form-control" id="idSubject">
+                    <option value="">Seleccionar materia</option>
+                    <option value="{{doc.id}}" *ngFor ="let doc of catedras"  name="idSubject">{{doc.name}}</option>
+                  </select>
+                  <div class="invalid-feedback">
+                    <span *ngIf="browserForm.get('idSubject').errors?.required">
+                        Debe seleccionar la materia
+                    </span>
+                  </div>
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="idPosition">Sleccionar un puesto</label>
+                  <select  formControlName="idPosition"  [class]="isValidField('idPosition')" class="form-control" id="idPosition">
+                    <option value="">Seleccionar puesto</option>
+                    <option value="{{doc.id}}" *ngFor ="let doc of posiciones"  name="idPosition">{{doc.name}}</option>
+                  </select>
+                  <div class="invalid-feedback">
+                    <span *ngIf="browserForm.get('idPosition').errors?.required">
+                        Debe seleccionar el puesto
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+
+              <!-- <div class="form-row">
                 <div class="form-group col-md-12">
                   <select class="form-select" [formGroup]="browserForm" id="idPosition" formControlName="idPosition" name="idPosition" placeholder="Posicion">
                     <option *ngFor="let position of posiciones" [value]="position.id">
@@ -21,10 +72,10 @@
                     </option>
                   </select>
                 </div>
-              </div>
+              </div> -->
               <div class="form-row">
                 <div class="form-group col-md-12">
-                  <label for="description">Descripcion</label>
+                  <label for="description">Requisitos</label>
                   <textarea class="form-control" rows="7" [formGroup]="browserForm" formControlName="description"  id="description" name="description" placeholder="Descripcion"></textarea>
                 </div>
               </div>

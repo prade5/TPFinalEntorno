@@ -12,7 +12,6 @@ import { TooltipModule } from 'primeng/tooltip';
 import { UserComponent } from 'src/app/components/user/user.component';
 import { AdminComponent } from 'src/app/components/admin/admin.component';
 import { ActioncompetitionComponent } from 'src/app/components/competition/actioncompetition/actioncompetition.component';
-import { CompetitionComponent } from 'src/app/components/competition/competition.component';
 import { MenuadminComponent } from 'src/app/components/menu/menuadmin/menuadmin.component';
 import { ActionroleComponent } from 'src/app/components/role/actionrole/actionrole.component';
 import { RoleComponent } from 'src/app/components/role/role.component';
@@ -21,11 +20,12 @@ import { ActionuserComponent } from 'src/app/components/user/actionuser/actionus
 import { PrincipalComponent } from 'src/app/components/menu/principal/principal.component';
 import { SubjectModule } from '../subject/subject.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CompetitionModule } from '../competition/competition.module';
 
 
 @NgModule({
   declarations: [
-    PrincipalComponent,UserComponent, CompetitionComponent, MenuadminComponent,
+    PrincipalComponent,UserComponent, MenuadminComponent,
     ActioncompetitionComponent, SubjectComponent,
     RoleComponent,ActionroleComponent,AdminComponent,ActionuserComponent
   ],
@@ -38,7 +38,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
       enableHtml: true,
       preventDuplicates: true,
       progressAnimation:'increasing'
-    }),TooltipModule,SubjectModule
+    }),TooltipModule,SubjectModule,CompetitionModule
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })

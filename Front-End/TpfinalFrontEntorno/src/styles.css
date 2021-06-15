@@ -40,3 +40,7 @@ html, body {
     position: relative;
     z-index: 111;
 }
+
+.p-datatable table {
+  table-layout: auto!important;
+}

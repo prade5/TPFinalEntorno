@@ -93,7 +93,6 @@ GetById(id){
     return result;
   }
   Create (){
-    debugger;
     if(this.browserForm.valid) {
       if(this.OptionBtn == false){
         this.ActionCreate();
@@ -104,35 +103,37 @@ GetById(id){
     }   
   }
   ActionCreate(){
-    debugger;
     this.userService.Post(this.browserForm.value).subscribe((data:any) =>{
       debugger;
       if(data.response.status === 200){
+        setTimeout(()=>{
+          this.router.navigate(['/Principal']);
+        }, 5000);
         this.messageService.Success('Crear Usuario', data.response.message);
-        this.router.navigate(['/Principal']);
       }
       else{
         this.messageService.Error('Error', data.response.message);
       }
     },
     (err: HttpErrorResponse) => {
-      debugger;
+      this.messageService.Error('Error', err.error.message);
     });
   }
 
   ActionUpdate(){
-    debugger;
     this.userService.Put(this.browserForm.value).subscribe((data:any) =>{
       if(data.response.status === 200){
+        setTimeout(()=>{
+          this.router.navigate(['/Principal']);
+        }, 5000);
         this.messageService.Success('Actualizar Usuario', data.response.message);
-        this.router.navigate(['/Principal']);
       }
       else{
         this.messageService.Error('Error', data.response.message);
       }
     },
     (err: HttpErrorResponse) => {
-
+      this.messageService.Error('Error', err.error.message);
     });
   }
 }

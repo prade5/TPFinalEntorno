@@ -14,13 +14,13 @@
         //Create role
         case'POST':
             $_POST= json_decode(file_get_contents('php://input'), true);            
-            $subject = new Subject($_POST["id"],$_POST['idUser'],$_POST["name"],$_POST["description"],$_POST["img"],$_POST["creationDate"],$_POST["finalDate"],$_POST["state"]);         
+            $subject = new Subject($_POST["id"],$_POST['idUser'],$_POST["name"],$_POST["description"],$_POST["img"],"","",$_POST["state"]);         
             $subject->Post();
         break;
         //Update role
         case'PUT':
             $_PUT = json_decode(file_get_contents('php://input'), true);
-            $subject = new Subject($_PUT["id"],$_PUT['idUser'],$_PUT["name"],$_PUT["description"],$_PUT["img"],"","",0);  
+            $subject = new Subject($_PUT["id"],$_PUT['idUser'],$_PUT["name"],$_PUT["description"],$_PUT["img"],"","",1);  
             $subject->Put($_GET['id']);       
         break;
         //Delete role

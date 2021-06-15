@@ -20,16 +20,48 @@
                             </div>
                             <div class="form-row">
                                  <div class="form-group col-md-6">
-                                    <img src="" alt="" width="250" height="250">
+                                    <img src={{photostring}} alt="" width="250" height="250">
                                  </div>
                                  <div  class="form-group col-md-6">
-                                    <label for="inputfile" class="btn btn-primary">Seleccionar una imagen</label>
-                                    <input type="file" class="form-control" id="inputfile" name="name"
-                                    formControlName="name" placeholder="Nombre" [class]="isValidField('name')" hidden>
-                                    <div class="invalid-feedback">
-                                      <span *ngIf="form .get('name').errors?.required">
-                                          Debe ingresar un nombre
-                                      </span>
+                                   <!-- Button trigger modal -->
+                                  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                                    Seleccionar una imagen
+                                  </button>
+                                  <!-- Modal -->
+                                  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                      <div class="modal-content">
+                                        <div class="modal-header">
+                                          <h5 class="modal-title" id="exampleModalLabel">Seleccionar la foto de la materia </h5>
+                                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                          </button>
+                                        </div>
+                                        <div class="modal-body">
+                                          <div class="row  m-0  row-cols-1 row-cols-md-3   overflow-auto"  style="height: 70vh;">
+                                            <div class="col mb-4" *ngFor="let photo of photolist" (click)="SelectPhoto(photo)" style="cursor:pointer">
+                                              <div class="card h-100">
+                                                <img src={{photo.url}} class="card-img-top" alt={{photo.name}} width="200" height="200">
+                                                <div class="card-body h-50">
+                                                  <h5 class="card-title"><strong>Materia: {{photo.name}}</strong></h5>
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </div>                                        
+                                          <div class="modal-footer">
+                                          <input type="file" class="form-control" id="inputfile" name="img"
+                                            formControlName="img" placeholder="Nombre" [class]="isValidField('img')" hidden (change)="onFileChanged($event)">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            <label for="inputfile" class="btn btn-primary" >Examinar photo</label>     
+                                            <div class="invalid-feedback">
+                                                <span *ngIf="form.get('img').errors?.required">
+                                                    Debe seleccionar una imagen para esa materia
+                                                </span>
+                                            </div>
+                                        </div>
+                                      </div>
+                                    </div>
                                   </div>
                                  </div>
                             </div>

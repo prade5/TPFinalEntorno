@@ -17,11 +17,14 @@ export class CompetitionService {
   GetById(id){
     return this.http.get(`${environment.api_url}competition.php?id=${id}`);
   }
-  Post(role){
-    return this.http.post(`${environment.api_url}competition.php`,JSON.stringify(role));
+  Post(competition){
+    console.log("Entro aca");
+    console.log(competition);
+    console.log(JSON.stringify(competition));
+    return this.http.post(`${environment.api_url}competition.php`, JSON.stringify(competition));
   }
-  Put(role){
-    return this.http.put(`${environment.api_url}competition.php?id=${role.id}`,JSON.stringify(role));
+  Put(competition){
+    return this.http.put(`${environment.api_url}competition.php?id=${competition.id}`,JSON.stringify(competition));
   }
   Delete(id){
     return this.http.delete(`${environment.api_url}competition.php?id=${id}`);

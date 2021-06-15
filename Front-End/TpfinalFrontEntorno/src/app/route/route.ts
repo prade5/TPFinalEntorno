@@ -1,8 +1,9 @@
 import { Routes } from "@angular/router";
 import { HomeComponent } from "../components/home/home.component";
 import { LoginComponent } from "../components/login/login.component";
+import {ActioncompetitionComponent} from "../components/competition/actioncompetition/actioncompetition.component";
 
-export const appRoutes: Routes = [ 
+export const appRoutes: Routes = [
   {
     path: 'MenuAdmin',
     loadChildren:() => import('../modules/menuprincipale/menuprincipal.module').then((u) => u.MenuprincipalModule)
@@ -16,7 +17,12 @@ export const appRoutes: Routes = [
     path: 'Account',
     component: LoginComponent,
      data: {title: 'Acceder al sistema'}
-  }, 
+  },
+  {
+    path: 'ActionCompetition',
+    component: ActioncompetitionComponent,
+    data: {title: 'Acceder al ActionCompetition'}
+  },
   {
     path: '',
     redirectTo: `/Home`,
@@ -27,5 +33,5 @@ export const appRoutes: Routes = [
     redirectTo: '/Home',
     pathMatch: 'full',
   }
- 
+
 ];

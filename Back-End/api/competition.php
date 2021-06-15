@@ -14,7 +14,7 @@
         //Create role
         case'POST':
             $_POST= json_decode(file_get_contents('php://input'), true);            
-            $competition = new Competition($_POST["id"],$_POST['idUser'],$_POST["idSubject"],$_POST["description"],$_POST["creationDate"],$_POST["finalDate"],$_POST["state"]);         
+            $competition = new Competition($_POST["id"],$_POST['idUser'],$_POST["idSubject"],$_POST["description"],$_POST["creationDate"],$_POST["finalDate"],$_POST["state"],$_POST["idPosition"]);
             $competition->Post();
         break;
         //Update 

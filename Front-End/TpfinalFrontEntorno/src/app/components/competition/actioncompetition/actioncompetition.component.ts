@@ -8,6 +8,8 @@ import {Competition} from "../../../classes/competition";
 import {CompetitionService} from "../../../services/competition/competition.service";
 import {Subject} from "../../../classes/subject";
 import {Position} from "../../../classes/position";
+import {SubjectService} from "../../../services/subject/subject.service";
+import {PositionService} from "../../../services/position/position.service";
 
 @Component({
   selector: 'app-actioncompetition',
@@ -19,24 +21,17 @@ export class ActioncompetitionComponent implements OnInit {
   Competition: Competition = null;
   OptionBtn = false;
   browserForm: FormGroup;
+  catedras: Subject[];
 
-  catedras: Subject[] = [
-    {id: 1, name: 'Algebra y geometria', creationDate: new Date(), description: 'Good Description', finalDate: null, img: null, state: 1, idUser: 1},
-    {id: 2, name: 'Analisis 1', creationDate: new Date(), description: 'Good Description', finalDate: null, img: null, state: 1, idUser: 1},
-    {id: 3, name: 'Quimica', creationDate: new Date(), description: 'Good Description', finalDate: null, img: null, state: 1, idUser: 1}
-  ];
-
-  posiciones: Position[] = [
-    {id: 1, name: 'Jefe de catedra', state: 1, description: 'Good Desctiption' },
-    {id: 2, name: 'Profesor', state: 1, description: 'Good Desctiption' },
-    {id: 3, name: 'Ayudante', state: 1, description: 'Good Desctiption'}
-  ];
+  posiciones: Position[];
 
 
-  constructor(private competitionService: CompetitionService, private fb: FormBuilder,
+  constructor(private competitionService: CompetitionService, private subjectService: SubjectService, private positionService: PositionService, private fb: FormBuilder,
               private messageService: MessageService, private route: ActivatedRoute,
               private router: Router) {
     const id = this.route.snapshot.paramMap.get('id');
+    this.getMaterias();
+    this.getPosiciones();
     if (id !== null){
       this.Option = 'Actualizar Concurso';
       this.OptionBtn = true;
@@ -54,11 +49,14 @@ export class ActioncompetitionComponent implements OnInit {
 
   private initForm(): void{
     this.browserForm = this.fb.group({
-      id: 0,
-      name: ['', [Validators.required]],
+      id: 1,
+      idSubject: 0,
       description: '',
-      creationDate: '',
-      state: ''
+      creationDate: new Date().toISOString().slice(0, 19).replace('T', ' '),
+      finalDate: new Date().toISOString().slice(0, 19).replace('T', ' '),
+      state: 1,
+      idUser: 4,
+      idPosition: 0
     });
   }
 
@@ -67,6 +65,18 @@ export class ActioncompetitionComponent implements OnInit {
     const result = (!validatedField.valid && validatedField.touched) ?
       'is-invalid' : validatedField.touched ? 'is-valid' : '';
     return result;
+  }
+
+  getMaterias() {
+    this.subjectService.GetAll().subscribe(result => {
+      this.catedras = JSON.parse(JSON.stringify(result));
+    });
+  }
+
+  getPosiciones() {
+    this.positionService.GetAll().subscribe(result => {
+      this.posiciones = JSON.parse(JSON.stringify(result));
+    });
   }
 
   // GetById(id){
@@ -103,9 +113,10 @@ export class ActioncompetitionComponent implements OnInit {
   }
 
   ActionCreate(){
+    console.log(this.browserForm.value);
     this.competitionService.Post(this.browserForm.value).subscribe((data: any) => {
-        debugger;
         if (data.response.status === 200){
+          console.log("Se creo");
           this.messageService.Success('Crear permiso', data.response.message);
           this.router.navigate(['/Role']);
         }
@@ -114,7 +125,7 @@ export class ActioncompetitionComponent implements OnInit {
         }
       },
       (err: HttpErrorResponse) => {
-        debugger;
+            console.log(err);
       });
   }
 

@@ -8,14 +8,14 @@
             <form class="justify-content-center" [formGroup]="browserForm" (ngSubmit)="Create()">
               <div class="form-row">
                 <div class="form-group col-md-12">
-                  <select class="form-select" [formGroup]="browserForm" id="inputfirstName" name="idSubject" placeholder="Posicion">
+                  <select class="form-select" [formGroup]="browserForm" id="idSubject" formControlName="idSubject" name="idSubject" placeholder="Catedra">
                     <option *ngFor="let catedra of catedras" [value]="catedra.id">{{catedra.name}}</option>
                   </select>
                 </div>
               </div>
               <div class="form-row">
                 <div class="form-group col-md-12">
-                  <select class="form-select" [formGroup]="browserForm" id="inputfirstName" name="name" placeholder="Posicion">
+                  <select class="form-select" [formGroup]="browserForm" id="idPosition" formControlName="idPosition" name="idPosition" placeholder="Posicion">
                     <option *ngFor="let position of posiciones" [value]="position.id">
                       {{position.name}}
                     </option>
@@ -24,9 +24,8 @@
               </div>
               <div class="form-row">
                 <div class="form-group col-md-12">
-                  <label for="inputtextarea">Descripcion</label>
-                  <textarea class="form-control" rows="7"  id="inputtextarea" name="description"
-                            formControlName="description" placeholder="Descripcion"></textarea>
+                  <label for="description">Descripcion</label>
+                  <textarea class="form-control" rows="7" [formGroup]="browserForm" formControlName="description"  id="description" name="description" placeholder="Descripcion"></textarea>
                 </div>
               </div>
               <div class="float-right mb-3">

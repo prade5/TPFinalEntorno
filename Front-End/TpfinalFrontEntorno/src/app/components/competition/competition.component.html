@@ -24,28 +24,28 @@
                     <p-sortIcon field="id"></p-sortIcon>
                 </div>
             </th>
-            <th pSortableColumn="name">
+            <th pSortableColumn="materia">
                 <div class="p-d-flex p-jc-between p-ai-center">
                     Materia
-                    <p-sortIcon field="name"></p-sortIcon>
+                    <p-sortIcon field="materia"></p-sortIcon>
                 </div>
             </th>
-            <th pSortableColumn="description">
+            <th pSortableColumn="puesto">
                 <div class="p-d-flex p-jc-between p-ai-center">
                     Puesto
-                    <p-sortIcon field="description"></p-sortIcon>
-                </div>
-            </th>
-            <th pSortableColumn="description">
-                <div class="p-d-flex p-jc-between p-ai-center">
-                    Fecha de creación
-                    <p-sortIcon field="description"></p-sortIcon>
+                    <p-sortIcon field="puesto"></p-sortIcon>
                 </div>
             </th>
             <th pSortableColumn="creationDate">
+                <div class="p-d-flex p-jc-between p-ai-center">
+                    Fecha de creación
+                    <p-sortIcon field="creationDate"></p-sortIcon>
+                </div>
+            </th>
+            <th pSortableColumn="finalDate">
                 <div class="p-d-flex p-jc-between">
                     Fecha de finalización
-                    <p-sortIcon field="creationDate"></p-sortIcon>
+                    <p-sortIcon field="finalDate"></p-sortIcon>
                 </div>
             </th>
             <th>
@@ -55,23 +55,26 @@
             </th>
         </tr>
     </ng-template>
-    <ng-template pTemplate="body" let-role>
+    <ng-template pTemplate="body" let-competition>
         <tr class="p-selectable-row">
             <td>
-                {{role.id}}
+                {{competition.id}}
             </td>
             <td>
-                {{role.name}}
+                {{competition.materia}}
             </td>
             <td>
-                {{role.description}}
+                {{competition.puesto}}
             </td>
             <td>
-                {{role.creationDate | date: 'MM/dd/yyyy'}}
+                {{competition.creationDate | date: 'dd/MM/yyyy'}}
             </td>
             <td>
-              <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2"  [routerLink]="['/Competition/ActionCompetition/'+ role.id]"></button>
-              <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="Delete(role.id)"></button>
+                {{competition.finalDate | date: 'dd/MM/yyyy'}}
+            </td>
+            <td>
+              <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2"  [routerLink]="['/ActionCompetition/'+ competition.id]"></button>
+              <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="Delete(competition.id)"></button>
           </td>
         </tr>
     </ng-template>

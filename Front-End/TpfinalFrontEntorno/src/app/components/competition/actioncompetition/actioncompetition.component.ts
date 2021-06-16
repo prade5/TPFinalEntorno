@@ -11,6 +11,7 @@ import {Position} from "../../../classes/position";
 import {SubjectService} from "../../../services/subject/subject.service";
 import {PositionService} from "../../../services/position/position.service";
 import {SelectItem} from 'primeng/api';
+import * as moment from "moment";
 
 @Component({
   selector: 'app-actioncompetition',
@@ -23,9 +24,9 @@ export class ActioncompetitionComponent implements OnInit {
   OptionBtn = false;
   browserForm: FormGroup;
   catedras: Subject[];
-
   posiciones: Position[];
-
+  dateCreateBind : string;
+  dateFinalBind: string;
 
   constructor(private competitionService: CompetitionService, private subjectService: SubjectService, private positionService: PositionService, private fb: FormBuilder,
               private messageService: MessageService, private route: ActivatedRoute,
@@ -36,7 +37,7 @@ export class ActioncompetitionComponent implements OnInit {
     if (id !== null){
       this.Option = 'Actualizar Concurso';
       this.OptionBtn = true;
-      // this.GetById(parseInt(id));
+      this.GetById(parseInt(id));
     }
     else{
       this.Option = 'Crear Concurso';
@@ -79,25 +80,26 @@ export class ActioncompetitionComponent implements OnInit {
       this.posiciones = JSON.parse(JSON.stringify(result));
     });
   }
-  
-  // GetById(id){
-  //   this.competitionService.GetById(id).subscribe(result => {
-  //     this.Competition = JSON.parse(JSON.stringify(result));
-  //     if (this.Competition != null){
-  //       const competitionThis = {
-  //         id:  this.Competition.id,
-  //         idSubject: this.Competition.idSubject,
-  //         name:  this.Competition.name,
-  //         img: this.Competition.img,
-  //         description:  this.Competition.description,
-  //         creationDate:  this.Competition.creationDate,
-  //         state:  this.Competition.state
-  //       };
-  //       this.browserForm.patchValue(competitionThis);
-  //     }
-  //
-  //   });
-  // }
+
+  GetById(id){
+    this.competitionService.GetById(id).subscribe(result => {
+      this.Competition = JSON.parse(JSON.stringify(result));
+      if (this.Competition != null){
+        const competitionThis = {
+          id:  this.Competition.id,
+          creationDate: moment(this.Competition.creationDate).format("YYYY-MM-DDThh:mm"),
+          finalDate: moment(this.Competition.finalDate).format("YYYY-MM-DDThh:mm"),
+          idSubject: this.Competition.idSubject,
+          idPosition: this.Competition.idPosition,
+          description:  this.Competition.description
+        };
+        this.dateCreateBind = new Date(this.Competition.creationDate).toISOString().slice(0, 16);
+        this.dateFinalBind = new Date(this.Competition.finalDate).toISOString().slice(0, 16);
+        this.browserForm.patchValue(competitionThis);
+      }
+
+    });
+  }
 
   Create(){
     if (this.browserForm.valid) {
@@ -118,8 +120,8 @@ export class ActioncompetitionComponent implements OnInit {
     this.competitionService.Post(this.browserForm.value).subscribe((data: any) => {
         if (data.response.status === 200){
           console.log("Se creo");
-          this.messageService.Success('Crear permiso', data.response.message);
-          this.router.navigate(['/Role']);
+          this.messageService.Success('Crear concurso', data.response.message);
+          this.router.navigate(['/Competition']);
         }
         else{
           this.messageService.Error('Error', data.response.message);
@@ -133,8 +135,8 @@ export class ActioncompetitionComponent implements OnInit {
   ActionUpdate() {
     this.competitionService.Put(this.browserForm.value).subscribe((data: any) => {
         if (data.response.status === 200){
-          this.messageService.Success('Actualizar permiso', data.response.message);
-          this.router.navigate(['/Role']);
+          this.messageService.Success('Actualizar concurso', data.response.message);
+          this.router.navigate(['/Competition']);
         }
         else{
           this.messageService.Error('Error', data.response.message);

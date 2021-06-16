@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 12-06-2021 a las 21:45:26
+-- Tiempo de generación: 16-06-2021 a las 01:59:01
 -- Versión del servidor: 10.4.18-MariaDB
 -- Versión de PHP: 8.0.3
 
@@ -49,8 +49,15 @@ CREATE TABLE `competitions` (
   `finalDate` datetime NOT NULL DEFAULT current_timestamp(),
   `state` int(11) NOT NULL,
   `idUser` bigint(20) NOT NULL,
-  `idPostion` bigint(20) NOT NULL
+  `idPosition` bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `competitions`
+--
+
+INSERT INTO `competitions` (`id`, `idSubject`, `description`, `creationDate`, `finalDate`, `state`, `idUser`, `idPosition`) VALUES
+(29, 6, 'asdsad', '2021-06-15 23:57:26', '2021-06-17 23:57:26', 1, 4, 4);
 
 -- --------------------------------------------------------
 
@@ -225,7 +232,7 @@ ALTER TABLE `competitions`
   ADD PRIMARY KEY (`id`),
   ADD KEY `competition_subject` (`idSubject`),
   ADD KEY `competition_user` (`idUser`),
-  ADD KEY `competition_Position` (`idPostion`);
+  ADD KEY `competition_positions` (`idPosition`) USING BTREE;
 
 --
 -- Indices de la tabla `curriculum`
@@ -290,7 +297,7 @@ ALTER TABLE `applicants`
 -- AUTO_INCREMENT de la tabla `competitions`
 --
 ALTER TABLE `competitions`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT de la tabla `curriculum`
@@ -348,7 +355,7 @@ ALTER TABLE `applicants`
 -- Filtros para la tabla `competitions`
 --
 ALTER TABLE `competitions`
-  ADD CONSTRAINT `competition_Position` FOREIGN KEY (`idPostion`) REFERENCES `positions` (`id`),
+  ADD CONSTRAINT `competition_Position` FOREIGN KEY (`idPosition`) REFERENCES `positions` (`id`),
   ADD CONSTRAINT `competition_subject` FOREIGN KEY (`idSubject`) REFERENCES `subjects` (`id`),
   ADD CONSTRAINT `competition_user` FOREIGN KEY (`idUser`) REFERENCES `users` (`id`);
 

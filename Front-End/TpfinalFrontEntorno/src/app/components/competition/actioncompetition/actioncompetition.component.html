@@ -9,8 +9,8 @@
               <div class="form-row">
                 <div class="form-group col-md-6">
                   <label for="inputcreationDate">Fecha de apertura</label>
-                  <input type="text" class="form-control" id="inputcreationDate" placeholder="Fecha de apertura" name="creationDate"
-                  formControlName="creationDate"  [class]="isValidField('creationDate')">
+                  <input type="datetime-local" class="form-control" id="inputcreationDate" placeholder="Fecha de apertura" name="creationDate"
+                  formControlName="creationDate"  [class]="isValidField('creationDate')" >
                   <div class="invalid-feedback">
                     <span *ngIf="browserForm.get('creationDate').errors?.required">
                         Debe seleccionar la fecha de apertura
@@ -19,8 +19,8 @@
                 </div>
                 <div class="form-group col-md-6">
                   <label for="inputfinalDate">Fecha de cierre</label>
-                  <input type="text" class="form-control" id="inputfinalDate" placeholder="Fecha de cierre" name="finalDate"
-                  formControlName="finalDate"  [class]="isValidField('finalDate')">
+                  <input type="datetime-local" class="form-control" id="inputfinalDate" placeholder="Fecha de cierre" name="finalDate"
+                  formControlName="finalDate"  [class]="isValidField('finalDate')" >
                   <div class="invalid-feedback">
                     <span *ngIf="browserForm.get('finalDate').errors?.required">
                         Debe ingresar el apellido
@@ -28,14 +28,6 @@
                   </div>
                 </div>
               </div>
-              <!-- <div class="form-row">
-                <div class="form-group col-md-12">
-                  <select class="form-select" [formGroup]="browserForm" id="idSubject" formControlName="idSubject" name="idSubject" placeholder="Catedra">
-                    <option *ngFor="let catedra of catedras" [value]="catedra.id">{{catedra.name}}</option>
-                  </select>
-                </div>
-              </div> -->
-
               <div class="form-row">
                 <div class="form-group col-md-6">
                   <label for="idSubject">Sleccionar una materia</label>
@@ -62,17 +54,6 @@
                   </div>
                 </div>
               </div>
-
-
-              <!-- <div class="form-row">
-                <div class="form-group col-md-12">
-                  <select class="form-select" [formGroup]="browserForm" id="idPosition" formControlName="idPosition" name="idPosition" placeholder="Posicion">
-                    <option *ngFor="let position of posiciones" [value]="position.id">
-                      {{position.name}}
-                    </option>
-                  </select>
-                </div>
-              </div> -->
               <div class="form-row">
                 <div class="form-group col-md-12">
                   <label for="description">Requisitos</label>
@@ -80,7 +61,7 @@
                 </div>
               </div>
               <div class="float-right mb-3">
-                <button [routerLink]="['/Role']" class="btn btn-primary mr-3">Cancelar</button>
+                <button [routerLink]="['/Competition']" class="btn btn-primary mr-3">Cancelar</button>
                 <button type="submit" class="btn btn-primary">{{OptionBtn == false ? "Guardar" : "Actualizar"}}</button>
               </div>
             </form>

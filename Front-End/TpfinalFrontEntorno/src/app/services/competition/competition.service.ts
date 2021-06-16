@@ -18,9 +18,6 @@ export class CompetitionService {
     return this.http.get(`${environment.api_url}competition.php?id=${id}`);
   }
   Post(competition){
-    console.log("Entro aca");
-    console.log(competition);
-    console.log(JSON.stringify(competition));
     return this.http.post(`${environment.api_url}competition.php`, JSON.stringify(competition));
   }
   Put(competition){

@@ -20,8 +20,8 @@
         //Update 
         case'PUT':
             $_PUT = json_decode(file_get_contents('php://input'), true);
-            $competition = new Competition($_PUT["id"],$_PUT['idUser'],$_PUT["idSubject"],$_PUT["description"],"","",0);  
-            $competition->Put($_GET['id']);       
+            $competition = new Competition($_PUT["id"],$_PUT['idUser'],$_PUT["idSubject"],$_PUT["description"],$_PUT["creationDate"],$_PUT["finalDate"],$_PUT["state"],$_PUT["idPosition"]);
+            $competition->Put($_PUT['id']);
         break;
         //Delete role
         case'DELETE':

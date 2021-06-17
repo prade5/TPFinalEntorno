@@ -71,14 +71,6 @@ export class ActionsubjectComponent implements OnInit {
 
   GetById(id){
     this.subservice.GetById(id).subscribe((result:any) =>{
-      // this.role = JSON.parse(JSON.stringify(result));
-      // let roleid ={
-      //   id:  this.role.id,
-      //   name:  this.role.name,
-      //   description:  this.role.description,
-      //   creationDate:  this.role.creationDate,
-      //   state:  this.role.state
-      // }
       this.photostring = result.img;
       this.form.patchValue(result);
     })
@@ -107,7 +99,6 @@ export class ActionsubjectComponent implements OnInit {
   }
 
   Create (){
-    debugger;
     if(this.form.valid) {
       if(this.OptionBtn == false){
         this.ActionCreate();

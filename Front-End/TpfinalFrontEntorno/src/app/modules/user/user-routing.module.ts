@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from 'src/app/components/auth/auth.guard';
 import { RoleGuardGuard } from 'src/app/components/auth/role-guard.guard';
 import { ActionuserComponent } from 'src/app/components/user/actionuser/actionuser.component';
+import { PerfilComponent } from 'src/app/components/user/perfil/perfil.component';
 import { UserComponent } from 'src/app/components/user/user.component';
 
 const routes: Routes = [
@@ -31,6 +32,16 @@ const routes: Routes = [
     canLoad: [AuthGuard],
     canActivate: [RoleGuardGuard],
     component: ActionuserComponent,
+     data: {
+      expectedRole: 'admin',
+       title: 'Accion usuario'
+      }
+  },
+  {
+    path: 'perfil/:id',
+    canLoad: [AuthGuard],
+    canActivate: [RoleGuardGuard],
+    component: PerfilComponent,
      data: {
       expectedRole: 'admin',
        title: 'Accion usuario'

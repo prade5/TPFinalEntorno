@@ -13,12 +13,14 @@ const urljs = '../../../../assets/js/menu.js';
 })
 export class MenuadminComponent implements OnInit {
   menunav:any;
+  perfil:any;
   linkprincipal:any;
   constructor(private task: TaskService,
     private router: Router, private loadscript: LoadscriptService) { }
 
   ngOnInit(): void {
     this.linkprincipal ="/Principal";
+    this.perfil ="/User/perfil/"+ this.task.GetIdUser();
     this. GetTypeUser();
     this.loadscript.loadScript(urljs);
   }

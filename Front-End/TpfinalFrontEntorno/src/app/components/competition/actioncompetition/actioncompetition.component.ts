@@ -116,7 +116,6 @@ export class ActioncompetitionComponent implements OnInit {
   }
 
   ActionCreate(){
-    console.log(this.browserForm.value);
     this.competitionService.Post(this.browserForm.value).subscribe((data: any) => {
         if (data.response.status === 200){
           console.log("Se creo");

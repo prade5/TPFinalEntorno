@@ -17,10 +17,11 @@ import { StateloginService } from './services/auth/Statelogin.service';
 import { HomeComponent } from './components/home/home.component';
 import { MenuprincipalModule } from './modules/menuprincipale/menuprincipal.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { PerfilComponent } from './components/user/perfil/perfil.component';
 
 @NgModule({
   declarations: [
-    AppComponent,LoginComponent, HomeComponent,
+    AppComponent,LoginComponent, HomeComponent, PerfilComponent,
   ],
   imports: [
     BrowserModule,FormsModule,ReactiveFormsModule,

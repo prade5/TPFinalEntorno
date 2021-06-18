@@ -10,8 +10,8 @@ import { environment } from '../../../environments/environment';
 export class KownlageService {
 
   constructor(private http: HttpClient) { }
-  GetAll(): Observable<Knowlageuser[]> {
-    return this.http.get<Knowlageuser[]>(`${environment.api_url}knowlageuser.php`);
+  GetAll(idUser): Observable<Knowlageuser[]> {
+    return this.http.get<Knowlageuser[]>(`${environment.api_url}knowlageuser.php?idUser=${idUser}`);
   }
   GetById(id){
     return this.http.get(`${environment.api_url}knowlageuser.php?id=${id}`);

@@ -8,7 +8,7 @@
                 KowlageUser::GetById($_GET['id']);
             }
             else{
-                KowlageUser::Get();
+                KowlageUser::Get($_GET['idUser']);
             }
         break;
         case'POST':

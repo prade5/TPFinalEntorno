@@ -8,5 +8,6 @@ export interface  ProfilUser {
     website: string;
     gitHub: string;
     workplace: string;
+    img:string;
     state: number;
   }	

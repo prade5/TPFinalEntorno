@@ -50,7 +50,7 @@ const routes: Routes = [
         },
         {
           path: 'Applicant',
-          loadChildren: () => import("../../modules/competition/competition.module").then((c) => c.CompetitionModule)
+          loadChildren: () => import("../../modules/aplicant/aplicant.module").then((c) => c.AplicantModule)
         },      
         {
           path: 'Principal',

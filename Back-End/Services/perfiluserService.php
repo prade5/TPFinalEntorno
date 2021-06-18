@@ -14,9 +14,10 @@
         private $website;	
         private $gitHub;	
         private $workplace;
+        private $img;
         private $state;
 
-        public function __construct ($id,$idUser,$title,$instagram,$twitter,$facebook,$website,$gitHub,$workplace,$state){
+        public function __construct ($id,$idUser,$title,$instagram,$twitter,$facebook,$website,$gitHub,$workplace, $img,$state){
             $this->id = $id;
             $this->idUser = $idUser;
             $this->title = $title;            
@@ -26,6 +27,7 @@
             $this->website = $website;  
             $this->gitHub = $gitHub; 
             $this->workplace = $workplace;
+            $this->img = $img;
             $this->state = $state;
         }
         
@@ -55,10 +57,10 @@
         }
         public function Post(){
             $cnn = Connection();
-            $this->ValidateParameter('title', $this->name, STRING);
+            $this->ValidateParameter('title', $this->title, STRING);
            
-            $result = mysqli_query($cnn,"insert into profilusers (idUser,title,instagram, twitter, facebook, website, gitHub, workplace,state) 
-            values($this->idUser, '$this->title', '$this->instagram', '$this->twitter', '$this->facebook', '$this->website', '$this->workplace',1)");
+            $result = mysqli_query($cnn,"insert into profilusers (idUser, title, instagram, twitter, facebook, website, gitHub, workplace, state, img) 
+            values($this->idUser, '$this->title', '$this->instagram', '$this->twitter', '$this->facebook', '$this->website', '$this->gitHub', '$this->workplace', 1 , '$this->img')");
             if($result){
                 $this->ReturnReponse(SUCCESS_RESPONSE, "El perfil fue guardado con exito");
             }
@@ -70,10 +72,10 @@
             $cnn = Connection();
             $this->ValidateParameter('title', $this->title, STRING);
 
-            $result = mysqli_query($cnn,"update profilusers set title ='$this->title',
+            $result = mysqli_query($cnn,"update profilusers set title ='$this->title', gitHub='$this->gitHub',
                                                 instagram='$this->instagram',twitter='$this->twitter',
                                                 facebook='$this->facebook',website='$this->website',
-                                                workplace='$this->workplace'
+                                                workplace='$this->workplace', img='$this->img'
                                                 where id =".$_id ." and idUser=".$this->idUser);
             if($result){
                 $this->ReturnReponse(SUCCESS_RESPONSE, "El perfil fue modificado con exito");

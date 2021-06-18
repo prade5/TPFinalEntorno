@@ -17,7 +17,6 @@ export class TaskService {
 
   constructor(private http: HttpClient, private loadscript: LoadscriptService) { }
   Authentication(auth:Auth): Observable<boolean>{
-    debugger;
     this.doLogoutUser();
     return this.http.post<any>(`${this.urlBase}auth.php`, JSON.stringify(auth))
     .pipe(
@@ -42,6 +41,9 @@ export class TaskService {
   }
   public GetIdUser() {
     return this.loadscript.Decrypt(localStorage.getItem(Constant.idUser));
+  }
+  public GetUserName() {
+    return this.loadscript.Decrypt(localStorage.getItem(Constant.loggedUser));
   }
   public Logout(){
     this.removeTokens();

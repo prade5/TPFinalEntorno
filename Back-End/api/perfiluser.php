@@ -13,12 +13,12 @@
         break;
         case'POST':
             $_POST= json_decode(file_get_contents('php://input'), true);
-            $profil = new ProfilUser($_POST["id"],$_POST['idUser'],$_POST["title"],$_POST["instagram"],$_POST['twitter'],$_POST['facebook'],$_POST['website'],$_POST['gitHub'],$_POST['workplace'],$_POST["state"]);         
+            $profil = new ProfilUser($_POST["id"],$_POST['idUser'],$_POST["title"],$_POST["instagram"],$_POST['twitter'],$_POST['facebook'],$_POST['website'],$_POST['gitHub'],$_POST['workplace'],$_POST['img'],$_POST["state"]);         
             $profil->Post();
         break;
         case'PUT':
             $_PUT = json_decode(file_get_contents('php://input'), true);
-            $profil = new ProfilUser($_PUT["id"],$_PUT['idUser'],$_PUT["title"],$_PUT["instagram"],$_PUT['twitter'],$_PUT['facebook'],$_PUT['website'],$_PUT['gitHub'],$_PUT['workplace'],$_PUT["state"]);  
+            $profil = new ProfilUser($_PUT["id"],$_PUT['idUser'],$_PUT["title"],$_PUT["instagram"],$_PUT['twitter'],$_PUT['facebook'],$_PUT['website'],$_PUT['gitHub'],$_PUT['workplace'],$_PUT['img'],$_PUT["state"]);  
             $profil->Put($_GET['id']);       
         break;
         case'DELETE':

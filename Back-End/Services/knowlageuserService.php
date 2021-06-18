@@ -22,9 +22,9 @@
         }
         
         //method     
-        public static function Get(){
+        public static function Get($idUser){
             $cnn = Connection();
-            $perfil = mysqli_query($cnn,"select * from knowlageusers where state = 1 ORDER BY id DESC");
+            $perfil = mysqli_query($cnn,"select * from knowlageusers where state = 1 and idUser =".$idUser ." ORDER BY id DESC");
             $perfilList = [];
 
             while($reg = mysqli_fetch_array($perfil,MYSQLI_ASSOC)){

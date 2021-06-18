@@ -10,8 +10,8 @@ import {Subject} from "../../../classes/subject";
 import {Position} from "../../../classes/position";
 import {SubjectService} from "../../../services/subject/subject.service";
 import {PositionService} from "../../../services/position/position.service";
-import {SelectItem} from 'primeng/api';
 import * as moment from "moment";
+import {TaskService} from "../../../services/auth/task.service";
 
 @Component({
   selector: 'app-actioncompetition',
@@ -25,19 +25,29 @@ export class ActioncompetitionComponent implements OnInit {
   browserForm: FormGroup;
   catedras: Subject[];
   posiciones: Position[];
+  curUserId : number;
+  curUserRole: string;
   dateCreateBind : string;
   dateFinalBind: string;
+  isDisabled: boolean = false;
 
   constructor(private competitionService: CompetitionService, private subjectService: SubjectService, private positionService: PositionService, private fb: FormBuilder,
-              private messageService: MessageService, private route: ActivatedRoute,
+              private messageService: MessageService, private route: ActivatedRoute, private userFinder: TaskService,
               private router: Router) {
     const id = this.route.snapshot.paramMap.get('id');
+    this.getIdUser()
     this.getMaterias();
     this.getPosiciones();
     if (id !== null){
-      this.Option = 'Actualizar Concurso';
-      this.OptionBtn = true;
-      this.GetById(parseInt(id));
+      if(id.endsWith('v')){
+        this.isDisabled = true;
+        this.Option = 'Detalle Concurso';
+      } else {
+        this.isDisabled = false;
+        this.Option = 'Actualizar Concurso';
+      }
+        this.OptionBtn = true;
+        this.GetById(parseInt(id));
     }
     else{
       this.Option = 'Crear Concurso';
@@ -57,7 +67,7 @@ export class ActioncompetitionComponent implements OnInit {
       creationDate: new Date().toISOString().slice(0, 19).replace('T', ' '),
       finalDate: new Date().toISOString().slice(0, 19).replace('T', ' '),
       state: 1,
-      idUser: 4,
+      idUser: this.curUserId,
       idPosition: 0
     });
   }
@@ -70,15 +80,28 @@ export class ActioncompetitionComponent implements OnInit {
   }
 
   getMaterias() {
-    this.subjectService.GetAll().subscribe(result => {
-      this.catedras = JSON.parse(JSON.stringify(result));
-    });
+    if(this.curUserRole === 'admin') {
+      this.subjectService.GetAll().subscribe(result => {
+        this.catedras = JSON.parse(JSON.stringify(result));
+      });
+    }
+    else if (this.curUserRole === 'Jefe de Catedra') {
+      this.subjectService.GetByUserId(this.curUserId).subscribe(result => {
+        this.catedras = JSON.parse(JSON.stringify(result));
+      });
+    }
   }
 
   getPosiciones() {
     this.positionService.GetAll().subscribe(result => {
       this.posiciones = JSON.parse(JSON.stringify(result));
     });
+  }
+
+  getIdUser(){
+    this.curUserId =  this.userFinder.GetIdUser();
+    this.curUserRole = this.userFinder.GetRole();
+    console.log(this.curUserRole)
   }
 
   GetById(id){
@@ -118,9 +141,11 @@ export class ActioncompetitionComponent implements OnInit {
   ActionCreate(){
     this.competitionService.Post(this.browserForm.value).subscribe((data: any) => {
         if (data.response.status === 200){
-          console.log("Se creo");
           this.messageService.Success('Crear concurso', data.response.message);
-          this.router.navigate(['/Competition']);
+          this.isDisabled = true;
+          setTimeout(()=>{
+            this.router.navigate(['/Competition']);
+          }, 5000);
         }
         else{
           this.messageService.Error('Error', data.response.message);
@@ -135,7 +160,10 @@ export class ActioncompetitionComponent implements OnInit {
     this.competitionService.Put(this.browserForm.value).subscribe((data: any) => {
         if (data.response.status === 200){
           this.messageService.Success('Actualizar concurso', data.response.message);
-          this.router.navigate(['/Competition']);
+          this.isDisabled = true;
+          setTimeout(()=>{
+            this.router.navigate(['/Competition']);
+          }, 5000);
         }
         else{
           this.messageService.Error('Error', data.response.message);

@@ -87,10 +87,6 @@
 
                 $result =  mysqli_query($cnn, $vSql) or die (mysqli_error($cnn));
 
-    //            $result = mysqli_query($cnn,"update competitions set idSubject = $this->idSubject,
-    //                                    description='$this->description', creationDate='$this->creationDate', finalDate='$this->finalDate',
-    //                                        idUser= $this->idUser,  idPosition= $this->idPosition
-    //                                    where id =".$id);
                 if($result){
                     $this->ReturnReponse(SUCCESS_RESPONSE, "El concurso fue modificado con exito.");
                 }

@@ -15,6 +15,10 @@ export class SubjectService {
     debugger;
    return this.http.get<Subject[]>(`${environment.api_url}subject.php`);
   }
+  GetByUserId(id): Observable<Subject[]> {
+    debugger;
+    return this.http.get<Subject[]>(`${environment.api_url}subject.php?idu=${id}`);
+  }
   GetById(id){
     return this.http.get(`${environment.api_url}subject.php?id=${id}`);
   }

@@ -51,6 +51,23 @@
             $single = json_encode($usersingle);
             echo $single;
         }
+
+        public static function GetByUserId($Id){
+            $cnn = Connection();
+
+            $query = "select s.* from subjects s inner join jefedecatedra_materia jm on s.id = jm.IdSubject where s.state = 1 and jm.state = 1 and jm.IdJefeDeCatedra = 5";
+
+            $users = mysqli_query($cnn,$query);
+            $userList = [];
+
+            while($reg = mysqli_fetch_array($users,MYSQLI_ASSOC)){
+                $userList[] = $reg;
+            }
+
+            $finalList = json_encode($userList);
+            echo $finalList;
+        }
+
         public function Post(){
             try{
                 $cnn = Connection();

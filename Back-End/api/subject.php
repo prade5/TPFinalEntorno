@@ -8,7 +8,11 @@
                 Subject::GetById($_GET['id']);
             }
             else{
-                Subject::Get();
+                if (isset($_GET['idu'])) {
+                    Subject::GetByUserId($_GET['idu']);
+                } else {
+                    Subject::Get();
+                }
             }
         break;
         //Create role

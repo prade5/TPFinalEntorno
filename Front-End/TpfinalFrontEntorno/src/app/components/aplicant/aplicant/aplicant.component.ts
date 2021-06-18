@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Applicant } from 'src/app/classes/applicant';
+import { ApplicantService } from 'src/app/services/applicant/applicant.service';
 
 @Component({
   selector: 'app-aplicant',
@@ -7,9 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AplicantComponent implements OnInit {
 
-  constructor() { }
+  aplicantlist: Array<Applicant> = [];
+
+  constructor(private applicant: ApplicantService) { }
 
   ngOnInit(): void {
+    this.GetAll();
+  }
+
+  GetAll(){
+    debugger;
+    this.applicant.GetAll().subscribe((applicant) =>{
+      this.aplicantlist = applicant;
+    });
   }
 
 }

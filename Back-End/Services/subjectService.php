@@ -55,7 +55,7 @@
         public static function GetByUserId($Id){
             $cnn = Connection();
 
-            $query = "select s.* from subjects s inner join jefedecatedra_materia jm on s.id = jm.IdSubject where s.state = 1 and jm.state = 1 and jm.IdJefeDeCatedra = 5";
+            $query = "select s.* from subjects s inner join jefedecatedra_materia jm on s.id = jm.IdSubject where s.state = 1 and jm.state = 1 and jm.IdJefeDeCatedra =".$Id;
 
             $users = mysqli_query($cnn,$query);
             $userList = [];

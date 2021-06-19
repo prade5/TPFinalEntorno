@@ -4,6 +4,7 @@ import { Competition } from '../../classes/competition';
 import {HttpErrorResponse} from "@angular/common/http";
 import {MessageService} from "../../services/message/message.service";
 import Swal from "sweetalert2";
+import {TaskService} from "../../services/auth/task.service";
 
 @Component({
   selector: 'app-competition',
@@ -12,20 +13,35 @@ import Swal from "sweetalert2";
 })
 export class CompetitionComponent implements OnInit {
   complist :Array<Competition> = [];
+  curUserId : number;
+  curUserRole: string;
 
-  constructor(private comp: CompetitionService, private messageService: MessageService) { }
+  constructor(private comp: CompetitionService, private messageService: MessageService, private userFinder: TaskService,) {
+    this.getIdUser();
+  }
 
   ngOnInit(): void {
     this.GetAll();
   }
 
 
+
   GetAll(){
-    debugger;
-    this.comp.GetAll().subscribe((comp) =>{
-      this.complist = comp;
-      debugger;
-    });
+    if( this.curUserRole === 'admin' ) {
+      this.comp.GetAll().subscribe(result => {
+        this.complist = JSON.parse(JSON.stringify(result));
+      });
+    }
+    else if (this.curUserRole === 'Jefe de Catedra') {
+      this.comp.GetByUserId(this.curUserId).subscribe(result => {
+        this.complist = JSON.parse(JSON.stringify(result));
+      });
+    }
+  }
+
+  getIdUser(){
+    this.curUserId =  this.userFinder.GetIdUser();
+    this.curUserRole = this.userFinder.GetRole();
   }
 
   Delete(id){

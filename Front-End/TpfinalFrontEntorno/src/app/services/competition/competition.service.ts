@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Competition } from '../../classes/competition';
 import { environment } from '../../../environments/environment';
+import {Subject} from "../../classes/subject";
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,11 @@ export class CompetitionService {
 
   GetAll(): Observable<Competition[]> {
    return this.http.get<Competition[]>(`${environment.api_url}competition.php`);
+  }
+
+  GetByUserId(id): Observable<Competition[]> {
+    debugger;
+    return this.http.get<Competition[]>(`${environment.api_url}competition.php?idu=${id}`);
   }
   GetById(id){
     return this.http.get(`${environment.api_url}competition.php?id=${id}`);

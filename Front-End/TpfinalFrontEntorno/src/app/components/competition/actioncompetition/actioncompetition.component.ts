@@ -118,7 +118,6 @@ export class ActioncompetitionComponent implements OnInit {
   getIdUser(){
     this.curUserId =  this.userFinder.GetIdUser();
     this.curUserRole = this.userFinder.GetRole();
-    console.log(this.curUserRole)
   }
 
   GetById(id){

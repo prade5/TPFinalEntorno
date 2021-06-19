@@ -9,21 +9,31 @@
               <div class="form-row">
                 <div class="form-group col-md-6">
                   <label for="inputcreationDate">Fecha de apertura</label>
-                  <input type="datetime-local" [attr.disabled]="isDisabled? true : null" class="form-control" id="inputcreationDate" placeholder="Fecha de apertura" name="creationDate"
+                  <input type="datetime-local" [attr.disabled]="isDisabled? true : null" (change)="compareDates()"  class="form-control" id="inputcreationDate" placeholder="Fecha de apertura" name="creationDate"
                   formControlName="creationDate"  [class]="isValidField('creationDate')" >
                   <div class="invalid-feedback">
                     <span *ngIf="browserForm.get('creationDate').errors?.required">
                         Debe seleccionar la fecha de apertura
                     </span>
                   </div>
+                  <div>
+                    <span [attr.hidden]="validDates? true : null"  class="text-danger">
+                        La fecha de creacion debe ser antes de la de finalizacion.
+                    </span>
+                  </div>
                 </div>
                 <div class="form-group col-md-6">
                   <label for="inputfinalDate">Fecha de cierre</label>
-                  <input type="datetime-local" [attr.disabled]="isDisabled? true : null" class="form-control" id="inputfinalDate" placeholder="Fecha de cierre" name="finalDate"
+                  <input type="datetime-local" [attr.disabled]="isDisabled? true : null" (change)="compareDates()" class="form-control" id="inputfinalDate" placeholder="Fecha de cierre" name="finalDate"
                   formControlName="finalDate"  [class]="isValidField('finalDate')" >
                   <div class="invalid-feedback">
                     <span *ngIf="browserForm.get('finalDate').errors?.required">
-                        Debe ingresar el apellido
+                        Debe ingresar la fecha de cierre
+                    </span>
+                  </div>
+                  <div>
+                    <span [attr.hidden]="validDates? true : null" class="text-danger">
+                        La fecha de creacion debe ser antes de la de finalizacion.
                     </span>
                   </div>
                 </div>
@@ -32,10 +42,9 @@
                 <div class="form-group col-md-6">
                   <label for="idSubject">Sleccionar una materia</label>
                   <select  formControlName="idSubject" [attr.disabled]="isDisabled? true : null"  [class]="isValidField('idSubject')" class="form-control" id="idSubject">
-                    <option value="">Seleccionar materia</option>
                     <option value="{{doc.id}}" *ngFor ="let doc of catedras"  name="idSubject">{{doc.name}}</option>
                   </select>
-                  <div class="invalid-feedback">
+                  <div class="invalid-feedback" *ngIf="browserForm.get('idSubject').errors?.required">
                     <span *ngIf="browserForm.get('idSubject').errors?.required">
                         Debe seleccionar la materia
                     </span>
@@ -43,11 +52,10 @@
                 </div>
                 <div class="form-group col-md-6">
                   <label for="idPosition">Sleccionar un puesto</label>
-                  <select  formControlName="idPosition" [attr.disabled]="isDisabled? true : null"  [class]="isValidField('idPosition')" class="form-control" id="idPosition">
-                    <option value="">Seleccionar puesto</option>
+                  <select formControlName="idPosition" [attr.disabled]="isDisabled? true : null"  [class]="isValidField('idPosition')" class="form-control" id="idPosition">
                     <option value="{{doc.id}}" *ngFor ="let doc of posiciones"  name="idPosition">{{doc.name}}</option>
                   </select>
-                  <div class="invalid-feedback">
+                  <div class="invalid-feedback" *ngIf="browserForm.get('idPosition').errors?.required">
                     <span *ngIf="browserForm.get('idPosition').errors?.required">
                         Debe seleccionar el puesto
                     </span>
@@ -59,10 +67,15 @@
                   <label for="description">Requisitos</label>
                   <textarea class="form-control" rows="7" [attr.disabled]="isDisabled? true : null"  [formGroup]="browserForm" formControlName="description"  id="description" name="description" placeholder="Descripcion"></textarea>
                 </div>
+                <div class="invalid-feedback">
+                    <span *ngIf="browserForm.get('description').errors?.required">
+                        Debe ingresar una descripcion
+                    </span>
+                </div>
               </div>
               <div class="float-right mb-3">
                 <button [routerLink]="['/Competition']" class="btn btn-primary mr-3">Cancelar</button>
-                <button type="submit" [hidden]="isDisabled" class="btn btn-primary">{{OptionBtn == false ? "Guardar" : "Actualizar"}}</button>
+                <button type="submit" [hidden]="isDisabled || !validDates" class="btn btn-primary">{{OptionBtn == false ? "Guardar" : "Actualizar"}}</button>
               </div>
             </form>
           </div>

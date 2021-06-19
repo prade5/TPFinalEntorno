@@ -3,6 +3,7 @@ import {  CompetitionService } from '../../services/competition/competition.serv
 import { Competition } from '../../classes/competition';
 import {MessageService} from "../../services/message/message.service";
 import Swal from "sweetalert2";
+import {TaskService} from "../../services/auth/task.service";
 
 declare var $: any;
 
@@ -13,12 +14,17 @@ declare var $: any;
 })
 export class CompetitionComponent implements OnInit {
   complist :Array<Competition> = [];
+  curUserId : number;
+  curUserRole: string;
 
-  constructor(private comp: CompetitionService, private messageService: MessageService) { }
+  constructor(private comp: CompetitionService, private messageService: MessageService, private userFinder: TaskService,) {
+    this.getIdUser();
+  }
 
   ngOnInit(): void {
     this.GetAll();
   }
+
 
 
   GetAll(){
@@ -26,6 +32,21 @@ export class CompetitionComponent implements OnInit {
       this.complist = comp;
       Active();
     });
+    if( this.curUserRole === 'admin' ) {
+      this.comp.GetAll().subscribe(result => {
+        this.complist = JSON.parse(JSON.stringify(result));
+      });
+    }
+    else if (this.curUserRole === 'Jefe de Catedra') {
+      this.comp.GetByUserId(this.curUserId).subscribe(result => {
+        this.complist = JSON.parse(JSON.stringify(result));
+      });
+    }
+  }
+
+  getIdUser(){
+    this.curUserId =  this.userFinder.GetIdUser();
+    this.curUserRole = this.userFinder.GetRole();
   }
 
   Delete(id){

@@ -8,7 +8,11 @@
                 Competition::GetById($_GET['id']);
             }
             else{
-                Competition::Get();
+                if (isset($_GET['idu'])) {
+                    Competition::GetByUserId($_GET['idu']);
+                } else {
+                    Competition::Get();
+                }
             }
         break;
         //Create role

@@ -30,7 +30,7 @@
         //method     
         public static function Get(){             
             $cnn = Connection();
-            $query = "select comp.*, sub.name as materia, sub.img, pos.name as puesto from competitions comp inner join subjects sub on comp.idSubject = sub.id  inner join positions pos on comp.idPosition = pos.id where comp.state = 1 and pos.state = 1 ORDER BY comp.id DESC";
+            $query = "select comp.*, sub.name as materia, sub.img, pos.name as puesto from competitions comp inner join subjects sub on comp.idSubject = sub.id  inner join positions pos on comp.idPosition = pos.id where pos.state = 1 ORDER BY comp.id DESC";
             $users = mysqli_query($cnn,$query);
             $userList = [];
 
@@ -41,6 +41,7 @@
             $finalList = json_encode($userList);
             echo $finalList;
         }
+
         public static function GetById($_id){
             $cnn = Connection();
             $user = mysqli_query($cnn,"select * from competitions where state = 1 and id =".$_id);
@@ -52,6 +53,23 @@
             $single = json_encode($usersingle);
             echo $single;
         }
+
+        public static function GetByUserId($Id){
+            $cnn = Connection();
+
+            $query = "select c.* from competitions c inner join jefedecatedra_materia jm on c.IdSubject = jm.IdSubject where jm.state = 1 and jm.IdJefeDeCatedra =".$Id;
+
+            $users = mysqli_query($cnn,$query);
+            $userList = [];
+
+            while($reg = mysqli_fetch_array($users,MYSQLI_ASSOC)){
+                $userList[] = $reg;
+            }
+
+            $finalList = json_encode($userList);
+            echo $finalList;
+        }
+
         public function Post(){
             try{
                 $cnn = Connection();

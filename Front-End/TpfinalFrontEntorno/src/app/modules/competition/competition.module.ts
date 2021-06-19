@@ -7,10 +7,11 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AccordionModule } from 'primeng/accordion';
 import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
+import { ActioncompetitionComponent } from 'src/app/components/competition/actioncompetition/actioncompetition.component';
 
 @NgModule({
   declarations: [
-    CompetitionComponent
+    CompetitionComponent,ActioncompetitionComponent
   ],
   imports: [
     CommonModule,

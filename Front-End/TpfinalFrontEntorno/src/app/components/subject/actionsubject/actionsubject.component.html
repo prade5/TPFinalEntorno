@@ -12,7 +12,7 @@
                                 <input type="text" class="form-control" id="inputfirstName" name="name"
                                 formControlName="name" placeholder="Nombre" [class]="isValidField('name')">
                                 <div class="invalid-feedback">
-                                  <span *ngIf="form .get('name').errors?.required">
+                                  <span *ngIf="form.get('name').errors?.required">
                                       Debe ingresar un nombre
                                   </span>
                               </div>

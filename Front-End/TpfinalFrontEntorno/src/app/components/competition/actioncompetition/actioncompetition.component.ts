@@ -13,6 +13,8 @@ import {PositionService} from "../../../services/position/position.service";
 import * as moment from "moment";
 import {TaskService} from "../../../services/auth/task.service";
 
+declare var $: any;
+
 @Component({
   selector: 'app-actioncompetition',
   templateUrl: './actioncompetition.component.html',
@@ -95,6 +97,7 @@ export class ActioncompetitionComponent implements OnInit {
   getPosiciones() {
     this.positionService.GetAll().subscribe(result => {
       this.posiciones = JSON.parse(JSON.stringify(result));
+      Active();
     });
   }
 
@@ -173,4 +176,8 @@ export class ActioncompetitionComponent implements OnInit {
 
       });
   }
+}
+function Active(){
+  $('.actionmenu').removeClass('active');
+  $('.Competition ').addClass('active');
 }

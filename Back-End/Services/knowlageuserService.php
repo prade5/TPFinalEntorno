@@ -36,7 +36,7 @@
         }
         public static function GetById($_id){
             $cnn = Connection();
-            $perfil = mysqli_query($cnn,"select * from knowlageusers where state = 1 and idUser =".$_id);
+            $perfil = mysqli_query($cnn,"select * from knowlageusers where state = 1 and (idUser ='$_id'  OR id ='$_id')");
             $userList = "";
 
             while($reg = mysqli_fetch_array($perfil,MYSQLI_ASSOC)){
@@ -60,7 +60,7 @@
         }
         public function Put($_id){
             $cnn = Connection();
-            $this->ValidateParameter('title', $this->title, STRING);
+            $this->ValidateParameter('title', $this->name, STRING);
 
             $result = mysqli_query($cnn,"update knowlageusers set name ='$this->name',
                                                 description='$this->description', nivel=$this->nivel
@@ -75,7 +75,7 @@
         public static function Delete($_id){ 
             $cnn = Connection(); 
             $response = new Result();        
-            $result = mysqli_query($cnn,"update knowlageusers set state = 2 where id =".$idrole);
+            $result = mysqli_query($cnn,"update knowlageusers set state = 2 where id =".$_id);
            
             if($result){
                 $response->result = 'Ok';

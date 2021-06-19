@@ -24,7 +24,7 @@
         //method     
         public static function Get(){             
             $cnn = Connection();
-            $users = mysqli_query($cnn,"select * from applicants where state = 1 ORDER BY id DESC");
+            $users = mysqli_query($cnn,"select * from applicants app inner join where state = 1 ORDER BY id DESC");
             $userList = [];
 
             while($reg = mysqli_fetch_array($users,MYSQLI_ASSOC)){

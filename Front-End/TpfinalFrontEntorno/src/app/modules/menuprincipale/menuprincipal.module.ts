@@ -16,18 +16,15 @@ import { MenuadminComponent } from 'src/app/components/menu/menuadmin/menuadmin.
 import { ActionroleComponent } from 'src/app/components/role/actionrole/actionrole.component';
 import { RoleComponent } from 'src/app/components/role/role.component';
 import { SubjectComponent } from 'src/app/components/subject/subject.component';
-import { ActionuserComponent } from 'src/app/components/user/actionuser/actionuser.component';
 import { PrincipalComponent } from 'src/app/components/menu/principal/principal.component';
 import { SubjectModule } from '../subject/subject.module';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CompetitionModule } from '../competition/competition.module';
 
 
 @NgModule({
   declarations: [
-    PrincipalComponent,UserComponent, MenuadminComponent,
-    ActioncompetitionComponent, SubjectComponent,
-    RoleComponent,ActionroleComponent,AdminComponent,ActionuserComponent
+    PrincipalComponent,MenuadminComponent, SubjectComponent,
+    RoleComponent,ActionroleComponent,AdminComponent
   ],
   imports: [
     CommonModule,

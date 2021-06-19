@@ -19,7 +19,7 @@ export class MenuadminComponent implements OnInit {
     private router: Router, private loadscript: LoadscriptService) { }
 
   ngOnInit(): void {
-    this.linkprincipal ="/Principal";
+    this.linkprincipal ="/MenuAdmin";
     this.perfil ="/User/perfil/"+ this.task.GetIdUser();
     this. GetTypeUser();
     this.loadscript.loadScript(urljs);
@@ -55,9 +55,9 @@ export class MenuadminComponent implements OnInit {
         active:"Applicant"
       },
       {
-        url:"#",
+        url:"/jefedecatedra_materia",
         displayName:"Jefe de catedra",
-        active:""
+        active:"Jefedecatedra"
       },
       {
         url:"/Subject",

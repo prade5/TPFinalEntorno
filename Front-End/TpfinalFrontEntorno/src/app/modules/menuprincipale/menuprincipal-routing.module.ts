@@ -45,6 +45,10 @@ const routes: Routes = [
             }
         },
         {
+          path: 'jefedecatedra_materia',
+          loadChildren: () => import("../../modules/jefecatedra/jefecatedra.module").then((c) => c.JefecatedraModule)
+        },
+        {
           path: 'Competition',
           loadChildren: () => import("../../modules/competition/competition.module").then((c) => c.CompetitionModule)
         },

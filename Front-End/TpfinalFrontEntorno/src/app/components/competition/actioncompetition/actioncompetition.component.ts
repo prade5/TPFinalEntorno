@@ -12,6 +12,7 @@ import {SubjectService} from "../../../services/subject/subject.service";
 import {PositionService} from "../../../services/position/position.service";
 import * as moment from "moment";
 import {TaskService} from "../../../services/auth/task.service";
+import {StructureIsReused} from "@angular/compiler-cli/src/transformers/util";
 
 declare var $: any;
 
@@ -32,6 +33,7 @@ export class ActioncompetitionComponent implements OnInit {
   dateCreateBind : string;
   dateFinalBind: string;
   isDisabled: boolean = false;
+  validDates: boolean = true;
 
   constructor(private competitionService: CompetitionService, private subjectService: SubjectService, private positionService: PositionService, private fb: FormBuilder,
               private messageService: MessageService, private route: ActivatedRoute, private userFinder: TaskService,
@@ -63,15 +65,27 @@ export class ActioncompetitionComponent implements OnInit {
 
   private initForm(): void{
     this.browserForm = this.fb.group({
-      id: 1,
-      idSubject: 0,
-      description: '',
-      creationDate: new Date().toISOString().slice(0, 19).replace('T', ' '),
-      finalDate: new Date().toISOString().slice(0, 19).replace('T', ' '),
-      state: 1,
-      idUser: this.curUserId,
-      idPosition: 0
+      id: [1],
+      idSubject: [0, [Validators.required]],
+      description: ['', Validators.required],
+      creationDate: ['', Validators.required],
+      finalDate: ['', Validators.required],
+      state: [1],
+      idUser: [this.curUserId, Validators.required],
+      idPosition: [0, Validators.required]
     });
+  }
+
+  compareDates() {
+    var antes = this.browserForm.get('creationDate');
+    var despues = this.browserForm.get('finalDate');
+    var dantes = new Date(antes.value).toISOString().slice(0, 19).replace('T', ' ');
+    var ddespues = new Date(despues.value).toISOString().slice(0, 19).replace('T', ' ');
+    if(dantes < ddespues) {
+      this.validDates = true;
+    } else {
+      this.validDates = false;
+    }
   }
 
   isValidField(field: string): string{

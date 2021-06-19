@@ -20,7 +20,8 @@
         //method     
         public static function Get($idUser){
             $cnn = Connection();
-            $perfil = mysqli_query($cnn,"select * , sub.name, sub.img from jefedecatedra_materia jcm inner join subjects sub on jcm.IdSubject == sub.id where jcm.state = 1 and IdJefeDeCatedra =".$idUser ." ORDER BY id DESC");
+            $perfil = mysqli_query($cnn,"select jcm.id, jcm.IdJefeDeCatedra, jcm.IdSubject , sub.name, sub.img 
+            from jefedecatedra_materia jcm inner join subjects sub on jcm.IdSubject == sub.id where jcm.state = 1 and IdJefeDeCatedra =".$idUser ." ORDER BY id DESC");
             $perfilList = [];
 
             while($reg = mysqli_fetch_array($perfil,MYSQLI_ASSOC)){

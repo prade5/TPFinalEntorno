@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {  CompetitionService } from '../../services/competition/competition.service';
 import { Competition } from '../../classes/competition';
-import {HttpErrorResponse} from "@angular/common/http";
 import {MessageService} from "../../services/message/message.service";
 import Swal from "sweetalert2";
+
+declare var $: any;
 
 @Component({
   selector: 'app-competition',
@@ -21,10 +22,9 @@ export class CompetitionComponent implements OnInit {
 
 
   GetAll(){
-    debugger;
     this.comp.GetAll().subscribe((comp) =>{
       this.complist = comp;
-      debugger;
+      Active();
     });
   }
 
@@ -38,10 +38,8 @@ export class CompetitionComponent implements OnInit {
       cancelButtonText: 'Cancel'
     }).then((result) => {
       if (result.isConfirmed) {
-        debugger;
         this.comp.Delete(id).subscribe((data:any) =>{
           if(data.result === 'OK')
-            debugger;
           Swal.fire(
             'Eliminado!',
             'El concurso fue eliminado con exito',
@@ -59,5 +57,8 @@ export class CompetitionComponent implements OnInit {
       }
     })
   }
-
+}
+function Active(){
+  $('.actionmenu').removeClass('active');
+  $('.Competition  ').addClass('active');
 }

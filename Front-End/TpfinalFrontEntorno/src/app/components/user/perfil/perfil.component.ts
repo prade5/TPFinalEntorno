@@ -64,6 +64,7 @@ export class PerfilComponent implements OnInit {
     this.userService.GetById(id).subscribe((result:any) =>{
       this.user = result;
       this.browserForm.patchValue(this.user);
+      Active();
     })
   }
 
@@ -405,4 +406,8 @@ export class PerfilComponent implements OnInit {
     $('body').removeClass('modal-open');
     $('.modal-backdrop').remove();
   }
+}
+function Active(){
+  $('.actionmenu').removeClass('active');
+  $('.dropdown ').addClass('active');
 }

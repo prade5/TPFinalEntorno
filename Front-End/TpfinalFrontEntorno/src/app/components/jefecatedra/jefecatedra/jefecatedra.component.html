@@ -1,1 +1,78 @@
-<p>jefecatedra works!</p>
+<!-- <p-table #dt [value]="aplicantlist" dataKey="id" styleClass="p-datatable-customers" [rowHover]="true"
+    [rows]="10" [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50]"
+    [paginator]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+    [filterDelay]="0" [globalFilterFields]="['idUser','idCompetition','applicantDate','state']">
+    <ng-template pTemplate="caption">
+        <div class="table-header">
+          <div class="row">
+            <div class="col-md-12 col-md-offset-2">
+                <div class="card-body d-flex justify-content-between align-items-center">
+                  <strong>Lista de Postulantes</strong>
+                </div>
+            </div>
+          </div>
+        </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+        <tr>
+          <th pSortableColumn="id">
+            <div class="p-d-flex p-jc-between p-ai-center">
+                Codigo
+                <p-sortIcon field="id"></p-sortIcon>
+            </div>
+          </th>
+            <th pSortableColumn="idUser">
+                <div class="p-d-flex p-jc-between p-ai-center">
+                    Codigo usuario
+                    <p-sortIcon field="idUser"></p-sortIcon>
+                    <p-columnFilter type="text" field="idUser" display="menu" class="p-ml-auto"></p-columnFilter>
+                </div>
+            </th>
+            <th pSortableColumn="idCompetition">
+                <div class="p-d-flex p-jc-between p-ai-center">
+                    Código Competicion
+                    <p-sortIcon field="idCompetition"></p-sortIcon>
+                    <p-columnFilter type="text" field="idCompetition" display="menu" class="p-ml-auto"></p-columnFilter>
+                </div>
+            </th>
+            <th pSortableColumn="applicantDate">
+                <div class="p-d-flex p-jc-between p-ai-center">
+                    Correo
+                    <p-sortIcon field="applicantDate"></p-sortIcon>
+                    <p-columnFilter type="date" field="applicantDate" display="menu" class="p-ml-auto"></p-columnFilter>
+                </div>
+            </th>
+            <th pSortableColumn="state">
+                <div class="p-d-flex p-jc-between p-ai-center">
+                    Fecha de alta
+                    <p-sortIcon field="state"></p-sortIcon>
+                    <p-columnFilter type="text" field="state" display="menu" class="p-ml-auto"></p-columnFilter>
+                </div>
+            </th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-applicant>
+        <tr class="p-selectable-row">
+            <td>
+                {{applicant.id}}
+            </td>
+            <td>
+                {{applicant.idUser}}
+            </td>
+            <td>
+                {{applicantidCompetition}}
+            </td>
+            <td>
+               {{applicant.applicantDate}}
+            </td>
+            <td>
+                {{applicant.state}}
+            </td>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage">
+        <tr>
+            <td colspan="8">No hay usuario.</td>
+        </tr>
+    </ng-template>
+</p-table> -->

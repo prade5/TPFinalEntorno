@@ -10,7 +10,6 @@ import { AuthService } from '../../services/auth/auth.service';
 export class AuthGuard implements CanActivate, CanActivateChild, CanDeactivate<unknown>, CanLoad {
  constructor(private authService: AuthService,private router: Router){}
  canActivate(): boolean {
-   debugger;
   if (!this.authService.isAuthenticated()) {
     this.router.navigate(['Account']);
     return false;

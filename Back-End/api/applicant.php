@@ -7,8 +7,9 @@
             if(isset($_GET['id'])){
                 Applicant::GetById($_GET['id']);
             }
-            else{
-                Applicant::Get();
+            else{   
+                $idUser = empty($_GET['idUser']) == 0 ? $_GET['idUser'] : 0;  
+                Applicant::Get($idUser);
             }
         break;
         //Create 

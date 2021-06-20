@@ -4,5 +4,6 @@ export interface  JefedeCatedraMateria {
     IdSubject: string;
     name: string;
     img: string;
+    position: string;
     state: number;
   }

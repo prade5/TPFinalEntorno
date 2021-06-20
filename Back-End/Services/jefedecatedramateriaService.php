@@ -18,10 +18,22 @@
         }
         
         //method     
-        public static function Get($idUser){
-            $cnn = Connection();
-            $perfil = mysqli_query($cnn,"select jcm.id, jcm.IdJefeDeCatedra, jcm.IdSubject , sub.name, sub.img 
-            from jefedecatedra_materia jcm inner join subjects sub on jcm.IdSubject == sub.id where jcm.state = 1 and IdJefeDeCatedra =".$idUser ." ORDER BY id DESC");
+        public static function Get($_idUser){
+            $cnn = Connection(); 
+            
+            $select ="";
+            if($_idUser == 0){
+                $select = "jcm.state = 1 and pos.id = 1";
+            }
+            else{
+                $select = "jcm.state = 1 and pos.id = 1 and jcm.IdJefeDeCatedra = $_idUser";
+            }
+
+            $perfil = mysqli_query($cnn,"select jcm.id, jcm.IdJefeDeCatedra, jcm.IdSubject , sub.name, sub.img, 
+            pos.name as position from jefedecatedra_materia jcm inner join subjects sub on jcm.IdSubject = sub.id 
+            inner join  users urs on jcm.IdJefeDeCatedra = urs.id inner join competitions comp on comp.IdSubject = sub.id
+            inner join positions pos on comp.idPosition = pos.id where $select ORDER BY jcm.id DESC");
+
             $perfilList = [];
 
             while($reg = mysqli_fetch_array($perfil,MYSQLI_ASSOC)){

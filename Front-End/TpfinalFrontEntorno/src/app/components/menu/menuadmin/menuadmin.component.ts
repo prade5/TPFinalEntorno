@@ -56,7 +56,7 @@ export class MenuadminComponent implements OnInit {
       },
       {
         url:"/jefedecatedra_materia",
-        displayName:"Jefe de catedra",
+        displayName:"Asignar jefe de catedra",
         active:"Jefedecatedra"
       },
       {

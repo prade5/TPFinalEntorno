@@ -8,7 +8,8 @@
                 JefedeCatedraMateria::GetById($_GET['id']);
             }
             else{
-                JefedeCatedraMateria::Get($_GET['idUser']);
+                $idUser = empty($_GET['idUser']) == 0 ? $_GET['idUser'] : 0;  
+                JefedeCatedraMateria::Get($idUser);
             }
         break;
         case'POST':

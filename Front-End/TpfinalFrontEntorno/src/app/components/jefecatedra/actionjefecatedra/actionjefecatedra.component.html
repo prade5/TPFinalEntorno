@@ -1,1 +1,70 @@
-<p>actionjefecatedra works!</p>
+<section id="cover" class="min-vh-100">
+    <div id="cover-caption">
+      <div class="container">
+        <div class="row text-white">
+          <div class="col-xl-10 col-lg-6 col-md-8 col-sm-10 mx-auto text-center form">
+            <h1 class="display-4 py-2 text-truncate">{{Option}}</h1>
+            <div class="px-4">
+              <form class="justify-content-center">
+                <div class="form-row">  
+                    <label>Jefe catedra</label>  
+                     <div class="form-group col-md-12">                     
+                        <div class="ng-autocomplete">
+                            <ng-autocomplete 
+                                [data]="usertlist"
+                                [searchKeyword]="keyword"
+                                (selected)='selectEvent($event)'
+                                (inputChanged)='onChangeSearch($event)'
+                                (inputFocused)='onFocused($event)'
+                                [itemTemplate]="itemTemplate"
+                                [notFoundTemplate]="notFoundTemplate">                                 
+                            </ng-autocomplete>
+                            
+                            <ng-template #itemTemplate let-item>
+                            <a [innerHTML]="item.firstName"></a>
+                            </ng-template>
+                            
+                            <ng-template #notFoundTemplate let-notFound>
+                            <div [innerHTML]="notFound"></div>
+                            </ng-template>
+                        </div>
+                     </div>
+
+                </div>
+                
+                <div class="form-row">  
+                    <label>Materia</label>  
+                     <div class="form-group col-md-12">                     
+                        <div class="ng-autocomplete">
+                            <ng-autocomplete 
+                                [data]="subjectlist"
+                                [searchKeyword]="keywordsubject"
+                                (selected)='selectEvent($event)'
+                                (inputChanged)='onChangeSearch($event)'
+                                (inputFocused)='onFocused($event)'
+                                [itemTemplate]="itemTemplateuser"
+                                [notFoundTemplate]="notFoundTemplate">                                 
+                            </ng-autocomplete>
+                            
+                            <ng-template #itemTemplateuser let-subject>
+                            <a [innerHTML]="subject.name"></a>
+                            </ng-template>
+                            
+                            <ng-template #notFoundTemplate let-notFound>
+                            <div [innerHTML]="notFound"></div>
+                            </ng-template>
+                        </div>
+                     </div>
+                </div>
+                <div class="float-right mb-3">
+                  <button [routerLink]="['/jefedecatedra_materia']" class="btn btn-primary mr-3">Cancelar</button>
+                  <button type="submit" class="btn btn-primary">{{OptionBtn == false ? "Guardar" : "Actualizar"}}</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  

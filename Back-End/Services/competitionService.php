@@ -75,6 +75,12 @@
                 $cnn = Connection();
 
                 $this->ValidateParameter('idSubject', $this->idSubject, INTEGER);
+                $this->ValidateParameter('idUser', $this->idUser, INTEGER);
+                $this->ValidateParameter('idPosition', $this->idPosition, INTEGER);
+                $this->ValidateParameter('state', $this->state, INTEGER);
+                $this->ValidateParameter('description', $this->description, STRING);
+                $this->ValidateParameter('creationDate', $this->creationDate, STRING);
+                $this->ValidateParameter('creationDate', $this->finalDate, STRING);
 //                $this->checkNonerepeat('competitions', 'idSubject', $this->idSubject, "Ya tiene un concurso vigente para esa materia");
 
                 $vSql = "INSERT INTO competitions (idSubject, description, creationDate, finalDate, state, idUser, idPosition) VALUES ($this->idSubject, '$this->description', '$this->creationDate', '$this->finalDate', '1', $this->idUser, $this->idPosition)";

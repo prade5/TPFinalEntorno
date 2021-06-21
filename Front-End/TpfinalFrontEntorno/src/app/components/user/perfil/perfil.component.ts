@@ -366,7 +366,7 @@ export class PerfilComponent implements OnInit {
         setTimeout(()=>{         
           this.CloseAllModal();
         }, 5000);
-        this.GetById(this.idperfil);         
+        this.GetAllKownlage(this.idperfil);          
         this.messageService.Success('Agregar conocimiento', data.response.message);
       }
       else{

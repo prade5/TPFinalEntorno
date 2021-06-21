@@ -13,7 +13,7 @@ export class HeaderComponent implements OnInit {
   @Output() Logout: EventEmitter<any> = new EventEmitter();
   @Input() menunav:any;
   @Input() linkprincipal:any;
-  @Input() perfil:any;
+  @Input() linkperfil:any;
 
   constructor(
     private task: TaskService,

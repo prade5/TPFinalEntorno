@@ -9,10 +9,11 @@ import { TaskService } from '../../../services/auth/task.service';
 })
 export class NavbarComponent implements OnInit {
   visible: boolean = true;
-  @Output() menu: EventEmitter<any> = new EventEmitter();
+  @Output() IsTPerfilMenu: EventEmitter<any> = new EventEmitter();
   @Output() Logout: EventEmitter<any> = new EventEmitter();
   @Input() menunav:any;
   @Input() linkprincipal:any;
+  @Input() linkperfil:any;
 
   constructor(
     private task: TaskService,
@@ -22,5 +23,8 @@ export class NavbarComponent implements OnInit {
   }
   LogoutEmitter(){
     this.Logout.emit(true);
+  }
+  IsMyAccount(){
+    this.IsTPerfilMenu.emit(true);
   }
 }

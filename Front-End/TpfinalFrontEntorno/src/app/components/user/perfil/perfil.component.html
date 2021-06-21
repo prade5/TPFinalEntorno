@@ -95,7 +95,7 @@
               <div class="row gutters-sm">
                 <div class="col-sm-12 mb-6">
                     <button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" (click)="ActionKnowlage(0)">Agregar Conocimiento</button>
-                  <div class="card h-100">
+                  <div class="card h-100  overflow-auto" style="height: 35vh!important;">
 
                     <div class="card-body" *ngFor="let kown of kownlageuser">
                       <small>{{kown?.name}}</small>

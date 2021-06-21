@@ -30,5 +30,9 @@
     {
         "id":8,
         "url": "http://localhost:80/TPFinalEntorno/Back-End/imgperfil/perfil8.png"
+    },
+    {
+        "id":9,
+        "url": "http://localhost:80/TPFinalEntorno/Back-End/imgperfil/logo.png"
     }
   ]

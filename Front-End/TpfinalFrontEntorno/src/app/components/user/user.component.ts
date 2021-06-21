@@ -18,6 +18,7 @@ export class UserComponent implements OnInit {
 
   GetAll():void{
     this.userService.GetAll().subscribe( (user) =>{
+      debugger;
       this.userlist = user;
     });
   }

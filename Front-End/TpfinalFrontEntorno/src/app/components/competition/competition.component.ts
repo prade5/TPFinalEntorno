@@ -81,5 +81,6 @@ export class CompetitionComponent implements OnInit {
 }
 function Active(){
   $('.actionmenu').removeClass('active');
+  $('.dropdown').removeClass('active');   
   $('.Competition  ').addClass('active');
 }

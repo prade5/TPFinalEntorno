@@ -8,7 +8,7 @@
               User::GetById($_GET['id']);
             }
             else{
-                $isAdmin = empty($_GET['jcm']) == 0 ? $_GET['jcm'] : false;  
+                $isAdmin = empty($_GET['jcm']) == true ? $_GET['jcm'] : false;  
                 if($isAdmin){
                     User::GetAllJefeCatedra();
                 }

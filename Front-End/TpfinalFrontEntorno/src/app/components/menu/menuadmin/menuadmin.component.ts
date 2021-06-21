@@ -5,6 +5,7 @@ import { TaskService } from 'src/app/services/auth/task.service';
 import { LoadscriptService } from 'src/app/services/loadScript/loadscript.service';
 
 const urljs = '../../../../assets/js/menu.js';
+declare var $: any;
 
 @Component({
   selector: 'app-menuadmin',
@@ -25,6 +26,7 @@ export class MenuadminComponent implements OnInit {
     this.loadscript.loadScript(urljs);
   }
   GetTypeUser(){
+    // debugger;
     if (this.task.loggedIn() && this.task.GetRole().toLowerCase() === ('admin').toLowerCase()) {
       this.GetAdmin();
     } else if (
@@ -34,7 +36,11 @@ export class MenuadminComponent implements OnInit {
       this.GetApplicant();
     } else {
       this.router.navigate(['/error']);
+      return;
     }
+    let ishave = $('.dropdown').hasClass();
+    // let url = this.IsTPerfilMenuClick;
+    this.router.navigate(['/Welcome']);
   }
 
   GetAdmin(){

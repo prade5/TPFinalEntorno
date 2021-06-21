@@ -61,5 +61,5 @@ export class JefecatedraComponent implements OnInit {
 
 function Active(){
   $('.actionmenu').removeClass('active');
-  $('.Competition').addClass('active');
+  $('.Jefedecatedra').addClass('active');
 }

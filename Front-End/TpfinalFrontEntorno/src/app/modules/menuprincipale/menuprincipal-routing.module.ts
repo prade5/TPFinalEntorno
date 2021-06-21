@@ -8,6 +8,7 @@ import { MenuadminComponent } from 'src/app/components/menu/menuadmin/menuadmin.
 import { PrincipalComponent } from 'src/app/components/menu/principal/principal.component';
 import { ActionroleComponent } from 'src/app/components/role/actionrole/actionrole.component';
 import { RoleComponent } from 'src/app/components/role/role.component';
+import { WelcomeComponent } from 'src/app/components/welcome/welcome/welcome.component';
 
 const routes: Routes = [
   {
@@ -25,25 +26,33 @@ const routes: Routes = [
           loadChildren:() => import("../../modules/user/user.module").then((p) => p.UserModule)
         },
         {
-          path: 'Role',
-          component: RoleComponent,
+          path: 'Welcome',
+          component: WelcomeComponent,
           canLoad: [AuthGuard],
-          canActivate: [RoleGuardGuard],
           data: {
-            expectedRole: 'admin',
-            title: 'Permiso'
+            title: 'Bienvienido al sistema de concurso'
           }
         },
-        {
-          path: 'ActionRole',
-          canLoad: [AuthGuard],
-          canActivate: [RoleGuardGuard],
-          component: ActionroleComponent,
-           data: {
-            expectedRole: 'admin',
-             title: 'Acceder permiso'
-            }
-        },
+        // {
+        //   path: 'Role',
+        //   component: RoleComponent,
+        //   canLoad: [AuthGuard],
+        //   canActivate: [RoleGuardGuard],
+        //   data: {
+        //     expectedRole: 'admin',
+        //     title: 'Permiso'
+        //   }
+        // },
+        // {
+        //   path: 'ActionRole',
+        //   canLoad: [AuthGuard],
+        //   canActivate: [RoleGuardGuard],
+        //   component: ActionroleComponent,
+        //    data: {
+        //     expectedRole: 'admin',
+        //      title: 'Acceder permiso'
+        //     }
+        // },
         {
           path: 'jefedecatedra_materia',
           loadChildren: () => import("../../modules/jefecatedra/jefecatedra.module").then((c) => c.JefecatedraModule)

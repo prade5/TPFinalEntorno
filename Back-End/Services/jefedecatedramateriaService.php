@@ -31,8 +31,8 @@
 
             $perfil = mysqli_query($cnn,"select jcm.id, jcm.IdJefeDeCatedra, jcm.IdSubject , sub.name, sub.img, 
             rol.name as position from jefedecatedra_materia jcm inner join subjects sub on jcm.IdSubject = sub.id 
-            inner join  users urs on jcm.IdJefeDeCatedra = urs.id inner join competitions comp on comp.IdSubject = sub.id
-            inner join roles rol on rol.id = urs.idRole where $select ORDER BY jcm.id DESC");
+            inner join  users urs on jcm.IdJefeDeCatedra = urs.id inner join roles rol on rol.id = urs.idRole 
+            where $select ORDER BY jcm.id DESC");
 
             $perfilList = [];
 
@@ -75,7 +75,7 @@
             $this->ValidateParameter('IdSubject', $this->IdSubject, INTEGER);
 
             $result = mysqli_query($cnn,"update jefedecatedra_materia set IdJefeDeCatedra ='$this->IdJefeDeCatedra',
-                                                IdSubject='$this->IdSubject' where id =".$_id);
+                                                IdSubject='$this->IdSubject' where Id =".$_id);
             if($result){
                 $this->ReturnReponse(SUCCESS_RESPONSE, "El jefe de catedra fue modificado con exito");
             }
@@ -86,7 +86,7 @@
         public static function Delete($_id){ 
             $cnn = Connection(); 
             $response = new Result();        
-            $result = mysqli_query($cnn,"update jefedecatedra_materia set state = 2 where id =".$_id);
+            $result = mysqli_query($cnn,"update jefedecatedra_materia set state = 2 where Id =".$_id);
            
             if($result){
                 $response->result = 'Ok';

@@ -18,6 +18,7 @@ export class JefecatedraComponent implements OnInit {
   }
   GetAll(){
     this.jcatedra.GetAll(0).subscribe((comp) =>{
+      debugger;
       this.jcmlist = comp;
       Active();
     });   

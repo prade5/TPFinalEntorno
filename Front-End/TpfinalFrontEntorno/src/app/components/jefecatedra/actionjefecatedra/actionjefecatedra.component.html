@@ -5,13 +5,17 @@
           <div class="col-xl-10 col-lg-6 col-md-8 col-sm-10 mx-auto text-center form">
             <h1 class="display-4 py-2 text-truncate">{{Option}}</h1>
             <div class="px-4">
-              <form class="justify-content-center">
+              <form class="justify-content-center"  [formGroup]="browserForm" (ngSubmit)="Create()">
                 <div class="form-row">  
                     <label>Jefe catedra</label>  
                      <div class="form-group col-md-12">                     
-                        <div class="ng-autocomplete">
-                            <ng-autocomplete 
+                        <div class="ng-autocomplete userselect">
+                            <ng-autocomplete                                 
                                 [data]="usertlist"
+                                formControlName="IdJefeDeCatedra"
+                                [initialValue]="initialValueuser"
+                                (class)="'jcm'"
+                                [class]="isValidField('IdJefeDeCatedra')"
                                 [searchKeyword]="keyword"
                                 (selected)='selectEvent($event)'
                                 (inputChanged)='onChangeSearch($event)'
@@ -19,9 +23,15 @@
                                 [itemTemplate]="itemTemplate"
                                 [notFoundTemplate]="notFoundTemplate">                                 
                             </ng-autocomplete>
-                            
+
+                            <div class="invalid-feedback">
+                              <span *ngIf="browserForm.get('IdJefeDeCatedra').errors?.required">
+                                Debe Seleccionar jefe de catedra
+                              </span>
+                            </div>
+
                             <ng-template #itemTemplate let-item>
-                            <a [innerHTML]="item.firstName"></a>
+                            <a [innerHTML]="item.firstName" #object></a>
                             </ng-template>
                             
                             <ng-template #notFoundTemplate let-notFound>
@@ -35,9 +45,13 @@
                 <div class="form-row">  
                     <label>Materia</label>  
                      <div class="form-group col-md-12">                     
-                        <div class="ng-autocomplete">
+                        <div class="ng-autocomplete subjselect">
                             <ng-autocomplete 
                                 [data]="subjectlist"
+                                [class]="'subject'"
+                                formControlName="IdSubject"
+                                [initialValue]="initialValue"
+                                [class]="isValidField('IdSubject')"
                                 [searchKeyword]="keywordsubject"
                                 (selected)='selectEvent($event)'
                                 (inputChanged)='onChangeSearch($event)'
@@ -45,6 +59,12 @@
                                 [itemTemplate]="itemTemplateuser"
                                 [notFoundTemplate]="notFoundTemplate">                                 
                             </ng-autocomplete>
+
+                            <div class="invalid-feedback">
+                              <span *ngIf="browserForm.get('IdSubject').errors?.required">
+                                Debe Seleccionar la materia
+                              </span>
+                            </div>
                             
                             <ng-template #itemTemplateuser let-subject>
                             <a [innerHTML]="subject.name"></a>

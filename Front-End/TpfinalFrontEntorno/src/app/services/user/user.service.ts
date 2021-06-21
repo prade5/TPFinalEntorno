@@ -10,8 +10,8 @@ import { environment } from '../../../environments/environment';
 export class UserService {
   constructor(private http: HttpClient) { }
 
-  GetAll(): Observable<User[]> {
-    return this.http.get<User[]>(`${environment.api_url}user.php`);
+  GetAll(isAdmin = false): Observable<User[]> {
+    return this.http.get<User[]>(`${environment.api_url}user.php?jcm=${isAdmin}`);
   }
   GetById(id){
     return this.http.get(`${environment.api_url}user.php?id=${id}`);

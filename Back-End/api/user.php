@@ -8,7 +8,13 @@
               User::GetById($_GET['id']);
             }
             else{
-                User::Get();
+                $isAdmin = empty($_GET['jcm']) == 0 ? $_GET['jcm'] : false;  
+                if($isAdmin){
+                    User::GetAllJefeCatedra();
+                }
+                else{
+                    User::Get();
+                }
             }
         break;
         //Create role

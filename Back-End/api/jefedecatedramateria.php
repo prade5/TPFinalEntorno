@@ -19,7 +19,7 @@
         break;
         case'PUT':
             $_PUT = json_decode(file_get_contents('php://input'), true);
-            $jefecatedra = new JefedeCatedraMateria($_PUT["id"],$_PUT['IdJefeDeCatedra'],$_PUT["IdSubject"],$_PUT["state"]);  
+            $jefecatedra = new JefedeCatedraMateria($_PUT["Id"],$_PUT['IdJefeDeCatedra'],$_PUT["IdSubject"],$_PUT["state"]);  
             $jefecatedra->Put($_GET['id']);       
         break;
         case'DELETE':

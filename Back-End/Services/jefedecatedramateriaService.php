@@ -11,7 +11,7 @@
         private $state;
 
         public function __construct ($Id, $IdJefeDeCatedra, $IdSubject, $state){
-            $this->id = $id;
+            $this->Id = $Id;
             $this->IdJefeDeCatedra = $IdJefeDeCatedra;
             $this->IdSubject = $IdSubject;  
             $this->state = $state;
@@ -23,16 +23,16 @@
             
             $select ="";
             if($_idUser == 0){
-                $select = "jcm.state = 1 and pos.id = 1";
+                $select = "jcm.state = 1 ";
             }
             else{
-                $select = "jcm.state = 1 and pos.id = 1 and jcm.IdJefeDeCatedra = $_idUser";
+                $select = "jcm.state = 1 and jcm.IdJefeDeCatedra = $_idUser";
             }
 
             $perfil = mysqli_query($cnn,"select jcm.id, jcm.IdJefeDeCatedra, jcm.IdSubject , sub.name, sub.img, 
-            pos.name as position from jefedecatedra_materia jcm inner join subjects sub on jcm.IdSubject = sub.id 
+            rol.name as position from jefedecatedra_materia jcm inner join subjects sub on jcm.IdSubject = sub.id 
             inner join  users urs on jcm.IdJefeDeCatedra = urs.id inner join competitions comp on comp.IdSubject = sub.id
-            inner join positions pos on comp.idPosition = pos.id where $select ORDER BY jcm.id DESC");
+            inner join roles rol on rol.id = urs.idRole where $select ORDER BY jcm.id DESC");
 
             $perfilList = [];
 
@@ -45,7 +45,8 @@
         }
         public static function GetById($_id){
             $cnn = Connection();
-            $perfil = mysqli_query($cnn,"select * from jefedecatedra_materia where state = 1 and IdJefeDeCatedra =".$_id);
+            $perfil = mysqli_query($cnn,"select * from jefedecatedra_materia jcm inner join subjects sub on jcm.idSubject = sub.id
+                                         inner join users usr on jcm.IdJefeDeCatedra = usr.id where jcm.state = 1 and jcm.Id =".$_id);
             $userList = "";
 
             while($reg = mysqli_fetch_array($perfil,MYSQLI_ASSOC)){
@@ -59,8 +60,8 @@
             $this->ValidateParameter('IdJefeDeCatedra', $this->IdJefeDeCatedra, INTEGER);
             $this->ValidateParameter('IdSubject', $this->IdSubject, INTEGER);
            
-            $result = mysqli_query($cnn,"insert into jefedecatedra_materia (IdJefeDeCatedra, IdSubject, state) 
-            values('$this->IdJefeDeCatedra', '$this->IdSubject', 1)");
+            $result = mysqli_query($cnn,"insert into jefedecatedra_materia (IdJefeDeCatedra, IdSubject, State) 
+            values($this->IdJefeDeCatedra, $this->IdSubject, 1)");
             if($result){
                 $this->ReturnReponse(SUCCESS_RESPONSE, "El jefe de catedra  fue guardado con exito");
             }
@@ -70,7 +71,8 @@
         }
         public function Put($_id){
             $cnn = Connection();
-            $this->ValidateParameter('title', $this->name, STRING);
+            $this->ValidateParameter('IdJefeDeCatedra', $this->IdJefeDeCatedra, INTEGER);
+            $this->ValidateParameter('IdSubject', $this->IdSubject, INTEGER);
 
             $result = mysqli_query($cnn,"update jefedecatedra_materia set IdJefeDeCatedra ='$this->IdJefeDeCatedra',
                                                 IdSubject='$this->IdSubject' where id =".$_id);

@@ -53,6 +53,20 @@
             $finalList = json_encode($userList);
             echo $finalList;
         }
+
+        public static function GetAllJefeCatedra(){             
+            $cnn = Connection();
+            $users = mysqli_query($cnn,"select usr.id, usr.firstName, usr.lastName, usr.mail from users usr inner join roles rol on usr.idRole = rol.id where usr.state = 1 and rol.id = 73 ORDER BY usr.id DESC");
+            $userList = [];
+
+            while($reg = mysqli_fetch_array($users,MYSQLI_ASSOC)){
+                $userList[] = $reg;
+            }
+
+            $finalList = json_encode($userList);
+            echo $finalList;
+        }
+
         public static function GetById($_id){
             $cnn = Connection();
             $user = mysqli_query($cnn,"select * from users where state = 1 and id =".$_id);

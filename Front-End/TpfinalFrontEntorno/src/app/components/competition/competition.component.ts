@@ -60,7 +60,7 @@ export class CompetitionComponent implements OnInit {
     }).then((result) => {
       if (result.isConfirmed) {
         this.comp.Delete(id).subscribe((data:any) =>{
-          if(data.result === 'OK')
+          if(data.result === 'Ok')
           Swal.fire(
             'Eliminado!',
             'El concurso fue eliminado con exito',

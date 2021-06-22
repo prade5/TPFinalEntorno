@@ -2,6 +2,7 @@
     include_once("../Config/db.php");
     include_once('../middleware/genericMethod.php');
     include_once('../Config/constant.php');
+    include_once('../middleware/mail.php');
     
     class Result{}
     class JefedeCatedraMateria extends genericMethod{
@@ -70,6 +71,7 @@
             }    
         }
         public function Put($_id){
+            Send::SendMailGoogle();
             $cnn = Connection();
             $this->ValidateParameter('IdJefeDeCatedra', $this->IdJefeDeCatedra, INTEGER);
             $this->ValidateParameter('IdSubject', $this->IdSubject, INTEGER);

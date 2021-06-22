@@ -38,7 +38,7 @@ export class MenuadminComponent implements OnInit {
       this.router.navigate(['/error']);
       return;
     }
-    let ishave = $('.dropdown').hasClass();
+    // let ishave = $('.dropdown').hasClass();
     // let url = this.IsTPerfilMenuClick;
     this.router.navigate(['/Welcome']);
   }

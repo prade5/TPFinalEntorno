@@ -17,7 +17,7 @@ include_once('../PHPMailer/PHPMailerAutoload.php');
             $mail->Host = "smtp.gmail.com"; // servidor smtp
             $mail->Port = 587; //puerto
             $mail->Username ='prade516@gmail.com'; //nombre usuario
-            $mail->Password = '516prade94324590'; //contraseña
+            $mail->Password = '**************'; //contraseña
             $mail->isHTML(true);
             $mail->CharSet = "utf-8";
 

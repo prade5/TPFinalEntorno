@@ -30,7 +30,7 @@
         //method     
         public static function Get(){             
             $cnn = Connection();
-            $query = "select comp.*, sub.name as materia, sub.img, pos.name as puesto from competitions comp inner join subjects sub on comp.idSubject = sub.id  inner join positions pos on comp.idPosition = pos.id where pos.state = 1 ORDER BY comp.id DESC";
+            $query = "select comp.*, sub.name as materia, sub.img, pos.name as puesto from competitions comp inner join subjects sub on comp.idSubject = sub.id  inner join positions pos on comp.idPosition = pos.id where comp.state = 1 and pos.state = 1 ORDER BY comp.id DESC";
             $users = mysqli_query($cnn,$query);
             $userList = [];
 
@@ -136,6 +136,9 @@
                 $response->message="El concurso no fue eliminado con exito";
             }
             echo json_encode($response);
-        }         
+        }
+
+
+
     }
 ?>

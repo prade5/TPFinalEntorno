@@ -101,7 +101,7 @@ export class ActioncompetitionComponent implements OnInit {
         this.catedras = JSON.parse(JSON.stringify(result));
       });
     }
-    else if (this.curUserRole === 'Jefe de Catedra') {
+    else if (this.curUserRole === 'jefe carrera') {
       this.subjectService.GetByUserId(this.curUserId).subscribe(result => {
         this.catedras = JSON.parse(JSON.stringify(result));
       });

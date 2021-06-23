@@ -7,4 +7,6 @@ export interface  Competition {
     state: number;
     idUser: number;
     idPosition: number;
+    subjectName: string;
+    positionName: string;
 }

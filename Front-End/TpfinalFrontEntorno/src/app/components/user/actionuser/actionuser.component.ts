@@ -23,6 +23,7 @@ export class ActionuserComponent implements OnInit {
   rolelist :Array<Role> = [];
   doclist :Array<Document> = [];
   user:User;
+  isRegister:boolean;
 
   browserForm: FormGroup;
   private isEmail = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
@@ -32,14 +33,22 @@ export class ActionuserComponent implements OnInit {
     private docservice:DocumenttypeService) {
     let id = this.route.snapshot.paramMap.get('id');
     Active();
+    debugger;
     if(id !== null){
       this.Option ="Actualizar usuario";
       this.OptionBtn = true;
+      this.isRegister = false;
       this.GetById(parseInt(id));
+    }
+    else if(this.router.url ==="/Register"){
+      this.Option ="Registrar usuario";
+      this.OptionBtn = false;
+      this.isRegister = true;
     }
     else{
       this.Option ="Crear usuario";
       this.OptionBtn = false;
+      this.isRegister = false;
     }
   }
 
@@ -79,7 +88,7 @@ GetById(id){
       mail: ['',[Validators.required,Validators.pattern(this.isEmail)]],
       address:['',[Validators.required]],
       phone:['',[Validators.required]],
-      idRole:['',[Validators.required]],
+      idRole:[this.isRegister != true ? '' : 74 ,[Validators.required]],
       userName:['',[Validators.required, Validators.minLength(6),Validators.maxLength(50)]],
       userPass:['',[Validators.required, Validators.minLength(6),Validators.maxLength(50),Validators.pattern(/^[A-Za-z0-9 ]+$/)]],
       state:1
@@ -107,7 +116,12 @@ GetById(id){
       debugger;
       if(data.response.status === 200){
         setTimeout(()=>{
-          this.router.navigate(['/Principal']);
+          if(this.isRegister){
+            this.router.navigate(['/Account']);
+          }
+          else{
+            this.router.navigate(['/Principal']);
+          }
         }, 5000);
         this.messageService.Success('Crear Usuario', data.response.message);
       }

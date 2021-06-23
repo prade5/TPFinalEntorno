@@ -5,6 +5,8 @@ import {ActioncompetitionComponent} from "../components/competition/actioncompet
 import {CompetitionComponent} from "../components/competition/competition.component";
 import { AplicantComponent } from "../components/aplicant/aplicant/aplicant.component";
 import { ErrorComponent } from "../components/error/error.component";
+import { UserComponent } from "../components/user/user.component";
+import { ActionuserComponent } from "../components/user/actionuser/actionuser.component";
 
 export const appRoutes: Routes = [
   {
@@ -22,20 +24,20 @@ export const appRoutes: Routes = [
      data: {title: 'Acceder al sistema'}
   },
   {
-    path: 'Competition',
-    component: CompetitionComponent,
-    data: {title: 'Lista de concursos'}
+    path: 'Register',
+    component: ActionuserComponent,
+    data: {title: 'Registrar usuario'}
   },
-  {
-    path: 'ActionCompetition',
-    component: ActioncompetitionComponent,
-    data: {title: 'Acceder al ActionCompetition'}
-  },
-  {
-    path:'Postulantes',
-    component:AplicantComponent,
-    data: {title: 'Lista de postulantes'}
-  },
+  // {
+  //   path: 'ActionCompetition',
+  //   component: ActioncompetitionComponent,
+  //   data: {title: 'Acceder al ActionCompetition'}
+  // },
+  // {
+  //   path:'Postulantes',
+  //   component:AplicantComponent,
+  //   data: {title: 'Lista de postulantes'}
+  // },
   {
     path: '',
     redirectTo: `/Home`,

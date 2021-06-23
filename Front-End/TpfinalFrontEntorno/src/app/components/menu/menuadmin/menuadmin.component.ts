@@ -19,7 +19,8 @@ export class MenuadminComponent implements OnInit {
   constructor(private task: TaskService,
     private router: Router, private loadscript: LoadscriptService) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void { 
+    debugger;
     this.linkprincipal ="/MenuAdmin";
     this.perfil ="/User/perfil/"+ this.task.GetIdUser();
     this. GetTypeUser();
@@ -39,7 +40,8 @@ export class MenuadminComponent implements OnInit {
       return;
     }
     // let ishave = $('.dropdown').hasClass();
-    // let url = this.IsTPerfilMenuClick;
+    debugger;
+    let url = this.router.url;
     this.router.navigate(['/Welcome']);
   }
 
@@ -74,11 +76,15 @@ export class MenuadminComponent implements OnInit {
   }
 
   GetApplicant(){
-
+    debugger;
+    let url = this.router.url;
+    this.router.navigate(['/Welcome']);
   }
 
   GetHeadoftheChair(){
-
+    debugger;
+    let url = this.router.url;
+    this.router.navigate(['/Welcome']);
   }
 
   Logout(islogout = false){

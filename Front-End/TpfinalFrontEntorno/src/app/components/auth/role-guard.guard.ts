@@ -12,6 +12,7 @@ export class RoleGuardGuard implements CanActivate {
   constructor(public auth: TaskService, public router: Router,
     public autisAut:AuthService) { }
   canActivate(route: ActivatedRouteSnapshot): boolean {
+    debugger;
     if (!this.autisAut.isAuthenticated() || decode(this.auth.getJwtToken())['role'].toLowerCase() !== route.data.expectedRole) {
       this.router.navigate(['Home']);
       return false;

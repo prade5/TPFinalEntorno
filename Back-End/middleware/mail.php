@@ -44,7 +44,7 @@ include_once('../Config/constant.php');
             return $message;
         }
 
-        public static function MessageApplicant($full_name, $link, $subject, $position, $jcm, $year){
+        public static function MessageApplicant($full_name, $link, $subject, $position, $jcm){
             $baseLink ="http://localhost:80/TPFinalEntorno/Back-End/api/".$link;
 
             $message  =
@@ -59,8 +59,7 @@ include_once('../Config/constant.php');
                     .<br/>Abajo viene los detalles de ese concurso:<br/>
                     -<strong>Materia</strong>:'.$subject.' <br/>
                     -<strong>Puesto</strong>:'.$position.' <br/>
-                    -<strong>Jefe de catedra</strong>:'.$jcm.'   <br/>
-                    -<strong>Año</strong>:'.$year.' <br/>
+                    -<strong>Jefe de catedra</strong>:'.$jcm.'<br/>
                 </div>
                 <div style="text-align: left;margin-top: 25px;width: 100%;">
                     Si desees eliminar los postulacion al concurso , 

@@ -28,16 +28,6 @@ export const appRoutes: Routes = [
     component: ActionuserComponent,
     data: {title: 'Registrar usuario'}
   },
-  // {
-  //   path: 'ActionCompetition',
-  //   component: ActioncompetitionComponent,
-  //   data: {title: 'Acceder al ActionCompetition'}
-  // },
-  // {
-  //   path:'Postulantes',
-  //   component:AplicantComponent,
-  //   data: {title: 'Lista de postulantes'}
-  // },
   {
     path: '',
     redirectTo: `/Home`,

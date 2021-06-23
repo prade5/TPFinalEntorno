@@ -20,10 +20,18 @@ export class TaskService {
     this.doLogoutUser();
     return this.http.post<any>(`${this.urlBase}auth.php`, JSON.stringify(auth))
     .pipe(
-      tap( tokens => this.doLoginUser(auth.userName, tokens.response.message)),
+      tap( tokens =>{
+        debugger;
+        if (tokens.response.status !== 400) {
+          this.doLoginUser(auth.userName, tokens.response.message)
+        } else {
+          throw tokens;
+        }
+      } ),
       mapTo(true),
       catchError(error => {
-        return of(false)
+        debugger;
+        throw error;
       })
     );
   }
@@ -67,6 +75,7 @@ export class TaskService {
   }
 
   private storeTokens(tokens: Tokens) {
+    debugger;
     let decodotken = decode(tokens.jwt);
     localStorage.setItem(Constant.idUser, this.loadscript.Encrypt(decodotken['userId']));
     localStorage.setItem(Constant.idRole, this.loadscript.Encrypt(decodotken['idRole']));

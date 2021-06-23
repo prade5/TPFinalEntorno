@@ -71,7 +71,6 @@
             }    
         }
         public function Put($_id){
-            Send::SendMailGoogle();
             $cnn = Connection();
             $this->ValidateParameter('IdJefeDeCatedra', $this->IdJefeDeCatedra, INTEGER);
             $this->ValidateParameter('IdSubject', $this->IdSubject, INTEGER);

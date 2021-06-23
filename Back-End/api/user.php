@@ -8,12 +8,18 @@
               User::GetById($_GET['id']);
             }
             else{
-                $isAdmin = empty($_GET['jcm']) == true ? $_GET['jcm'] : false;  
+                $isAdmin = isset($_GET['jcm']) == true ? $_GET['jcm'] : false;  
                 if($isAdmin){
                     User::GetAllJefeCatedra();
                 }
-                else{
-                    User::Get();
+                else{                    
+                    $isConfirm = empty($_GET['confirmuser'])  == 0  ? $_GET['confirmuser'] : 0;  
+                    if($isConfirm !== 0){
+                        User::ConfirmRegister($_GET['confirmuser']);
+                    }
+                    else{
+                        User::Get();
+                    }
                 }
             }
         break;

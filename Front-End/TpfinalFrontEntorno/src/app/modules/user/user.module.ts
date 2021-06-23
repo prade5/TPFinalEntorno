@@ -9,6 +9,7 @@ import { UserComponent } from 'src/app/components/user/user.component';
 import { AccordionModule } from 'primeng/accordion';
 import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
+import { TooltipModule } from 'primeng/tooltip';
 
 
 @NgModule({
@@ -18,7 +19,7 @@ import { TableModule } from 'primeng/table';
   imports: [
     CommonModule,
     UserRoutingModule,FormsModule ,ReactiveFormsModule,
-    TableModule,AccordionModule,ButtonModule
+    TableModule,AccordionModule,ButtonModule,TooltipModule
   ]
 })
 export class UserModule { }

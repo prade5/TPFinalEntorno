@@ -3,6 +3,7 @@
     include_once('../middleware/genericMethod.php');
     include_once('../Config/constant.php');
     include_once('../Helpers/Security/Securitypass.php');
+    include_once('../middleware/mail.php');
     
     class Result{}
     class User extends genericMethod{
@@ -106,9 +107,12 @@
     
                 $pass = Security::Encrypt($this->userPass); 
     
-                $result = mysqli_query($cnn,"insert into users (idRole, idDocumentType, firstName, lastName, docNumber, mail, address, phone, userName, userPass,state) 
-                values('$this->idRole','$this->idDocumentType' , '$this->firstName' , '$this->lastName','$this->docNumber' , '$this->mail' , '$this->address', '$this->phone' , '$this->userName', '$pass',1)");
+                $result = mysqli_query($cnn,"insert into users (idRole, idDocumentType, firstName, lastName, docNumber, mail, address, phone, userName, userPass,state,isActivate) 
+                values('$this->idRole','$this->idDocumentType' , '$this->firstName' , '$this->lastName','$this->docNumber' , '$this->mail' , '$this->address', '$this->phone' , '$this->userName', '$pass',1, false)");
                 if($result){
+                    $id = $cnn->insert_id;
+                    $message = Send::MessageRegister($this->firstName."-".$this->lastName,$this->userName,$this->userPass, $id);
+                    Send::SendMailGoogle($message, $this->mail, MAILREGISTER);
                     $this->ReturnReponse(SUCCESS_RESPONSE, "El usuario fue guardado con exito.");
                 }
                 else{
@@ -159,6 +163,22 @@
                 $response->message="El usuario no fue eliminado con exito";
             }
             echo json_encode($response);
-        }         
+        }
+
+        public static function ConfirmRegister($id){ 
+            $cnn = Connection();   
+            $response = new Result();
+            $result = mysqli_query($cnn,"update users set isActivate = true where id =".$id);
+
+            if($result){
+                $response->result = 'Ok';
+                $response->message="El usuario fue confirmado con exito";
+            }
+            else{
+                $response->result = 'Error';
+                $response->message="No se pudo realizar la confirmación";
+            }
+            echo json_encode($response);
+        }           
     }
 ?>

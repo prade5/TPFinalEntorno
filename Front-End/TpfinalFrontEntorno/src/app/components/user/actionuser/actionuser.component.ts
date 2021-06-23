@@ -116,6 +116,7 @@ GetById(id){
       }
     },
     (err: HttpErrorResponse) => {
+      debugger;
       this.messageService.Error('Error', err.error.message);
     });
   }

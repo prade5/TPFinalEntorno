@@ -25,24 +25,30 @@
                 
                 $passencrypt = Security::Encrypt($this->userPass);                
                
-                $users = mysqli_query($cnn,"select u.id as idUser, u.idRole, r.name as role from users u inner join roles r on u.idRole = r.id where (userName ='$this->userName'  OR mail ='$this->userName') AND userPass='$passencrypt'");
+                $users = mysqli_query($cnn,"select u.id as idUser, u.idRole, r.name as role, u.isActivate from users u inner join roles r on u.idRole = r.id where (userName ='$this->userName'  OR mail ='$this->userName') AND userPass='$passencrypt'");
                 $userlogin = ""; 
                 while($reg = mysqli_fetch_array($users,MYSQLI_ASSOC)){
                     $userlogin = $reg;
                 }   
                 
                 if($userlogin != ""){
-                    $paylod = [
-                        'iat' => time(),
-                        'iss' => 'localhost',
-                        'exp' => time() + (24*3600),
-                        'userId' => $userlogin['idUser'],
-                        'idRole' => $userlogin['idRole'],
-                        'role' => $userlogin['role']
-                    ];
-                    $token = JWT::encode($paylod, SECRET_KEY);   
-                    $data = ['jwt' => $token, 'role' =>$userlogin['role']];
-                    $this->ReturnReponse(SUCCESS_RESPONSE, $data);                
+                    if($userlogin['isActivate'] ==  "0"){
+                        $this->ReturnReponse(ERROR_RESPONSE, "Falta la confirmación para esa cuenta");                
+                    }
+                    else{
+                        $paylod = [
+                            'iat' => time(),
+                            'iss' => 'localhost',
+                            'exp' => time() + (24*3600),
+                            'userId' => $userlogin['idUser'],
+                            'idRole' => $userlogin['idRole'],
+                            'role' => $userlogin['role'],
+                            'isActivate'=>$userlogin['isActivate']
+                        ];
+                        $token = JWT::encode($paylod, SECRET_KEY);   
+                        $data = ['jwt' => $token, 'role' =>$userlogin['role']];
+                        $this->ReturnReponse(SUCCESS_RESPONSE, $data); 
+                    }              
                    
                 }
                 else{

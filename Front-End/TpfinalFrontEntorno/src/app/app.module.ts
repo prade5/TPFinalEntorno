@@ -7,6 +7,7 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { FormsModule} from '@angular/forms';
 import { JwtHelperService,  JWT_OPTIONS  } from '@auth0/angular-jwt';
 import { AuthGuard } from './components/auth/auth.guard';
+// import { TooltipModule } from 'primeng/tooltip';
 
 import {ReactiveFormsModule} from '@angular/forms';
 
@@ -18,10 +19,11 @@ import { HomeComponent } from './components/home/home.component';
 import { MenuprincipalModule } from './modules/menuprincipale/menuprincipal.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { WelcomeComponent } from './components/welcome/welcome/welcome.component';
+import { ErrorComponent } from './components/error/error.component';
 
 @NgModule({
   declarations: [
-    AppComponent,LoginComponent, HomeComponent, WelcomeComponent,
+    AppComponent,LoginComponent, HomeComponent, WelcomeComponent, ErrorComponent,
   ],
   imports: [
     BrowserModule,FormsModule,ReactiveFormsModule,

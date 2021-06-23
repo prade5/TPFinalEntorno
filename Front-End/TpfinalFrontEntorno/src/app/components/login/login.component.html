@@ -16,7 +16,15 @@
       <div class="form-group">
         <label for="password">Password</label>
         <input type="password" name="userPass" id="userPass" class="form-control password-login"
-        formControlName="userPass" [class]="isValidField('userPass')">
+        formControlName="userPass" [class]="isValidField('userPass')"> 
+        <div class="invalid-feedback">
+          <span *ngIf="accountForm.get('userPass').errors?.required">
+              this field is rquired
+          </span>
+        </div>
+      </div>
+      <div class="row">
+          <div class="mx-auto errmessage"  style="color: #dc3545;"></div>
       </div>
       <div class="form-group">
         <button type="submit" class="btn btn-primary btn-block">Ingresar</button>

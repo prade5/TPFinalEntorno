@@ -8,7 +8,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { AccordionModule } from 'primeng/accordion';
 import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
-import { TooltipModule } from 'primeng/tooltip';
+// import { TooltipModule } from 'primeng/tooltip';
 import { UserComponent } from 'src/app/components/user/user.component';
 import { AdminComponent } from 'src/app/components/admin/admin.component';
 import { ActioncompetitionComponent } from 'src/app/components/competition/actioncompetition/actioncompetition.component';
@@ -35,7 +35,7 @@ import { CompetitionModule } from '../competition/competition.module';
       enableHtml: true,
       preventDuplicates: true,
       progressAnimation:'increasing'
-    }),TooltipModule,SubjectModule,CompetitionModule
+    }),SubjectModule,CompetitionModule
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })

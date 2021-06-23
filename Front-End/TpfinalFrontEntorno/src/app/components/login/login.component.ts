@@ -52,11 +52,12 @@ export class LoginComponent implements OnInit {
           if (success) {
               this.router.navigate(['/MenuAdmin']);
             }else {
-              this.router.navigate(['/error']);
+              this.router.navigate(['/Error']);
             }
         },
-        (err: HttpErrorResponse) => {
+        (err: any) => {
           debugger;
+          $('.errmessage').html(err.response.message);
         }
       );
     }

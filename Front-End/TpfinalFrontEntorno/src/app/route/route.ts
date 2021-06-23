@@ -4,6 +4,7 @@ import { LoginComponent } from "../components/login/login.component";
 import {ActioncompetitionComponent} from "../components/competition/actioncompetition/actioncompetition.component";
 import {CompetitionComponent} from "../components/competition/competition.component";
 import { AplicantComponent } from "../components/aplicant/aplicant/aplicant.component";
+import { ErrorComponent } from "../components/error/error.component";
 
 export const appRoutes: Routes = [
   {
@@ -39,6 +40,11 @@ export const appRoutes: Routes = [
     path: '',
     redirectTo: `/Home`,
     pathMatch: 'full',
+  },
+  {
+    path: 'Error',
+    component:ErrorComponent,
+    data: {title: 'Error: Sistema de concurso'}
   },
   {
     path: '**',

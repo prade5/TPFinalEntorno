@@ -14,5 +14,9 @@ export class ApplicantService {
   GetAll(): Observable<Applicant[]> {
     return this.http.get<Applicant[]>(`${environment.api_url}applicant.php`);
   }
-  
+
+  Post(applicant){
+    return this.http.post(`${environment.api_url}applicant.php`, JSON.stringify(applicant));
+  }
+
 }

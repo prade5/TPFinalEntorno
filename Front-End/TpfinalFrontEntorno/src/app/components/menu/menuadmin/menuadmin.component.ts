@@ -78,7 +78,6 @@ export class MenuadminComponent implements OnInit {
   GetApplicant(){
     debugger;
     let url = this.router.url;
-    this.router.navigate(['/Welcome']);
     this.menunav=[
       {
         url:"/Home",
@@ -86,6 +85,7 @@ export class MenuadminComponent implements OnInit {
         active:"Concursos"
       }
     ]
+    this.router.navigate(['/Welcome']);
   }
 
   GetHeadoftheChair(){

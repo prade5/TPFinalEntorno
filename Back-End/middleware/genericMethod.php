@@ -39,9 +39,9 @@
 
 			return $value;
         }
-		public function checkNonerepeat($tableme, $fieldname, $filter, $message = ''){
+		public function checkNonerepeat2($tableme, $fieldname, $filter, $fieldname2, $filter2,  $message = ''){
 			$cnn = Connection();
-            $checkRoleNonerepeat = mysqli_query($cnn,"select * from ".$tableme ." where state = 1 && " .$fieldname ." = '$filter'");
+            $checkRoleNonerepeat = mysqli_query($cnn,"select * from ".$tableme ." where state = 1 && " .$fieldname ." = '$filter' && " .$fieldname2 ." = '$filter2'");
             $userList = [];
             while($reg = mysqli_fetch_array($checkRoleNonerepeat)){
                 $userList = $reg;
@@ -51,6 +51,20 @@
                 return true;
             }                   
 			$this->throwError(USER_ALREADY_EXIST, $message);
+        }
+
+        public function checkNonerepeat($tableme, $fieldname, $filter, $message = ''){
+            $cnn = Connection();
+            $checkRoleNonerepeat = mysqli_query($cnn,"select * from ".$tableme ." where state = 1 && " .$fieldname ." = '$filter'");
+            $userList = [];
+            while($reg = mysqli_fetch_array($checkRoleNonerepeat)){
+                $userList = $reg;
+            }
+            $check = count($userList);
+            if($check === 0){
+                return true;
+            }
+            $this->throwError(USER_ALREADY_EXIST, $message);
         }
 		
         public function Validate_Email($mail){

@@ -11,6 +11,7 @@ import {ApplicantService} from "../../services/applicant/applicant.service";
 import {HttpErrorResponse} from "@angular/common/http";
 import {Applicant} from "../../classes/applicant";
 import {MessageService} from "../../services/message/message.service";
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-home',
@@ -93,20 +94,52 @@ export class HomeComponent implements OnInit {
          applicant.idCompetition = conId;
          applicant.applicantDate = new Date();
          applicant.state = 1;
-         this.applicantService.Post(applicant).subscribe((data: any) => {
-             if (data.response.status === 200){
-               this.messageService.Success('Inscripto al concurso', data.response.message);
-               setTimeout(()=>{
-                 this.router.navigate(['/Competition']);
-               }, 5000);
-             }
-             else{
-               this.messageService.Error('Error', data.response.message);
-             }
-           },
-           (err: HttpErrorResponse) => {
-             console.log(err);
-           });
+
+
+         Swal.fire({
+           title: '¿Inscribirse?',
+           text: '¿Esta seguro de que desea inscribirse a este concurso?',
+           icon: 'warning',
+           showCancelButton: true,
+           confirmButtonText: 'Aceptar',
+           cancelButtonText: 'Cancel'
+         }).then((result) => {
+           if (result.isConfirmed) {
+             this.applicantService.Post(applicant).subscribe((data: any) => {
+                 if (data.response.status === 200){
+                   Swal.fire(
+                     'Inscripto!',
+                     'Se Inscribio al concurso correctamente',
+                     'success'
+                   ).then((result) =>{
+                     this.router.navigate(['/Home']);
+                   })
+                 }
+                 else{
+                   this.messageService.Error('Error', data.response.message);
+                 }
+               },
+               (err: HttpErrorResponse) => {
+                 console.log(err);
+               });
+           } else if (result.dismiss === Swal.DismissReason.cancel) {
+             Swal.fire(
+               'Cancelado',
+               'No se a inscripto al concurso',
+               'error'
+             )
+           }
+         })
+
+
+
+
+
+
+
+
+
+
        }
     }
     else {

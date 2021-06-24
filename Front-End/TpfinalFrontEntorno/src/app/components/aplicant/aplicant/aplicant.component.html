@@ -1,16 +1,19 @@
 <div class="row  m-0  row-cols-1 row-cols-md-4">
     <div class="col mb-4" *ngFor="let applicant of aplicantlist">
-        <div class="card h-100">
+        <div class="card h-100" style="display: table;  text-align: center;">
           <img src="{{applicant.img}}" class="card-img-top" width="150" height="150" alt="{{applicant.subject}}">
           <div class="card-body h-50">
-            <h5 class="card-text"><strong>Materia: </strong>{{applicant.subject}}</h5>         
+            <h5 class="card-text"><strong>Materia: </strong>{{applicant.subject}}</h5>
             <h5 class="card-text"><strong>Nombre postulante: </strong></h5>
-            <h5 class="card-text">{{applicant.fullName}}</h5>   
-            <h5 class="card-text"><strong>Puesto: </strong>{{applicant.position}}</h5>  
-            <h5 class="card-text"><strong>Fecha de postulación: </strong>{{applicant.applicantDate | date: 'shortDate'}}</h5>  
+            <h5 class="card-text">{{applicant.fullName}}</h5>
+            <h5 class="card-text"><strong>Puesto: </strong>{{applicant.position}}</h5>
+            <h5 class="card-text"><strong>Fecha de postulación: </strong>{{applicant.applicantDate | date: 'shortDate'}}</h5>
             <h5 class="card-text"><strong>Fecha de inicio:</strong>{{applicant.creationDate | date: 'shortDate'}}</h5>
             <h5 class="card-text"><strong>Fecha de finalización:</strong>{{applicant.finalDate | date: 'shortDate'}}</h5>
+            <button style="display: table-cell; vertical-align: bottom;" (click)="DeclareWinner(applicant.idUser,applicant.idCompetition)" class="btn btn-primary">Declarar ganador</button>
           </div>
         </div>
     </div>
 </div>
+
+

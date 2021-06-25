@@ -19,7 +19,7 @@ export class MenuadminComponent implements OnInit {
   constructor(private task: TaskService,
     private router: Router, private loadscript: LoadscriptService) { }
 
-  ngOnInit(): void { 
+  ngOnInit(): void {
     debugger;
     this.linkprincipal ="/MenuAdmin";
     this.perfil ="/User/perfil/"+ this.task.GetIdUser();
@@ -109,9 +109,43 @@ export class MenuadminComponent implements OnInit {
         url:"/Competition",
         displayName:"Crear concurso",
         active:"Competition"
+      },
+      {
+        url:"/Home",
+        displayName:"Concursos abiertos",
+        active:"Concursos"
       }
     ]
   }
+  //   debugger;
+  //   let url = this.router.url;
+  //   this.menunav=[
+  //     {
+  //       url:"/Home",
+  //       displayName:"Concursos abiertos",
+  //       active:"Concursos"
+  //     }
+  //   ]
+  //   this.router.navigate(['/Welcome']);
+  // }
+
+  // GetHeadoftheChair(){
+  //   debugger;
+  //   let url = this.router.url;
+  //   this.menunav=[
+  //     {
+  //       url:"/Competition",
+  //       displayName:"Crear concurso",
+  //       active:"Competition"
+  //     },
+  //     {
+  //       url:"/Applicant",
+  //       displayName:"Postulante",
+  //       active:"Applicant"
+  //     }
+  //   ]
+  //   this.router.navigate(['/Welcome']);
+  // }
 
   Logout(islogout = false){
     debugger;

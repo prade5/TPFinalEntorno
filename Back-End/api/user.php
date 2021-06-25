@@ -9,7 +9,7 @@
             }
             else{
                 $isAdmin = isset($_GET['jcm']) == true ? $_GET['jcm'] : false;  
-                if($isAdmin){
+                if(!isset($_GET['jcm'])){
                     User::GetAllJefeCatedra();
                 }
                 else{                    

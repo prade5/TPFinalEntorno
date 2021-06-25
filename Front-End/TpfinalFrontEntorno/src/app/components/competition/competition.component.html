@@ -74,7 +74,7 @@
             </td>
             <td>
               <button pButton pRipple icon="pi pi-search" class="p-button-rounded p-button-success p-mr-2"  [routerLink]="['/ActionCompetition/'+ competition.id + 'v']"></button>
-              <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2"   [attr.disabled]="competition.state === '2'? true : null" [routerLink]="['/ActionCompetition/'+ competition.id]"></button>
+              <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2"   [attr.disabled]="competition.state === '2'? true : null" [routerLink]="['/Competition/ActionCompetition/'+ competition.id]"></button>
               <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" [attr.disabled]="competition.state === '2'? true : null"  (click)="Delete(competition.id)"></button>
           </td>
         </tr>

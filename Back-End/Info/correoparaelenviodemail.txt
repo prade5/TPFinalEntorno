@@ -2,5 +2,18 @@ Correo por el tema de enviar el mail para el sistema de ese trabajo
 Nombre:TrabajoFinal
 Apellido:Entorno
 correo:tpfinalentorno@gmail.com
-contrase�a:2021tpfinalentorno2012
+contrase�a:2021tpfinalentorno2012
 fecha de nacimiento:22/07/1992
+
+Cuenta
+Admin
+- Nombre usuario: admin516
+- Contraseña: Admin516
+
+Postulante
+- Nombre usuario: postulacion
+- Contraseña: Postulacion516
+
+Jefe de catedra
+- Nombre usuario: jefecatedra
+- Contraseña: Jefecatedra516

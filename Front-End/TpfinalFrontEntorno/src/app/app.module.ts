@@ -37,7 +37,7 @@ import { ErrorComponent } from './components/error/error.component';
     ConfirmDialogModule,BrowserAnimationsModule
   ],
   exports:[RouterModule],
-  providers: [Title, {provide:JWT_OPTIONS, useValue:JWT_OPTIONS},JwtHelperService,AuthGuard,StateloginService
+  providers: [Title, {provide:JWT_OPTIONS, useValue:JWT_OPTIONS},JwtHelperService,
   //    {
   //   provide: HTTP_INTERCEPTORS,
   //   useClass: TokenInterceptorService,

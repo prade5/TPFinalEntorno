@@ -13,6 +13,9 @@ export class JefecatedraService {
   GetAll(idUser): Observable<JefedeCatedraMateria[]> {
     return this.http.get<JefedeCatedraMateria[]>(`${environment.api_url}jefedecatedramateria.php?idUser=${idUser}`);
    }
+   GetAllByAdmin(idSubject): Observable<any[]> {
+    return this.http.get<JefedeCatedraMateria[]>(`${environment.api_url}jefedecatedramateria.php?jcmadmin=${idSubject}`);
+   }
    GetById(id){
      return this.http.get(`${environment.api_url}jefedecatedramateria.php?id=${id}`);
    }

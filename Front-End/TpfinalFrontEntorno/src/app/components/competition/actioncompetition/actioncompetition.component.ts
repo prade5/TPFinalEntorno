@@ -13,6 +13,9 @@ import {PositionService} from "../../../services/position/position.service";
 import * as moment from "moment";
 import {TaskService} from "../../../services/auth/task.service";
 import {StructureIsReused} from "@angular/compiler-cli/src/transformers/util";
+import { JefecatedraService } from 'src/app/services/jefecatedra/jefecatedra.service';
+import { UserService } from 'src/app/services/user/user.service';
+import { User } from 'src/app/classes/user';
 
 declare var $: any;
 
@@ -28,16 +31,26 @@ export class ActioncompetitionComponent implements OnInit {
   browserForm: FormGroup;
   catedras: Subject[];
   posiciones: Position[];
+  usertlist :Array<User> = [];
   curUserId : number;
   curUserRole: string;
   dateCreateBind : string;
+  
+  subject: Subject[];
+  keyword = 'firstName';
+  keywordname = 'name';
+
+  initialValueuser: any;
+  initialValuesubject: any;
+  initialValueJCM: any;
+
   dateFinalBind: string;
   isDisabled: boolean = false;
   validDates: boolean = true;
 
   constructor(private competitionService: CompetitionService, private subjectService: SubjectService, private positionService: PositionService, private fb: FormBuilder,
               private messageService: MessageService, private route: ActivatedRoute, private userFinder: TaskService,
-              private router: Router) {
+              private router: Router,private jefeservice: JefecatedraService, private userService: UserService) {
     const id = this.route.snapshot.paramMap.get('id');
     this.getIdUser()
     this.getMaterias();
@@ -61,18 +74,27 @@ export class ActioncompetitionComponent implements OnInit {
 
   ngOnInit(): void {
     this.initForm();
+    this.GetAllJefeCatedra();
   }
 
+  GetAllJefeCatedra(): void{
+    this.userService.GetAll(true).subscribe( (sub) =>{
+      debugger;
+      this.usertlist = sub;
+      Active();
+    });
+  }
+  
   private initForm(): void{
     this.browserForm = this.fb.group({
-      id: [1],
-      idSubject: [0, [Validators.required]],
+      id: 0,
+      idSubject: ['', [Validators.required]],
       description: ['', Validators.required],
       creationDate: ['', Validators.required],
       finalDate: ['', Validators.required],
-      state: [1],
-      idUser: [this.curUserId, Validators.required],
-      idPosition: [0, Validators.required]
+      state: 1,
+      idUser: this.userFinder.GetIdUser(),
+      idPosition: ['', Validators.required]
     });
   }
 
@@ -87,6 +109,16 @@ export class ActioncompetitionComponent implements OnInit {
       this.validDates = false;
     }
   }
+  
+  selectEvent(item:any) {
+    debugger;
+    this.initialValuesubject = null;
+    this.catedras= [];
+    this.jefeservice.GetAllByAdmin(item.id).subscribe(result => {
+      debugger;
+      this.subject = JSON.parse(JSON.stringify(result));
+    });
+  }
 
   isValidField(field: string): string{
     const validatedField = this.browserForm.get(field);
@@ -96,16 +128,17 @@ export class ActioncompetitionComponent implements OnInit {
   }
 
   getMaterias() {
-    if(this.curUserRole === 'admin') {
+    // if(this.curUserRole === 'admin') {
       this.subjectService.GetAll().subscribe(result => {
+        debugger;
         this.catedras = JSON.parse(JSON.stringify(result));
       });
-    }
-    else if (this.curUserRole === 'jefe carrera') {
-      this.subjectService.GetByUserId(this.curUserId).subscribe(result => {
-        this.catedras = JSON.parse(JSON.stringify(result));
-      });
-    }
+    // }
+    // else if (this.curUserRole === 'jefe carrera') {
+    //   this.subjectService.GetByUserId(this.curUserId).subscribe(result => {
+    //     this.catedras = JSON.parse(JSON.stringify(result));
+    //   });
+    // }
   }
 
   getPosiciones() {
@@ -121,17 +154,42 @@ export class ActioncompetitionComponent implements OnInit {
   }
 
   GetById(id){
-    this.competitionService.GetById(id).subscribe(result => {
+    this.competitionService.GetById(id).subscribe((result:any) => {
       this.Competition = JSON.parse(JSON.stringify(result));
+      debugger;
       if (this.Competition != null){
         const competitionThis = {
           id:  this.Competition.id,
           creationDate: moment(this.Competition.creationDate).format("YYYY-MM-DDThh:mm"),
           finalDate: moment(this.Competition.finalDate).format("YYYY-MM-DDThh:mm"),
-          idSubject: this.Competition.idSubject,
-          idPosition: this.Competition.idPosition,
+          idSubject:{
+            creationDate:  moment(this.Competition.creationDate).format("YYYY-MM-DDThh:mm"),
+            description: result.subdescription,
+            finalDate: moment(this.Competition.finalDate).format("YYYY-MM-DDThh:mm"),
+            id: result.idsub,
+            idUser: result.idUser,
+            img: "data:image/jpg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD",
+            name: result.subname,
+            state: "1"
+          },
+          idPosition:{
+            description: result.posdescription,
+            id:  result.idPosition,
+            name: result.posname,
+            state: "1" 
+          },
+          idUser:{
+            idUser: result.idUser,
+            idSubject: result.idSubject,
+            firstName: result.firstName,
+            id: result.jcmid,
+            img: "data:image/jpg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD",
+            lastName: result.lastName,
+            name: result.subname
+          },
           description:  this.Competition.description
         };
+
         this.dateCreateBind = new Date(this.Competition.creationDate).toISOString().slice(0, 16);
         this.dateFinalBind = new Date(this.Competition.finalDate).toISOString().slice(0, 16);
         this.browserForm.patchValue(competitionThis);
@@ -139,23 +197,42 @@ export class ActioncompetitionComponent implements OnInit {
 
     });
   }
-
+GetJCMAdmin(id){
+  this.jefeservice.GetAllByAdmin(id).subscribe(result => {
+    debugger;
+    this.subject = JSON.parse(JSON.stringify(result));
+  });
+}
   Create(){
+    debugger;
     if (this.browserForm.valid) {
+      var competition ={
+        id:this.browserForm.value.id,
+        idPosition:this.browserForm.value.idPosition.id,
+        idSubject:this.browserForm.value.	idSubject.id,
+        description:this.browserForm.value.description,
+        idUser:this.browserForm.value.idUser.idUser,
+        creationDate:this.browserForm.value.creationDate,
+        finalDate:this.browserForm.value.finalDate,
+        state:this.browserForm.value.state
+      }
+
       if (this.OptionBtn === false){
-        this.ActionCreate();
+        this.ActionCreate(competition);
       }
       else{
-        this.ActionUpdate();
+        this.ActionUpdate(competition);
       }
     }
-    else {
-      this.messageService.Error('Error', 'Ingrese el nombre');
-    }
+    // else {
+    //   this.messageService.Error('Error', 'Ingrese el nombre');
+    // }
   }
 
-  ActionCreate(){
-    this.competitionService.Post(this.browserForm.value).subscribe((data: any) => {
+  ActionCreate(competition){
+    debugger;
+    this.competitionService.Post(competition).subscribe((data: any) => {
+      debugger;
         if (data.response.status === 200){
           this.messageService.Success('Crear concurso', data.response.message);
           this.isDisabled = true;
@@ -168,12 +245,13 @@ export class ActioncompetitionComponent implements OnInit {
         }
       },
       (err: HttpErrorResponse) => {
+        debugger;
             console.log(err);
       });
   }
 
-  ActionUpdate() {
-    this.competitionService.Put(this.browserForm.value).subscribe((data: any) => {
+  ActionUpdate(competition) {
+    this.competitionService.Put(competition).subscribe((data: any) => {
         if (data.response.status === 200){
           this.messageService.Success('Actualizar concurso', data.response.message);
           this.isDisabled = true;

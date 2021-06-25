@@ -11,6 +11,7 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
   GetAll(isAdmin = false): Observable<User[]> {
+    debugger;
     return this.http.get<User[]>(`${environment.api_url}user.php?jcm=${isAdmin}`);
   }
   GetById(id){

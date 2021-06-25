@@ -27,11 +27,12 @@ export class MenuadminComponent implements OnInit {
     this.loadscript.loadScript(urljs);
   }
   GetTypeUser(){
-    // debugger;
+    debugger;
+    let role = this.task.GetRole().toLowerCase();
     if (this.task.loggedIn() && this.task.GetRole().toLowerCase() === ('admin').toLowerCase()) {
       this.GetAdmin();
     } else if (
-      this.task.loggedIn() && this.task.GetRole().toLowerCase() === ('jefe carrera').toLowerCase()) {
+      this.task.loggedIn() && this.task.GetRole().toLowerCase() === ('Jefe de catedra').toLowerCase()) {
       this.GetHeadoftheChair();
     } else if (this.task.loggedIn() && this.task.GetRole().toLowerCase() === ('postulante').toLowerCase()) {
       this.GetApplicant();
@@ -39,10 +40,7 @@ export class MenuadminComponent implements OnInit {
       this.router.navigate(['/error']);
       return;
     }
-    // let ishave = $('.dropdown').hasClass();
-    debugger;
-    let url = this.router.url;
-    this.router.navigate(['/Welcome']);
+    this.router.navigate(['/' + this.router.url]);
   }
 
   GetAdmin(){
@@ -52,11 +50,11 @@ export class MenuadminComponent implements OnInit {
         displayName:"Crear usuario",
         active:"active User"
       },
-      {
-        url:"/Competition",
-        displayName:"Crear concurso",
-        active:"Competition"
-      },
+      // {
+      //   url:"/Competition",
+      //   displayName:"Crear concurso",
+      //   active:"Competition"
+      // },
       {
         url:"/Applicant",
         displayName:"Postulante",
@@ -76,15 +74,43 @@ export class MenuadminComponent implements OnInit {
   }
 
   GetApplicant(){
-    debugger;
-    let url = this.router.url;
-    this.router.navigate(['/Welcome']);
+    this.menunav=[
+      {
+        url:"/Applicant",
+        displayName:"Postular al concurso",
+        active:"active Applicant"
+      },
+      {
+        url:"/calificate",
+        displayName:"Mis Calificaciones",
+        active:"Postulate"
+      },
+      {
+        url:"/Postulate",
+        displayName:"Mis Postulaciones",
+        active:"Postulate"
+      }
+    ]
   }
 
   GetHeadoftheChair(){
-    debugger;
-    let url = this.router.url;
-    this.router.navigate(['/Welcome']);
+    this.menunav=[
+      {
+        url:"/Course",
+        displayName:"Mis Cursos",
+        active:"active Course"
+      },
+      {
+        url:"/Rating",
+        displayName:"Calificaciones",
+        active:"Rating"
+      },
+      {
+        url:"/Competition",
+        displayName:"Crear concurso",
+        active:"Competition"
+      }
+    ]
   }
 
   Logout(islogout = false){

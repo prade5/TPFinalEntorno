@@ -8,6 +8,7 @@ import { AccordionModule } from 'primeng/accordion';
 import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
 import { ActioncompetitionComponent } from 'src/app/components/competition/actioncompetition/actioncompetition.component';
+import { AutocompleteLibModule } from 'angular-ng-autocomplete';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,7 @@ import { ActioncompetitionComponent } from 'src/app/components/competition/actio
   ],
   imports: [
     CommonModule,
-    CompetitionRoutingModule,ReactiveFormsModule,
+    CompetitionRoutingModule,ReactiveFormsModule,AutocompleteLibModule,
     FormsModule,TableModule,AccordionModule,ButtonModule
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]

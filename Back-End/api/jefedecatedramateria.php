@@ -8,8 +8,13 @@
                 JefedeCatedraMateria::GetById($_GET['id']);
             }
             else{
-                $idUser = empty($_GET['idUser']) == 0 ? $_GET['idUser'] : 0;  
-                JefedeCatedraMateria::Get($idUser);
+                if(isset($_GET['jcmadmin'])){
+                    JefedeCatedraMateria::GetAllByAdmin($_GET['jcmadmin']);
+                }
+                else{
+                    $idUser = empty($_GET['idUser']) == 0 ? $_GET['idUser'] : 0;  
+                    JefedeCatedraMateria::Get($idUser);
+                }
             }
         break;
         case'POST':

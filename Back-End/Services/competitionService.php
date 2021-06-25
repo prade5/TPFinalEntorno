@@ -44,7 +44,11 @@
 
         public static function GetById($_id){
             $cnn = Connection();
-            $user = mysqli_query($cnn,"select * from competitions where state = 1 and id =".$_id);
+            $user = mysqli_query($cnn,"select comp.id, comp.idSubject, comp.description, comp.creationDate, comp.finalDate,
+                                       comp.state, comp.idUser, comp.idPosition,sub.id as idsub, sub.description as subdescription, sub.name as subname, 
+                                       pos.description as posdescription, pos.name as posname, usr.id as jcmid, usr.firstName, usr.lastName from competitions comp
+                                       inner join subjects sub on comp.idSubject = sub.id inner join positions pos on comp.idPosition = pos.id
+                                       inner join users usr on comp.idUser = usr.id  where comp.state = 1 and comp.id =".$_id);
             $usersingle = "";
 
             while($reg = mysqli_fetch_array($user,MYSQLI_ASSOC)){

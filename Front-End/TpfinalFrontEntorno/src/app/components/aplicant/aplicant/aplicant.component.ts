@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Applicant } from 'src/app/classes/applicant';
 import { ApplicantService } from 'src/app/services/applicant/applicant.service';
+import {EvaluationService} from "../../../services/evaluation/evaluation.service";
+import {HttpErrorResponse} from "@angular/common/http";
+import {MessageService} from "../../../services/message/message.service";
+import {Router} from "@angular/router";
+import Swal from "sweetalert2";
 
 declare var $: any;
 
@@ -10,10 +15,13 @@ declare var $: any;
   styleUrls: ['./aplicant.component.css']
 })
 export class AplicantComponent implements OnInit {
-
+  data: any;
   aplicantlist: Array<Applicant> = [];
 
-  constructor(private applicant: ApplicantService) { }
+  constructor(private applicant: ApplicantService,
+              private evaluation: EvaluationService,
+              private messageService: MessageService,
+              private router: Router) { }
 
   ngOnInit(): void {
     this.GetAll();
@@ -26,6 +34,44 @@ export class AplicantComponent implements OnInit {
       Active();
     });
   }
+
+  DeclareWinner(idUserG, idCompetitionG){
+    Swal.fire({
+      title: '¿Esta seguro desea declarar el ganador del concurso?',
+      text: 'Se declarara el ganador y cerrara el concurso',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Aceptar',
+      cancelButtonText: 'Cancel'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.data = {
+          idUser: idUserG,
+          idCompetition: idCompetitionG
+        }
+        this.evaluation.PostWinner(this.data).subscribe((data2: any) => {
+            if (data2.response.status === 200){
+              Swal.fire(
+                'Finalizado!',
+                'El ganador del concurso fue declarado',
+                'success'
+              ).then((result) =>{
+                this.router.navigate(['/Competition']);
+              })
+            }
+          },
+          (err: HttpErrorResponse) => {
+          });
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        Swal.fire(
+          'Cancelado',
+          'El ganador no fue declarado',
+          'error'
+        )
+      }
+    })
+  }
+
 
 }
 function Active(){

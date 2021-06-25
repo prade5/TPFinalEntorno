@@ -61,7 +61,7 @@
         public function Post(){
             try{
                 $cnn = Connection(); 
-                $this->checkNonerepeat('applicants', 'idCompetition', $this->idCompetition, "Ya esta aplicado(a) para ese concurso");
+                $this->checkNonerepeat2('applicants', 'idCompetition', $this->idCompetition, 'idUser', $this->idUser, "Ya esta aplicado(a) para ese concurso");
                 
                 $result = mysqli_query($cnn,"insert into applicants (idUser,idCompetition,applicantDate, state) 
                 values($this->idUser , $this->idCompetition  , '$this->applicantDate', 1)");

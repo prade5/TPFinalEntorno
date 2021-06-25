@@ -12,6 +12,8 @@ import {HttpErrorResponse} from "@angular/common/http";
 import {Applicant} from "../../classes/applicant";
 import {MessageService} from "../../services/message/message.service";
 import Swal from "sweetalert2";
+import { Constant } from 'src/app/classes/constant';
+import { LoadscriptService } from 'src/app/services/loadScript/loadscript.service';
 
 @Component({
   selector: 'app-home',
@@ -30,7 +32,7 @@ export class HomeComponent implements OnInit {
   constructor(private comp: CompetitionService, private subjectService: SubjectService,
               private positionService: PositionService,  private userFinder: TaskService,
               private applicantService: ApplicantService, private router: Router,
-              private messageService: MessageService) {
+              private messageService: MessageService, private loadscript: LoadscriptService) {
     this.getMaterias();
     this.getPosiciones();
     this.GetAll();
@@ -85,66 +87,59 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  inscribe(conId: number) {
-    if(this.curUserRole === 'postulante') {
-       if(this.curUserId != 0){
-         var applicant = new Applicant();
-         applicant.id = 0;
-         applicant.idUser = this.curUserId;
-         applicant.idCompetition = conId;
-         applicant.applicantDate = new Date();
-         applicant.state = 1;
+  inscribe(conId: number) {    
+    localStorage.setItem(Constant.IspostulateOut, this.loadscript.Encrypt(conId.toString()));
+    this.router.navigate(['Account']);
+
+    // if(this.curUserRole === 'postulante') {
+    //    if(this.curUserId != 0){
+    //      var applicant = new Applicant();
+    //      applicant.id = 0;
+    //      applicant.idUser = this.curUserId;
+    //      applicant.idCompetition = conId;
+    //      applicant.applicantDate = new Date();
+    //      applicant.state = 1;
 
 
-         Swal.fire({
-           title: '¿Inscribirse?',
-           text: '¿Esta seguro de que desea inscribirse a este concurso?',
-           icon: 'warning',
-           showCancelButton: true,
-           confirmButtonText: 'Aceptar',
-           cancelButtonText: 'Cancel'
-         }).then((result) => {
-           if (result.isConfirmed) {
-             this.applicantService.Post(applicant).subscribe((data: any) => {
-                 if (data.response.status === 200){
-                   Swal.fire(
-                     'Inscripto!',
-                     'Se Inscribio al concurso correctamente',
-                     'success'
-                   ).then((result) =>{
-                     this.router.navigate(['/Home']);
-                   })
-                 }
-                 else{
-                   this.messageService.Error('Error', data.response.message);
-                 }
-               },
-               (err: HttpErrorResponse) => {
-                 console.log(err);
-               });
-           } else if (result.dismiss === Swal.DismissReason.cancel) {
-             Swal.fire(
-               'Cancelado',
-               'No se a inscripto al concurso',
-               'error'
-             )
-           }
-         })
-
-
-
-
-
-
-
-
-
-
-       }
-    }
-    else {
-      this.router.navigate(['Account']);
-    }
+    //      Swal.fire({
+    //        title: '¿Inscribirse?',
+    //        text: '¿Esta seguro de que desea inscribirse a este concurso?',
+    //        icon: 'warning',
+    //        showCancelButton: true,
+    //        confirmButtonText: 'Aceptar',
+    //        cancelButtonText: 'Cancel'
+    //      }).then((result) => {
+    //        if (result.isConfirmed) {
+    //          this.applicantService.Post(applicant).subscribe((data: any) => {
+    //              if (data.response.status === 200){
+    //                Swal.fire(
+    //                  'Inscripto!',
+    //                  'Se Inscribio al concurso correctamente',
+    //                  'success'
+    //                ).then((result) =>{
+    //                  this.router.navigate(['/Home']);
+    //                })
+    //              }
+    //              else{
+    //                this.messageService.Error('Error', data.response.message);
+    //              }
+    //            },
+    //            (err: HttpErrorResponse) => {
+    //              console.log(err);
+    //            });
+    //        } else if (result.dismiss === Swal.DismissReason.cancel) {
+    //          Swal.fire(
+    //            'Cancelado',
+    //            'No se a inscripto al concurso',
+    //            'error'
+    //          )
+    //        }
+    //      })
+    //   }
+    // }
+    // else {
+    //   this.router.navigate(['Account']);
+    // }
   }
 
 

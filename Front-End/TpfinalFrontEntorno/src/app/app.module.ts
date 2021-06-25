@@ -23,7 +23,7 @@ import { ErrorComponent } from './components/error/error.component';
 
 @NgModule({
   declarations: [
-    AppComponent,LoginComponent, HomeComponent, WelcomeComponent, ErrorComponent,
+    AppComponent,LoginComponent, HomeComponent, WelcomeComponent, ErrorComponent, 
   ],
   imports: [
     BrowserModule,FormsModule,ReactiveFormsModule,

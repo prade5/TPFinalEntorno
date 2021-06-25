@@ -57,7 +57,63 @@
             $single = json_encode($usersingle);
             echo $single;
         }
+        public static function  GetAllPostulation($id){             
+            $cnn = Connection();
+            $query = "select comp.*, sub.name as materia, sub.img, pos.name as puesto from competitions comp inner join subjects sub on comp.idSubject = sub.id  inner join positions pos on comp.idPosition = pos.id where (comp.state = 1 or comp.state = 3) and pos.state = 1 ORDER BY comp.id DESC";
+            $users = mysqli_query($cnn,$query);
+            $userList = [];
 
+            while($reg = mysqli_fetch_array($users,MYSQLI_ASSOC)){   
+                $userList[] = $reg;
+            }
+            $sum = 0;
+            echo("[");
+            foreach ($userList as $value)
+            {  
+                $sum = $sum + 1;                
+                $Ispostulate = genericMethod::ChechIsPostulate($id, $value["id"]);
+                if($Ispostulate){
+                    $miArray = array(
+                        "creationDate"=>$value["creationDate"], 
+                        "description"=>$value["description"], 
+                        "finalDate"=>$value["finalDate"], 
+                        "id"=>$value["id"], 
+                        "idPosition"=>$value["idPosition"], 
+                        "idSubject"=>$value["idSubject"], 
+                        "idUser"=>$value["idUser"], 
+                        "img"=>$value["img"],
+                        "materia"=>$value["materia"],
+                        "puesto"=>$value["puesto"],
+                        "state"=>$value["state"],
+                        "isPostulate"=>true
+                    );
+                    echo json_encode($miArray);
+                }
+                else{
+                    $miArray = array(
+                        "creationDate"=>$value["creationDate"], 
+                        "description"=>$value["description"], 
+                        "finalDate"=>$value["finalDate"], 
+                        "id"=>$value["id"], 
+                        "idPosition"=>$value["idPosition"], 
+                        "idSubject"=>$value["idSubject"], 
+                        "idUser"=>$value["idUser"], 
+                        "img"=>$value["img"],
+                        "materia"=>$value["materia"],
+                        "puesto"=>$value["puesto"],
+                        "state"=>$value["state"],
+                        "isPostulate"=>false
+                    );
+                    echo json_encode($miArray);
+                }
+                if ($sum < count($userList)) {
+                    echo(",");
+                }
+            }
+            echo("]");
+            // $finalList = json_encode($userList);
+            // echo $finalList;
+        }
         public static function GetByUserId($Id){
             $cnn = Connection();
 

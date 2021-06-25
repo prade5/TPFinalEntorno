@@ -79,6 +79,17 @@
             $single = json_encode($usersingle);
             echo $single;
         }
+        public static function ValidateRolePostulation($_id){
+            $cnn = Connection();
+            $user = mysqli_query($cnn,"select * from users user inner join roles rol where user.state = 1 and rol.state = 1 and rol.id = 74 and user.id =".$_id);
+            $usersingle = false;
+
+            while($reg = mysqli_fetch_array($user,MYSQLI_ASSOC)){
+                $usersingle =true;
+            }
+            echo json_encode($usersingle);
+        }
+
         public function Post(){
             try{
                 $cnn = Connection();

@@ -211,7 +211,7 @@ GetJCMAdmin(id){
         idPosition:this.browserForm.value.idPosition.id,
         idSubject:this.browserForm.value.	idSubject.id,
         description:this.browserForm.value.description,
-        idUser:this.browserForm.value.idUser.idUser,
+        idUser:this.browserForm.value.idUser.idUser!= undefined ? this.browserForm.value.idUser.idUser : this.browserForm.value.idUser,
         creationDate:this.browserForm.value.creationDate,
         finalDate:this.browserForm.value.finalDate,
         state:this.browserForm.value.state

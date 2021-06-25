@@ -19,12 +19,14 @@ import { SubjectComponent } from 'src/app/components/subject/subject.component';
 import { PrincipalComponent } from 'src/app/components/menu/principal/principal.component';
 import { SubjectModule } from '../subject/subject.module';
 import { CompetitionModule } from '../competition/competition.module';
+import { CourseModule } from '../course/course.module';
+import { PostulationComponent } from 'src/app/components/postulation/postulation.component';
 
 
 @NgModule({
   declarations: [
     PrincipalComponent,MenuadminComponent, SubjectComponent,
-    RoleComponent,ActionroleComponent,AdminComponent
+    RoleComponent,ActionroleComponent,AdminComponent,PostulationComponent
   ],
   imports: [
     CommonModule,
@@ -35,7 +37,7 @@ import { CompetitionModule } from '../competition/competition.module';
       enableHtml: true,
       preventDuplicates: true,
       progressAnimation:'increasing'
-    }),SubjectModule,CompetitionModule
+    }),SubjectModule,CompetitionModule,CourseModule
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })

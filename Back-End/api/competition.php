@@ -10,7 +10,11 @@
             else{
                 if (isset($_GET['idu'])) {
                     Competition::GetByUserId($_GET['idu']);
-                } else {
+                } 
+                else if(isset($_GET['iduser'])){
+                    Competition::GetAllPostulation($_GET['iduser']);
+                }
+                else {
                     Competition::Get();
                 }
             }

@@ -76,8 +76,8 @@ export class MenuadminComponent implements OnInit {
   GetApplicant(){
     this.menunav=[
       {
-        url:"/Applicant",
-        displayName:"Postular al concurso",
+        url:"/OpenCompetion",
+        displayName:"Concursos abiertos",
         active:"active Applicant"
       },
       {
@@ -90,6 +90,12 @@ export class MenuadminComponent implements OnInit {
         displayName:"Mis Postulaciones",
         active:"Postulate"
       }
+      // ,
+      // {
+      //   url:"/Home",
+      //   displayName:"Concursos abiertos",
+      //   active:"Concursos"
+      // }
     ]
   }
 
@@ -109,11 +115,6 @@ export class MenuadminComponent implements OnInit {
         url:"/Competition",
         displayName:"Crear concurso",
         active:"Competition"
-      },
-      {
-        url:"/Home",
-        displayName:"Concursos abiertos",
-        active:"Concursos"
       }
     ]
   }

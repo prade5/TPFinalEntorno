@@ -7,20 +7,17 @@
             if(isset($_GET['id'])){
               User::GetById($_GET['id']);
             }
+            else if(isset($_GET['jcm'])){
+                User::GetAllJefeCatedra();
+            }
+            else if(isset($_GET['confirmuser'])){
+                User::ConfirmRegister($_GET['confirmuser']);
+            }
+            else if(isset($_GET['isValPostulate'])){
+                User::ValidateRolePostulation($_GET['isValPostulate']);
+            }
             else{
-                $isAdmin = isset($_GET['jcm']) == true ? $_GET['jcm'] : false;  
-                if(!isset($_GET['jcm'])){
-                    User::GetAllJefeCatedra();
-                }
-                else{                    
-                    $isConfirm = empty($_GET['confirmuser'])  == 0  ? $_GET['confirmuser'] : 0;  
-                    if($isConfirm !== 0){
-                        User::ConfirmRegister($_GET['confirmuser']);
-                    }
-                    else{
-                        User::Get();
-                    }
-                }
+                User::Get();
             }
         break;
         //Create role

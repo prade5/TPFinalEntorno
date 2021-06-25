@@ -1,0 +1,20 @@
+
+<div class="row  m-0  row-cols-1 row-cols-md-4">
+    <!--  <button (click)="showMyData()">show</button>-->
+      <div class="col mb-4" *ngFor="let comp of complist">
+        <div class="card h-100">
+          <img src="{{comp.img}}" class="card-img-top" alt="Quimica">
+          <div class="card-body h-50">
+            <h5 class="card-title"><strong>Materia: {{comp.materia}}</strong></h5>
+            <h5 class="card-title"><strong>Posicion: {{comp.puesto}}</strong></h5>
+            <h5 class="card-title"><strong>Fecha de Cierre: {{comp.finalDate | date: 'shortDate'}}</strong></h5>
+            <div class="card-text  overflow-auto" style="height: 19vh;">
+              {{comp.description}}
+            </div>
+          </div>
+          <div class="card-footer">
+            <button type="button" [attr.disabled]="comp.isPostulate" (click)="inscribe(comp.id)" class="btn btn-primary col">{{comp.isPostulate !== true ? 'Postularse' : 'Ya postulaste'}}</button>
+          </div>
+        </div>
+    </div>
+</div>

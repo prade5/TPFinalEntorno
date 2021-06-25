@@ -1,18 +1,18 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AplicantComponent } from 'src/app/components/aplicant/aplicant/aplicant.component';
 import { AuthGuard } from 'src/app/components/auth/auth.guard';
 import { RoleGuardGuard } from 'src/app/components/auth/role-guard.guard';
+import { CourseComponent } from 'src/app/components/course/course.component';
 
-const routes: Routes = [  
+const routes: Routes = [
   {
     path: '',
-    component: AplicantComponent,
+    component: CourseComponent,
     canLoad: [AuthGuard],
     canActivate: [RoleGuardGuard],
      data: {
       expectedRole: 'Jefe de catedra',
-      title: 'Lista de Postulantes'
+      title: 'Mis cursos'
     }
   }
 ];
@@ -21,4 +21,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class AplicantRoutingModule { }
+export class CourseRoutingModule { }

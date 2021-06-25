@@ -1,0 +1,20 @@
+<div class="row container  m-0  row-cols-1 row-cols-md-4">
+    <div class="col mb-4" *ngFor="let jcm of jcmlist">
+        <div class="card h-100" style="display: table;  text-align: center;">
+          <img src="{{jcm.img}}" class="card-img-top" width="150" height="150" alt="{{jcm.name}}">
+          <div class="card-body h-50">
+            <h5 class="card-text"><strong>Materia: </strong>{{jcm.name}}</h5>
+            <!-- <h5 class="card-text"><strong>Nombre postulante: </strong></h5>
+            <h5 class="card-text">{{jcm.fullName}}</h5>
+            <h5 class="card-text"><strong>Puesto: </strong>{{jcm.position}}</h5> -->
+            <!-- <h5 class="card-text"><strong>Fecha de postulación: </strong>{{applicant.applicantDate | date: 'shortDate'}}</h5>
+            <h5 class="card-text"><strong>Fecha de inicio:</strong>{{applicant.creationDate | date: 'shortDate'}}</h5>
+            <h5 class="card-text"><strong>Fecha de finalización:</strong>{{applicant.finalDate | date: 'shortDate'}}</h5> -->
+            <!-- <button style="display: table-cell; vertical-align: bottom;" (click)="DeclareWinner(applicant.idUser,applicant.idCompetition)" class="btn btn-primary">Declarar ganador</button> -->
+          </div>
+        </div>
+    </div>
+</div>
+
+
+

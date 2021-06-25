@@ -45,6 +45,9 @@ export class TaskService {
   public GetRole() {
     return this.loadscript.Decrypt(localStorage.getItem(Constant.roleUser));
   }
+  public GetIspostulateOut() {
+    return localStorage.getItem(Constant.IspostulateOut)!= null ? this.loadscript.Decrypt(localStorage.getItem(Constant.IspostulateOut)): null;
+  }
   public GetIdUser() {
     return this.loadscript.Decrypt(localStorage.getItem(Constant.idUser));
   }

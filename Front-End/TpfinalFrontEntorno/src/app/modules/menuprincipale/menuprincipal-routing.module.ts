@@ -6,6 +6,7 @@ import { ActioncompetitionComponent } from 'src/app/components/competition/actio
 import { CompetitionComponent } from 'src/app/components/competition/competition.component';
 import { MenuadminComponent } from 'src/app/components/menu/menuadmin/menuadmin.component';
 import { PrincipalComponent } from 'src/app/components/menu/principal/principal.component';
+import { PostulationComponent } from 'src/app/components/postulation/postulation.component';
 import { ActionroleComponent } from 'src/app/components/role/actionrole/actionrole.component';
 import { RoleComponent } from 'src/app/components/role/role.component';
 import { WelcomeComponent } from 'src/app/components/welcome/welcome/welcome.component';
@@ -64,6 +65,15 @@ const routes: Routes = [
         {
           path: 'Applicant',
           loadChildren: () => import("../../modules/aplicant/aplicant.module").then((c) => c.AplicantModule)
+        },
+        {
+          path:'Course',
+          loadChildren: () => import("../../modules/course/course.module").then((s) => s.CourseModule)
+        },
+        {
+          path: 'OpenCompetion',
+          component: PostulationComponent,
+          data: {title: 'Concursos abiertos'}
         },      
         {
           path: 'Principal',

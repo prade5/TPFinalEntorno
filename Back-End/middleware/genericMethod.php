@@ -66,6 +66,22 @@
             }
             $this->throwError(USER_ALREADY_EXIST, $message);
         }
+
+        public static function ChechIsPostulate($iduser, $idcompetition){
+            $cnn = Connection();
+            $checkRoleNonerepeat = mysqli_query($cnn,"select * from applicants where state = 1 && idUser=" .$iduser ." && idCompetition=".$idcompetition);
+            $userList = [];
+            while($reg = mysqli_fetch_array($checkRoleNonerepeat)){
+                $userList = $reg;
+            }
+            $check = count($userList);
+            if($check === 0){
+                return false;
+            }
+            else{
+                return true;
+            }
+        }
 		
         public function Validate_Email($mail){
            $result = filter_var($mail, FILTER_VALIDATE_EMAIL);

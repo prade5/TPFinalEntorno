@@ -11,9 +11,12 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
   GetAll(isAdmin = false): Observable<User[]> {
-    debugger;
     return this.http.get<User[]>(`${environment.api_url}user.php?jcm=${isAdmin}`);
   }
+  ValidateRolePostulation(iduser): Observable<User[]> {
+    return this.http.get<User[]>(`${environment.api_url}user.php?isValPostulate=${iduser}`);
+  }
+
   GetById(id){
     return this.http.get(`${environment.api_url}user.php?id=${id}`);
   }

@@ -1,0 +1,28 @@
+a, #a{
+    color:#ffffff98;
+    font: 13px sans-serif; 
+}
+
+li {
+    padding: 1em;
+}
+
+a:link, a:visited, a:active{
+    text-decoration:none;
+}
+
+h5 {
+    color: white;
+    font-size: 1.5rem;
+}
+
+#main {
+    display: inline-block;
+    color: white;
+    padding-top: .3125rem;
+    padding-bottom: .3125rem;
+    margin-right: 1rem;
+    font-size: 1.25rem;
+    line-height: inherit;
+    white-space: nowrap;
+}

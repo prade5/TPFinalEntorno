@@ -1,4 +1,8 @@
-
+<div class="row">
+  <div class="col-12">
+    <h1 class="text-center">Postularse</h1> <br>
+  </div>
+</div>
 <div class="row  m-0  row-cols-1 row-cols-md-4">
     <!--  <button (click)="showMyData()">show</button>-->
       <div class="col mb-4" *ngFor="let comp of complist">
@@ -13,7 +17,7 @@
             </div>
           </div>
           <div class="card-footer">
-            <button type="button" [disabled]="comp.isPostulate ? 'disabled' : null" (click)="inscribe(comp.id)" class="btn btn-primary col">{{comp.isPostulate !== true ? 'Postularse' : 'Ya postulaste'}}</button>
+            <button type="button" [disabled]="comp.isPostulate ? 'disabled' : null" (click)="inscribe(comp.id)" class="btn btn-primary col">{{comp.isPostulate !== true ? 'Postularse' : 'Ya estás postulado'}}</button>
           </div>
         </div>
     </div>

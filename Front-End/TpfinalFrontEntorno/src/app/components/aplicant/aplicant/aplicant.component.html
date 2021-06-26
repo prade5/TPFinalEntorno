@@ -1,5 +1,10 @@
-<div class="row  m-0  row-cols-1 row-cols-md-4">
-    <div class="col mb-4" *ngFor="let applicant of aplicantlist">
+<div class="row  m-0 ">
+  <div class="col-12">
+  <h1 class="text-center">Lista de Postulantes</h1>
+  </div>  
+</div>
+<div class="row  m-0 ">
+  <div class="col mb-4" *ngFor="let applicant of aplicantlist">
         <div class="card h-100" style="display: table;  text-align: center;">
           <img src="{{applicant.img}}" class="card-img-top" width="150" height="150" alt="{{applicant.subject}}">
           <div class="card-body h-50">

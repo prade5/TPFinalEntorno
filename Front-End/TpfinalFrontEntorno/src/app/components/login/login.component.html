@@ -9,7 +9,7 @@
         [class]="isValidField('userName')">
         <div class="invalid-feedback">
           <span *ngIf="accountForm.get('userName').errors?.required">
-              this field is rquired
+              Campo obligatorio
           </span>
         </div>
       </div>
@@ -19,7 +19,7 @@
         formControlName="userPass" [class]="isValidField('userPass')"> 
         <div class="invalid-feedback">
           <span *ngIf="accountForm.get('userPass').errors?.required">
-              this field is rquired
+              Campo obligatorio
           </span>
         </div>
       </div>

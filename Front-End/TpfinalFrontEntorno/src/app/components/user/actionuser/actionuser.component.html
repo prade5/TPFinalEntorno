@@ -94,12 +94,12 @@
                             <div class="form-group col-md-6" *ngIf="!isRegister">
                               <label for="inputRole">Acceso</label>
                               <select  formControlName="idRole"  [class]="isValidField('idRole')" class="form-control" id="inputRole">
-                                <option value="">Seleccionar el role</option>
+                                <option value="">Seleccionar el rol</option>
                                 <option value="{{role.id}}" *ngFor ="let role of rolelist"  name="idRole">{{role.name}}</option>
                               </select>
                               <div class="invalid-feedback">
                                 <span *ngIf="browserForm.get('idRole').errors?.required">
-                                    Debe seleccionar un role
+                                    Debe seleccionar un rol
                                 </span>
                               </div>
                             </div>

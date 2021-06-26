@@ -44,7 +44,9 @@
         //method     
         public static function Get(){             
             $cnn = Connection();
-            $users = mysqli_query($cnn,"select * from users where state = 1 ORDER BY id DESC");
+            $users = mysqli_query($cnn,"select user.id, user.idRole, user.mail, user.address, user.phone, user.userName, user.userPass,
+            user.creationDate, user.finalDate, user.state, user.idDocumentType, user.docNumber, user.isActivate, user.firstName, user.lastName, 
+            rol.name as position from users user inner join roles rol on user.idRole = rol.id where user.state = 1 ORDER BY user.id DESC");
             $userList = [];
 
             while($reg = mysqli_fetch_array($users,MYSQLI_ASSOC)){
@@ -70,7 +72,9 @@
 
         public static function GetById($_id){
             $cnn = Connection();
-            $user = mysqli_query($cnn,"select * from users where state = 1 and id =".$_id);
+            $user = mysqli_query($cnn,"select user.id, user.idRole, user.mail, user.address, user.phone, user.userName, user.userPass,
+            user.creationDate, user.finalDate, user.state, user.idDocumentType, user.docNumber, user.isActivate, user.firstName, user.lastName, 
+            rol.name as position from users user inner join roles rol on user.idRole = rol.id where user.state = 1 and user.id =".$_id);
             $usersingle = "";
 
             while($reg = mysqli_fetch_array($user,MYSQLI_ASSOC)){
@@ -150,6 +154,28 @@
                 $this->ReturnReponse(ERROR_RESPONSE, "El usuario no fue modificado con exito.");
             }    
         }
+
+        public static function UpdateUserRole($id, $idRole){
+            $response = new Result();
+            try {
+                $cnn = Connection();
+                $result = mysqli_query($cnn,"update users set idRole =".$idRole." where id =".$id);
+                if($result){
+                    $response->status = SUCCESS_RESPONSE;
+                    $response->message="El rol del usuario fue cambiado con exito.";
+                }
+                else{
+                    $response->status = SUCCESS_RESPONSE;
+                    $response->message="El  rol del usuario no fue cambiado con exito.";
+                } 
+                echo json_encode($response);
+            } catch (\Exception $e) {                
+                $response->status = SUCCESS_RESPONSE;
+                $response->message=$e->getMessage();
+                echo json_encode($response);
+            }           
+        }
+
         public static function Delete($id){ 
             $cnn = Connection();   
             $response = new Result();

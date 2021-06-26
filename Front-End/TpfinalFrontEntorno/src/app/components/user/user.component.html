@@ -1,7 +1,7 @@
 <p-table #dt [value]="userlist"  dataKey="id" styleClass="p-datatable-customers" [rowHover]="true"
     [rows]="10" [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50]"
     [paginator]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-    [filterDelay]="0" [globalFilterFields]="['fistName','lastName','creationDate','mail']">
+    [filterDelay]="0" [globalFilterFields]="['firstName','lastName','creationDate','mail']">
     <ng-template pTemplate="caption">
         <div class="table-header">
           <div class="row">
@@ -23,10 +23,10 @@
                 <p-sortIcon field="id"></p-sortIcon>
             </div>
           </th>
-            <th pSortableColumn="fistName">
+            <th pSortableColumn="firstName">
                 <div class="p-d-flex p-jc-between p-ai-center">
                     Nombre
-                    <p-sortIcon field="fistName"></p-sortIcon>
+                    <p-sortIcon field="firstName"></p-sortIcon>
                 </div>
             </th>
             <th pSortableColumn="lastName">
@@ -51,6 +51,12 @@
                 <div class="p-d-flex p-jc-between p-ai-center">
                     Telefono
                     <p-sortIcon field="phone"></p-sortIcon>
+                </div>
+            </th>
+            <th pSortableColumn="position">
+                <div class="p-d-flex p-jc-between p-ai-center">
+                   Puesto
+                 <p-sortIcon field="position"></p-sortIcon>
                 </div>
             </th>
             <th>
@@ -81,8 +87,12 @@
                 {{user.phone}}
             </td>
             <td>
-                <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2"  [routerLink]="['/User/ActionUser/'+ user.id]"></button>
-                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="Delete(user.id)"></button>
+                {{user.position}}
+            </td>
+            <td>
+                <button pButton pRipple icon="pi pi-user" title="Cambio de rol" class="p-button-rounded p-button-primary p-mr-2"  (click)="ChangeRole(user.id)"></button>
+                <button pButton pRipple icon="pi pi-pencil" title="Actualizar usuario" class="p-button-rounded p-button-success p-mr-2"  [routerLink]="['/User/ActionUser/'+ user.id]"></button>
+                <button pButton pRipple icon="pi pi-trash" title="Eliminar usuario" class="p-button-rounded p-button-warning" (click)="Delete(user.id)"></button>
           </td>
         </tr>
     </ng-template>
@@ -92,3 +102,40 @@
         </tr>
     </ng-template>
 </p-table>
+
+<!--Modal change role-->  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" data-backdrop="static" data-keyboard="false"  tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title  w-100 text-center" id="exampleModalLabel">Cambio de Rol</h5>
+        </div>
+        <form  action="" class="justify-content-center"  [formGroup]="browserForm" (ngSubmit)="Create()">
+            <div class="modal-body">
+                <h5 class="card-title  text-center"><strong>Nombre: </strong>{{user?.firstName}}</h5>
+                <h5 class="card-title  text-center"><strong>Apellido: </strong>{{user?.lastName}}</h5>
+                <h5 class="card-title  text-center"><strong>Puesto actual: </strong>{{user?.position}}</h5> 
+
+                <div class="form-group col-md-12 justify-content-center">
+                  <label for="inputRole" >Seleccionar el nuevo puesto</label>
+                  <select  formControlName="idRole"  [class]="isValidField('idRole')" class="form-control" id="inputRole">
+                    <option value="">Seleccionar el rol</option>
+                    <option value="{{role.id}}" *ngFor ="let role of rolelist"  name="idRole">{{role.name}}</option>
+                  </select>
+                  <div class="invalid-feedback">
+                    <span *ngIf="browserForm.get('idRole').errors?.required">
+                        Debe seleccionar un rol
+                    </span>
+                  </div>
+                </div> 
+
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+              <button type="submit" class="btn btn-primary">Guardar</button>
+            </div>
+        </form>
+      </div>
+    </div>
+  </div>

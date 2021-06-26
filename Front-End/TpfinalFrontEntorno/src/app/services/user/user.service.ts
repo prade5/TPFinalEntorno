@@ -24,8 +24,11 @@ export class UserService {
     return this.http.post(`${environment.api_url}user.php`,JSON.stringify(data));
   }
   Put(data){
-    debugger;
     return this.http.put(`${environment.api_url}user.php?id=${data.id}`,JSON.stringify(data));
+  }
+  
+  ChangeRole(data){
+    return this.http.put(`${environment.api_url}user.php?changeRole=${data.id}`,JSON.stringify(data));
   }
   Delete(id){
     return this.http.delete(`${environment.api_url}user.php?id=${id}`);

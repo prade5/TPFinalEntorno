@@ -26,8 +26,13 @@
         //Update role
         case'PUT':
             $_PUT = json_decode(file_get_contents('php://input'), true);
+            if(isset($_GET['changeRole'])){
+                User::UpdateUserRole($_GET['changeRole'],$_PUT['idRole']);
+            }
+            else{                
             $user = new User($_PUT["id"],$_PUT['idRole'],$_PUT["firstName"],$_PUT["lastName"],$_PUT["mail"],$_PUT["address"],$_PUT["phone"],"","",$_PUT["idDocumentType"],$_PUT["docNumber"],"","",0);  
-            $user->Put($_GET['id']);       
+            $user->Put($_GET['id']); 
+            }      
         break;
         //Delete role
         case'DELETE':

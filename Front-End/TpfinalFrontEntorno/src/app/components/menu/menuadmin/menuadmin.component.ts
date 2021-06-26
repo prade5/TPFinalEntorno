@@ -39,8 +39,22 @@ export class MenuadminComponent implements OnInit {
     } else {
       this.router.navigate(['/error']);
       return;
+    } 
+    if(this.task.GetIspostulateOut() != null){
+      this.router.navigate(['/OpenCompetion']);
     }
-    this.router.navigate(['/' + this.router.url]);
+    else if(this.router.url ==="/MenuAdmin" && this.task.GetRole().toLowerCase() === ('admin').toLowerCase()){
+      this.router.navigate(['/User']);
+    }
+    else if(this.router.url ==="/MenuAdmin" && this.task.GetRole().toLowerCase() === ('Jefe de catedra').toLowerCase()){
+      this.router.navigate(['/Course']);
+    }
+    else if(this.router.url ==="/MenuAdmin" && this.task.GetRole().toLowerCase() === ('postulante').toLowerCase()){
+      this.router.navigate(['/OpenCompetion']);
+    }
+    else {
+      this.router.navigate(['/' + this.router.url]);
+    }
   }
 
   GetAdmin(){
@@ -57,7 +71,7 @@ export class MenuadminComponent implements OnInit {
       // },
       {
         url:"/Applicant",
-        displayName:"Postulante",
+        displayName:"Declarar resultado",
         active:"Applicant"
       },
       {
@@ -79,17 +93,17 @@ export class MenuadminComponent implements OnInit {
         url:"/OpenCompetion",
         displayName:"Concursos abiertos",
         active:"active Applicant"
-      },
-      {
-        url:"/calificate",
-        displayName:"Mis Calificaciones",
-        active:"Postulate"
-      },
-      {
-        url:"/Postulate",
-        displayName:"Mis Postulaciones",
-        active:"Postulate"
       }
+      // {
+      //   url:"/calificate",
+      //   displayName:"Mis Calificaciones",
+      //   active:"calificate"
+      // },
+      // {
+      //   url:"/Postulate",
+      //   displayName:"Mis Postulaciones",
+      //   active:"Postulate"
+      // }
       // ,
       // {
       //   url:"/Home",
@@ -106,54 +120,25 @@ export class MenuadminComponent implements OnInit {
         displayName:"Mis Cursos",
         active:"active Course"
       },
-      {
-        url:"/Rating",
-        displayName:"Calificaciones",
-        active:"Rating"
-      },
+      // {
+      //   url:"/Rating",
+      //   displayName:"Calificaciones",
+      //   active:"Rating"
+      // },
       {
         url:"/Competition",
         displayName:"Crear concurso",
         active:"Competition"
       }
     ]
-  }
-  //   debugger;
-  //   let url = this.router.url;
-  //   this.menunav=[
-  //     {
-  //       url:"/Home",
-  //       displayName:"Concursos abiertos",
-  //       active:"Concursos"
-  //     }
-  //   ]
-  //   this.router.navigate(['/Welcome']);
-  // }
-
-  // GetHeadoftheChair(){
-  //   debugger;
-  //   let url = this.router.url;
-  //   this.menunav=[
-  //     {
-  //       url:"/Competition",
-  //       displayName:"Crear concurso",
-  //       active:"Competition"
-  //     },
-  //     {
-  //       url:"/Applicant",
-  //       displayName:"Postulante",
-  //       active:"Applicant"
-  //     }
-  //   ]
-  //   this.router.navigate(['/Welcome']);
-  // }
+  } 
 
   Logout(islogout = false){
     debugger;
     if(islogout){
       let val = this.task.Logout();
       if(val){
-        this.router.navigate(['/Account']);
+        this.router.navigate(['/Home']);
       }
     }
   }

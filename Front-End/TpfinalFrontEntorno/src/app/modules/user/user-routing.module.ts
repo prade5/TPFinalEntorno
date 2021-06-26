@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from 'src/app/components/auth/auth.guard';
 import { RoleGuardGuard } from 'src/app/components/auth/role-guard.guard';
+import { ChangePassComponent } from 'src/app/components/change-pass/change-pass.component';
 import { ActionuserComponent } from 'src/app/components/user/actionuser/actionuser.component';
 import { PerfilComponent } from 'src/app/components/user/perfil/perfil.component';
 import { UserComponent } from 'src/app/components/user/user.component';
@@ -46,8 +47,16 @@ const routes: Routes = [
       expectedRole: 'admin',
        title: 'Accion usuario'
       }
-  }
-  ];
+  },
+  {
+    path: 'ChangePassWord',
+    canLoad: [AuthGuard],
+    component: ChangePassComponent,
+    data: {
+      title: 'Cambia contraseña'
+    }
+  }  
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

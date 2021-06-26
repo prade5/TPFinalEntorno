@@ -7,14 +7,11 @@
             if(isset($_GET['id'])){
               User::GetById($_GET['id']);
             }
-            else if(isset($_GET['jcm'])){
+            else if(isset($_GET['jcm']) === 'true'){
                 User::GetAllJefeCatedra();
             }
             else if(isset($_GET['confirmuser'])){
                 User::ConfirmRegister($_GET['confirmuser']);
-            }
-            else if(isset($_GET['isValPostulate'])){
-                User::ValidateRolePostulation($_GET['isValPostulate']);
             }
             else{
                 User::Get();

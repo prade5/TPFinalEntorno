@@ -10,11 +10,12 @@ import { AccordionModule } from 'primeng/accordion';
 import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
 import { TooltipModule } from 'primeng/tooltip';
+import { ChangePassComponent } from 'src/app/components/change-pass/change-pass.component';
 
 
 @NgModule({
   declarations: [
-    UserComponent, PerfilComponent,ActionuserComponent
+    UserComponent, PerfilComponent,ActionuserComponent,ChangePassComponent
   ],
   imports: [
     CommonModule,

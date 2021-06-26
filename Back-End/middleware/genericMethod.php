@@ -182,5 +182,43 @@
                 return 'data:image/' . $filetype . ';base64,' . base64_encode($imgbinary);
             }
         }
+        
+        public function ValidateRolePostulation($_id){
+            $cnn = Connection();
+            $user = mysqli_query($cnn,"select * from users user inner join roles rol on rol.id = user.idRole where user.state = 1 and rol.state = 1 and rol.id = 74 and user.id =".$_id);
+            
+            $userList = [];
+
+            while($reg = mysqli_fetch_array($user,MYSQLI_ASSOC)){
+                $userList = $reg;
+            }
+
+            $check = count($userList);
+            if($check === 0){
+                $this->throwError(ROLE_NOT_ALLOWED, "Debe tener role de postulante para poder postular.");
+            }
+            else{
+                return true;
+            }
+        }
+
+        public function CheckPassWord($userPass){
+            $cnn = Connection();
+            $user = mysqli_query($cnn,"select * from users state = 1 and userPass =".$userPass);
+            
+            $userList = [];
+
+            while($reg = mysqli_fetch_array($user,MYSQLI_ASSOC)){
+                $userList = $reg;
+            }
+
+            $check = count($userList);
+            if($check === 0){
+                $this->throwError(ROLE_NOT_ALLOWED, "La contraseña actual esta incorrecta, vuelve a intentar.");
+            }
+            else{
+                return true;
+            }
+        }
     }
 ?>

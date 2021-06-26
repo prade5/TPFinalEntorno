@@ -22,6 +22,7 @@
 	define('USER_NOT_ACTIVE', 						109);
 	define('USER_ALREADY_EXIST', 					110);
 	define('E_MAIL_ALREADY_EXIST', 					111);
+	define('ROLE_NOT_ALLOWED', 						112);
 
 	define('SUCCESS_RESPONSE', 						200);
 

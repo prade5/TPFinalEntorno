@@ -6,32 +6,29 @@ import { TaskService } from '../../services/auth/task.service';
 declare var  $: any;
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  selector: 'app-change-pass',
+  templateUrl: './change-pass.component.html',
+  styleUrls: ['./change-pass.component.css']
 })
-export class LoginComponent implements OnInit {
+export class ChangePassComponent implements OnInit {
   email: string;
   password: string;
   confirmPassword: string;
   accountForm: FormGroup;
-  isLogin:string= 'none!important';
   constructor(
     private taskService: TaskService,
-    private router: Router, private fb:FormBuilder) {
-    }
+    private router: Router, private fb:FormBuilder) { }
 
   ngOnInit(): void {
     this.initForm();
   }
-  register() {
-    console.log(this.email);
-    console.log(this.password);
-  }
+  
   private initForm():void{
     this.accountForm = this.fb.group({
-      userName: ['',[Validators.required]],
-      userPass: ['',[Validators.required]]
+      userName: this.taskService.GetUserName(),
+      userPass: ['',[Validators.required]],
+      newUserPass: ['',[Validators.required]],
+      confirmPass: ['',[Validators.required]]
     });
   }
 
@@ -44,7 +41,7 @@ export class LoginComponent implements OnInit {
   OnSubmit() {
     debugger;
     if(this.accountForm.valid) {
-      this.taskService.Authentication(this.accountForm.value).subscribe(
+      this.taskService.Put(this.accountForm.value).subscribe(
         (success) => {
           if (success) {
               this.router.navigate(['/MenuAdmin']);
@@ -53,10 +50,10 @@ export class LoginComponent implements OnInit {
             }
         },
         (err: any) => {
-          debugger;
           $('.errmessage').html(err.response.message);
         }
       );
     }
   }
+
 }

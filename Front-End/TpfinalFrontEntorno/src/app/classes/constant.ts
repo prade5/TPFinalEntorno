@@ -4,5 +4,5 @@ export  class  Constant {
     public static readonly roleUser = 'U2FsdGVkX1+IXzlnR0UUyDifcI+Pn2mWgjS/DeROFio=';
     public static readonly JWT_TOKEN = 'U2FsdGVkX18Xba2y675G61DUMo1w4KvHPsRuUzM0SIE=';
     public static readonly loggedUser = 'U2FsdGVkX1+fC9Z5RjiAH3K3sGDTz6vb7CsR24DC0ok=';
-    public static readonly IspostulateOut = 'U2FsdGVkX18f79LntYCs7TvanneayDC49ozrUxbe0fI=';
+    public static readonly IspostulateOut = 'U2FsdGVkX1/0ovaALdH90RvV/51DEdhuKMQZSrMJWMA=';
 }

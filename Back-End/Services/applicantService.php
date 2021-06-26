@@ -60,7 +60,8 @@
         }
         public function Post(){
             try{
-                $cnn = Connection(); 
+                $cnn = Connection();
+                $this->ValidateRolePostulation($this->idUser); 
                 $this->checkNonerepeat2('applicants', 'idCompetition', $this->idCompetition, 'idUser', $this->idUser, "Ya esta aplicado(a) para ese concurso");
                 
                 $result = mysqli_query($cnn,"insert into applicants (idUser,idCompetition,applicantDate, state) 

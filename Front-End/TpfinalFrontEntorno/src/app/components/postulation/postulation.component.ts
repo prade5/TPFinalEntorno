@@ -7,7 +7,9 @@ import {Router} from "@angular/router";
 import {ApplicantService} from "../../services/applicant/applicant.service";
 import {Applicant} from "../../classes/applicant";
 import {MessageService} from "../../services/message/message.service";
+import { UserService } from '../../services/user/user.service';
 import Swal from "sweetalert2";
+declare var $: any;
 
 @Component({
   selector: 'app-postulation',
@@ -17,11 +19,17 @@ import Swal from "sweetalert2";
 export class PostulationComponent implements OnInit {
   complist :Array<Competition> = [];
   constructor(private compservice: CompetitionService,private applicantService: ApplicantService, 
-    private router: Router,  private taskservice: TaskService,
+    private router: Router,  private taskservice: TaskService, private userservice: UserService,
     private messageService: MessageService) { }
 
   ngOnInit(): void {
-    this.GetAll();
+    debugger; 
+    if(this.taskservice.GetIspostulateOut() != null){
+      this.inscribe(this.taskservice.GetIspostulateOut());
+    }
+    else{
+      this.GetAll();
+    }
   }
 
   GetAll(){
@@ -31,48 +39,65 @@ export class PostulationComponent implements OnInit {
     });
   }
 
-  inscribe(conId: number) {
-    var applicant = new Applicant();
-    applicant.id = 0;
-    applicant.idUser = this.taskservice.GetIdUser();
-    applicant.idCompetition = conId;
-    applicant.applicantDate = new Date();
-    applicant.state = 1;
-
-    Swal.fire({
-      title: '¿Inscribirse?',
-      text: '¿Esta seguro de que desea inscribirse a este concurso?',
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonText: 'Aceptar',
-      cancelButtonText: 'Cancel'
-    }).then((result) => {
-      if (result.isConfirmed) {
-        this.applicantService.Post(applicant).subscribe((data: any) => {
-            if (data.response.status === 200){
-              Swal.fire(
-                'Inscripto!',
-                'Se Inscribio al concurso correctamente',
-                'success'
-              ).then((result) =>{
-                this.router.navigate(['/OpenCompetion']);
-              })
-            }
-            else{
-              this.messageService.Error('Error', data.response.message);
-            }
-          },
-          (err: HttpErrorResponse) => {
-            console.log(err);
-          });
-      } else if (result.dismiss === Swal.DismissReason.cancel) {
-        Swal.fire(
-          'Cancelado',
-          'No se a inscripto al concurso',
-          'error'
-        )
+  inscribe(conId: number){     
+    $('.idUser').val(this.taskservice.GetIdUser());
+    $('.idCompetition').val(conId);
+    $('#exampleModal').modal("show");
+  }
+  Subscribe(){
+    let postulate ={
+      id:0,
+      idUser:$('.idUser').val(),
+      idCompetition:$('.idCompetition').val(),
+      applicantDate:new Date(),
+      state:1
+    };
+    debugger;
+    this.applicantService.Post(postulate).subscribe((data: any) => {
+      debugger;
+      if (data.response.status === 200){
+        if(this.taskservice.GetIspostulateOut() != null){
+          this.taskservice.RemoveIspostulateOut();
+        };
+        this.GetAll();
+        $('#exampleModal').modal("hide");
       }
-    })
+      else{
+        this.SetClose(data.response.message);
+      }
+    },
+    (err: HttpErrorResponse) => {  
+      debugger;
+      this.SetClose(err.error.message);
+    });
   }
 
+  SetClose(message){
+    Swal.fire({
+      position: 'center',
+      icon: 'error',
+      title: message,
+      showConfirmButton: false,
+      timer: 5000
+    })   
+    this.taskservice.RemoveIspostulateOut();
+    $('#exampleModal').modal("hide");
+    this.SetRedirect();
+  }
+  SetRedirect(){
+    setTimeout(()=>{
+      if(this.taskservice.GetRole().toLowerCase() === ('admin').toLowerCase()){
+        this.router.navigate(['/MenuAdmin']);
+      }
+      else if(this.taskservice.GetRole().toLowerCase() === ('Jefe de catedra').toLowerCase()){
+        this.router.navigate(['/MenuAdmin']);
+      }
+    }, 5000);   
+  }
+  Close(){
+    if(this.taskservice.GetRole().toLowerCase() !== ('postulante').toLowerCase()){
+      this.taskservice.RemoveIspostulateOut();
+      this.router.navigate(['/MenuAdmin']);
+    }
+  }
 }

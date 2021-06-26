@@ -13,8 +13,28 @@
             </div>
           </div>
           <div class="card-footer">
-            <button type="button" [attr.disabled]="comp.isPostulate" (click)="inscribe(comp.id)" class="btn btn-primary col">{{comp.isPostulate !== true ? 'Postularse' : 'Ya postulaste'}}</button>
+            <button type="button" [disabled]="comp.isPostulate ? 'disabled' : null" (click)="inscribe(comp.id)" class="btn btn-primary col">{{comp.isPostulate !== true ? 'Postularse' : 'Ya postulaste'}}</button>
           </div>
         </div>
     </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" data-backdrop="static" data-keyboard="false" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title  w-100 text-center" id="exampleModalLabel">¿Inscribirse?</h5>
+      </div>
+      <div class="modal-body">
+        <h5 class="card-title  text-center"><strong>¿Esta seguro de que desea inscribirse a este concurso?</strong></h5>
+        <h5 class="card-title  text-center idUser"></h5>
+        <h5 class="card-title  text-center idCompetition"></h5>      
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="Close()" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" (click)="Subscribe()">Save changes</button>
+      </div>
+    </div>
+  </div>
 </div>

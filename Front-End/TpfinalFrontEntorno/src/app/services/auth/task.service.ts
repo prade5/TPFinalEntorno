@@ -33,6 +33,10 @@ export class TaskService {
       })
     );
   }
+  
+  Put(data){
+    return this.http.put(`${environment.api_url}auth.php?id=${data.id}`,JSON.stringify(data));
+  }
 
   loggedIn() {
     return !!this.getJwtToken();
@@ -48,6 +52,9 @@ export class TaskService {
   public GetIspostulateOut() {
     return localStorage.getItem(Constant.IspostulateOut)!= null ? this.loadscript.Decrypt(localStorage.getItem(Constant.IspostulateOut)): null;
   }
+  public RemoveIspostulateOut() {
+    return localStorage.removeItem(Constant.IspostulateOut);
+  }
   public GetIdUser() {
     return this.loadscript.Decrypt(localStorage.getItem(Constant.idUser));
   }
@@ -56,6 +63,7 @@ export class TaskService {
   }
   public Logout(){
     this.removeTokens();
+    localStorage.removeItem(Constant.IspostulateOut);
     return true;
   }
   private removeTokens() {
@@ -76,6 +84,7 @@ export class TaskService {
   }
 
   private storeTokens(tokens: Tokens) {
+    debugger;
     let decodotken = decode(tokens.jwt);
     localStorage.setItem(Constant.idUser, this.loadscript.Encrypt(decodotken['userId']));
     localStorage.setItem(Constant.idRole, this.loadscript.Encrypt(decodotken['idRole']));

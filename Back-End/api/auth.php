@@ -10,7 +10,7 @@
         break;
         case'PUT':
             $_PUT = json_decode(file_get_contents('php://input'), true); 
-            Auth::ChangePassword($_GET['id'],$_PUT["userPass"] );       
+            Auth::ChangePassword($_GET['id'],$_PUT["userName"],$_PUT["userPass"],$_PUT["newUserPass"],$_PUT["confirmPass"] );       
         break;
     }
 ?>

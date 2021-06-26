@@ -9,12 +9,16 @@
         private $id;  
         private $userName;
         private $userPass;
+        private $newUserPass;
+        private $confirmPass;
 
-        public function __construct ($id, $userName, $userPass){
+        public function __construct ($id, $userName, $userPass, $newUserPass = "", $confirmPass=""){
             #region initial
             $this->id = $id;           
             $this->userName = $userName;
             $this->userPass = $userPass;
+            $this->newUserPass = $newUserPass;
+            $this->confirmPass = $confirmPass;
             #endregion
         }
 
@@ -59,14 +63,28 @@
             }
         }
 
-        public static function ChangePassword($id, $userPass){
+        public static function ChangePassword($id){
             $cnn = Connection();
             
-            if($userPass == ""){
+            if($this->userPass == ""){
                 echo json_encode(['response' => ['status' => 301, "message" => "Ingresa la contraseña."]]);
                 exit;
-            }     
-            $result = mysqli_query($cnn,"update users set userPass ='$userPass'
+            }
+            if($this->newUserPass == ""){
+                echo json_encode(['response' => ['status' => 301, "message" => "Ingresa la nueva contraseña."]]);
+                exit;
+            }
+            if($this->confirmPass == ""){
+                echo json_encode(['response' => ['status' => 301, "message" => "Confirma la nueva contraseña."]]);
+                exit;
+            }
+            if($this->newUserPass != $this->confirmPass){
+                echo json_encode(['response' => ['status' => 301, "message" => "La nueva contraseña es diferente de la confirmación"]]);
+                exit;
+            } 
+            $this->CheckPassWord($this->newUserPass);    
+            
+            $result = mysqli_query($cnn,"update users set userPass ='$this->newUserPass'
                                     where id =".$id);
             if($result){
                 echo json_encode(['response' => ['status' => SUCCESS_RESPONSE, "message" => "La contraseña fue modificada con exito."]]);

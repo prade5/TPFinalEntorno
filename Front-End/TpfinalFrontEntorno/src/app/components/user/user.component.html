@@ -1,14 +1,13 @@
 <p-table #dt [value]="userlist"  dataKey="id" styleClass="p-datatable-customers" [rowHover]="true"
     [rows]="10" [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50]"
-    [paginator]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+    [paginator]="true" currentPageReportTemplate="Mostrando {first} de {last}. De un total de {totalRecords} Registros"
     [filterDelay]="0" [globalFilterFields]="['fistName','lastName','creationDate','mail']">
     <ng-template pTemplate="caption">
         <div class="table-header">
           <div class="row">
             <div class="col-md-12 col-md-offset-2">
-
                 <div class="card-body d-flex justify-content-between align-items-center">
-                  <strong>Lista de usuario</strong>
+                  <h1>Lista de usuarios</h1>
                   <a [routerLink]="['/User/ActionUser']" class="btn btn-primary btn-sm">Nuevo usuario</a>
                 </div>
             </div>
@@ -81,8 +80,8 @@
                 {{user.phone}}
             </td>
             <td>
-                <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2"  [routerLink]="['/User/ActionUser/'+ user.id]"></button>
-                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="Delete(user.id)"></button>
+                <button pButton pRipple icon="pi pi-pencil" aria-label="Editar" class="p-button-rounded p-button-success p-mr-2"  [routerLink]="['/User/ActionUser/'+ user.id]"></button>
+                <button pButton pRipple icon="pi pi-trash" aria-label="Eliminar" class="p-button-rounded p-button-warning" (click)="Delete(user.id)"></button>
           </td>
         </tr>
     </ng-template>

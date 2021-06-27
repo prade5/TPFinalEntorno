@@ -21,11 +21,12 @@ import { SubjectModule } from '../subject/subject.module';
 import { CompetitionModule } from '../competition/competition.module';
 import { CourseModule } from '../course/course.module';
 import { PostulationComponent } from 'src/app/components/postulation/postulation.component';
+import { MapsiteComponent } from 'src/app/components/mapsite/mapsite.component';
 
 
 @NgModule({
   declarations: [
-    PrincipalComponent,MenuadminComponent, SubjectComponent,
+    PrincipalComponent,MenuadminComponent, SubjectComponent,MapsiteComponent,
     RoleComponent,ActionroleComponent,AdminComponent,PostulationComponent
   ],
   imports: [

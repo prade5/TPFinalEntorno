@@ -1,23 +1,126 @@
-<div class="container-fluid text-center text-md-center bg-dark">
-<div class="row pt-4 pl-5 pr-5">
-    <div class="col-md-4 pb-4 pb-sm-4 pt-3 align-self-center">
-        <a id="main" routerLink={{linkprincipal}}> Sistema de postulación </a>
-    </div>
-    <div class="col-md-4 mb-md-0 mb-3 px-5 text-md-left">
-        <h5>Acciones</h5>
-        <ul class="list-unstyled">
-            <li *ngFor="let perfil of menunav">
-                <a routerLink={{perfil.url}}></a>
-            </li>
-        </ul>
+<section class="region region-content-bottom position-static">
+<footer class="page-footer font-small navbar-dark bg-dark">
+    <div class="container text-center text-md-left  h-25">
+        <div class="row text-center text-md-left mt-3 pb-3" style="height: 18vh;">
+            <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3  text-white">
+                <a href="/es"> <img src="{{this.profilphoto}}" width="240" height="48" alt="Footer logo"
+                        typeof="foaf:Image">
+                </a>
+                <p class="rights-content mt-1 mt-lg-3" style="color: #fff!important;">Todos los derechos reservados 2021
+                </p>
+            </div>
+            <hr class="w-100 clearfix d-md-none">
+
+            <!-- Grid column -->
+            <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
+                <h6 class="text-uppercase mb-4 font-weight-bold footercolor">Contáctanos</h6>
+                <b class="footercolor">FACULTAD REGIONAL ROSARIO</b>
+                <h6 class="footercolor">Universidad Tecnológica Nacional</h6>
+                <p class="footercolor"> ZEBALLOS 1341 - S2000BQA - ROSARIO</p>
+            </div>
+            <!-- Grid column -->
+
+            <hr class="w-100 clearfix d-md-none">
+
+            <!-- Grid column -->
+            <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3 footercolor">
+                <h6 class="text-uppercase mb-4 font-weight-bold footercolor">Síguenos</h6>
+                <div class="row">
+                    <div class="col-md-6 col-lg-6 col-xl-6">
+                        <h6 class="footercolor">
+                            <a href="https://es-la.facebook.com/UTNFRRO/" target="_blank"
+                                style="color: #fff;">Facebook</a>
+                        </h6>
+                    </div>
+                    <div class="col-md-6 col-lg-6 col-xl-6">
+                        <h6 class="footercolor">
+                            <a href="https://www.linkedin.com/company/utn---rosario" style="color: #fff;"
+                                target="_blank">LinkedIn</a>
+                        </h6>
+                    </div>
+                    <div class="col-md-6 col-lg-6 col-xl-6">
+                        <h6 class="footercolor">
+                            <a class="footercolor" href="https://www.youtube.com/watch?v=GUB-RNliw8o" id="Youtube"
+                                target="_blank" rel="noopener" style="color: #fff;">
+                                Youtube
+                            </a>
+                        </h6>
+                    </div>
+                    <div class="col-md-6 col-lg-6 col-xl-6">
+                        <h6 class="footercolor">
+                            <a href="https://www.instagram.com/ingreso.utn.frro/?hl=es-la" style="color: #fff;"
+                                target="_blank">Instagram</a>
+                        </h6>
+                    </div>
+                </div>
+            </div>
+            <hr class="w-100 clearfix d-md-none">
+
+            <!-- Grid column -->
+            <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3 footercolor">
+                <h6 class="text-uppercase mb-4 font-weight-bold footercolor">Enlances externos</h6>
+                <div class="row">
+                    <div class="col-md-8 col-lg-8 col-xl-8">
+                        <h6 class="footercolor">
+                            <a href="https://www.argentina.gob.ar/educacion" target="_blank"
+                                rel="noopener noreferrer" style="color: #fff;">Ministerio de Educación</a>
+                        </h6>
+                    </div>
+                    <div class="col-md-4 col-lg-4 col-xl-4">
+                        <h6 class="footercolor">
+                            <a href="https://www.argentina.gob.ar/educacion/politicasuniversitarias"
+                                target="blank" style="color: #fff;">SPU</a>
+                        </h6>
+                    </div>
+                    <div class="col-md-8 col-lg-8 col-xl-8">
+                        <h6 class="footercolor">
+                            <a href="http://www.cin.edu.ar/" target="blank" style="color: #fff;">CIN</a>
+                        </h6>
+                    </div>
+                    <div class="col-md-4 col-lg-4 col-xl-4">
+                        <h6 class="footercolor">
+                            <a href="https://confedi.org.ar/" target="blank" style="color: #fff;">CONFEDI</a>
+                        </h6>
+                    </div>
+                </div>
+            </div>
+
         </div>
-    <div class="col-md-4 mb-md-0 mb-3 text-md-left">
-    <h5>Mi perfil</h5>
-    <ul class="list-unstyled">
-        <li><a routerLink={{linkperfil}}>Mi cuenta</a></li>
-        <li><a routerLink="['/User/ChangePassWord']">Cambiar contraseña</a></li>
-        <li><a (click)="LogoutEmitter()">Cerrar sesion</a></li>
-    </ul>
+        <!-- Footer links -->
+
+        <hr>
+
     </div>
-</div>
-</div>
+    <!-- Footer Links -->
+    <div class="footerContainer p-0">
+        <div class="row footer-info">
+            <div class="footer-info-inner container row text-center col-sm-12 col-md-12 col-lg-12 col-xl-12">
+
+                <div class="col-sm-12 col-xl-2 col-lg-2 col-md-2 col-xs-12 col-12 Política-de-Privacidad  ">
+                    <a href="https://www.utn.edu.ar/es/secretaria-politicas-institucionales/spi-inicio"
+                        target="blank">Políticas Institucionales</a>
+                </div>
+                <div class="col-sm-12 col-xl-2 col-lg-2 col-md-2 col-xs-12 col-12 Terms-of-Service  ">
+                    <a href="https://www.utn.edu.ar/es/secretaria-sae" target="blank">Asuntos Estudiantiles</a>
+                </div>
+                <div class="col-sm-12 col-xl-2 col-lg-2 col-md-2 col-xs-12 col-12 Site-Map  ">
+                    <!-- <app-mapsite></app-mapsite> -->
+                    <a [routerLink]="['/SiteMap', { queryParams: menunav }]">Mapa del sitio</a>
+                </div>
+                <div class="col-sm-12 col-xl-2 col-lg-2 col-md-2 col-xs-12 col-12 Política-de-Cookies  ">
+                    <a href="https://www.utn.edu.ar/es/sadm-inicio/sadm-home-inicio" target="blank">Administrativa</a>
+                </div>
+                <div
+                    class="col-sm-12 col-xl-2 col-lg-2 col-md-2 col-xs-12 col-12 Preferencias-de-cookies  cookie-preferences-popup">
+                    <a href="https://www.utn.edu.ar/es/secretaria-academica/sacad-inicio" target="blank">Académica</a>
+                </div>
+                <div class="col-sm-12 col-xl-2 col-lg-2 col-md-2 col-xs-12 col-12 Política-de-Vulnerabilidad  ">
+                    <a href="https://www.utn.edu.ar/es/secretaria-cs/cs-home" target="blank">Consejo Superior</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</footer>
+<!-- Footer -->
+</section>

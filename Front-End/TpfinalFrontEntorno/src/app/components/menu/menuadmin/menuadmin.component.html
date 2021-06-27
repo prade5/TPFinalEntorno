@@ -1,6 +1,9 @@
 <app-header (Logout)="Logout($event)" [menunav]="menunav" [linkprincipal]="linkprincipal" [linkperfil]="perfil">
 </app-header>
-<div fxFlex="80" class="container-fluid content h-100" >
-    <router-outlet></router-outlet>
+<div >
+    <div class="container-fluid" style=" min-height: 100vh;">
+        <router-outlet></router-outlet>
+    </div>
+    <app-footer [menunav]="menunav" [linkprincipal]="linkprincipal" [linkperfil]="perfil" flexLayout="column">        
+    </app-footer>
 </div>
-<app-footer (Logout)="Logout($event)" [menunav]="menunav" [linkprincipal]="linkprincipal" [linkperfil]="perfil" flexLayout="column"></app-footer>

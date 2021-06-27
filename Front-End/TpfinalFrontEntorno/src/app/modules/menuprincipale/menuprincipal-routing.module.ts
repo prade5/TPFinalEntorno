@@ -4,6 +4,7 @@ import { AuthGuard } from 'src/app/components/auth/auth.guard';
 import { RoleGuardGuard } from 'src/app/components/auth/role-guard.guard';
 import { ActioncompetitionComponent } from 'src/app/components/competition/actioncompetition/actioncompetition.component';
 import { CompetitionComponent } from 'src/app/components/competition/competition.component';
+import { MapsiteComponent } from 'src/app/components/mapsite/mapsite.component';
 import { MenuadminComponent } from 'src/app/components/menu/menuadmin/menuadmin.component';
 import { PrincipalComponent } from 'src/app/components/menu/principal/principal.component';
 import { PostulationComponent } from 'src/app/components/postulation/postulation.component';
@@ -74,6 +75,14 @@ const routes: Routes = [
           path: 'OpenCompetion',
           component: PostulationComponent,
           data: {title: 'Concursos abiertos'}
+        },      
+        {
+          path: 'SiteMap',
+          canLoad: [AuthGuard],
+          component: MapsiteComponent,
+           data: {
+             title: 'Mapa del sitio'
+            }
         },      
         {
           path: 'Principal',

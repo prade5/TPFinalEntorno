@@ -118,7 +118,7 @@
                     $id = $cnn->insert_id;
                     $message = Send::MessageRegister($this->firstName."-".$this->lastName,$this->userName,$this->userPass, $id);
                     Send::SendMailGoogle($message, $this->mail, MAILREGISTER);
-                    $this->ReturnReponse(SUCCESS_RESPONSE, "El usuario fue guardado con exito.");
+                    $this->ReturnReponse(SUCCESS_RESPONSE, "El usuario fue guardado con exito y recibira un correo de confirmacion su cuenta via mail.");
                 }
                 else{
                     $this->ReturnReponse(ERROR_RESPONSE, "El usuario no fue guardado con exito.");

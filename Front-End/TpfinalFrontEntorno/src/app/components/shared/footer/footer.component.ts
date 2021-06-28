@@ -33,4 +33,7 @@ export class FooterComponent implements OnInit {
   LogoutEmitter(){
     this.Logout.emit(true);
   }
+  SetMapSite(){
+    this.router.navigate(['/SiteMap'], { queryParams:{ ...this.menunav }  ,  skipLocationChange: true });
+  }
 }

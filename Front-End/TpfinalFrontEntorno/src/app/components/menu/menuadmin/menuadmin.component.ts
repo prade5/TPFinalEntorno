@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import decode from 'jwt-decode';
 import { TaskService } from 'src/app/services/auth/task.service';
 import { LoadscriptService } from 'src/app/services/loadScript/loadscript.service';
+import { MenuService} from '../../../services/menu/menu.service';
 
 const urljs = '../../../../assets/js/menu.js';
 declare var $: any;
@@ -16,7 +16,7 @@ export class MenuadminComponent implements OnInit {
   menunav:any;
   perfil:any;
   linkprincipal:any;
-  constructor(private task: TaskService,
+  constructor(private task: TaskService, private menuservice: MenuService,
     private router: Router, private loadscript: LoadscriptService) { }
 
   ngOnInit(): void {
@@ -27,19 +27,14 @@ export class MenuadminComponent implements OnInit {
     this.loadscript.loadScript(urljs);
   }
   GetTypeUser(){
-    debugger;
-    let role = this.task.GetRole().toLowerCase();
-    if (this.task.loggedIn() && this.task.GetRole().toLowerCase() === ('admin').toLowerCase()) {
-      this.GetAdmin();
-    } else if (
-      this.task.loggedIn() && this.task.GetRole().toLowerCase() === ('Jefe de catedra').toLowerCase()) {
-      this.GetHeadoftheChair();
-    } else if (this.task.loggedIn() && this.task.GetRole().toLowerCase() === ('postulante').toLowerCase()) {
-      this.GetApplicant();
-    } else {
+    if (this.task.loggedIn()) {
+       this.menunav =  this.menuservice.GetMenu(this.task.GetRole().toLowerCase());
+    } 
+    else {
       this.router.navigate(['/error']);
       return;
     } 
+
     if(this.task.GetIspostulateOut() != null){
       this.router.navigate(['/OpenCompetion']);
     }
@@ -56,82 +51,6 @@ export class MenuadminComponent implements OnInit {
       this.router.navigate(['/' + this.router.url]);
     }
   }
-
-  GetAdmin(){
-    this.menunav=[
-      {
-        url:"/User",
-        displayName:"Crear usuario",
-        active:"active User"
-      },
-      // {
-      //   url:"/Competition",
-      //   displayName:"Crear concurso",
-      //   active:"Competition"
-      // },
-      {
-        url:"/Applicant",
-        displayName:"Declarar resultado",
-        active:"Applicant"
-      },
-      {
-        url:"/jefedecatedra_materia",
-        displayName:"Asignar jefe de catedra",
-        active:"Jefedecatedra"
-      },
-      {
-        url:"/Subject",
-        displayName:"Crear materia",
-        active:"Subject"
-      }
-    ]
-  }
-
-  GetApplicant(){
-    this.menunav=[
-      {
-        url:"/OpenCompetion",
-        displayName:"Concursos abiertos",
-        active:"active Applicant"
-      }
-      // {
-      //   url:"/calificate",
-      //   displayName:"Mis Calificaciones",
-      //   active:"calificate"
-      // },
-      // {
-      //   url:"/Postulate",
-      //   displayName:"Mis Postulaciones",
-      //   active:"Postulate"
-      // }
-      // ,
-      // {
-      //   url:"/Home",
-      //   displayName:"Concursos abiertos",
-      //   active:"Concursos"
-      // }
-    ]
-  }
-
-  GetHeadoftheChair(){
-    this.menunav=[
-      {
-        url:"/Course",
-        displayName:"Mis Cursos",
-        active:"active Course"
-      },
-      // {
-      //   url:"/Rating",
-      //   displayName:"Calificaciones",
-      //   active:"Rating"
-      // },
-      {
-        url:"/Competition",
-        displayName:"Crear concurso",
-        active:"Competition"
-      }
-    ]
-  } 
 
   Logout(islogout = false){
     debugger;

@@ -72,8 +72,23 @@ export class AplicantComponent implements OnInit {
     })
   }
 
-
+  CambiarMerito(aplicant){
+    this.applicant.Put(aplicant).subscribe((data2: any) => {
+        if (data2.response.status === 200){
+          Swal.fire(
+            'Actualizado',
+            'El valor de merito del concursante fue actualizado',
+            'success'
+          ).then((result) =>{
+            this.router.navigate(['/Competition']);
+          })
+        }
+      },
+      (err: HttpErrorResponse) => {
+      });
+  }
 }
+
 function Active(){
   $('.actionmenu').removeClass('active');
   $('.Applicant ').addClass('active');

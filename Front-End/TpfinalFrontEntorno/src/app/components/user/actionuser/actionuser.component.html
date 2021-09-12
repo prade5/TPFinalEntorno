@@ -43,7 +43,7 @@
                               </div>
                             </div>
                             <div class="form-group col-md-6">
-                              <label for="inputdocnumber">Numero de documento</label>                              
+                              <label for="inputdocnumber">Numero de documento</label>
                               <input type="text" class="form-control" id="inputdocnumber" placeholder="Numero de documento" name="docNumber"
                               formControlName="docNumber"  [class]="isValidField('docNumber')">
                               <div class="invalid-feedback">
@@ -111,13 +111,13 @@
                               <input type="text" class="form-control col-md-11" id="inputUserName" name="userName"
                               formControlName="userName"   [class]="isValidField('userName')" placeholder="Nombre usuario">
                               <i class="pi pi-info-circle info" pTooltip="El usuario debe tener como minimo 6 caracteres y como maximo 50 caracteres"></i>
-                              <div class="invalid-feedback">                                
+                              <div class="invalid-feedback">
                                 <span *ngIf="browserForm.get('userName').errors?.required">
                                     ingresa el nombre usuario
                                 </span>
                                 <span *ngIf="browserForm.get('userName').errors?.minlength">
                                   El nombre no puede ser menos que 6 carateres
-                                </span>                              
+                                </span>
                                 <span *ngIf="browserForm.get('userName').errors?.maxlength">
                                   El nombre no puede ser mayor que 50 carateres
                                 </span>
@@ -126,15 +126,15 @@
                             <div class="form-group col-md-6">
                               <label for="inputUserPass">Contraseña usuario</label>
                               <input type="password" class="form-control col-md-11" id="inputUserPass" placeholder="Contraseña usuario" name="userPass"
-                              formControlName="userPass"   [class]="isValidField('userPass')">                              
+                              formControlName="userPass"   [class]="isValidField('userPass')">
                               <i class="pi pi-info-circle info" pTooltip="La contraseña debe contener al menos un numero[0-9], una letra en mayuscula[A-Z], una letra minuscula[a-z] y debe tener como minimo 6 caracteres y como maximo 50 caracteres"></i>
-                              <div class="invalid-feedback">                                
+                              <div class="invalid-feedback">
                                 <span *ngIf="browserForm.get('userPass').errors?.required">
                                     ingresa la contraseña del  usuario
                                 </span>
                                 <span *ngIf="browserForm.get('userPass').errors?.minlength">
                                   La contraseña no puede ser menos que 6 carateres
-                                </span>                              
+                                </span>
                                 <span *ngIf="browserForm.get('userPass').errors?.maxlength">
                                   La contraseña no puede ser mayor que 50 carateres
                                 </span>
@@ -146,7 +146,7 @@
                           </div>
 
                           <div class="float-right mb-3">
-                            <button [routerLink]="isRegister != true ? ['/Principal'] : ['/Account']" class="btn btn-primary mr-3">Cancelar</button>
+                            <button [routerLink]="isRegister != true ? ['/User'] : ['/Account']" class="btn btn-primary mr-3">Cancelar</button>
                             <button type="submit" class="btn btn-primary">{{OptionBtn == false ? "Guardar" : "Actualizar"}}</button>
                           </div>
                       </form>

@@ -69,7 +69,7 @@ export class ActionuserComponent implements OnInit {
       this.doclist = role;
     });
   }
-  
+
 GetById(id){
   this.userService.GetById(id).subscribe(result =>{
     this.user = JSON.parse(JSON.stringify(result));
@@ -80,7 +80,7 @@ GetById(id){
 
   private initForm():void{
     this.browserForm = this.fb.group({
-      id:0,      
+      id:0,
       idDocumentType: ['',[Validators.required]],
       firstName: ['',[Validators.required]],
       lastName: ['',[Validators.required]],
@@ -90,9 +90,9 @@ GetById(id){
       phone:['',[Validators.required]],
       idRole:[this.isRegister != true ? '' : 74 ,[Validators.required]],
       userName:['',[Validators.required, Validators.minLength(6),Validators.maxLength(50)]],
-      userPass:['',[Validators.required, Validators.minLength(6),Validators.maxLength(50),Validators.pattern(/^[A-Za-z0-9 ]+$/)]],
+      userPass:['',[Validators.required, Validators.minLength(6),Validators.maxLength(50),Validators.pattern(/^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{6,16}$/)]],
       state:1
-    });  
+    });
   }
 
   isValidField(field: string): string{
@@ -109,7 +109,7 @@ GetById(id){
       else{
         this.ActionUpdate();
       }
-    }   
+    }
   }
   ActionCreate(){
     this.userService.Post(this.browserForm.value).subscribe((data:any) =>{

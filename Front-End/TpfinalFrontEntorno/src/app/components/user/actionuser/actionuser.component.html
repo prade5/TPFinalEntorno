@@ -136,10 +136,10 @@
                                   La contraseña no puede ser menos que 6 carateres
                                 </span>
                                 <span *ngIf="browserForm.get('userPass').errors?.maxlength">
-                                  La contraseña no puede ser mayor que 50 carateres
+                                  La contraseña no puede ser mayor que 16 carateres
                                 </span>
                                 <span *ngIf="browserForm.get('userPass').errors?.pattern">
-                                  La contraseña debe contener una letra mayuscula y una letra minuscula.
+                                  La contraseña debe contener una letra mayuscula, una letra minuscula y al menos un numero.
                                 </span>
                               </div>
                             </div>

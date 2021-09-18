@@ -15,6 +15,7 @@ import Swal from "sweetalert2";
 import { Constant } from 'src/app/classes/constant';
 import { LoadscriptService } from 'src/app/services/loadScript/loadscript.service';
 
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',

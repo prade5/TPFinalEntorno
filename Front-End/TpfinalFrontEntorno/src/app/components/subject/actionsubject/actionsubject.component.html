@@ -48,12 +48,12 @@
                                               </div>
                                             </div>
                                           </div>
-                                        </div>                                        
+                                        </div>
                                           <div class="modal-footer">
                                           <input type="file" class="form-control" id="inputfile" name="img"
                                             formControlName="img" placeholder="Nombre" [class]="isValidField('img')" hidden (change)="onFileChanged($event)">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                            <label for="inputfile" class="btn btn-primary" >Examinar photo</label>     
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                            <label for="inputfile" class="btn btn-primary" >Examinar foto</label>
                                             <div class="invalid-feedback">
                                                 <span *ngIf="form.get('img').errors?.required">
                                                     Debe seleccionar una imagen para esa materia
@@ -84,5 +84,5 @@
         </div>
     </div>
   </section>
-  
-  
+
+

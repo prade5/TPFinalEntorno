@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  api_url:"http://localhost:80/TPFinalEntorno/Back-End/api/"
+  api_url:"http://localhost:80/Entorno/TPFinalEntorno/Back-End/api/"
 };
 
 /*

@@ -10,14 +10,16 @@
         private $idCompetition;
         private $applicantDate;
         private $state;
+        private $merit;
 
-        public function __construct ($id, $idUser,$idCompetition, $applicantDate, $state){
+        public function __construct ($id, $idUser,$idCompetition, $applicantDate, $state, $merit){
             #region initial
             $this->id = $id;
             $this->idUser = $idUser;
             $this->idCompetition = $idCompetition;
             $this->applicantDate = $applicantDate;
             $this->state = $state;
+            $this->merit = $merit;
             #endregion
         }
 
@@ -32,8 +34,8 @@
             else{
                 $select = "app.state = 1 and app.idUser = $_idUser";
             }
-            $users = mysqli_query($cnn,"select app.id, app.idUser, app.idCompetition, CONCAT(urs.firstName ,' - ', urs.lastName) as fullName,
-                                        sub.img, pos.name as position, app.applicantDate, sub.name as subject, comp.creationDate, comp.finalDate 
+            $users = mysqli_query($cnn,"select app.id, app.idUser, app.idCompetition, CONCAT(urs.firstName ,' - ', urs.lastName) as fullName, app.state,
+                                        sub.img, pos.name as position, app.applicantDate, app.merit, sub.name as subject, comp.creationDate, comp.finalDate 
                                         from applicants app inner join users urs on app.idUser = urs.id 
                                         inner join competitions comp on app.idCompetition = comp.id
                                         inner join subjects sub on comp.idSubject = sub.id inner join positions pos on comp.idPosition = pos.id
@@ -80,8 +82,7 @@
 
         public function Put($id){
             $cnn = Connection();           
-            $result = mysqli_query($cnn,"update applicants set idCompetition =$this->idCompetition,
-                                    applicantDate='$this->applicantDate', idUser=$this->idUser
+            $result = mysqli_query($cnn,"update applicants set merit=$this->merit
                                     where id =".$id);
             if($result){
                 $this->ReturnReponse(SUCCESS_RESPONSE, "La postulación fue modificada con exito.");

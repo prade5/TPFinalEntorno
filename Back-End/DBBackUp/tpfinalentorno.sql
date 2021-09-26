@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 25-06-2021 a las 07:09:54
--- Versión del servidor: 10.4.19-MariaDB
--- Versión de PHP: 8.0.6
+-- Tiempo de generación: 29-08-2021 a las 18:02:56
+-- Versión del servidor: 10.4.18-MariaDB
+-- Versión de PHP: 8.0.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -32,6 +32,7 @@ CREATE TABLE `applicants` (
   `idUser` bigint(20) NOT NULL,
   `idCompetition` bigint(20) NOT NULL,
   `applicantDate` datetime NOT NULL DEFAULT current_timestamp(),
+  `merit` int(11) DEFAULT NULL,
   `state` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -39,8 +40,9 @@ CREATE TABLE `applicants` (
 -- Volcado de datos para la tabla `applicants`
 --
 
-INSERT INTO `applicants` (`id`, `idUser`, `idCompetition`, `applicantDate`, `state`) VALUES
-(5, 20, 33, '2021-06-25 02:40:29', 1);
+INSERT INTO `applicants` (`id`, `idUser`, `idCompetition`, `applicantDate`, `merit`, `state`) VALUES
+(5, 20, 33, '2021-06-25 02:40:29', 15, 1),
+(7, 20, 35, '2021-08-29 15:12:07', 200, 1);
 
 -- --------------------------------------------------------
 
@@ -65,7 +67,8 @@ CREATE TABLE `competitions` (
 
 INSERT INTO `competitions` (`id`, `idSubject`, `description`, `creationDate`, `finalDate`, `state`, `idUser`, `idPosition`) VALUES
 (33, 6, 'Prueba', '2021-06-24 01:30:00', '2021-07-30 01:30:00', 1, 21, 2),
-(34, 6, 'pr', '2021-06-25 00:32:00', '2021-07-30 00:32:00', 1, 21, 4);
+(34, 6, 'pr', '2021-06-25 00:32:00', '2021-07-30 00:32:00', 1, 21, 4),
+(35, 5, 'Puesto', '2021-09-01 12:11:00', '2021-10-01 12:11:00', 1, 21, 4);
 
 -- --------------------------------------------------------
 
@@ -378,13 +381,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de la tabla `applicants`
 --
 ALTER TABLE `applicants`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `competitions`
 --
 ALTER TABLE `competitions`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT de la tabla `configurations`

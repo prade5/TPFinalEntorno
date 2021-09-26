@@ -19,4 +19,8 @@ export class ApplicantService {
     return this.http.post(`${environment.api_url}applicant.php`, JSON.stringify(applicant));
   }
 
+  Put(data){
+    return this.http.put(`${environment.api_url}applicant.php?id=${data.id}`,JSON.stringify(data));
+  }
+
 }

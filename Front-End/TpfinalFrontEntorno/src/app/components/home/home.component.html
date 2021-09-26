@@ -23,8 +23,26 @@
   </div>
 </nav>
 <!--/.Navbar -->
+
+<div>
+  <h1 class="text-center">Sistema de Coordinación de concursos de cátedras</h1>
+  <div class="col-lg-8" style="float:none;margin:auto;">
+    <p-card class="text-center">
+      <img src="assets/img/UTN_logo.jpg" alt="Logo UTN" style="float:right;width:100px;height:100px;">
+       <b style="font-size: 25px;">El objetivo del siguiente sistema es proporcionar un método fácil y accesible de
+      administrar el proceso de concursos para cátedra para la
+      Universidad Tecnológica Nacional de Rosario. <br>
+         Tanto para administradores como para concursantes.
+       <br><br>El primer paso es <a [routerLink]="['/Register']" class="pull-right">crear un usuario</a>  si no lo posee.</b></p-card>
+
+  </div>
+  <br>
+  <h2 class="text-center">Concursos disponibles</h2>
+</div>
+<br>
 <div class="row  m-0  row-cols-1 row-cols-md-4">
 <!--  <button (click)="showMyData()">show</button>-->
+
   <div class="col mb-4" *ngFor="let comp of complist">
     <div class="card h-100">
       <img src="{{comp.img}}" class="card-img-top" alt="Quimica">

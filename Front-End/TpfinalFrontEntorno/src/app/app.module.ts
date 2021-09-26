@@ -21,13 +21,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { WelcomeComponent } from './components/welcome/welcome/welcome.component';
 import { ErrorComponent } from './components/error/error.component';
 import { SharedModule } from "./components/shared/shared.module";
+import { AboutComponent } from './components/about/about.component';
+import {CardModule} from "primeng/card";
 
 @NgModule({
   declarations: [
-    AppComponent,LoginComponent, HomeComponent, WelcomeComponent, ErrorComponent,
+    AppComponent,LoginComponent, HomeComponent, WelcomeComponent, ErrorComponent, AboutComponent,
   ],
   imports: [
-    BrowserModule,FormsModule,ReactiveFormsModule,
+    BrowserModule, FormsModule, ReactiveFormsModule,
     RouterModule.forRoot(appRoutes,
       {
         relativeLinkResolution: 'legacy'
@@ -36,6 +38,7 @@ import { SharedModule } from "./components/shared/shared.module";
     MessagesModule,
     MenuprincipalModule,
     ConfirmDialogModule,BrowserAnimationsModule, SharedModule
+    ConfirmDialogModule, BrowserAnimationsModule, CardModule
   ],
   exports:[RouterModule],
   providers: [Title, {provide:JWT_OPTIONS, useValue:JWT_OPTIONS},JwtHelperService,

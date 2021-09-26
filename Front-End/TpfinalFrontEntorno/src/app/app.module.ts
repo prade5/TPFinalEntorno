@@ -20,6 +20,7 @@ import { MenuprincipalModule } from './modules/menuprincipale/menuprincipal.modu
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { WelcomeComponent } from './components/welcome/welcome/welcome.component';
 import { ErrorComponent } from './components/error/error.component';
+import { SharedModule } from "./components/shared/shared.module";
 import { AboutComponent } from './components/about/about.component';
 import {CardModule} from "primeng/card";
 
@@ -36,6 +37,7 @@ import {CardModule} from "primeng/card";
     HttpClientModule,
     MessagesModule,
     MenuprincipalModule,
+    ConfirmDialogModule,BrowserAnimationsModule, SharedModule
     ConfirmDialogModule, BrowserAnimationsModule, CardModule
   ],
   exports:[RouterModule],

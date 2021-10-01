@@ -38,7 +38,7 @@ import {CardModule} from "primeng/card";
     MessagesModule,
     MenuprincipalModule,
     ConfirmDialogModule,BrowserAnimationsModule, SharedModule
-    ConfirmDialogModule, BrowserAnimationsModule, CardModule
+    , CardModule
   ],
   exports:[RouterModule],
   providers: [Title, {provide:JWT_OPTIONS, useValue:JWT_OPTIONS},JwtHelperService,

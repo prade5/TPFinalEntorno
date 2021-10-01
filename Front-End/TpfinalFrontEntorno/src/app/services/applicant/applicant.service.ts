@@ -15,6 +15,10 @@ export class ApplicantService {
     return this.http.get<Applicant[]>(`${environment.api_url}applicant.php`);
   }
 
+  GetAllByComp(idComp): Observable<Applicant[]>{
+    return this.http.get<Applicant[]>(`${environment.api_url}applicant.php?idComp=${idComp}`)
+  }
+
   Post(applicant){
     return this.http.post(`${environment.api_url}applicant.php`, JSON.stringify(applicant));
   }

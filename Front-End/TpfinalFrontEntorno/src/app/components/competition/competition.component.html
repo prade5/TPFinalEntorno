@@ -74,6 +74,7 @@
             </td>
             <td>
               <button pButton pRipple icon="pi pi-search" aria-label="Buscar" class="p-button-rounded p-button-success p-mr-2"  [routerLink]="['/ActionCompetition/'+ competition.id + 'v']"></button>
+              <button pButton pRipple icon="pi pi-user" aria-label="Ver Postulantes" class="p-button-rounded p-button-success" [attr.disabled]="competition.state === '2'? true : null"  [routerLink] = " ['/Competition/ApplicantWinner/'+ competition.id] "></button>
               <button pButton pRipple icon="pi pi-pencil" aria-label="Editar" class="p-button-rounded p-button-success p-mr-2"   [attr.disabled]="competition.state === '2'? true : null" [routerLink]="['/Competition/ActionCompetition/'+ competition.id]"></button>
               <button pButton pRipple icon="pi pi-trash" aria-label="Eliminar" class="p-button-rounded p-button-warning" [attr.disabled]="competition.state === '2'? true : null"  (click)="Delete(competition.id)"></button>
           </td>

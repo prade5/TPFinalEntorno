@@ -9,8 +9,7 @@
           <img src="{{applicant.img}}" class="card-img-top" width="150" height="150" alt="{{applicant.subject}}">
           <div class="card-body h-50">
             <h5 class="card-text"><strong>Materia: </strong>{{applicant.subject}}</h5>
-            <h5 class="card-text"><strong>Nombre postulante: </strong></h5>
-            <h5 class="card-text">{{applicant.fullName}}</h5>
+            <h5 class="card-text"><strong>Nombre postulante: </strong>{{applicant.fullName}}</h5>
             <h5 class="card-text"><strong>Puesto: </strong>{{applicant.position}}</h5>
             <h5 class="card-text"><strong>Fecha de postulación: </strong>{{applicant.applicantDate | date: 'shortDate'}}</h5>
             <h5 class="card-text"><strong>Fecha de inicio:</strong>{{applicant.creationDate | date: 'shortDate'}}</h5>

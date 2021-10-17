@@ -13,8 +13,9 @@
         private $finalDate;
         private $state;
         private $idPosition;
+        private $winner;
 
-        public function __construct ($id, $idUser,$idSubject, $description, $creationDate, $finalDate, $state, $idPosition){
+        public function __construct ($id, $idUser,$idSubject, $description, $creationDate, $finalDate, $state, $idPosition, $winner){
             #region initial
             $this->id = $id;
             $this->idUser = $idUser;
@@ -24,6 +25,7 @@
             $this->finalDate = $finalDate;
             $this->state = $state;
             $this->idPosition = $idPosition;
+            $this->winner = $winner;
             #endregion
         }
 
@@ -45,7 +47,7 @@
         public static function GetById($_id){
             $cnn = Connection();
             $user = mysqli_query($cnn,"select comp.id, comp.idSubject, comp.description, comp.creationDate, comp.finalDate,
-                                       comp.state, comp.idUser, comp.idPosition,sub.id as idsub, sub.description as subdescription, sub.name as subname, 
+                                       comp.state, comp.idUser, comp.idPosition, comp.winner, sub.id as idsub, sub.description as subdescription, sub.name as subname, 
                                        pos.description as posdescription, pos.name as posname, usr.id as jcmid, usr.firstName, usr.lastName from competitions comp
                                        inner join subjects sub on comp.idSubject = sub.id inner join positions pos on comp.idPosition = pos.id
                                        inner join users usr on comp.idUser = usr.id  where comp.state = 1 and comp.id =".$_id);
@@ -198,7 +200,28 @@
             echo json_encode($response);
         }
 
+        public function DeclareWinner($idUser, $idComp){
 
+            try{
+                $cnn = Connection();
+
+                $vSql = "update competitions set winner = 1
+                        where id =' $idComp ' AND  idUser = '$idUser";
+
+                $result =  mysqli_query($cnn, $vSql) or die (mysqli_error($cnn));
+
+                if($result){
+                    $this->ReturnReponse(SUCCESS_RESPONSE, "El ganador del concurso fue declarado con exito.");
+                }
+                else{
+                    $this->ReturnReponse(ERROR_RESPONSE, "El ganador del concurso no fue declarado con exito.");
+                }
+            }
+            catch(Exception $e){
+                $this->throwError(REQUEST_NOT_VALID, $e->getMessage());
+            }
+
+        }
 
     }
 ?>

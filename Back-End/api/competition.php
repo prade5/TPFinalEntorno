@@ -27,9 +27,14 @@
         break;
         //Update 
         case'PUT':
-            $_PUT = json_decode(file_get_contents('php://input'), true);
-            $competition = new Competition($_PUT["id"],$_PUT['idUser'],$_PUT["idSubject"],$_PUT["description"],$_PUT["creationDate"],$_PUT["finalDate"],$_PUT["state"],$_PUT["idPosition"]);
-            $competition->Put($_PUT['id']);
+            if(isset($_GET['idComp']) && isset($_GET['idUser'])){
+                $_PUT = json_decode(file_get_contents('php://input'), true);
+                $competition->DeclareWinner($_PUT['idComp'],$_PUT['idUser']);
+            }else{
+                $_PUT = json_decode(file_get_contents('php://input'), true);
+                $competition = new Competition($_PUT["id"],$_PUT['idUser'],$_PUT["idSubject"],$_PUT["description"],$_PUT["creationDate"],$_PUT["finalDate"],$_PUT["state"],$_PUT["idPosition"]);
+                $competition->Put($_PUT['id']);
+            }
         break;
         //Delete role
         case'DELETE':

@@ -14,10 +14,10 @@ declare var $: any;
   templateUrl: './applicantWinner.component.html',
   styleUrls: ['./applicantWinner.component.css']
 })
-export class AplicantComponent implements OnInit {
+export class AplicantWinnerComponent implements OnInit {
   aplicantlist: Array<any> = [];
   idComp:number;
-
+  data: any;
   constructor(private applicant: ApplicantService,
               private evaluation: EvaluationService,
               private messageService: MessageService,
@@ -26,35 +26,74 @@ export class AplicantComponent implements OnInit {
               private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.idComp = parseInt(this.route.snapshot.paramMap.get('id')); 
+    this.idComp = parseInt(this.route.snapshot.paramMap.get('id'));
     this.GetAllByComp(this.idComp);
     Active();
   }
 
   GetAllByComp(idComp){
+    debugger;
+    if(Number.isNaN(idComp))
+      idComp = 0;
     this.applicant.GetAllByComp(idComp).subscribe( (applicants) => {
       this.aplicantlist = applicants;
       console.log(applicants)
     },
-    (e: HttpErrorResponse)=>{ console.log(e) } 
+    (e: HttpErrorResponse)=>{ console.log(e) }
     );
   }
 
-  DeclareWinner(idComp, idUser){
-    debugger;
-    this.compService.DeclareWinner(idComp, idUser).subscribe(() => {
-      debugger;
+  DeclareWinner(idUserG, idCompetitionG){
+    Swal.fire({
+      title: '¿Esta seguro desea declarar el ganador del concurso?',
+      text: 'Se declarara el ganador y cerrara el concurso',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Aceptar',
+      cancelButtonText: 'Cancel'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.data = {
+          idUser: idUserG,
+          idCompetition: idCompetitionG
+        }
+        this.evaluation.PostWinner(this.data).subscribe((data2: any) => {
+            if (data2.response.status === 200){
+              Swal.fire(
+                'Finalizado!',
+                'El ganador del concurso fue declarado',
+                'success'
+              ).then((result) =>{
+                this.router.navigate(['/Competition']);
+              })
+            }
+          },
+          (err: HttpErrorResponse) => {
+          });
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
         Swal.fire(
-          'Actualizado',
-          'El Ganador del concurso fué declarado con éxito',
-          'success'
-        ).then((result) =>{
-          this.router.navigate(['/Competition']);
-        })
-    },
-    (err: HttpErrorResponse) => {
-    });
-    debugger;
+          'Cancelado',
+          'El ganador no fue declarado',
+          'error'
+        )
+      }
+    })
+  }
+
+  CambiarMerito(aplicant){
+    this.applicant.Put(aplicant).subscribe((data2: any) => {
+        if (data2.response.status === 200){
+          Swal.fire(
+            'Actualizado',
+            'El valor de merito del concursante fue actualizado',
+            'success'
+          ).then((result) =>{
+            this.router.navigate(['/Competition']);
+          })
+        }
+      },
+      (err: HttpErrorResponse) => {
+      });
   }
 
 }

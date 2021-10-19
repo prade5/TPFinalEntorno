@@ -78,9 +78,12 @@
                 {{aplicant.finalDate | date: 'shortDate'}}
             </td>
             <td>
-                {{aplicant.merit}}
+              <input type="number" class="form-range col-md-8" min="0" max="50" id="merit" [(ngModel)]="aplicant.merit" >
+              <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2  float-right" data-toggle="modal" data-target="#exampleModal" (click)="CambiarMerito(aplicant)"></button>
+<!--                {{aplicant.merit}}-->
             </td>
             <td>
+
               <button aria-label="Declarar Ganador" class="btn btn-primary" (click)="DeclareWinner(aplicant.idCompetition, aplicant.idUser)">Declarar Ganador</button>
           </td>
         </tr>

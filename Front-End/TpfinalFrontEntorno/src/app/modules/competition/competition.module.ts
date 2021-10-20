@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 
 import { CompetitionRoutingModule } from './competition-routing.module';
 import { CompetitionComponent } from 'src/app/components/competition/competition.component';
-import { AplicantComponent } from 'src/app/components/competition/applicantwinner/applicantwinner.component'
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AccordionModule } from 'primeng/accordion';
 import { ButtonModule } from 'primeng/button';
@@ -13,7 +12,7 @@ import { AutocompleteLibModule } from 'angular-ng-autocomplete';
 
 @NgModule({
   declarations: [
-    CompetitionComponent,ActioncompetitionComponent, AplicantComponent
+    CompetitionComponent,ActioncompetitionComponent
   ],
   imports: [
     CommonModule,

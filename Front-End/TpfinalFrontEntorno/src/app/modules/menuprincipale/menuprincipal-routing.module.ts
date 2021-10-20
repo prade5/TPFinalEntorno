@@ -68,6 +68,10 @@ const routes: Routes = [
           loadChildren: () => import("../../modules/aplicant/aplicant.module").then((c) => c.AplicantModule)
         },
         {
+          path: 'ApplicantWinner',
+          loadChildren: () => import("../../modules/aplicant-winner/aplicant-winner.module").then((c) => c.AplicantWinnerModule)
+        },
+        {
           path:'Course',
           loadChildren: () => import("../../modules/course/course.module").then((s) => s.CourseModule)
         },
@@ -75,7 +79,7 @@ const routes: Routes = [
           path: 'OpenCompetion',
           component: PostulationComponent,
           data: {title: 'Concursos abiertos'}
-        },      
+        },
         {
           path: 'SiteMap',
           canLoad: [AuthGuard],
@@ -83,7 +87,7 @@ const routes: Routes = [
            data: {
              title: 'Mapa del sitio'
             }
-        },      
+        },
         {
           path: 'Principal',
           canLoad: [AuthGuard],

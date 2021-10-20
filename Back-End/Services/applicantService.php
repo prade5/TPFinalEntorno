@@ -108,6 +108,7 @@
         }         
 
         public static function GetAllByComp($idComp){
+
             $cnn = Connection();
             $users = mysqli_query($cnn," select a.id, a.idUser, a.idCompetition, CONCAT(u.firstName ,' - ', u.lastName) as fullName, a.state,
                                         p.name as position, a.applicantDate, a.merit, s.name as subject, c.creationDate, c.finalDate 
@@ -115,7 +116,10 @@
                                 inner join subjects s on s.id = c.idSubject
                                 inner join positions p on p.id = c.idPosition
                                 inner join users u on a.idUser = u.id
-                                where winner = 0 and c.id =".$idComp);
+                                where winner = 0");
+
+            if($idComp != 0)
+                $users = $users + " and c.id = ".$idComp;
             $userlist = [];
 
             while($reg = mysqli_fetch_array($users, MYSQLI_ASSOC)){

@@ -18,12 +18,12 @@ declare var $: any;
 })
 export class PostulationComponent implements OnInit {
   complist :Array<Competition> = [];
-  constructor(private compservice: CompetitionService,private applicantService: ApplicantService, 
+  constructor(private compservice: CompetitionService,private applicantService: ApplicantService,
     private router: Router,  private taskservice: TaskService, private userservice: UserService,
     private messageService: MessageService) { }
 
   ngOnInit(): void {
-    debugger; 
+    debugger;
     if(this.taskservice.GetIspostulateOut() != null){
       this.inscribe(this.taskservice.GetIspostulateOut());
     }
@@ -39,7 +39,7 @@ export class PostulationComponent implements OnInit {
     });
   }
 
-  inscribe(conId: number){     
+  inscribe(conId: number){
     $('.idUser').val(this.taskservice.GetIdUser());
     $('.idCompetition').val(conId);
     $('#exampleModal').modal("show");
@@ -50,6 +50,7 @@ export class PostulationComponent implements OnInit {
       idUser:$('.idUser').val(),
       idCompetition:$('.idCompetition').val(),
       applicantDate:new Date(),
+      merit: 0,
       state:1
     };
     debugger;
@@ -66,7 +67,7 @@ export class PostulationComponent implements OnInit {
         this.SetClose(data.response.message);
       }
     },
-    (err: HttpErrorResponse) => {  
+    (err: HttpErrorResponse) => {
       debugger;
       this.SetClose(err.error.message);
     });
@@ -79,7 +80,7 @@ export class PostulationComponent implements OnInit {
       title: message,
       showConfirmButton: false,
       timer: 5000
-    })   
+    })
     this.taskservice.RemoveIspostulateOut();
     $('#exampleModal').modal("hide");
     this.SetRedirect();
@@ -92,7 +93,7 @@ export class PostulationComponent implements OnInit {
       else if(this.taskservice.GetRole().toLowerCase() === ('Jefe de catedra').toLowerCase()){
         this.router.navigate(['/MenuAdmin']);
       }
-    }, 5000);   
+    }, 5000);
   }
   Close(){
     if(this.taskservice.GetRole().toLowerCase() !== ('postulante').toLowerCase()){

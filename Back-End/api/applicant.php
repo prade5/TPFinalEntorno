@@ -18,7 +18,7 @@
         //Create 
         case'POST':
             $_POST= json_decode(file_get_contents('php://input'), true);            
-            $applicant = new Applicant($_POST["id"],$_POST['idUser'],$_POST["idCompetition"],$_POST["applicantDate"],$_POST["state"]);
+            $applicant = new Applicant($_POST["id"],$_POST['idUser'],$_POST["idCompetition"],$_POST["applicantDate"],$_POST["merit"],$_POST["state"]);
             $applicant->Post();
         break;
         //Update 

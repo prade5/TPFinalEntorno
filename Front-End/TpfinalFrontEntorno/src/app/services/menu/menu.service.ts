@@ -19,9 +19,9 @@ export class MenuService {
       return this.GetHeadoftheChair();
     } else if (role === ('postulante').toLowerCase()) {
       return this.GetApplicant();
-    } else {     
+    } else {
       return  'error';
-    }     
+    }
   }
   private  GetAdmin(){
     this.menunav=[
@@ -36,9 +36,9 @@ export class MenuService {
       //   active:"Competition"
       // },
       {
-        url:"/Applicant",
+        url:"/ApplicantWinner",
         displayName:"Declarar resultado",
-        active:"Applicant"
+        active:"ApplicantWinner"
       },
       {
         url:"/jefedecatedra_materia",
@@ -100,5 +100,5 @@ export class MenuService {
       }
     ]
     return this.menunav;
-  } 
+  }
 }

@@ -30,11 +30,6 @@ export class MenuService {
         displayName:"Crear usuario",
         active:"active User"
       },
-      // {
-      //   url:"/Competition",
-      //   displayName:"Crear concurso",
-      //   active:"Competition"
-      // },
       {
         url:"/ApplicantWinner",
         displayName:"Declarar resultado",
@@ -49,6 +44,11 @@ export class MenuService {
         url:"/Subject",
         displayName:"Crear materia",
         active:"Subject"
+      },
+      {
+        url:"/Competition",
+        displayName:"Crear concurso",
+        active:"Competition"
       }
     ]
     return this.menunav;

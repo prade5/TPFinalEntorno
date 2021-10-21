@@ -59,7 +59,7 @@ CREATE TABLE `competitions` (
   `state` int(11) NOT NULL,
   `idUser` bigint(20) NOT NULL,
   `idPosition` bigint(20) NOT NULL,
-  `winner` tinyint(1) NOT NULL
+  `winner` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --

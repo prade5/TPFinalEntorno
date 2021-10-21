@@ -7,22 +7,25 @@
             if(isset($_GET['id'])){
                 Applicant::GetById($_GET['id']);
             }
-            else{   
+            if(isset($_GET['idUser'])){   
                 $idUser = empty($_GET['idUser']) == 0 ? $_GET['idUser'] : 0;  
                 Applicant::Get($idUser);
+            }
+            if(isset($_GET['idComp'])){
+                Applicant::GetAllByComp($_GET['idComp']);
             }
         break;
         //Create 
         case'POST':
             $_POST= json_decode(file_get_contents('php://input'), true);            
-            $applicant = new Applicant($_POST["id"],$_POST['idUser'],$_POST["idCompetition"],$_POST["applicantDate"],$_POST["state"]);
+            $applicant = new Applicant($_POST["id"],$_POST['idUser'],$_POST["idCompetition"],$_POST["applicantDate"],$_POST["merit"],$_POST["state"]);
             $applicant->Post();
         break;
         //Update 
         case'PUT':
             $_PUT = json_decode(file_get_contents('php://input'), true);
             $applicant = new Applicant($_PUT["id"],$_PUT['idUser'],$_PUT["idCompetition"],$_PUT["applicantDate"],$_PUT["state"],$_PUT["merit"]);
-            $applicant->Put($_GET['id']);       
+            $applicant->Put($_GET['id']);  
         break;
         //Delete 
         case'DELETE':

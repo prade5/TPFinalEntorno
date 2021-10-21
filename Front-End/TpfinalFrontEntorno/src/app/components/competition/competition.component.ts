@@ -25,8 +25,6 @@ export class CompetitionComponent implements OnInit {
     this.GetAll();
   }
 
-
-
   GetAll(){
     this.comp.GetAll().subscribe((comp) =>{
       this.complist = comp;

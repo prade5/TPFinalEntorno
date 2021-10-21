@@ -58,17 +58,18 @@ CREATE TABLE `competitions` (
   `finalDate` datetime NOT NULL DEFAULT current_timestamp(),
   `state` int(11) NOT NULL,
   `idUser` bigint(20) NOT NULL,
-  `idPosition` bigint(20) NOT NULL
+  `idPosition` bigint(20) NOT NULL,
+  `winner` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `competitions`
 --
 
-INSERT INTO `competitions` (`id`, `idSubject`, `description`, `creationDate`, `finalDate`, `state`, `idUser`, `idPosition`) VALUES
-(33, 6, 'Prueba', '2021-06-24 01:30:00', '2021-07-30 01:30:00', 1, 21, 2),
-(34, 6, 'pr', '2021-06-25 00:32:00', '2021-07-30 00:32:00', 1, 21, 4),
-(35, 5, 'Puesto', '2021-09-01 12:11:00', '2021-10-01 12:11:00', 1, 21, 4);
+INSERT INTO `competitions` (`id`, `idSubject`, `description`, `creationDate`, `finalDate`, `state`, `idUser`, `idPosition`,`winner`) VALUES
+(33, 6, 'Prueba', '2021-06-24 01:30:00', '2021-07-30 01:30:00', 1, 21, 2, 0),
+(34, 6, 'pr', '2021-06-25 00:32:00', '2021-07-30 00:32:00', 1, 21, 4, 0),
+(35, 5, 'Puesto', '2021-09-01 12:11:00', '2021-10-01 12:11:00', 1, 21, 4, 0);
 
 -- --------------------------------------------------------
 

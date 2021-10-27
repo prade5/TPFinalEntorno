@@ -14,6 +14,7 @@ import {MessageService} from "../../services/message/message.service";
 import Swal from "sweetalert2";
 import { Constant } from 'src/app/classes/constant';
 import { LoadscriptService } from 'src/app/services/loadScript/loadscript.service';
+import { AuthService } from '../../services/auth/auth.service';
 
 
 @Component({
@@ -30,7 +31,7 @@ export class HomeComponent implements OnInit {
   curUserRole: string;
 
   constructor(private comp: CompetitionService, private router: Router, 
-    private loadscript: LoadscriptService) {
+    private loadscript: LoadscriptService, private userFinder: TaskService, private auth:AuthService) {
   }
 
   ngOnInit(): void {
@@ -38,13 +39,16 @@ export class HomeComponent implements OnInit {
   }
 
   GetAll(){
-    this.comp.GetAll().subscribe((comp) =>{
+    let isconected = this.auth.isAuthenticated();
+    this.curUserId = isconected === true ? this.userFinder.GetIdUser(): 0;
+    let role = isconected === true ? (this.curUserRole  == 'admin' ? true : false): true;
+    
+    this.comp.GetAll(role, this.curUserId).subscribe((comp) =>{
       this.complist = comp;
     });
   }
 
-  inscribe(conId) {  
-    debugger;  
+  inscribe(conId) {   
     localStorage.setItem(Constant.IspostulateOut, this.loadscript.Encrypt(conId));
     this.router.navigate(['Account']);
   }

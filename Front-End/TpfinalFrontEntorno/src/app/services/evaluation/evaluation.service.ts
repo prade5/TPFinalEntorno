@@ -14,6 +14,7 @@ export class EvaluationService {
   }
 
   PostWinner(data){
+    debugger;
     return this.http.put(`${environment.api_url}evaluation.php`,JSON.stringify(data));
   }
 }

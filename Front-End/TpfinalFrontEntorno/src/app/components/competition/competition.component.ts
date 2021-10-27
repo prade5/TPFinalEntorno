@@ -26,20 +26,11 @@ export class CompetitionComponent implements OnInit {
   }
 
   GetAll(){
-    this.comp.GetAll().subscribe((comp) =>{
-      this.complist = comp;
+    let role = this.curUserRole  == 'admin' ? true : false;
       Active();
-    });
-    if( this.curUserRole === 'admin' ) {
-      this.comp.GetAll().subscribe(result => {
+      this.comp.GetAll(role, this.curUserId).subscribe(result => {
         this.complist = JSON.parse(JSON.stringify(result));
       });
-    }
-    else if (this.curUserRole === 'Jefe de Catedra') {
-      this.comp.GetByUserId(this.curUserId).subscribe(result => {
-        this.complist = JSON.parse(JSON.stringify(result));
-      });
-    }
   }
 
   getIdUser(){

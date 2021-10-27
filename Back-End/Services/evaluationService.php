@@ -18,14 +18,14 @@ class Evaluation extends genericMethod{
     public function YouWin(){
         try{
             $cnn = Connection();
-            $vSql = "update applicants set state = 3 where idUser=$this->idUser and idCompetition= $this->idCompetition";
+            $vSql = "update applicants set state = 3 where idUser=$this->idUser and idCompetition=$this->idCompetition";
 
-            $result =  mysqli_query($cnn, $vSql) or die (mysqli_error($cnn));
+            $result =  mysqli_query($cnn, $vSql);
 
             if($result){
-                $this->everyoneElseLoses();
-                $this->updateCompetition();
-                $this->ReturnReponse(SUCCESS_RESPONSE, "El ganador fue declarado.");
+                // $this->everyoneElseLoses();
+                // $this->updateCompetition();
+                $this->ReturnReponse(SUCCESS_RESPONSE, "El ganador del concurso fue declarado.");
             }
             else{
                 $this->ReturnReponse(ERROR_RESPONSE, "El ganador no fue declarado.");

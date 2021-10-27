@@ -80,7 +80,7 @@
                {{user.mail}}
             </td>
             <td>
-                {{user.creationDate}}
+                {{user.creationDate | date:'dd/MM/yyyy  HH:mm'}}
             </td>
             <td>
                 {{user.phone}}
@@ -89,6 +89,7 @@
                 {{user.position}}
             </td>
             <td>
+                <button pButton pRipple icon="pi pi-eye" aria-label="Cambioderol" title="Ver profil" class="p-button-rounded p-button-secondary p-mr-2" [routerLink]="['/User/perfil/'+ user.id]"></button>
                 <button pButton pRipple icon="pi pi-user" aria-label="Cambioderol" title="Cambio de rol" class="p-button-rounded p-button-primary p-mr-2"  (click)="ChangeRole(user.id)"></button>
                 <button pButton pRipple icon="pi pi-pencil" aria-label="Editar" title="Actualizar usuario" class="p-button-rounded p-button-success p-mr-2"  [routerLink]="['/User/ActionUser/'+ user.id]"></button>
                 <button pButton pRipple icon="pi pi-trash" aria-label="Eliminar" title="Eliminar usuario" class="p-button-rounded p-button-warning" (click)="Delete(user.id)"></button>

@@ -59,11 +59,13 @@ export class AplicantWinnerComponent implements OnInit {
           idUser: idUserG,
           idCompetition: idCompetitionG
         }
+        debugger;
         this.evaluation.PostWinner(this.data).subscribe((data2: any) => {
+          debugger;
             if (data2.response.status === 200){
               Swal.fire(
                 'Finalizado!',
-                'El ganador del concurso fue declarado',
+                data2.response.message,
                 'success'
               ).then((result) =>{
                 this.router.navigate(['/Competition']);
@@ -83,6 +85,11 @@ export class AplicantWinnerComponent implements OnInit {
   }
 
   CambiarMerito(aplicant){
+    debugger; 
+    if(aplicant.merit > 11){
+      this.messageService.Error("Error", "El merito no se puede ser mayor que 10");
+      return;
+    }
     this.applicant.Put(aplicant).subscribe((data2: any) => {
         if (data2.response.status === 200){
           Swal.fire(

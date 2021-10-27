@@ -47,6 +47,9 @@ export class ActioncompetitionComponent implements OnInit {
   dateFinalBind: string;
   isDisabled: boolean = false;
   validDates: boolean = true;
+  rolactual: string;
+  isadmCreateJC: boolean = false;
+  idselectmateria:number = 0;
 
   constructor(private competitionService: CompetitionService, private subjectService: SubjectService, private positionService: PositionService, private fb: FormBuilder,
               private messageService: MessageService, private route: ActivatedRoute, private userFinder: TaskService,
@@ -73,6 +76,7 @@ export class ActioncompetitionComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.rolactual = this.userFinder.GetRole();
     this.initForm();
     this.GetAllJefeCatedra();
   }
@@ -89,11 +93,11 @@ export class ActioncompetitionComponent implements OnInit {
     this.browserForm = this.fb.group({
       id: 0,
       idSubject: ['', [Validators.required]],
-      description: ['', Validators.required],
+      description: '',
       creationDate: ['', Validators.required],
       finalDate: ['', Validators.required],
       state: 1,
-      idUser: this.userFinder.GetIdUser(),
+      idUser:'',
       idPosition: ['', Validators.required]
     });
   }
@@ -111,13 +115,21 @@ export class ActioncompetitionComponent implements OnInit {
   }
   
   selectEvent(item:any) {
+    this.idselectmateria = item.id;
+  }
+
+  selectPosition(item:any) {
     debugger;
-    this.initialValuesubject = null;
-    this.catedras= [];
-    this.jefeservice.GetAllByAdmin(item.id).subscribe(result => {
-      debugger;
-      this.subject = JSON.parse(JSON.stringify(result));
-    });
+    if(this.rolactual === 'admin' && item.name !== 'Jefe de Catedra' && this.idselectmateria > 0){
+      this.isadmCreateJC = true;
+      this.jefeservice.GetAllByAdmin(this.idselectmateria).subscribe(result => {
+        debugger;
+        this.subject = JSON.parse(JSON.stringify(result));
+      });
+    }
+    else{
+      this.isadmCreateJC = false;
+    }
   }
 
   isValidField(field: string): string{
@@ -130,15 +142,8 @@ export class ActioncompetitionComponent implements OnInit {
   getMaterias() {
     // if(this.curUserRole === 'admin') {
       this.subjectService.GetAll().subscribe(result => {
-        debugger;
         this.catedras = JSON.parse(JSON.stringify(result));
       });
-    // }
-    // else if (this.curUserRole === 'jefe carrera') {
-    //   this.subjectService.GetByUserId(this.curUserId).subscribe(result => {
-    //     this.catedras = JSON.parse(JSON.stringify(result));
-    //   });
-    // }
   }
 
   getPosiciones() {
@@ -205,13 +210,14 @@ GetJCMAdmin(id){
 }
   Create(){
     debugger;
+    // this.rolactual === 'admin' ? '' : this.userFinder.GetIdUser()
     if (this.browserForm.valid) {
       var competition ={
         id:this.browserForm.value.id,
-        idPosition:this.browserForm.value.idPosition.id,
-        idSubject:this.browserForm.value.	idSubject.id,
+        idPosition:parseInt(this.browserForm.value.idPosition.id),
+        idSubject:parseInt(this.browserForm.value.	idSubject.id),
         description:this.browserForm.value.description,
-        idUser:this.browserForm.value.idUser.idUser!= undefined ? this.browserForm.value.idUser.idUser : this.browserForm.value.idUser,
+        idUser: this.browserForm.value.idUser === "" ? this.curUserId : (this.browserForm.value.idUser.idUser!= undefined ? this.browserForm.value.idUser.idUser : this.browserForm.value.idUser),
         creationDate:this.browserForm.value.creationDate,
         finalDate:this.browserForm.value.finalDate,
         state:this.browserForm.value.state

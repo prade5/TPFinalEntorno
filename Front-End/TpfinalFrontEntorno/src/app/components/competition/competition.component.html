@@ -21,31 +21,37 @@
           <th pSortableColumn="id">
                 <div class="p-d-flex p-jc-between p-ai-center">
                     Codigo
-                    <p-sortIcon field="id"></p-sortIcon>
+                    <!-- <p-sortIcon field="id"></p-sortIcon> -->
                 </div>
             </th>
             <th pSortableColumn="materia">
                 <div class="p-d-flex p-jc-between p-ai-center">
                     Materia
-                    <p-sortIcon field="materia"></p-sortIcon>
+                    <!-- <p-sortIcon field="materia"></p-sortIcon> -->
                 </div>
             </th>
             <th pSortableColumn="puesto">
                 <div class="p-d-flex p-jc-between p-ai-center">
                     Puesto
-                    <p-sortIcon field="puesto"></p-sortIcon>
+                    <!-- <p-sortIcon field="puesto"></p-sortIcon> -->
                 </div>
             </th>
             <th pSortableColumn="creationDate">
                 <div class="p-d-flex p-jc-between p-ai-center">
                     Fecha de creación
-                    <p-sortIcon field="creationDate"></p-sortIcon>
+                    <!-- <p-sortIcon field="creationDate"></p-sortIcon> -->
                 </div>
             </th>
             <th pSortableColumn="finalDate">
                 <div class="p-d-flex p-jc-between">
                     Fecha de finalización
-                    <p-sortIcon field="finalDate"></p-sortIcon>
+                    <!-- <p-sortIcon field="finalDate"></p-sortIcon> -->
+                </div>
+            </th>
+            <th pSortableColumn="finalDate">
+                <div class="p-d-flex p-jc-between">
+                   Estado
+                    <!-- <p-sortIcon field="finalDate"></p-sortIcon> -->
                 </div>
             </th>
             <th>
@@ -71,18 +77,21 @@
             </td>
             <td>
                 {{competition.finalDate | date: 'dd/MM/yyyy'}}
+            </td>            
+            <td>
+                {{competition.isActive == true ? 'Activo' : 'Finalizado'}}
             </td>
             <td>
-              <button pButton pRipple icon="pi pi-search" aria-label="Buscar" class="p-button-rounded p-button-success p-mr-2"  [routerLink]="['/ActionCompetition/'+ competition.id + 'v']"></button>
-              <button pButton pRipple icon="pi pi-user" aria-label="Ver Postulantes" class="p-button-rounded p-button-success" [attr.disabled]="competition.state === '2'? true : null"  [routerLink] = " ['/Competition/ApplicantWinner/'+ competition.id] "></button>
-              <button pButton pRipple icon="pi pi-pencil" aria-label="Editar" class="p-button-rounded p-button-success p-mr-2"   [attr.disabled]="competition.state === '2'? true : null" [routerLink]="['/Competition/ActionCompetition/'+ competition.id]"></button>
-              <button pButton pRipple icon="pi pi-trash" aria-label="Eliminar" class="p-button-rounded p-button-warning" [attr.disabled]="competition.state === '2'? true : null"  (click)="Delete(competition.id)"></button>
+              <button pButton pRipple icon="pi pi-search" aria-label="Buscar" title="Ver detalle" class="p-button-rounded p-button-success p-mr-2"  [routerLink]="['/Detalle/'+ competition.id]"></button>
+              <button pButton pRipple icon="pi pi-user" aria-label="Ver Postulantes" title="Declarar ganador" class="p-button-rounded p-button-success" [attr.disabled]="competition.state === '2'? true : null"  [routerLink] = " ['/Competition/ApplicantWinner/'+ competition.id] "></button>
+              <button pButton pRipple icon="pi pi-pencil" aria-label="Editar" title="Modificar concurso" class="p-button-rounded p-button-success p-mr-2"   [attr.disabled]="competition.state === '2'? true : null" [routerLink]="['/Competition/ActionCompetition/'+ competition.id]"></button>
+              <button pButton pRipple icon="pi pi-trash" aria-label="Eliminar" title="{{competition.isActive === true ? 'Eliminar concurso': 'Concurso finalizado'}}" class="p-button-rounded p-button-warning" [attr.disabled]="competition.isActive !== true? true : null"  (click)="Delete(competition.id)"></button>
           </td>
         </tr>
     </ng-template>
     <ng-template pTemplate="emptymessage">
         <tr>
-            <td colspan="8">No hay permiso.</td>
+            <td colspan="8">No hay concurso creado.</td>
         </tr>
     </ng-template>
     </p-table>

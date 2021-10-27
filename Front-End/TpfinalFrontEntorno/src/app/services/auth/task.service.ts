@@ -50,13 +50,14 @@ export class TaskService {
     return this.loadscript.Decrypt(localStorage.getItem(Constant.roleUser));
   }
   public GetIspostulateOut() {
-    return localStorage.getItem(Constant.IspostulateOut)!= null ? this.loadscript.Decrypt(localStorage.getItem(Constant.IspostulateOut)): null;
+    const IspostulateOut =localStorage.getItem(Constant.IspostulateOut);
+    return IspostulateOut!= null ? parseInt(this.loadscript.Decrypt(IspostulateOut)): null;
   }
   public RemoveIspostulateOut() {
     return localStorage.removeItem(Constant.IspostulateOut);
   }
   public GetIdUser() {
-    return this.loadscript.Decrypt(localStorage.getItem(Constant.idUser));
+    return parseInt(this.loadscript.Decrypt(localStorage.getItem(Constant.idUser)));
   }
   public GetUserName() {
     return this.loadscript.Decrypt(localStorage.getItem(Constant.loggedUser));

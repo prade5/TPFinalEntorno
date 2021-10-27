@@ -23,10 +23,11 @@ import { ErrorComponent } from './components/error/error.component';
 import { SharedModule } from "./components/shared/shared.module";
 import { AboutComponent } from './components/about/about.component';
 import {CardModule} from "primeng/card";
+import { DetailComponent } from './components/competition/detail/detail.component';
 
 @NgModule({
   declarations: [
-    AppComponent,LoginComponent, HomeComponent, WelcomeComponent, ErrorComponent, AboutComponent,
+    AppComponent,LoginComponent, HomeComponent, WelcomeComponent, ErrorComponent, AboutComponent, DetailComponent,
   ],
   imports: [
     BrowserModule, FormsModule, ReactiveFormsModule,

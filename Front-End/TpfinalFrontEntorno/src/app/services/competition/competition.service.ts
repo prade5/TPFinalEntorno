@@ -11,8 +11,8 @@ export class CompetitionService {
 
   constructor(private http: HttpClient) { }
 
-  GetAll(): Observable<Competition[]> {
-   return this.http.get<Competition[]>(`${environment.api_url}competition.php`);
+  GetAll(role:boolean, iduser:number): Observable<Competition[]> {
+   return this.http.get<any[]>(`${environment.api_url}competition.php?isAdmin=${role}&idAdmin=${iduser}`);
   }
   GetAllPostulation(iduser): Observable<Competition[]> {
     debugger;

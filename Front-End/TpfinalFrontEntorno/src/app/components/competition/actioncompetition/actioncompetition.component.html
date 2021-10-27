@@ -69,14 +69,6 @@
                     <div [innerHTML]="notFound"></div>
                     </ng-template>
                   </div>
-                  <!-- <select  formControlName="idSubject" [attr.disabled]="isDisabled? true : null"  [class]="isValidField('idSubject')" class="form-control" id="idSubject">
-                    <option value="{{doc.id}}" *ngFor ="let doc of catedras"  name="idSubject">{{doc.name}}</option>
-                  </select>
-                  <div class="invalid-feedback" *ngIf="browserForm.get('idSubject').errors?.required">
-                    <span *ngIf="browserForm.get('idSubject').errors?.required">
-                        Debe seleccionar la materia
-                    </span>
-                  </div> -->
                 </div>
                 <div class="form-group col-md-6">
                   <label for="idPosition">Sleccionar un puesto</label>                                 
@@ -88,16 +80,17 @@
                         [initialValue]="initialValueuser"
                         (class)="'jcm'"
                         [class]="isValidField('idPosition')"
+                        (selected)='selectPosition($event)'
                         [searchKeyword]="keywordname"
                         [itemTemplate]="itemTemplate"
                         [notFoundTemplate]="notFoundTemplate">                                 
                     </ng-autocomplete>
 
-                    <div class="invalid-feedback">
+                    <!-- <div class="invalid-feedback">
                       <span *ngIf="browserForm.get('idPosition').errors?.required">
                         Debe Seleccionar jefe de catedra
                       </span>
-                    </div>
+                    </div> -->
 
                     <ng-template #itemTemplate let-item>
                     <a [innerHTML]="item.firstName" #object></a>
@@ -117,7 +110,7 @@
                   </div> -->
                 </div>
               </div>
-              <!-- <div class="form-row">  
+              <div class="form-row" *ngIf='isadmCreateJC'>  
                 <label>Jefe catedra</label>  
                  <div class="form-group col-md-12">                     
                     <div class="ng-autocomplete userselect">
@@ -150,21 +143,21 @@
                     </div>
                  </div>
 
-              </div> -->
+              </div>
               <div class="form-row">
                 <div class="form-group col-md-12">
                   <label for="description">Requisitos</label>
                   <textarea class="form-control" rows="7" [attr.disabled]="isDisabled? true : null"  [formGroup]="browserForm" formControlName="description"  id="description" name="description" placeholder="Descripcion"></textarea>
                 </div>
-                <div class="invalid-feedback">
+                <!-- <div class="invalid-feedback">
                     <span *ngIf="browserForm.get('description').errors?.required">
                         Debe ingresar una descripcion
                     </span>
-                </div>
+                </div> -->
               </div>
               <div class="float-right mb-3">
                 <button [routerLink]="['/Competition']" class="btn btn-primary mr-3">Cancelar</button>
-                <button type="submit" [hidden]="isDisabled || !validDates" class="btn btn-primary">{{OptionBtn == false ? "Guardar" : "Actualizar"}}</button>
+                <button type="submit" class="btn btn-primary">{{OptionBtn == false ? "Guardar" : "Actualizar"}}</button>
               </div>
             </form>
           </div>

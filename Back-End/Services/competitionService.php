@@ -13,9 +13,8 @@
         private $finalDate;
         private $state;
         private $idPosition;
-        private $winner;
 
-        public function __construct ($id, $idUser,$idSubject, $description, $creationDate, $finalDate, $state, $idPosition, $winner){
+        public function __construct ($id, $idUser,$idSubject, $description, $creationDate, $finalDate, $state, $idPosition){
             #region initial
             $this->id = $id;
             $this->idUser = $idUser;
@@ -25,19 +24,37 @@
             $this->finalDate = $finalDate;
             $this->state = $state;
             $this->idPosition = $idPosition;
-            $this->winner = $winner;
             #endregion
         }
 
         //method     
-        public static function Get(){             
+        public static function Get($isAdmin= true, $_idUser = 0){             
             $cnn = Connection();
-            $query = "select comp.*, sub.name as materia, sub.img, pos.name as puesto from competitions comp inner join subjects sub on comp.idSubject = sub.id  inner join positions pos on comp.idPosition = pos.id where (comp.state = 1 or comp.state = 3) and pos.state = 1 ORDER BY comp.id DESC";
+            $select ="";
+            if($isAdmin === "true"){
+                $select = "comp.state = 1 or comp.state = 3";
+            }
+            else{
+                $select = "(comp.state = 1 or comp.state = 3) and comp.idUser = $_idUser";
+            }
+            $query = "select comp.*, sub.name as materia, sub.img, pos.name as puesto from competitions comp inner join subjects sub on comp.idSubject = sub.id  
+            inner join positions pos on comp.idPosition = pos.id where $select and pos.state = 1 ORDER BY comp.finalDate DESC";
             $users = mysqli_query($cnn,$query);
             $userList = [];
 
             while($reg = mysqli_fetch_array($users,MYSQLI_ASSOC)){
-                $userList[] = $reg;
+
+                $today = date("Y-m-d");
+                $today_dt = new DateTime($today);
+                $expire_dt = new DateTime($reg["finalDate"]);
+
+                $finalDatecompare = $expire_dt > $today_dt ? true : false;
+
+                $miArray = array("id"=>$reg["id"],"idSubject"=>$reg["idSubject"],"description"=>$reg["description"],"isActive"=>$finalDatecompare,
+                "creationDate"=>$reg["creationDate"],"finalDate"=>$reg["finalDate"],"state"=>$reg["state"],"idUser"=>$reg["idUser"],
+                "idPosition"=>$reg["idPosition"],"materia"=>$reg["materia"],"puesto"=>$reg["puesto"],"img"=>$reg["img"]);
+                
+                $userList[] = $miArray;
             }
 
             $finalList = json_encode($userList);
@@ -74,47 +91,29 @@
             {  
                 $sum = $sum + 1;                
                 $Ispostulate = genericMethod::ChechIsPostulate($id, $value["id"]);
-                if($Ispostulate){
-                    $miArray = array(
-                        "creationDate"=>$value["creationDate"], 
-                        "description"=>$value["description"], 
-                        "finalDate"=>$value["finalDate"], 
-                        "id"=>$value["id"], 
-                        "idPosition"=>$value["idPosition"], 
-                        "idSubject"=>$value["idSubject"], 
-                        "idUser"=>$value["idUser"], 
-                        "img"=>$value["img"],
-                        "materia"=>$value["materia"],
-                        "puesto"=>$value["puesto"],
-                        "state"=>$value["state"],
-                        "isPostulate"=>true
-                    );
-                    echo json_encode($miArray);
-                }
-                else{
-                    $miArray = array(
-                        "creationDate"=>$value["creationDate"], 
-                        "description"=>$value["description"], 
-                        "finalDate"=>$value["finalDate"], 
-                        "id"=>$value["id"], 
-                        "idPosition"=>$value["idPosition"], 
-                        "idSubject"=>$value["idSubject"], 
-                        "idUser"=>$value["idUser"], 
-                        "img"=>$value["img"],
-                        "materia"=>$value["materia"],
-                        "puesto"=>$value["puesto"],
-                        "state"=>$value["state"],
-                        "isPostulate"=>false
-                    );
-                    echo json_encode($miArray);
-                }
+               
+                $miArray = array(
+                    "creationDate"=>$value["creationDate"], 
+                    "description"=>$value["description"], 
+                    "finalDate"=>$value["finalDate"], 
+                    "id"=>$value["id"], 
+                    "idPosition"=>$value["idPosition"], 
+                    "idSubject"=>$value["idSubject"], 
+                    "idUser"=>$value["idUser"], 
+                    "img"=>$value["img"],
+                    "materia"=>$value["materia"],
+                    "puesto"=>$value["puesto"],
+                    "state"=>$value["state"],
+                    "isPostulate"=>$Ispostulate
+                );
+                echo json_encode($miArray);
+               
+                
                 if ($sum < count($userList)) {
                     echo(",");
                 }
             }
             echo("]");
-            // $finalList = json_encode($userList);
-            // echo $finalList;
         }
         public static function GetByUserId($Id){
             $cnn = Connection();
@@ -140,14 +139,14 @@
                 $this->ValidateParameter('idUser', $this->idUser, INTEGER);
                 $this->ValidateParameter('idPosition', $this->idPosition, INTEGER);
                 $this->ValidateParameter('state', $this->state, INTEGER);
-                $this->ValidateParameter('description', $this->description, STRING);
+                // $this->ValidateParameter('description', $this->description, STRING);
                 $this->ValidateParameter('creationDate', $this->creationDate, STRING);
                 $this->ValidateParameter('creationDate', $this->finalDate, STRING);
 //                $this->checkNonerepeat('competitions', 'idSubject', $this->idSubject, "Ya tiene un concurso vigente para esa materia");
 
-                $vSql = "INSERT INTO competitions (idSubject, description, creationDate, finalDate, state, idUser, idPosition) VALUES ($this->idSubject, '$this->description', '$this->creationDate', '$this->finalDate', '1', $this->idUser, $this->idPosition)";
+                $vSql = "INSERT INTO competitions (idSubject, description, creationDate, finalDate, state, idUser, idPosition) VALUES ($this->idSubject, '$this->description', '$this->creationDate', '$this->finalDate', 1, $this->idUser, $this->idPosition)";
 
-                $result =  mysqli_query($cnn, $vSql) or die (mysqli_error($cnn));
+                $result =  mysqli_query($cnn, $vSql);
 
                 if($result){
                     $this->ReturnReponse(SUCCESS_RESPONSE, "El concurso fue guardado con exito.");
@@ -171,7 +170,7 @@
                                             idUser= $this->idUser,  idPosition= $this->idPosition
                                         where id = $id ";
 
-                $result =  mysqli_query($cnn, $vSql) or die (mysqli_error($cnn));
+                $result =  mysqli_query($cnn, $vSql);
 
                 if($result){
                     $this->ReturnReponse(SUCCESS_RESPONSE, "El concurso fue modificado con exito.");

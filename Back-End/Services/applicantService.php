@@ -116,7 +116,7 @@
                                 inner join subjects s on s.id = c.idSubject
                                 inner join positions p on p.id = c.idPosition
                                 inner join users u on a.idUser = u.id
-                                where winner = 0");
+                                where a.state != 3");
 
             if($idComp != 0)
                 $users = $users + " and c.id = ".$idComp;

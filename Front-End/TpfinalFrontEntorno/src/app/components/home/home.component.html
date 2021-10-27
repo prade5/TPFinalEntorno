@@ -49,108 +49,16 @@
       <div class="card-body h-50">
         <h5 class="card-title"><strong>Materia: {{comp.materia}}</strong></h5>
         <h5 class="card-title"><strong>Posicion: {{comp.puesto}}</strong></h5>
-        <h5 class="card-title"><strong>Fecha de Cierre: {{comp.finalDate | date: 'shortDate'}}</strong></h5>
+        <h5 class="card-title"><strong>Fecha de Cierre: {{comp.finalDate | date: 'dd/MM/yyyy'}}</strong></h5>
         <div class="card-text  overflow-auto" style="height: 19vh;">
           {{comp.description}}
         </div>
       </div>
       <div class="card-footer">
-        <button type="button" (click)="inscribe(comp.id)" class="btn btn-primary col">Postularse</button>
+        <button type="button" [attr.disabled]="comp.isActive !== true? true : null" (click)="inscribe(comp.id)" class="btn btn-primary col">{{comp.isActive === true ? 'Postularse' : 'Finalizado'}}</button>
       </div>
     </div>
   </div>
-
-
-<!--  <div class="col mb-4">-->
-<!--    <div class="card h-100">-->
-<!--      <img src="../assets/img/quimica.jpg" class="card-img-top" alt="Quimica">-->
-<!--      <div class="card-body">-->
-<!--        <h5 class="card-title"><strong>Materia: Quimica</strong></h5>-->
-<!--        <h5 class="card-subtitle"><strong>Fecha de Cierre: 12/09/2020</strong></h5>-->
-<!--        <h5><strong>Requisitos:</strong></h5>-->
-<!--        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional-->
-<!--          content. This content is a little bit longer.</p>-->
-<!--      </div>-->
-<!--      <div class="card-footer">-->
-<!--        <button type="button" class="btn btn-primary col">Aplicar</button>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  </div>-->
-<!--  <div class="col mb-4">-->
-<!--    <div class="card h-100">-->
-<!--      <img src="../assets/img/so.jpg" class="card-img-top" alt="Sistema operativo">-->
-<!--      <div class="card-body">-->
-<!--        <h5 class="card-title"><strong>Materia: SO</strong></h5>-->
-<!--        <h5 class="card-subtitle"><strong>Fecha de Cierre: 12/09/2021</strong></h5>-->
-<!--        <h5><strong>Requisitos:</strong></h5>-->
-<!--        <div class="card-text">This is a longer card with supporting text below as a natural lead-in to additional-->
-<!--          content. This content is a little bit longer.</div>-->
-<!--      </div>-->
-<!--      <div class="card-footer">-->
-<!--        <button type="button" class="btn btn-primary col">Aplicar</button>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  </div>-->
-<!--  <div class="col mb-4">-->
-<!--    <div class="card h-100">-->
-<!--      <img src="../assets/img/tc.jpg" class="card-img-top" alt="Teorica de control">-->
-<!--      <div class="card-body">-->
-<!--        <h5 class="card-title"><strong>Materia:Teoria de control</strong></h5>-->
-<!--        <h5 class="card-subtitle"><strong>Fecha de Cierre: 12/06/2021</strong></h5>-->
-<!--        <h5><strong>Requisitos:</strong></h5>-->
-<!--        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional-->
-<!--          content. This content is a little bit longer.</p>-->
-<!--      </div>-->
-<!--      <div class="card-footer">-->
-<!--        <button type="button" class="btn btn-primary col">Aplicar</button>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  </div>-->
-<!--  <div class="col mb-4">-->
-<!--    <div class="card h-100">-->
-<!--      <img src="../assets/img/php.jpg" class="card-img-top" alt="Entorno grafica">-->
-<!--      <div class="card-body">-->
-<!--        <h4 class="card-title">Materia: Entorno grafica</h4>-->
-<!--        <h5 class="card-subtitle"><strong>Fecha de Cierre: 12/06/2021</strong></h5>-->
-<!--        <h5><strong>Requisitos:</strong></h5>-->
-<!--        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional-->
-<!--          content. This content is a little bit longer.</p>-->
-<!--      </div>-->
-<!--      <div class="card-footer">-->
-<!--        <button type="button" class="btn btn-primary col">Aplicar</button>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  </div>-->
-<!--  <div class="col mb-4">-->
-<!--    <div class="card h-100">-->
-<!--      <img src="../assets/img/ed.jpg" class="card-img-top" alt="Estructura de datos">-->
-<!--      <div class="card-body">-->
-<!--        <h4 class="card-title">Materia:Estructura de datos</h4>-->
-<!--        <h5 class="card-subtitle"><strong>Fecha de Cierre: 12/06/2021</strong></h5>-->
-<!--        <h5><strong>Requisitos:</strong></h5>-->
-<!--        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional-->
-<!--          content. This content is a little bit longer.</p>-->
-<!--      </div>-->
-<!--      <div class="card-footer">-->
-<!--        <button type="button" class="btn btn-primary col">Aplicar</button>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  </div>-->
-<!--  <div class="col mb-4">-->
-<!--    <div class="card h-100">-->
-<!--      <img src="../assets/img/Economia.jpg" class="card-img-top" alt="Economia">-->
-<!--      <div class="card-body">-->
-<!--        <h4 class="card-title">Materia:Economia</h4>-->
-<!--        <h5 class="card-subtitle"><strong>Fecha de Cierre: 12/06/2021</strong></h5>-->
-<!--        <h5><strong>Requisitos:</strong></h5>-->
-<!--        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional-->
-<!--          content. This content is a little bit longer.</p>-->
-<!--      </div>-->
-<!--      <div class="card-footer">-->
-<!--        <button type="button" class="btn btn-primary col" >Aplicar</button>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  </div>-->
 </div>
 <app-footer></app-footer>
 

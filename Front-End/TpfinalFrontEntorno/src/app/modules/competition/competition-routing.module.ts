@@ -6,6 +6,7 @@ import { ActioncompetitionComponent } from 'src/app/components/competition/actio
 import { AplicantWinnerComponent } from 'src/app/components/competition/applicantwinner/applicantwinner.component';
 import { CompetitionComponent } from 'src/app/components/competition/competition.component';
 import { PostulationComponent } from 'src/app/components/postulation/postulation.component';
+import { DetailComponent } from '../../components/competition/detail/detail.component';
 
 const routes: Routes = [
   {
@@ -32,6 +33,11 @@ const routes: Routes = [
     path: 'ApplicantWinner/:id',
     component: AplicantWinnerComponent,
     data: {title: 'Bienvenido a declarar ganador'}
+  },
+  {
+    path: 'Detalle/:id',
+    component: DetailComponent,
+    data: {title: 'Detalle del concurso'}
   }
 ];
 

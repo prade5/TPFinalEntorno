@@ -72,6 +72,7 @@ export class ActionuserComponent implements OnInit {
 
 GetById(id){
   this.userService.GetById(id).subscribe(result =>{
+    debugger;
     this.user = JSON.parse(JSON.stringify(result));
     this.browserForm.patchValue(this.user);
   })

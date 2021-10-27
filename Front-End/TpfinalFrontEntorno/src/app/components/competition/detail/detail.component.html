@@ -1,0 +1,183 @@
+<section id="cover">
+    <div id="cover-caption">
+      <div class="container">
+        <div class="row text-white">
+          <div class="col-xl-10 col-lg-6 col-md-8 col-sm-10 mx-auto text-center form">
+            <h1 class="display-4 py-2 text-truncate">Detalle Concurso</h1>
+            <div class="px-4">
+              <form class="justify-content-center">                
+
+                <div class="form-row">
+                  <div class="form-group col-md-12">
+                    <dl>
+                        <td> <strong>Nombre </strong> </td>
+                        <dd> <strong>{{ this.Competition.firstName }}</strong></dd>
+                    
+                        <td> <strong> Apellido </strong> </td>
+                        <dd> <strong> {{ this.Competition.lastName }}</strong></dd>
+                    
+                        <td> <strong> Materia </strong> </td>
+                        <dd> <strong>{{ this.Competition.subname }}</strong> </dd>
+                    
+                        <td> <strong> Puesto </strong> </td>
+                        <dd> <strong>{{ this.Competition.posname }}</strong> </dd>
+                        
+                        <td> <strong> Descripcion </strong>  </td>
+                        <dd> <strong>{{ this.Competition.subdescription }}</strong> </dd>
+                        
+                        <td> <strong> Fecha de inicip </strong>  </td>
+                        <dd> <strong>{{ this.Competition.creationDate  | date:'dd/MM/yyyy  HH:mm'}}</strong> </dd>
+                        
+                        <td> <strong> Fecha fin </strong>  </td>
+                        <dd> <strong>{{ this.Competition.finalDate  | date:'dd/MM/yyyy  HH:mm'}}</strong> </dd>
+                    
+                    </dl>
+                        <!-- <label for="inputcreationDate">Fecha de apertura</label>
+                        <input type="datetime-local" [attr.disabled]="isDisabled? true : null" (change)="compareDates()"  class="form-control" id="inputcreationDate" placeholder="Fecha de apertura" name="creationDate"
+                        formControlName="creationDate"  [class]="isValidField('creationDate')" >
+                        <div class="invalid-feedback">
+                        <span *ngIf="browserForm.get('creationDate').errors?.required">
+                            Debe seleccionar la fecha de apertura
+                        </span>
+                        </div>
+                        <div>
+                        <span [attr.hidden]="validDates? true : null"  class="text-danger">
+                            La fecha de creacion debe ser antes de la de finalizacion.
+                        </span>
+                        </div> -->
+                  </div>
+                  <!-- <div class="form-group col-md-6">
+                    <label for="inputfinalDate">Fecha de cierre</label>
+                    <input type="datetime-local" [attr.disabled]="isDisabled? true : null" (change)="compareDates()" class="form-control" id="inputfinalDate" placeholder="Fecha de cierre" name="finalDate"
+                    formControlName="finalDate"  [class]="isValidField('finalDate')" >
+                    <div class="invalid-feedback">
+                      <span *ngIf="browserForm.get('finalDate').errors?.required">
+                          Debe ingresar la fecha de cierre
+                      </span>
+                    </div>
+                    <div>
+                      <span [attr.hidden]="validDates? true : null" class="text-danger">
+                          La fecha de creacion debe ser antes de la de finalizacion.
+                      </span>
+                    </div>
+                  </div> -->
+                </div>
+                <!-- <div class="form-row">
+                  <div class="form-group col-md-6">
+                    <label>Sleccionar una materia</label>                                     
+                    <div class="ng-autocomplete userselect selectSubject">
+                      <ng-autocomplete                                 
+                          [data]="catedras"
+                          formControlName="idSubject"
+                          [initialValue]="initialValuesubject"
+                          [disabled]="isDisabled? true : null"
+                          (class)="'jcm'"
+                          [class]="isValidField('idSubject')"
+                          (selected)='selectEvent($event)'
+                          [searchKeyword]="keywordname"
+                          [itemTemplate]="itemTemplate"
+                          [notFoundTemplate]="notFoundTemplate">                                 
+                      </ng-autocomplete>
+  
+                      <div class="invalid-feedback">
+                        <span *ngIf="browserForm.get('idSubject').errors?.required">
+                          Debe Seleccionar jefe de catedra
+                        </span>
+                      </div>
+  
+                      <ng-template #itemTemplate let-item>
+                      <a [innerHTML]="item.name" #object></a>
+                      </ng-template>
+                      
+                      <ng-template #notFoundTemplate let-notFound>
+                      <div [innerHTML]="notFound"></div>
+                      </ng-template>
+                    </div>
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="idPosition">Sleccionar un puesto</label>                                 
+                    <div class="ng-autocomplete userselect selectSubject">
+                      <ng-autocomplete                                 
+                          [data]="posiciones"
+                          [disabled]="isDisabled? true : null"
+                          formControlName="idPosition"
+                          [initialValue]="initialValueuser"
+                          (class)="'jcm'"
+                          [class]="isValidField('idPosition')"
+                          (selected)='selectPosition($event)'
+                          [searchKeyword]="keywordname"
+                          [itemTemplate]="itemTemplate"
+                          [notFoundTemplate]="notFoundTemplate">                                 
+                      </ng-autocomplete> 
+                    
+  
+                      <ng-template #itemTemplate let-item>
+                      <a [innerHTML]="item.firstName" #object></a>
+                      </ng-template>
+                      
+                      <ng-template #notFoundTemplate let-notFound>
+                      <div [innerHTML]="notFound"></div>
+                      </ng-template>
+                    </div>
+                    <!-- <select formControlName="idPosition" [attr.disabled]="isDisabled? true : null"  [class]="isValidField('idPosition')" class="form-control" id="idPosition">
+                      <option value="{{doc.id}}" *ngFor ="let doc of posiciones"  name="idPosition">{{doc.name}}</option>
+                    </select>
+                    <div class="invalid-feedback" *ngIf="browserForm.get('idPosition').errors?.required">
+                      <span *ngIf="browserForm.get('idPosition').errors?.required">
+                          Debe seleccionar el puesto
+                      </span>
+                    </div> 
+                  </div>
+                </div>
+                <div class="form-row" *ngIf='isadmCreateJC'>  
+                  <label>Jefe catedra</label>  
+                   <div class="form-group col-md-12">                     
+                      <div class="ng-autocomplete userselect">
+                          <ng-autocomplete                                 
+                              [data]="subject"
+                              formControlName="idUser"
+                              [initialValue]="initialValueJCM"
+                              (class)="'jcm'"
+                              [class]="isValidField('idUser')"
+                              [searchKeyword]="keyword"
+                              [itemTemplate]="itemTemplatepos"
+                              [notFoundTemplate]="notFoundTemplatepos">                                 
+                          </ng-autocomplete>
+  
+                          <div class="invalid-feedback">
+                            <span *ngIf="browserForm.get('idUser').errors?.required">
+                              Debe Seleccionar jefe de catedra
+                            </span>
+                          </div>
+  
+                          <ng-template #itemTemplatepos let-item>
+                          <a [innerHTML]="item.firstName" #object></a>
+                          </ng-template>
+                          
+                          <ng-template #notFoundTemplatepos let-NoEncontrado>
+                          <div>
+                            NO hay jefe de catedra asignado para esa materia.
+                          </div>
+                          </ng-template>
+                      </div>
+                   </div>
+  
+                </div>
+                <div class="form-row">
+                  <div class="form-group col-md-12">
+                    <label for="description">Requisitos</label>
+                    <textarea class="form-control" rows="7" [attr.disabled]="isDisabled? true : null"  [formGroup]="browserForm" formControlName="description"  id="description" name="description" placeholder="Descripcion"></textarea>
+                  </div>
+                </div> -->
+                <div class="float-right mb-3">
+                  <button [routerLink]="['/Competition']" class="btn btn-primary mr-3">Cancelar</button>
+                  <!-- <button type="submit" [hidden]="isDisabled || !validDates" class="btn btn-primary">{{OptionBtn == false ? "Guardar" : "Actualizar"}}</button> -->
+                </div>
+
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>

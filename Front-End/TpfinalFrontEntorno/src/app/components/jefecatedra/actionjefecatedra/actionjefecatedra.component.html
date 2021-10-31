@@ -6,11 +6,11 @@
             <h1 class="display-4 py-2 text-truncate">{{Option}}</h1>
             <div class="px-4">
               <form class="justify-content-center"  [formGroup]="browserForm" (ngSubmit)="Create()">
-                <div class="form-row">  
-                    <label>Jefe catedra</label>  
-                     <div class="form-group col-md-12">                     
+                <div class="form-row">
+                    <label>Jefe catedra</label>
+                     <div class="form-group col-md-12">
                         <div class="ng-autocomplete userselect">
-                            <ng-autocomplete                                 
+                            <ng-autocomplete
                                 [data]="usertlist"
                                 formControlName="IdJefeDeCatedra"
                                 [initialValue]="initialValueuser"
@@ -21,7 +21,7 @@
                                 (inputChanged)='onChangeSearch($event)'
                                 (inputFocused)='onFocused($event)'
                                 [itemTemplate]="itemTemplate"
-                                [notFoundTemplate]="notFoundTemplate">                                 
+                                [notFoundTemplate]="notFoundTemplate">
                             </ng-autocomplete>
 
                             <div class="invalid-feedback">
@@ -33,7 +33,7 @@
                             <ng-template #itemTemplate let-item>
                             <a [innerHTML]="item.firstName" #object></a>
                             </ng-template>
-                            
+
                             <ng-template #notFoundTemplate let-notFound>
                             <div [innerHTML]="notFound"></div>
                             </ng-template>
@@ -41,14 +41,13 @@
                      </div>
 
                 </div>
-                
-                <div class="form-row">  
-                    <label>Materia</label>  
-                     <div class="form-group col-md-12">                     
+
+                <div class="form-row">
+                    <label>Materia</label>
+                     <div class="form-group col-md-12">
                         <div class="ng-autocomplete subjselect">
-                            <ng-autocomplete 
+                            <ng-autocomplete
                                 [data]="subjectlist"
-                                [class]="'subject'"
                                 formControlName="IdSubject"
                                 [initialValue]="initialValue"
                                 [class]="isValidField('IdSubject')"
@@ -57,7 +56,7 @@
                                 (inputChanged)='onChangeSearch($event)'
                                 (inputFocused)='onFocused($event)'
                                 [itemTemplate]="itemTemplateuser"
-                                [notFoundTemplate]="notFoundTemplate">                                 
+                                [notFoundTemplate]="notFoundTemplate">
                             </ng-autocomplete>
 
                             <div class="invalid-feedback">
@@ -65,11 +64,11 @@
                                 Debe Seleccionar la materia
                               </span>
                             </div>
-                            
+
                             <ng-template #itemTemplateuser let-subject>
                             <a [innerHTML]="subject.name"></a>
                             </ng-template>
-                            
+
                             <ng-template #notFoundTemplate let-notFound>
                             <div [innerHTML]="notFound"></div>
                             </ng-template>
@@ -87,4 +86,4 @@
       </div>
     </div>
   </section>
-  
+

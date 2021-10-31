@@ -103,7 +103,7 @@
     </ng-template>
 </p-table>
 
-<!--Modal change role-->  
+<!--Modal change role-->
   <!-- Modal -->
   <div class="modal fade" id="exampleModal" data-backdrop="static" data-keyboard="false"  tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
@@ -115,20 +115,20 @@
             <div class="modal-body">
                 <h5 class="card-title  text-center"><strong>Nombre: </strong>{{user?.firstName}}</h5>
                 <h5 class="card-title  text-center"><strong>Apellido: </strong>{{user?.lastName}}</h5>
-                <h5 class="card-title  text-center"><strong>Puesto actual: </strong>{{user?.position}}</h5> 
+                <h5 class="card-title  text-center"><strong>Puesto actual: </strong>{{user?.position}}</h5>
 
                 <div class="form-group col-md-12 justify-content-center">
                   <label for="inputRole" >Seleccionar el nuevo puesto</label>
                   <select  formControlName="idRole"  [class]="isValidField('idRole')" class="form-control" id="inputRole">
                     <option value="">Seleccionar el rol</option>
-                    <option value="{{role.id}}" *ngFor ="let role of rolelist"  name="idRole">{{role.name}}</option>
+                    <option value="{{role.id}}" *ngFor ="let role of rolelist">{{role.name}}</option>
                   </select>
                   <div class="invalid-feedback">
                     <span *ngIf="browserForm.get('idRole').errors?.required">
                         Debe seleccionar un rol
                     </span>
                   </div>
-                </div> 
+                </div>
 
             </div>
             <div class="modal-footer">

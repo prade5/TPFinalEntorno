@@ -9,7 +9,7 @@
               <div class="form-row">
                 <div class="form-group col-md-6">
                   <label for="inputcreationDate">Fecha de apertura</label>
-                  <input type="datetime-local" [attr.disabled]="isDisabled? true : null" (change)="compareDates()"  class="form-control" id="inputcreationDate" placeholder="Fecha de apertura" name="creationDate"
+                  <input type="datetime-local" [attr.disabled]="isDisabled? true : null" (change)="compareDates()"  class="form-control" id="inputcreationDate" name="creationDate"
                   formControlName="creationDate"  [class]="isValidField('creationDate')" >
                   <div class="invalid-feedback">
                     <span *ngIf="browserForm.get('creationDate').errors?.required">
@@ -24,7 +24,7 @@
                 </div>
                 <div class="form-group col-md-6">
                   <label for="inputfinalDate">Fecha de cierre</label>
-                  <input type="datetime-local" [attr.disabled]="isDisabled? true : null" (change)="compareDates()" class="form-control" id="inputfinalDate" placeholder="Fecha de cierre" name="finalDate"
+                  <input type="datetime-local" [attr.disabled]="isDisabled? true : null" (change)="compareDates()" class="form-control" id="inputfinalDate" name="finalDate"
                   formControlName="finalDate"  [class]="isValidField('finalDate')" >
                   <div class="invalid-feedback">
                     <span *ngIf="browserForm.get('finalDate').errors?.required">
@@ -40,9 +40,9 @@
               </div>
               <div class="form-row">
                 <div class="form-group col-md-6">
-                  <label>Sleccionar una materia</label>                                     
+                  <label>Sleccionar una materia</label>
                   <div class="ng-autocomplete userselect selectSubject">
-                    <ng-autocomplete                                 
+                    <ng-autocomplete
                         [data]="catedras"
                         formControlName="idSubject"
                         [initialValue]="initialValuesubject"
@@ -52,7 +52,7 @@
                         (selected)='selectEvent($event)'
                         [searchKeyword]="keywordname"
                         [itemTemplate]="itemTemplate"
-                        [notFoundTemplate]="notFoundTemplate">                                 
+                        [notFoundTemplate]="notFoundTemplate">
                     </ng-autocomplete>
 
                     <div class="invalid-feedback">
@@ -64,16 +64,16 @@
                     <ng-template #itemTemplate let-item>
                     <a [innerHTML]="item.name" #object></a>
                     </ng-template>
-                    
+
                     <ng-template #notFoundTemplate let-notFound>
                     <div [innerHTML]="notFound"></div>
                     </ng-template>
                   </div>
                 </div>
                 <div class="form-group col-md-6">
-                  <label for="idPosition">Sleccionar un puesto</label>                                 
+                  <label for="idPosition">Sleccionar un puesto</label>
                   <div class="ng-autocomplete userselect selectSubject">
-                    <ng-autocomplete                                 
+                    <ng-autocomplete
                         [data]="posiciones"
                         [disabled]="isDisabled? true : null"
                         formControlName="idPosition"
@@ -83,7 +83,7 @@
                         (selected)='selectPosition($event)'
                         [searchKeyword]="keywordname"
                         [itemTemplate]="itemTemplate"
-                        [notFoundTemplate]="notFoundTemplate">                                 
+                        [notFoundTemplate]="notFoundTemplate">
                     </ng-autocomplete>
 
                     <!-- <div class="invalid-feedback">
@@ -95,7 +95,7 @@
                     <ng-template #itemTemplate let-item>
                     <a [innerHTML]="item.firstName" #object></a>
                     </ng-template>
-                    
+
                     <ng-template #notFoundTemplate let-notFound>
                     <div [innerHTML]="notFound"></div>
                     </ng-template>
@@ -110,11 +110,11 @@
                   </div> -->
                 </div>
               </div>
-              <div class="form-row" *ngIf='isadmCreateJC'>  
-                <label>Jefe catedra</label>  
-                 <div class="form-group col-md-12">                     
+              <div class="form-row" *ngIf='isadmCreateJC'>
+                <label>Jefe catedra</label>
+                 <div class="form-group col-md-12">
                     <div class="ng-autocomplete userselect">
-                        <ng-autocomplete                                 
+                        <ng-autocomplete
                             [data]="subject"
                             formControlName="idUser"
                             [initialValue]="initialValueJCM"
@@ -122,7 +122,7 @@
                             [class]="isValidField('idUser')"
                             [searchKeyword]="keyword"
                             [itemTemplate]="itemTemplatepos"
-                            [notFoundTemplate]="notFoundTemplatepos">                                 
+                            [notFoundTemplate]="notFoundTemplatepos">
                         </ng-autocomplete>
 
                         <div class="invalid-feedback">
@@ -134,7 +134,7 @@
                         <ng-template #itemTemplatepos let-item>
                         <a [innerHTML]="item.firstName" #object></a>
                         </ng-template>
-                        
+
                         <ng-template #notFoundTemplatepos let-NoEncontrado>
                         <div>
                           NO hay jefe de catedra asignado para esa materia.

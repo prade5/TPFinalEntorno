@@ -1,5 +1,5 @@
 <div class="container">
-    <div class="main-body">    
+    <div class="main-body">
           <div class="row gutters-sm">
 
             <div class="col-md-4 mb-3">
@@ -86,7 +86,7 @@
                   <hr>
                   <div class="row">
                     <div class="col-sm-12">
-                      <a class="btn btn-info " target="__blank" data-toggle="modal" data-target="#exampleModal" (click)="ActionUpdateUser()">Editar usuario</a>
+                      <a class="btn btn-info " target="_blank" data-toggle="modal" data-target="#exampleModal" (click)="ActionUpdateUser()">Editar usuario</a>
                     </div>
                   </div>
                 </div>
@@ -101,12 +101,12 @@
                       <small>{{kown?.name}}</small>
                       <div class="row col-md-12 col-sm-12">
                         <div class="progress col-md-10 col-sm-12 mb-3  p-0">
-                          <div class="progress-bar bg-primary" role="progressbar" style="width: {{kown?.nivel}}%" aria-valuenow="{{kown?.nivel}}" aria-valuemin="0" aria-valuemax="100"></div>                                               
+                          <div class="progress-bar bg-primary" role="progressbar" style="width: {{kown?.nivel}}%" aria-valuenow="{{kown?.nivel}}" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
                         <div class="col-md-2 col-sm-12 mb-3" style="margin-top: -2.1%;">
                           <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning  float-right" (click)="DeleteKnowlage(kown.id)"></button>
                           <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2  float-right" data-toggle="modal" data-target="#exampleModal" (click)="ActionKnowlage(kown.id)"></button>
-                        </div> 
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -132,7 +132,7 @@
               <div class="col-xl-10 col-lg-6 col-md-8 col-sm-10 mx-auto text-center form">
                 <div class="px-4">
                   <!--Start user-->
-                  <form action="" class="justify-content-center" *ngIf="actionbtn =='user'"  [formGroup]="browserForm" (ngSubmit)="UpdateUser()">
+                  <form class="justify-content-center" *ngIf="actionbtn =='user'"  [formGroup]="browserForm" (ngSubmit)="UpdateUser()">
                     <div class="form-row">
                       <div class="form-group col-md-6">
                         <label for="inputfirstName">Nombre</label>
@@ -170,7 +170,7 @@
                         </div>
                       </div>
                       <div class="form-group col-md-6">
-                        <label for="inputdocnumber">Numero de documento</label>                              
+                        <label for="inputdocnumber">Numero de documento</label>
                         <input type="text" class="form-control" id="inputdocnumber" placeholder="Numero de documento" name="docNumber"
                         formControlName="docNumber"  [class]="isValidField('docNumber')">
                         <div class="invalid-feedback">
@@ -207,22 +207,22 @@
                       <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                       <button type="submit" class="btn btn-primary">Actualizar usuario</button>
                   </div>
-                  </form> 
-                  <!--End user-->  
+                  </form>
+                  <!--End user-->
 
                   <!--Start profil-->
                   <form action="" class="justify-content-center" *ngIf="actionbtn =='perfil'"  [formGroup]="perfilForm" (ngSubmit)="CreateOrUpdatePerfil()">
                     <div class="form-row">
                       <div class="form-group col-md-4 float-left">
-                        <h2  class="float-left"><strong>Usuario: </strong>{{userPerfilName}}</h2>                                            
+                        <h2  class="float-left"><strong>Usuario: </strong>{{userPerfilName}}</h2>
                       </div>
                       <div class="form-group col-md-6 row">
                         <div class="col-md-6">
                           <img src="{{profilphoto}}" alt="Admin" class="rounded-circle" width="150">
                         </div>
                         <div class="col-md-6 justify-content-center align-items-center">
-                          <label class="btn btn-primary col-auto"  data-toggle="modal" data-target="#photoperfil">Seleccionar foto de perfil</label>                                              
-                        </div>                                           
+                          <label class="btn btn-primary col-auto"  data-toggle="modal" data-target="#photoperfil">Seleccionar foto de perfil</label>
+                        </div>
                       </div>
                     </div>
 
@@ -242,8 +242,8 @@
                         <input type="text" class="form-control" id="inputworkplace" placeholder="Empresa" name="workplace"
                         formControlName="workplace" >
                       </div>
-                    </div>  
-                    
+                    </div>
+
                     <div class="form-row">
                       <div class="form-group col-md-6">
                         <label for="inputfacebook">Facebook</label>
@@ -255,8 +255,8 @@
                         <input type="text" class="form-control" id="inputgitHub" placeholder="gitHub" name="gitHub"
                         formControlName="gitHub" >
                       </div>
-                    </div>  
-                    
+                    </div>
+
                     <div class="form-row">
                       <div class="form-group col-md-6">
                         <label for="inputtitle">Instagram</label>
@@ -268,22 +268,22 @@
                         <input type="text" class="form-control" id="inputtwitter" placeholder="twitter" name="twitter"
                         formControlName="twitter" >
                       </div>
-                    </div> 
-                    
+                    </div>
+
                     <div class="form-row">
                       <div class="form-group col-md-6">
                         <label for="inputtitle">Website</label>
                         <input type="text" class="form-control" id="inputwebsite" placeholder="website" name="website"
                         formControlName="website">
                       </div>
-                    </div>  
-                    
+                    </div>
+
                     <div class="modal-footer">
                       <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                      <button type="submit" class="btn btn-primary">{{isPerfilCreate === true ? "Crear perfil" : "Actualizar perfil"}}</button>                                          
+                      <button type="submit" class="btn btn-primary">{{isPerfilCreate === true ? "Crear perfil" : "Actualizar perfil"}}</button>
                   </div>
-                  </form> 
-                  <!--End profil-->                                      
+                  </form>
+                  <!--End profil-->
 
                   <!--Start knowlage-->
                   <form action="" class="justify-content-center" *ngIf="actionbtn =='knowlage'"  [formGroup]="knowlageForm" (ngSubmit)="CreateOrUpdateKnowlage()">
@@ -301,35 +301,35 @@
                       <div class="form-group col-md-6">
                         <label class="form-label col-md-12" for="inputknowlagenivel">Nivel de conocimiento({{porcent}} %)</label>
                         <div class="range">
-                          <input type="range" class="form-range col-md-12" min="0" max="100" id="inputknowlagenivel" placeholder="Nivel de conocimiento de la activadad" name="nivel"
+                          <input type="range" class="form-range col-md-12" min="0" max="100" id="inputknowlagenivel" name="nivel"
                         formControlName="nivel"  [class]="isValidFieldKnowlage('nivel')" (mouseleave)="ShowPorcent($event)">
-                        </div>                                                
+                        </div>
                         <div class="invalid-feedback">
                           <span *ngIf="knowlageForm.get('nivel').errors?.required">
                               Debe ingresar el nombre de la actividad
                           </span>
-                        </div>                                        
-                      </div>                                        
-                    </div>  
-                    
+                        </div>
+                      </div>
+                    </div>
+
                     <div class="form-row">
                       <div class="form-group col-md-12">
                         <label for="inputknowlagedescription">Descripción</label>
                         <textarea class="form-control" rows="7"
-                        formControlName="description"  id="inputknowlagedescription" name="description" placeholder="Descripción"></textarea>
+                        formControlName="description"  id="inputknowlagedescription" name="description"></textarea>
                       </div>
-                    </div>                                          
+                    </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                      <button type="submit" class="btn btn-primary">{{isKnowlageCreate === true ? "Agregar conocimiento" : "Actualizar conocimiento"}}</button>                                          
+                      <button type="submit" class="btn btn-primary">{{isKnowlageCreate === true ? "Agregar conocimiento" : "Actualizar conocimiento"}}</button>
                   </div>
-                  </form> 
+                  </form>
                   <!--End knowlage-->
 
                 </div>
               </div>
             </div>
-          </div>  
+          </div>
         </div>
       </div>
     </div>
@@ -355,12 +355,12 @@
             </div>
           </div>
         </div>
-      </div>                                        
+      </div>
         <div class="modal-footer">
         <input type="file" class="form-control" id="inputfile" name="img"
           formControlName="img" placeholder="Nombre" hidden (change)="onFileChanged($event)">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <label for="inputfile" class="btn btn-primary" >Examinar photo</label>  
+          <label for="inputfile" class="btn btn-primary" >Examinar photo</label>
       </div>
     </div>
   </div>

@@ -8,14 +8,14 @@
             "name": "Launch Chrome",
             "request": "launch",
             "type": "pwa-chrome",
-            "url": "http://localhost:8080",
+            "url": "https://tpfinalentornos.000webhostapp.com",
             "webRoot": "${workspaceFolder}"
         },
         {
             "name": "Launch Chrome",
             "request": "launch",
             "type": "pwa-chrome",
-            "url": "http://localhost:8080",
+            "url": "https://tpfinalentornos.000webhostapp.com",
             "webRoot": "${workspaceFolder}"
         },
         {
@@ -29,7 +29,7 @@
             "name": "Launch Chrome",
             "request": "launch",
             "type": "pwa-chrome",
-            "url": "http://localhost:8080",
+            "url": "https://tpfinalentornos.000webhostapp.com",
             "webRoot": "${workspaceFolder}"
         },
         {
@@ -43,7 +43,7 @@
             "type": "pwa-chrome",
             "request": "launch",
             "name": "Launch Chrome against localhost",
-            "url": "http://localhost:8080",
+            "url": "https://tpfinalentornos.000webhostapp.com",
             "webRoot": "${workspaceFolder}"
         }
     ]

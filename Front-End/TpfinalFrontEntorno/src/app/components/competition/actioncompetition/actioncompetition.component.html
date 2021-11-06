@@ -47,7 +47,6 @@
                         formControlName="idSubject"
                         [initialValue]="initialValuesubject"
                         [disabled]="isDisabled? true : null"
-                        (class)="'jcm'"
                         [class]="isValidField('idSubject')"
                         (selected)='selectEvent($event)'
                         [searchKeyword]="keywordname"
@@ -78,7 +77,6 @@
                         [disabled]="isDisabled? true : null"
                         formControlName="idPosition"
                         [initialValue]="initialValueuser"
-                        (class)="'jcm'"
                         [class]="isValidField('idPosition')"
                         (selected)='selectPosition($event)'
                         [searchKeyword]="keywordname"
@@ -100,14 +98,6 @@
                     <div [innerHTML]="notFound"></div>
                     </ng-template>
                   </div>
-                  <!-- <select formControlName="idPosition" [attr.disabled]="isDisabled? true : null"  [class]="isValidField('idPosition')" class="form-control" id="idPosition">
-                    <option value="{{doc.id}}" *ngFor ="let doc of posiciones"  name="idPosition">{{doc.name}}</option>
-                  </select>
-                  <div class="invalid-feedback" *ngIf="browserForm.get('idPosition').errors?.required">
-                    <span *ngIf="browserForm.get('idPosition').errors?.required">
-                        Debe seleccionar el puesto
-                    </span>
-                  </div> -->
                 </div>
               </div>
               <div class="form-row" *ngIf='isadmCreateJC'>
@@ -118,7 +108,6 @@
                             [data]="subject"
                             formControlName="idUser"
                             [initialValue]="initialValueJCM"
-                            (class)="'jcm'"
                             [class]="isValidField('idUser')"
                             [searchKeyword]="keyword"
                             [itemTemplate]="itemTemplatepos"
@@ -149,11 +138,6 @@
                   <label for="description">Requisitos</label>
                   <textarea class="form-control" rows="7" [attr.disabled]="isDisabled? true : null"  [formGroup]="browserForm" formControlName="description"  id="description" name="description" placeholder="Descripcion"></textarea>
                 </div>
-                <!-- <div class="invalid-feedback">
-                    <span *ngIf="browserForm.get('description').errors?.required">
-                        Debe ingresar una descripcion
-                    </span>
-                </div> -->
               </div>
               <div class="float-right mb-3">
                 <button [routerLink]="['/Competition']" class="btn btn-primary mr-3">Cancelar</button>

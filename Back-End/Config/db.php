@@ -6,8 +6,6 @@ function Connection(){
         'TpFinalEntornoAdmin2021#',
         'id17865809_tpfinalentorno'
     );
-
-    echo 'hola mundo';
     return $conn;
 }
 ?>

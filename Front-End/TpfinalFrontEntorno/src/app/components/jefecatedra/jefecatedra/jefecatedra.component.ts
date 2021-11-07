@@ -3,6 +3,7 @@ import { JefecatedraService } from '../../../services/jefecatedra/jefecatedra.se
 import { JefedeCatedraMateria } from '../../../classes/jefedecatedra_materia';
 import Swal from 'sweetalert2';
 import { UserService } from 'src/app/services/user/user.service';
+import {addWarning} from "@angular-devkit/build-angular/src/utils/webpack-diagnostics";
 
 declare var $: any;
 
@@ -23,8 +24,31 @@ export class JefecatedraComponent implements OnInit {
       debugger;
       this.jcmlist = comp;
       Active();
-    });   
+    });
   }
+
+  // Delete(id: number){
+  //   Swal.fire({
+  //     title: '¿Esta seguro desea eliminarlo?',
+  //     text: 'Este archivo se va a eliminar para siempre',
+  //     icon: 'warning',
+  //     showCancelButton: true,
+  //     confirmButtonText: 'Aceptar',
+  //     cancelButtonText: 'Cancel'
+  //   }).then((result) => {
+  //     if (result.isConfirmed) {
+  //       debugger;
+  //       this.jcatedraservice.Delete(id);
+  //       this.GetAll();
+  //     } else if (result.dismiss === Swal.DismissReason.cancel) {
+  //       Swal.fire(
+  //         'Cancelado',
+  //         'El archivo fue cancelado',
+  //         'error'
+  //       )
+  //     }
+  //   })
+  // }
 
   Delete(id){
     Swal.fire({
@@ -38,16 +62,15 @@ export class JefecatedraComponent implements OnInit {
       if (result.isConfirmed) {
         debugger;
         this.jcatedraservice.Delete(id).subscribe((data:any) =>{
-          if(data.result === 'OK')
-          debugger;
-          Swal.fire(
-            'Eliminado!',
-            'El archivo fue eliminado con exito',
-            'success'
-          ).then((result) =>{
+            Swal.fire(
+              'Eliminado!',
+              'El archivo fue eliminado con exito',
+              'success'
+            ).then((data) =>{
               this.GetAll();
-          })
-        });
+            })
+          },
+          (err) => (console.log(err)));
       } else if (result.dismiss === Swal.DismissReason.cancel) {
         Swal.fire(
           'Cancelado',
@@ -58,6 +81,7 @@ export class JefecatedraComponent implements OnInit {
     })
   }
 }
+
 
 function Active(){
   $('.actionmenu').removeClass('active');

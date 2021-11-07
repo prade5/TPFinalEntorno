@@ -47,7 +47,7 @@ export class PostulationComponent implements OnInit {
   Subscribe(){
     let postulate ={
       id:0,
-      idUser:$('.idUser').val(),
+      idUser: $('.idUser').val(),
       idCompetition:$('.idCompetition').val(),
       applicantDate:new Date(),
       merit: 0,

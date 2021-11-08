@@ -9,26 +9,28 @@ import { environment } from '../../../environments/environment';
 })
 export class SubjectService {
 
+  public folderName:string = 'Subject/';
+
   constructor(private http: HttpClient) { }
 
   GetAll(): Observable<Subject[]> {
     debugger;
-   return this.http.get<Subject[]>(`${environment.api_url}subject.php`);
+   return this.http.get<Subject[]>(`${environment.api_url}${this.folderName}get.php`);
   }
   GetByUserId(id): Observable<Subject[]> {
     debugger;
-    return this.http.get<Subject[]>(`${environment.api_url}subject.php?idu=${id}`);
+    return this.http.get<Subject[]>(`${environment.api_url}${this.folderName}getByUserId.php?idu=${id}`);
   }
   GetById(id){
-    return this.http.get(`${environment.api_url}subject.php?id=${id}`);
+    return this.http.get(`${environment.api_url}${this.folderName}getById.php?id=${id}`);
   }
   Post(role){
-    return this.http.post(`${environment.api_url}subject.php`,JSON.stringify(role));
+    return this.http.post(`${environment.api_url}${this.folderName}post.php`,JSON.stringify(role));
   }
   Put(role){
-    return this.http.put(`${environment.api_url}subject.php?id=${role.id}`,JSON.stringify(role));
+    return this.http.post(`${environment.api_url}${this.folderName}update.php?id=${role.id}`,JSON.stringify(role));
   }
   Delete(id){
-    return this.http.delete(`${environment.api_url}subject.php?id=${id}`);
+    return this.http.post(`${environment.api_url}${this.folderName}delete.php?id=${id}`,JSON.stringify(id));
   }
 }

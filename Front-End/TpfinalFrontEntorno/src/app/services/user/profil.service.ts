@@ -9,21 +9,23 @@ import { environment } from '../../../environments/environment';
 })
 export class ProfilService {
 
+  public folderName:string = 'ProfileUser/';
+
   constructor(private http: HttpClient) { }
   GetAll(): Observable<ProfilUser[]> {
-    return this.http.get<ProfilUser[]>(`${environment.api_url}perfiluser.php`);
+    return this.http.get<ProfilUser[]>(`${environment.api_url}${this.folderName}get.php`);
   }
   GetById(id){
-    return this.http.get(`${environment.api_url}perfiluser.php?id=${id}`);
+    return this.http.get(`${environment.api_url}${this.folderName}getById.php?id=${id}`);
   }
   Post(data){
-    return this.http.post(`${environment.api_url}perfiluser.php`,JSON.stringify(data));
+    return this.http.post(`${environment.api_url}${this.folderName}post.php`,JSON.stringify(data));
   }
   Put(data){
     debugger;
-    return this.http.put(`${environment.api_url}perfiluser.php?id=${data.id}`,JSON.stringify(data));
+    return this.http.post(`${environment.api_url}${this.folderName}update.php?id=${data.id}`,JSON.stringify(data));
   }
   Delete(id){
-    return this.http.delete(`${environment.api_url}perfiluser.php?id=${id}`);
+    return this.http.post(`${environment.api_url}${this.folderName}delete.php?id=${id}`,JSON.stringify(id));
   }
 }

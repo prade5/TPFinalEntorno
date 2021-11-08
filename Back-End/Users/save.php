@@ -1,8 +1,8 @@
 <?php 
-   header({
+   header(
     'Access-Control-Allow-Origin: *',
     'Access-Control-Request-Headers: Origin, X-Requested-With, Content-Type, Accept'
-    })
+    );
     require('../Config/db.php');
     $cnn = Connection();
     $json = file_get_contents('php://input');

@@ -9,11 +9,13 @@ import { environment } from '../../../environments/environment';
 })
 export class PerfilphotoService {
 
+  public folderName:string = 'PerfilPhoto/';
+
   constructor(private http: HttpClient) { }
   GetAll(): Observable<PerfilPhoto[]> {
-    return this.http.get<PerfilPhoto[]>(`${environment.api_url}perfilphoto.php`);
+    return this.http.get<PerfilPhoto[]>(`${environment.api_url}${this.folderName}get.php`);
   }
   GetById(id){
-    return this.http.get(`${environment.api_url}perfilphoto.php?id=${id}`);
+    return this.http.get(`${environment.api_url}${this.folderName}getById.php?id=${id}`);
   }
 }

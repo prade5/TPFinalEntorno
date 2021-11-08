@@ -10,6 +10,9 @@ import {Position} from "../../classes/position";
 export class PositionService {
 
   private urlBase = environment.api_url;
+
+  public folderName:string = 'Position/';
+
   constructor(private http: HttpClient) { }
 
   GetAll(): Observable<Position[]> {
@@ -18,7 +21,7 @@ export class PositionService {
     headers.append('Access-Control-Allow-Methods', 'GET');
     headers.append('Access-Control-Allow-Origin', '*');
 
-    return this.http.get<Position[]>(`${this.urlBase}position.php`, {headers: headers});
+    return this.http.get<Position[]>(`${this.urlBase}${this.folderName}get.php`, {headers: headers});
   }
 
   GetById(id){
@@ -27,7 +30,7 @@ export class PositionService {
     headers.append('Access-Control-Allow-Methods', 'GET');
     headers.append('Access-Control-Allow-Origin', '*');
 
-    return this.http.get(`${environment.api_url}position.php?id=${id}`, {headers: headers});
+    return this.http.get(`${environment.api_url}${this.folderName}getById.php?id=${id}`, {headers: headers});
   }
 
 }

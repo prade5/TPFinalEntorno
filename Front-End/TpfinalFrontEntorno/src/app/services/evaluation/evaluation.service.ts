@@ -7,14 +7,16 @@ import {environment} from "../../../environments/environment";
 })
 export class EvaluationService {
 
+  public folderName:string = 'Evaluation/';
+
   constructor(private http: HttpClient) { }
 
   GetTheWinner(id) {
-    return this.http.get(`${environment.api_url}evaluation.php?id=${id}`);
+    return this.http.get(`${environment.api_url}${this.folderName}getTheWinner.php?id=${id}`);
   }
 
   PostWinner(data){
     debugger;
-    return this.http.put(`${environment.api_url}evaluation.php`,JSON.stringify(data));
+    return this.http.post(`${environment.api_url}${this.folderName}youWin.php`,JSON.stringify(data));
   }
 }

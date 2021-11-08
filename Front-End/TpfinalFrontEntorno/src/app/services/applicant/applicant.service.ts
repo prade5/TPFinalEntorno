@@ -9,22 +9,24 @@ import { environment } from 'src/environments/environment';
 })
 export class ApplicantService {
 
+  public folderName:string = 'Applicant/';
+
   constructor(private http: HttpClient) { }
 
   GetAll(): Observable<Applicant[]> {
-    return this.http.get<Applicant[]>(`${environment.api_url}applicant.php`);
+    return this.http.get<Applicant[]>(`${environment.api_url}${this.folderName}get.php`);
   }
 
   GetAllByComp(idComp): Observable<Applicant[]>{
-    return this.http.get<Applicant[]>(`${environment.api_url}applicant.php?idComp=${idComp}`)
+    return this.http.get<Applicant[]>(`${environment.api_url}${this.folderName}getAllByComp.php?idComp=${idComp}`)
   }
 
   Post(applicant){
-    return this.http.post(`${environment.api_url}applicant.php`, JSON.stringify(applicant));
+    return this.http.post(`${environment.api_url}${this.folderName}post.php`, JSON.stringify(applicant));
   }
 
   Put(data){
-    return this.http.put(`${environment.api_url}applicant.php?id=${data.id}`,JSON.stringify(data));
+    return this.http.post(`${environment.api_url}${this.folderName}update.php?id=${data.id}`,JSON.stringify(data));
   }
 
 }

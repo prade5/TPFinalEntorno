@@ -19,10 +19,6 @@
             header('Content-Type:application/json');
         }
     
-        function GetById(id){
-            
-        }
-    
         function PostUser(){
             $json = file_get_contents('php://input');
             $params = json_decode($json);

@@ -10,27 +10,24 @@ import { environment } from '../../../environments/environment';
 export class RoleService {
 
   private urlBase = environment.api_url;
+
+  public folderName:string = 'role/';
+
   constructor(private http: HttpClient) { }
 
   GetAll(): Observable<Role[]> {
-    const headers = new HttpHeaders();
-    headers.append('Access-Control-Allow-Headers', 'Content-Type');
-    headers.append('Access-Control-Allow-Methods', 'GET');
-    headers.append('Access-Control-Allow-Origin', '*');
-
-    debugger;
-   return this.http.get<Role[]>(`${this.urlBase}role.php`, {headers: headers});
+   return this.http.get<Role[]>(`${this.urlBase}${this.folderName}get.php`);
   }
   GetById(id){
-    return this.http.get(`${this.urlBase}role.php?id=${id}`);
+    return this.http.get(`${this.urlBase}${this.folderName}getById.php?id=${id}`);
   }
   Post(role){
-    return this.http.post(`${this.urlBase}role.php`,JSON.stringify(role));
+    return this.http.post(`${this.urlBase}${this.folderName}post.php`,JSON.stringify(role));
   }
   Put(role){
-    return this.http.put(`${this.urlBase}role.php?id=${role.id}`,JSON.stringify(role));
+    return this.http.post(`${this.urlBase}${this.folderName}update.php?id=${role.id}`,JSON.stringify(role));
   }
   Delete(id){
-    return this.http.delete(`${this.urlBase}role.php?id=${id}`);
+    return this.http.post(`${this.urlBase}${this.folderName}delete.php?id=${id}`, JSON.stringify(id));
   }
 }

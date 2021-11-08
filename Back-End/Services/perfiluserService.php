@@ -87,7 +87,7 @@
         public static function Delete($_id){ 
             $cnn = Connection(); 
             $response = new Result();        
-            $result = mysqli_query($cnn,"update profilusers set state = 2 where id =".$idrole);
+            $result = mysqli_query($cnn,"update profilusers set state = 2 where id =".$_id);
            
             if($result){
                 $response->result = 'Ok';

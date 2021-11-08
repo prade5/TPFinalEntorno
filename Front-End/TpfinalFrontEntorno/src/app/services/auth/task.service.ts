@@ -15,10 +15,12 @@ import { LoadscriptService } from '../loadScript/loadscript.service';
 export class TaskService {
   private urlBase = environment.api_url;
 
+  public folderName:string = 'Auth/';
+
   constructor(private http: HttpClient, private loadscript: LoadscriptService) { }
   Authentication(auth:Auth): Observable<boolean>{
     this.doLogoutUser();
-    return this.http.post<any>(`${this.urlBase}auth.php`, JSON.stringify(auth))
+    return this.http.post<any>(`${this.urlBase}${this.folderName}post.php`, JSON.stringify(auth))
     .pipe(
       tap( tokens =>{
         if (tokens.response.status !== 400) {
@@ -33,9 +35,9 @@ export class TaskService {
       })
     );
   }
-  
+
   Put(data){
-    return this.http.put(`${environment.api_url}auth.php?id=${data.id}`,JSON.stringify(data));
+    return this.http.post(`${environment.api_url}${this.folderName}update.php?id=${data.id}`,JSON.stringify(data));
   }
 
   loggedIn() {

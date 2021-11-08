@@ -12,9 +12,9 @@ $cnn = mysqli_connect(
     'id17865809_tpfinalentorno'
 );
 
-$_id = json_decode(file_get_contents('php://input'), true);
+$id = json_decode(file_get_contents('php://input'), true);
 
-$id = ((int)$_id);
+$id = ((int)$id);
 
 if(!$id)
 {

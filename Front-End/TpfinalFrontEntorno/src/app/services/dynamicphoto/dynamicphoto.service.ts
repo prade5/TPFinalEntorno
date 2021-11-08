@@ -9,9 +9,11 @@ import { environment } from '../../../environments/environment';
 })
 export class DynamicphotoService {
 
+  public folderName:string = 'Photo/';
+
   constructor(private http: HttpClient) { }
   GetAll(): Observable<Photo[]> {
-    return this.http.get<Photo[]>(`${environment.api_url}photo.php`);
-   }  
- 
+    return this.http.get<Photo[]>(`${environment.api_url}${this.folderName}get.php`);
+   }
+
 }

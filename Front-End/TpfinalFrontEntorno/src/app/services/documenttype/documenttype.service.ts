@@ -9,22 +9,25 @@ import { environment } from '../../../environments/environment';
 })
 export class DocumenttypeService {
   private urlBase = environment.api_url;
+
+  public folderName:string = 'Document/';
+
   constructor(private http: HttpClient) { }
 
   GetAll(): Observable<Document[]> {
-   return this.http.get<Document[]>(`${this.urlBase}document.php`);
+   return this.http.get<Document[]>(`${this.urlBase}${this.folderName}get.php`);
   }
   GetById(id){
-    return this.http.get(`${this.urlBase}document.php?id=${id}`);
+    return this.http.get(`${this.urlBase}${this.folderName}getById.php?id=${id}`);
   }
   Post(role){
-    return this.http.post(`${this.urlBase}document.php`,JSON.stringify(role));
+    return this.http.post(`${this.urlBase}${this.folderName}post.php`,JSON.stringify(role));
   }
   Put(role){
-    return this.http.put(`${this.urlBase}document.php?id=${role.id}`,JSON.stringify(role));
+    return this.http.post(`${this.urlBase}${this.folderName}update.php?id=${role.id}`,JSON.stringify(role));
   }
   Delete(id){
-    return this.http.delete(`${this.urlBase}document.php?id=${id}`);
+    return this.http.post(`${this.urlBase}${this.folderName}delete.php?id=${id}`,JSON.stringify(id));
   }
 
 }

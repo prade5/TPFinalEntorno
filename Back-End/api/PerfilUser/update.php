@@ -5,10 +5,6 @@ include_once('../../Config/constant.php');
 include_once('../../Helpers/Security/Securitypass.php');
 
 
-$_PUT = json_decode(file_get_contents('php://input'), true);
-$profil = new UpdateProfileUser($_PUT["id"],$_PUT['idUser'],$_PUT["title"],$_PUT["instagram"],$_PUT['twitter'],$_PUT['facebook'],$_PUT['website'],$_PUT['gitHub'],$_PUT['workplace'],$_PUT['img'],$_PUT["state"]);
-$profil->Put($_GET['id']);
-
 class UpdateProfileUser extends genericMethod {
     private $id;
     private $idUser;
@@ -53,3 +49,9 @@ class UpdateProfileUser extends genericMethod {
         }
     }
 }
+
+$_PUT = json_decode(file_get_contents('php://input'), true);
+
+$profil = new UpdateProfileUser($_PUT["id"],$_PUT['idUser'],$_PUT["title"],$_PUT["instagram"],$_PUT['twitter'],$_PUT['facebook'],$_PUT['website'],$_PUT['gitHub'],$_PUT['workplace'],$_PUT['img'],$_PUT["state"]);
+
+$profil->Put($_GET['id']);

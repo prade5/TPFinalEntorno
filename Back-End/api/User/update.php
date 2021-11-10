@@ -5,11 +5,6 @@ include_once('../../Config/constant.php');
 include_once('../../Helpers/Security/Securitypass.php');
 include_once('../../middleware/mail.php');
 
-$_PUT = json_decode(file_get_contents('php://input'), true);
-
-$user = new UpdateUser($_PUT["id"],$_PUT['idRole'],$_PUT["firstName"],$_PUT["lastName"],$_PUT["mail"],$_PUT["address"],$_PUT["phone"],"","",$_PUT["idDocumentType"],$_PUT["docNumber"],"","",0);
-
-$user->Put($_GET['id']);
 
 class UpdateUser extends genericMethod
 {
@@ -74,4 +69,10 @@ class UpdateUser extends genericMethod
         }
     }
 }
+
+$_PUT = json_decode(file_get_contents('php://input'), true);
+
+$user = new UpdateUser($_PUT["id"],$_PUT['idRole'],$_PUT["firstName"],$_PUT["lastName"],$_PUT["mail"],$_PUT["address"],$_PUT["phone"],"","",$_PUT["idDocumentType"],$_PUT["docNumber"],"","",0);
+
+$user->Put($_GET['id']);
 

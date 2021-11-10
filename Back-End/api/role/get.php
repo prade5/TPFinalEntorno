@@ -5,7 +5,9 @@ include_once('../../Config/constant.php');
 include_once('../../Helpers/Security/Securitypass.php');
 
 $cnn = Connection();
+
 $userRegisteries = mysqli_query($cnn,"select * from roles where state = 1 ORDER BY id DESC");
+
 $userList = [];
 
 while($reg = mysqli_fetch_array($userRegisteries,MYSQLI_ASSOC)){

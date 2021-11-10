@@ -5,20 +5,6 @@ include_once('../../middleware/JWT.php');
 include_once('../../Config/constant.php');
 include_once('../../Helpers/Security/Securitypass.php');
 
-$_PUT = json_decode(file_get_contents('php://input'), true);
-
-$cnn = Connection();
-
-$id = ($_GET['id'] !== null && (int)$_GET['id'] > 0)? mysqli_real_escape_string($cnn, (int)$_GET['id']) : false;
-
-if(!$id) {
-    return http_response_code(400);
-}
-
-$auth = new AuthUpdate($id,$_PUT["userName"],$_PUT["userPass"],$_PUT["newUserPass"],$_PUT["confirmPass"]);
-
-$auth->ChangePassword($id);
-
 class AuthUpdate extends genericMethod
 {
     private $id;
@@ -70,3 +56,17 @@ class AuthUpdate extends genericMethod
         exit;
     }
 }
+
+$_PUT = json_decode(file_get_contents('php://input'), true);
+
+$cnn = Connection();
+
+$id = $_GET['id'];
+
+if($id == null) {
+    return http_response_code(400);
+}
+
+$auth = new AuthUpdate($id,$_PUT["userName"],$_PUT["userPass"],$_PUT["newUserPass"],$_PUT["confirmPass"]);
+
+$auth->ChangePassword($id);

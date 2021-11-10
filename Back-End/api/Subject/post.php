@@ -4,10 +4,6 @@ include_once('../../middleware/genericMethod.php');
 include_once('../../Config/constant.php');
 include_once('../../Helpers/Security/Securitypass.php');
 
-$_POST= json_decode(file_get_contents('php://input'), true);
-$subject = new PostSubject($_POST["id"],$_POST['idUser'],$_POST["name"],$_POST["description"],$_POST["img"],"","",$_POST["state"]);
-$subject->Post();
-
 class PostSubject extends genericMethod
 {
     private $id;
@@ -53,3 +49,7 @@ class PostSubject extends genericMethod
         }
     }
 }
+
+$_POST= json_decode(file_get_contents('php://input'), true);
+$subject = new PostSubject($_POST["id"],$_POST['idUser'],$_POST["name"],$_POST["description"],$_POST["img"],"","",$_POST["state"]);
+$subject->Post();

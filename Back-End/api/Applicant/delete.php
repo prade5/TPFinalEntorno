@@ -15,7 +15,7 @@
 
     $id = ((int)$id);
 
-    if(!$id)
+    if($id == null)
     {
         return http_response_code(400);
     }

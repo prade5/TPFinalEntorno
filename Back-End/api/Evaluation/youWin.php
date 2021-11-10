@@ -4,9 +4,6 @@ include_once('../../middleware/genericMethod.php');
 include_once('../../Config/constant.php');
 include_once('../../Helpers/Security/Securitypass.php');
 
-$_PUT = json_decode(file_get_contents('php://input'), true);
-$evaluation = new UpdateEvaluation($_PUT["idUser"],$_PUT['idCompetition']);
-$evaluation->YouWin();
 
 class UpdateEvaluation extends genericMethod
 {
@@ -40,3 +37,9 @@ class UpdateEvaluation extends genericMethod
         }
     }
 }
+
+$_PUT = json_decode(file_get_contents('php://input'), true);
+
+$evaluation = new UpdateEvaluation($_PUT["idUser"],$_PUT['idCompetition']);
+
+$evaluation->YouWin();

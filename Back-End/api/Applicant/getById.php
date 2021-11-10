@@ -4,9 +4,9 @@
 
     $cnn = Connection();
 
-    $_id = ($_GET['id'] !== null && (int)$_GET['id'] > 0)? mysqli_real_escape_string($cnn, (int)$_GET['id']) : false;
+    $_id = $_GET['id'];
 
-    if(!$_id)
+    if($_id == null)
     {
         return http_response_code(400);
     }

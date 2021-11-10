@@ -7,9 +7,9 @@ include_once('../../middleware/mail.php');
 
 $cnn = Connection();
 
-$id = ($_GET['confirmuser'] !== null && (int)$_GET['confirmuser'] > 0)? mysqli_real_escape_string($cnn, (int)$_GET['confirmuser']) : false;
+$id = $_GET['confirmuser'];
 
-if(!$id)
+if($id == null)
 {
     return http_response_code(400);
 }

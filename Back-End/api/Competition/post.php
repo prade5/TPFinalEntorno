@@ -4,12 +4,6 @@ include_once('../../middleware/genericMethod.php');
 include_once('../../Config/constant.php');
 include_once('../../Helpers/Security/Securitypass.php');
 
-$_POST= json_decode(file_get_contents('php://input'), true);
-
-$competition = new CompetitionPost(0 ,$_POST['idUser'],$_POST["idSubject"],$_POST["description"],$_POST["creationDate"],$_POST["finalDate"],$_POST["state"],$_POST["idPosition"]);
-
-$competition->Post();
-
 class CompetitionPost extends genericMethod
 {
     private $id;
@@ -60,3 +54,9 @@ class CompetitionPost extends genericMethod
         }
     }
 }
+
+$_POST= json_decode(file_get_contents('php://input'), true);
+
+$competition = new CompetitionPost(0 ,$_POST['idUser'],$_POST["idSubject"],$_POST["description"],$_POST["creationDate"],$_POST["finalDate"],$_POST["state"],$_POST["idPosition"]);
+
+$competition->Post();

@@ -4,9 +4,6 @@ include_once('../../middleware/genericMethod.php');
 include_once('../../Config/constant.php');
 include_once('../../Helpers/Security/Securitypass.php');
 
-$_PUT = json_decode(file_get_contents('php://input'), true);
-$profil = new UpdateKnowledgeUser($_PUT["id"],$_PUT['idUser'],$_PUT["name"],$_PUT["description"],$_PUT["nivel"],$_PUT["state"]);
-$profil->Put($_GET['id']);
 
 class UpdateKnowledgeUser extends genericMethod
 {
@@ -42,3 +39,9 @@ class UpdateKnowledgeUser extends genericMethod
         }
     }
 }
+
+$_PUT = json_decode(file_get_contents('php://input'), true);
+
+$profil = new UpdateKnowledgeUser($_PUT["id"],$_PUT['idUser'],$_PUT["name"],$_PUT["description"],$_PUT["nivel"],$_PUT["state"]);
+
+$profil->Put($_GET['id']);

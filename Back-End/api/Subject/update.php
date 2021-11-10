@@ -4,10 +4,6 @@ include_once('../../middleware/genericMethod.php');
 include_once('../../Config/constant.php');
 include_once('../../Helpers/Security/Securitypass.php');
 
-$_PUT = json_decode(file_get_contents('php://input'), true);
-$subject = new UpdateSubject($_PUT["id"],$_PUT['idUser'],$_PUT["name"],$_PUT["description"],$_PUT["img"],"","",1);
-$subject->Put($_GET['id']);
-
 class UpdateSubject extends genericMethod
 {
     private $id;
@@ -48,3 +44,9 @@ class UpdateSubject extends genericMethod
         }
     }
 }
+
+$_PUT = json_decode(file_get_contents('php://input'), true);
+
+$subject = new UpdateSubject($_PUT["id"],$_PUT['idUser'],$_PUT["name"],$_PUT["description"],$_PUT["img"],"","",1);
+
+$subject->Put($_GET['id']);

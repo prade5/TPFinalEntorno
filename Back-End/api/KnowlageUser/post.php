@@ -4,12 +4,6 @@ include_once('../../middleware/genericMethod.php');
 include_once('../../Config/constant.php');
 include_once('../../Helpers/Security/Securitypass.php');
 
-$_POST= json_decode(file_get_contents('php://input'), true);
-
-$profil = new PostKnowledgeUser($_POST["id"],$_POST['idUser'],$_POST["name"],$_POST["description"],$_POST["nivel"],$_POST["state"]);
-
-$profil->Post();
-
 class PostKnowledgeUser extends genericMethod
 {
     private $id;
@@ -43,3 +37,9 @@ class PostKnowledgeUser extends genericMethod
         }
     }
 }
+
+$_POST= json_decode(file_get_contents('php://input'), true);
+
+$profil = new PostKnowledgeUser($_POST["id"],$_POST['idUser'],$_POST["name"],$_POST["description"],$_POST["nivel"],$_POST["state"]);
+
+$profil->Post();

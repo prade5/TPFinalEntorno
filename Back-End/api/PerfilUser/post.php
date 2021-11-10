@@ -4,10 +4,6 @@ include_once('../../middleware/genericMethod.php');
 include_once('../../Config/constant.php');
 include_once('../../Helpers/Security/Securitypass.php');
 
-$_POST= json_decode(file_get_contents('php://input'), true);
-$profil = new PostProfilUser($_POST["id"],$_POST['idUser'],$_POST["title"],$_POST["instagram"],$_POST['twitter'],$_POST['facebook'],$_POST['website'],$_POST['gitHub'],$_POST['workplace'],$_POST['img'],$_POST["state"]);
-$profil->Post();
-
 class PostProfilUser extends genericMethod
 {
     private $id;
@@ -51,3 +47,9 @@ class PostProfilUser extends genericMethod
         }
     }
 }
+
+$_POST= json_decode(file_get_contents('php://input'), true);
+
+$profil = new PostProfilUser($_POST["id"],$_POST['idUser'],$_POST["title"],$_POST["instagram"],$_POST['twitter'],$_POST['facebook'],$_POST['website'],$_POST['gitHub'],$_POST['workplace'],$_POST['img'],$_POST["state"]);
+
+$profil->Post();

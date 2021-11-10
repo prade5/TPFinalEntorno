@@ -4,11 +4,6 @@
     include_once('../../Config/constant.php');
     include_once('../../Helpers/Security/Securitypass.php');
 
-$_PUT = json_decode(file_get_contents('php://input'), true);
-$competition = new CompetitionUpdate($_PUT["id"],$_PUT['idUser'],$_PUT["idSubject"],$_PUT["description"],$_PUT["creationDate"],$_PUT["finalDate"],$_PUT["state"],$_PUT["idPosition"]);
-
-$competition->Put($_PUT["id"]);
-
 class CompetitionUpdate extends genericMethod
 {
     private $id;
@@ -58,3 +53,9 @@ class CompetitionUpdate extends genericMethod
         }
     }
 }
+
+$_PUT = json_decode(file_get_contents('php://input'), true);
+
+$competition = new CompetitionUpdate($_PUT["id"],$_PUT['idUser'],$_PUT["idSubject"],$_PUT["description"],$_PUT["creationDate"],$_PUT["finalDate"],$_PUT["state"],$_PUT["idPosition"]);
+
+$competition->Put($_PUT["id"]);

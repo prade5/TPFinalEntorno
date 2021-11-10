@@ -67,7 +67,7 @@
                 $this->checkNonerepeat2('applicants', 'idCompetition', $this->idCompetition, 'idUser', $this->idUser, "Ya esta aplicado(a) para ese concurso");
                 
                 $result = mysqli_query($cnn,"insert into applicants (idUser,idCompetition,applicantDate, state) 
-                values($this->idUser , $this->idCompetition  , '$this->applicantDate', 1)");
+                values($this->idUser , $this->idCompetition  , '$this->applicantDate',0 , 1)");
                 if($result){
                     $this->ReturnReponse(SUCCESS_RESPONSE, "La postulación fue guardada con exito.");
                 }

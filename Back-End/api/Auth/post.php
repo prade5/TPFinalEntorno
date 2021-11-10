@@ -5,12 +5,6 @@ include_once('../../middleware/JWT.php');
 include_once('../../Config/constant.php');
 include_once('../../Helpers/Security/Securitypass.php');
 
-$_login = json_decode(file_get_contents('php://input'), true);
-
-$auth = new AuthPost(0, $_login['userName'], $_login["userPass"]);
-
-$auth->Login();
-
 class AuthPost extends genericMethod
 {
     private $id;
@@ -70,3 +64,10 @@ class AuthPost extends genericMethod
         }
     }
 }
+
+
+$_login = json_decode(file_get_contents('php://input'), true);
+
+$auth = new AuthPost(0, $_login['userName'], $_login["userPass"]);
+
+$auth->Login();

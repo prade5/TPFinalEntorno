@@ -4,10 +4,6 @@ include_once('../../middleware/genericMethod.php');
 include_once('../../Config/constant.php');
 include_once('../../Helpers/Security/Securitypass.php');
 
-$_PUT = json_decode(file_get_contents('php://input'), true);
-$doc = new UpdateDocument($_PUT["id"],$_PUT['name'],$_PUT["description"],"",0);
-$doc->Put($_GET['id']);
-
 class UpdateDocument extends genericMethod
 {
     private $id;
@@ -40,5 +36,10 @@ class UpdateDocument extends genericMethod
             $this->ReturnReponse(ERROR_RESPONSE, "El documento no fue modificado con exito");
         }
     }
-
 }
+
+$_PUT = json_decode(file_get_contents('php://input'), true);
+
+$doc = new UpdateDocument($_PUT["id"],$_PUT['name'],$_PUT["description"],"",0);
+
+$doc->Put($_GET['id']);

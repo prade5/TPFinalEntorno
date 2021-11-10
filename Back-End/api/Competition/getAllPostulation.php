@@ -6,9 +6,9 @@
 
 $cnn = Connection();
 
-$id = ($_GET['iduser'] !== null && (int)$_GET['iduser'] > 0)? mysqli_real_escape_string($cnn, (int)$_GET['iduser']) : false;
+$id = $_GET['iduser'];
 
-if(!$id)
+if($id == null)
 {
     return http_response_code(400);
 }

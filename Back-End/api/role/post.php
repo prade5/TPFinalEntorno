@@ -4,9 +4,6 @@ include_once('../../middleware/genericMethod.php');
 include_once('../../Config/constant.php');
 include_once('../../Helpers/Security/Securitypass.php');
 
-$_POST= json_decode(file_get_contents('php://input'), true);
-$role = new PostRole($_POST["id"],$_POST['name'],$_POST["description"],$_POST["creationDate"],$_POST["state"]);
-$role->Post();
 
 class PostRole extends genericMethod
 {
@@ -40,3 +37,7 @@ class PostRole extends genericMethod
         }
     }
 }
+
+$_POST= json_decode(file_get_contents('php://input'), true);
+$role = $_POST["id"];
+$role->Post();

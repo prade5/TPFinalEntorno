@@ -6,9 +6,9 @@ include_once('../../Helpers/Security/Securitypass.php');
 
 $cnn = Connection();
 
-$idSubject = ($_GET['jcmadmin'] !== null && (int)$_GET['jcmadmin'] > 0)? mysqli_real_escape_string($cnn, (int)$_GET['jcmadmin']) : false;
+$idSubject = $_GET['jcmadmin'];
 
-if(!$idSubject)
+if($idSubject == null)
 {
     return http_response_code(400);
 }

@@ -4,7 +4,7 @@ include_once('../../middleware/genericMethod.php');
 include_once('../../Config/constant.php');
 include_once('../../Helpers/Security/Securitypass.php');
 
-$idUser = empty($_GET['idUser']) == 0 ? $_GET['idUser'] : 0;
+$idUser = $_GET['idUser'];
 
 $cnn = Connection();
 

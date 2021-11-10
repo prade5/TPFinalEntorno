@@ -5,9 +5,9 @@
 
     $cnn = Connection();
 
-    $idComp = ($_GET['idComp'] !== null && (int)$_GET['idComp'] > 0)? mysqli_real_escape_string($cnn, (int)$_GET['idComp']) : false;
+    $idComp = $_GET['idComp'];
 
-    if(!$idComp)
+    if($idComp == null)
     {
         return http_response_code(400);
     }

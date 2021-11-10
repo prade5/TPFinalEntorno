@@ -4,10 +4,6 @@ include_once('../../middleware/genericMethod.php');
 include_once('../../Config/constant.php');
 include_once('../../Helpers/Security/Securitypass.php');
 
-$_PUT = json_decode(file_get_contents('php://input'), true);
-$jefecatedra = new UpdateJefedeCatedraMateria($_PUT["Id"],$_PUT['IdJefeDeCatedra'],$_PUT["IdSubject"],$_PUT["state"]);
-$jefecatedra->Put($_GET['id']);
-
 class UpdateJefedeCatedraMateria extends genericMethod
 {
     private $Id;
@@ -38,3 +34,9 @@ class UpdateJefedeCatedraMateria extends genericMethod
         }
     }
 }
+
+$_PUT = json_decode(file_get_contents('php://input'), true);
+
+$jefecatedra = new UpdateJefedeCatedraMateria($_PUT["Id"],$_PUT['IdJefeDeCatedra'],$_PUT["IdSubject"],$_PUT["state"]);
+
+$jefecatedra->Put($_GET['id']);

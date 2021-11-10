@@ -8,16 +8,16 @@ $cnn = Connection();
 
 $_PUT = json_decode(file_get_contents('php://input'), true);
 
-$idComp = ($_PUT['idComp'] !== null && (int)$_PUT['idComp'] > 0)? mysqli_real_escape_string($cnn, (int)$_GET['idComp']) : false;
+$idComp = $_PUT['idComp'];
 
-if(!$idComp)
+if($idComp == null)
 {
     return http_response_code(400);
 }
 
-$idUser = ($_PUT['idUser'] !== null && (int)$_PUT['idUser'] > 0)? mysqli_real_escape_string($cnn, (int)$_GET['idUser']) : false;
+$idUser = $_PUT['idUser'];
 
-if(!$idUser)
+if($idUser == null)
 {
     return http_response_code(400);
 }

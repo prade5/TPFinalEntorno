@@ -5,17 +5,6 @@ include_once('../../Config/constant.php');
 include_once('../../Helpers/Security/Securitypass.php');
 include_once('../../middleware/mail.php');
 
-$_PUT = json_decode(file_get_contents('php://input'), true);
-
-$user = new UpdateUserRole($_PUT["id"],$_PUT['idRole'],$_PUT["firstName"],$_PUT["lastName"],$_PUT["mail"],$_PUT["address"],$_PUT["phone"],"","",$_PUT["idDocumentType"],$_PUT["docNumber"],"","",0);
-
-$user->UpdateUserRole($_GET['id'],$_PUT['idRole']);
-
-class UserResult {
-    public $result;
-    public $message;
-    public $status;
-}
 
 class UpdateUserRole extends genericMethod
 {
@@ -74,4 +63,16 @@ class UpdateUserRole extends genericMethod
             echo json_encode($response);
         }
     }
+}
+
+$_PUT = json_decode(file_get_contents('php://input'), true);
+
+$user = new UpdateUserRole($_PUT["id"],$_PUT['idRole'],$_PUT["firstName"],$_PUT["lastName"],$_PUT["mail"],$_PUT["address"],$_PUT["phone"],"","",$_PUT["idDocumentType"],$_PUT["docNumber"],"","",0);
+
+$user->UpdateUserRole($_GET['id'],$_PUT['idRole']);
+
+class UserResult {
+    public $result;
+    public $message;
+    public $status;
 }

@@ -6,16 +6,11 @@
 
 $cnn = Connection();
 
-$isAdmin= ($_GET['isAdmin'] !== null && (int)$_GET['isAdmin'] > 0)? mysqli_real_escape_string($cnn, (int)$_GET['isAdmin']) : false;
+$isAdmin= $_GET['isAdmin'];
 
-if(!$isAdmin)
-{
-    return http_response_code(400);
-}
+$idAdmin= $_GET['idAdmin'];
 
-$idAdmin= ($_GET['idAdmin'] !== null && (int)$_GET['idAdmin'] > 0)? mysqli_real_escape_string($cnn, (int)$_GET['idAdmin']) : false;
-
-if(!$idAdmin)
+if($idAdmin == null)
 {
     return http_response_code(400);
 }

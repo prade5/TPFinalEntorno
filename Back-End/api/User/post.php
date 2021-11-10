@@ -3,11 +3,9 @@ include_once("../../Config/db.php");
 include_once('../../middleware/genericMethod.php');
 include_once('../../Config/constant.php');
 include_once('../../Helpers/Security/Securitypass.php');
-include_once('../../middleware/mail.php');
-
-$_POST= json_decode(file_get_contents('php://input'), true);
-$user = new PostUser($_POST["id"],$_POST['idRole'],$_POST["firstName"],$_POST["lastName"],$_POST["mail"],$_POST["address"],$_POST["phone"],$_POST["userName"],$_POST["userPass"],$_POST["idDocumentType"],$_POST["docNumber"],"","",$_POST["state"]);
-$user->Post();
+ include_once('../../middleware/mail.php');
+include_once('../../PHPMailer/PHPMailerAutoload.php');
+include_once('../../Config/constant.php');
 
 class PostUser extends genericMethod
 {
@@ -30,7 +28,7 @@ class PostUser extends genericMethod
     {
         #region initial
         $this->id = $id;
-        $this->idRole = $idRole;
+        $this->idRole = 74;
         $this->idDocumentType = $idDocumentType;
         $this->firstName = $firstName;
         $this->lastName = $lastName;
@@ -75,12 +73,12 @@ class PostUser extends genericMethod
 
             $pass = Security::Encrypt($this->userPass);
 
-            $result = mysqli_query($cnn, "insert into users (idRole, idDocumentType, firstName, lastName, docNumber, mail, address, phone, userName, userPass,state,isActivate) 
-                values('$this->idRole','$this->idDocumentType' , '$this->firstName' , '$this->lastName','$this->docNumber' , '$this->mail' , '$this->address', '$this->phone' , '$this->userName', '$pass',1, false)");
+            $result = mysqli_query($cnn, "insert into users (idRole, idDocumentType, firstName, lastName, docNumber, mail, address, phone, userName, userPass, state, isActivate) 
+                values('$this->idRole','$this->idDocumentType' , '$this->firstName' , '$this->lastName','$this->docNumber' , '$this->mail' , '$this->address', '$this->phone' , '$this->userName', '$pass', 1, false)");
             if ($result) {
                 $id = $cnn->insert_id;
-                $message = Send::MessageRegister($this->firstName . "-" . $this->lastName, $this->userName, $this->userPass, $id);
-                Send::SendMailGoogle($message, $this->mail, MAILREGISTER);
+                 $message = SendToUser::MessageRegister("$this->firstName" . "-" . "$this->lastName", "$this->userName", "$this->userPass", "$id");
+                SendToUser::SendMailGoogle($message, $this->mail, MAILREGISTER);
                 $this->ReturnReponse(SUCCESS_RESPONSE, "El usuario fue guardado con exito y recibira un correo de confirmacion su cuenta via mail.");
             } else {
                 $this->ReturnReponse(ERROR_RESPONSE, "El usuario no fue guardado con exito.");
@@ -90,3 +88,10 @@ class PostUser extends genericMethod
         }
     }
 }
+
+$_POST= json_decode(file_get_contents('php://input'), true);
+
+$user = new PostUser($_POST["id"],$_POST['idRole'],$_POST["firstName"],$_POST["lastName"],$_POST["mail"],$_POST["address"],$_POST["phone"],$_POST["userName"],$_POST["userPass"],$_POST["idDocumentType"],$_POST["docNumber"],"","",$_POST["state"]);
+
+$user->Post();
+

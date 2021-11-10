@@ -4,10 +4,6 @@ include_once('../../middleware/genericMethod.php');
 include_once('../../Config/constant.php');
 include_once('../../Helpers/Security/Securitypass.php');
 
-$_POST= json_decode(file_get_contents('php://input'), true);
-$doc = new PostDocument($_POST["id"],$_POST['name'],$_POST["description"],"",$_POST["state"]);
-
-$doc->Post();
 
 class PostDocument extends genericMethod
 {
@@ -40,5 +36,10 @@ class PostDocument extends genericMethod
             $this->ReturnReponse(ERROR_RESPONSE, "El documento no fue guardado con exito");
         }
     }
-
 }
+
+$_POST= json_decode(file_get_contents('php://input'), true);
+
+$doc = new PostDocument($_POST["id"],$_POST['name'],$_POST["description"],"",$_POST["state"]);
+
+$doc->Post();

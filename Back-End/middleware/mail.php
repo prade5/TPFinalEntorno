@@ -33,7 +33,7 @@ include_once('../Config/constant.php');
         }
 
         public static function MessageRegister($full_name, $username, $password, $id){
-            $baseLink ="https://tpfinalentornos.000webhostapp.com/Back-End/api/user.php?confirmuser=".$id;
+            $baseLink ="https://tpfinalentornos.000webhostapp.com/Back-End/api/User/confirmRegister.php?confirmuser=".$id;
 
             $message  ='<div>
             <div style="text-align: left; margin-top: 25px;"><img src="'.PHOTOHEADER.'"  alt="cabecera"/></div>

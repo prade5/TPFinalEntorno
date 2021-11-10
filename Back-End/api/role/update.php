@@ -4,9 +4,6 @@ include_once('../../middleware/genericMethod.php');
 include_once('../../Config/constant.php');
 include_once('../../Helpers/Security/Securitypass.php');
 
-$_PUT = json_decode(file_get_contents('php://input'), true);
-$role = new UpdateRole($_PUT["id"],$_PUT['name'],$_PUT["description"],$_PUT["creationDate"],$_PUT["state"]);
-$role->Put($_GET['id']);
 
 class UpdateRole extends genericMethod
 {
@@ -41,3 +38,9 @@ class UpdateRole extends genericMethod
         }
     }
 }
+
+$_PUT = json_decode(file_get_contents('php://input'), true);
+
+$role = new UpdateRole($_PUT["id"],$_PUT['name'],$_PUT["description"],$_PUT["creationDate"],$_PUT["state"]);
+
+$role->Put($_GET['id']);

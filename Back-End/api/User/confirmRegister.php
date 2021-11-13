@@ -5,24 +5,58 @@ include_once('../../Config/constant.php');
 include_once('../../Helpers/Security/Securitypass.php');
 include_once('../../middleware/mail.php');
 
-$cnn = Connection();
+header('method: POST');
 
-$id = $_GET['confirmuser'];
+class ResultUser {
+    public $result;
+    public $message;
+}
 
-if($id == null)
+class UpdateUserStatus extends genericMethod
 {
-    return http_response_code(400);
+    private $id;
+
+    public function __construct($id)
+    {
+        #region initial
+        $this->id = $id;
+        #endregion
+    }
+
+    public function updateUser()
+    {
+        $cnn = Connection();
+
+        if($this->id == null)
+        {
+            return http_response_code(430);
+        }
+
+        $response = new ResultUser();
+
+        $result = mysqli_query($cnn,"update users set isActivate = true where id =".$this->id);
+
+        if($result){
+            $response->result = 'Ok';
+            $response->message="El usuario fue confirmado con exito. Puede cerrar la pantalla.";
+        }
+        else{
+            $response->result = 'Error';
+            $response->message="No se pudo realizar la confirmación";
+        }
+
+        echo $response->message;
+    }
 }
 
-$response = new Result();
-$result = mysqli_query($cnn,"update users set isActivate = true where id =".$id);
+$url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 
-if($result){
-    $response->result = 'Ok';
-    $response->message="El usuario fue confirmado con exito";
-}
-else{
-    $response->result = 'Error';
-    $response->message="No se pudo realizar la confirmación";
-}
-echo json_encode($response);
+$url_components = parse_url($url);
+
+parse_str($url_components['query'], $params);
+
+$id = $params['confirmuser'];
+
+$userRegister = new UpdateUserStatus($id);
+
+$userRegister->updateUser();

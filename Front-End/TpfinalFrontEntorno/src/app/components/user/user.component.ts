@@ -38,19 +38,19 @@ export class UserComponent implements OnInit {
   }
 
   ChangeRole(id){
-    this.userService.GetById(id).subscribe( (user) =>{  
-    this.user = user;  
+    this.userService.GetById(id).subscribe( (user) =>{
+    this.user = user;
     this.browserForm.patchValue(user);
       $('#exampleModal').modal('show');
     });
-  } 
+  }
 
   private initForm():void{
     this.browserForm = this.fb.group({
-      id:0,      
+      id:0,
       idRole: ['',[Validators.required]],
       state:1
-    });  
+    });
   }
 
   GetAllRole(){
@@ -78,7 +78,7 @@ export class UserComponent implements OnInit {
       if (result.isConfirmed) {
         debugger;
         this.userService.Delete(id).subscribe((data:any) =>{
-          if(data.result === 'OK')
+          if(data.response.status === 200)
           debugger;
           Swal.fire(
             'Eliminado!',
@@ -100,9 +100,9 @@ export class UserComponent implements OnInit {
   Create (){
     if(this.browserForm.valid) {
       this.ActionCreate();
-    }   
+    }
   }
-  
+
   ActionCreate(){
     this.userService.ChangeRole(this.browserForm.value).subscribe((data:any) =>{
       debugger;

@@ -103,13 +103,13 @@ GetById(id){
     return result;
   }
   Create (){
-    if(this.browserForm.valid) {
-      if(this.OptionBtn == false){
-        this.ActionCreate();
-      }
-      else{
-        this.ActionUpdate();
-      }
+    if(this.browserForm.valid && this.OptionBtn == false)
+    {
+      this.ActionCreate();
+    }
+    else
+    {
+      this.ActionUpdate();
     }
   }
   ActionCreate(){

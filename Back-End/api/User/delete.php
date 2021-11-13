@@ -5,25 +5,36 @@ include_once('../../Config/constant.php');
 include_once('../../Helpers/Security/Securitypass.php');
 include_once('../../middleware/mail.php');
 
-$cnn = Connection();
-
-$response = new UserResult();
-
-$id = $_GET['id'];
-
-if($id == null)
+class deleteUser extends genericMethod
 {
-    return http_response_code(400);
+    private $id;
+
+    public function __construct($id)
+    {
+        #region initial
+        $this->id = $id;
+        #endregion
+    }
+
+    public function DeleteUser($id)
+    {
+        $cnn = Connection();
+
+        $result = mysqli_query($cnn,"update users set state = 2 where id =".$this->id);
+
+        if($result){
+            $this->ReturnReponse(SUCCESS_RESPONSE, "El usuario fue borrado con exito.");
+        }
+        else{
+            $this->ReturnReponse(ERROR_RESPONSE, "El usuario no fue borrado con exito.");
+        }
+    }
 }
 
-$result = mysqli_query($cnn,"update users set state = 2 where id =".$id);
+$id = json_decode(file_get_contents('php://input'), true);
 
-if($result){
-    $response->result = 'Ok';
-    $response->message="El usuario fue eliminado con exito";
-}
-else{
-    $response->result = 'Error';
-    $response->message="El usuario no fue eliminado con exito";
-}
-echo json_encode($response);
+$id = ((int)$id);
+
+$userDelete = new deleteUser($id);
+
+$userDelete->DeleteUser();

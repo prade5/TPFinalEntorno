@@ -9,7 +9,7 @@ import { environment } from '../../../environments/environment';
 })
 export class ProfilService {
 
-  public folderName:string = 'ProfileUser/';
+  public folderName:string = 'PerfilUser/';
 
   constructor(private http: HttpClient) { }
   GetAll(): Observable<ProfilUser[]> {

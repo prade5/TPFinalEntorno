@@ -23,7 +23,7 @@ export class PerfilComponent implements OnInit {
   browserForm: FormGroup;
   perfilForm: FormGroup;
   knowlageForm: FormGroup;
-  
+
   idperfil = 0 ;
   user:any;
   profiluser:any;
@@ -43,7 +43,7 @@ export class PerfilComponent implements OnInit {
   constructor(private route: ActivatedRoute,private userService: UserService, private fb:FormBuilder,
     private profilservice: ProfilService, private kownservice: KownlageService,private messageService: MessageService,
     private perfilphotoService:PerfilphotoService,private docservice:DocumenttypeService,
-    private taskService:TaskService) { 
+    private taskService:TaskService) {
     this.idperfil = parseInt(this.route.snapshot.paramMap.get('id'));
   }
 
@@ -73,15 +73,15 @@ export class PerfilComponent implements OnInit {
       debugger;
       if(result !== ""){
         this.isPerfilCreate = false;
-        if(result.img == ""){          
+        if(result.img == ""){
           this.GetProfilphotoById(2);
         }
       }
-      else{        
+      else{
         this.GetProfilphotoById(2);
       }
-      this.profiluser = result;  
-      this.profilphoto = result.img;     
+      this.profiluser = result;
+      this.profilphoto = result.img;
       this.perfilForm.patchValue(this.profiluser);
     })
   }
@@ -92,8 +92,8 @@ export class PerfilComponent implements OnInit {
       if(result !== ""){
         this.isKnowlageCreate = false;
       }
-      // this.profiluser = result;  
-      this.porcent = result.nivel;    
+      // this.profiluser = result;
+      this.porcent = result.nivel;
       this.knowlageForm.patchValue(result);
     })
   }
@@ -114,7 +114,7 @@ export class PerfilComponent implements OnInit {
       this.doclist = role;
     });
   }
-  
+
   GetAllPhotoDefault(): void {
     this.perfilphotoService.GetAll().subscribe( (photo) =>{
       this.photolist = photo;
@@ -146,7 +146,7 @@ export class PerfilComponent implements OnInit {
 
   private initForm():void{
     this.browserForm = this.fb.group({
-      id:this.idperfil,      
+      id:this.idperfil,
       idDocumentType: ['',[Validators.required]],
       firstName: ['',[Validators.required]],
       lastName: ['',[Validators.required]],
@@ -154,16 +154,18 @@ export class PerfilComponent implements OnInit {
       mail: [''],
       address:['',[Validators.required]],
       phone:['',[Validators.required]],
-      idRole:['',[Validators.required]],
-      idUser:this.idperfil,    
+      idRole:[73, [Validators.required]],
+      idUser:this.idperfil,
       state:1
-    });  
+    });
+
+    this.GetById(this.idperfil);
   }
 
   private initProfilForm():void{
     this.perfilForm = this.fb.group({
       id:0,
-      idUser:this.idperfil,      
+      idUser:this.idperfil,
       workplace: '',
       title: ['',[Validators.required]],
       img:'',
@@ -173,18 +175,18 @@ export class PerfilComponent implements OnInit {
       twitter:'',
       website:'',
       state:1
-    });  
+    });
   }
 
   private initKnowlageForm():void{
     this.knowlageForm = this.fb.group({
       id:0,
-      idUser:this.idperfil,  
+      idUser:this.idperfil,
       name: ['',[Validators.required]],
       description:'',
       nivel:['',[Validators.required]],
       state:1
-    });  
+    });
   }
 
   isValidField(field: string): string{
@@ -215,8 +217,8 @@ export class PerfilComponent implements OnInit {
     this.actionbtn ='user';
     this.titleModal = "Actualizar usuario"
   }
-  ActionPerfil():void{    
-    this.actionbtn ='perfil'; 
+  ActionPerfil():void{
+    this.actionbtn ='perfil';
     this.userPerfilName = this.taskService.GetUserName();
 
     if(!this.isPerfilCreate){
@@ -224,10 +226,10 @@ export class PerfilComponent implements OnInit {
     }
     else{
       this.titleModal = "Agregar perfil usuario"
-    }    
+    }
   }
   ActionKnowlage(id):void{
-    this.actionbtn ='knowlage'; 
+    this.actionbtn ='knowlage';
     debugger;
     if(id === 0){
       this.porcent = 0;
@@ -236,7 +238,7 @@ export class PerfilComponent implements OnInit {
       this.isKnowlageCreate = true;
       this.titleModal = "Agregar conocimiento"
     }
-    else{ 
+    else{
       this.GetKnowlageById(id)
       this.titleModal = "Actualizar conocimiento";
       this.isKnowlageCreate = false;
@@ -283,10 +285,10 @@ export class PerfilComponent implements OnInit {
     if(this.browserForm.valid) {
       this.userService.Put(this.browserForm.value).subscribe((data:any) =>{
         if(data.response.status === 200){
-          setTimeout(()=>{         
+          setTimeout(()=>{
             this.CloseAllModal();
           }, 5000);
-          this.GetById(this.idperfil);         
+          this.GetById(this.idperfil);
           this.messageService.Success('Actualizar Usuario', data.response.message);
         }
         else{
@@ -307,17 +309,17 @@ export class PerfilComponent implements OnInit {
       }
       else{
         this.CreatePerfil();
-      } 
+      }
     }
   }
 
   CreatePerfil():void{
     this.profilservice.Post(this.perfilForm.value).subscribe((data:any) =>{
       if(data.response.status === 200){
-        setTimeout(()=>{         
+        setTimeout(()=>{
           this.CloseAllModal();
         }, 5000);
-        this.GetById(this.idperfil);         
+        this.GetById(this.idperfil);
         this.messageService.Success('Crear perfil', data.response.message);
       }
       else{
@@ -332,10 +334,10 @@ export class PerfilComponent implements OnInit {
   UpdatePerfil():void{
     this.profilservice.Put(this.perfilForm.value).subscribe((data:any) =>{
       if(data.response.status === 200){
-        setTimeout(()=>{         
+        setTimeout(()=>{
           this.CloseAllModal();
         }, 5000);
-        this.GetById(this.idperfil);         
+        this.GetById(this.idperfil);
         this.messageService.Success('Actualizar perfil', data.response.message);
       }
       else{
@@ -355,7 +357,7 @@ export class PerfilComponent implements OnInit {
       }
       else{
         this.CreateKnowlage();
-      } 
+      }
     }
   }
 
@@ -363,10 +365,10 @@ export class PerfilComponent implements OnInit {
     this.kownservice.Post(this.knowlageForm.value).subscribe((data:any) =>{
       debugger;
       if(data.response.status === 200){
-        setTimeout(()=>{         
+        setTimeout(()=>{
           this.CloseAllModal();
         }, 5000);
-        this.GetAllKownlage(this.idperfil);          
+        this.GetAllKownlage(this.idperfil);
         this.messageService.Success('Agregar conocimiento', data.response.message);
       }
       else{
@@ -384,10 +386,10 @@ export class PerfilComponent implements OnInit {
     this.kownservice.Put(this.knowlageForm.value).subscribe((data:any) =>{
       debugger;
       if(data.response.status === 200){
-        setTimeout(()=>{         
+        setTimeout(()=>{
           this.CloseAllModal();
         }, 5000);
-        this.GetAllKownlage(this.idperfil);         
+        this.GetAllKownlage(this.idperfil);
         this.messageService.Success('Actualizar conocimiento', data.response.message);
       }
       else{

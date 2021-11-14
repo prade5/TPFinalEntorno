@@ -22,9 +22,10 @@ export class ChangePassComponent implements OnInit {
   ngOnInit(): void {
     this.initForm();
   }
-  
+
   private initForm():void{
     this.accountForm = this.fb.group({
+      id: this.taskService.GetIdUser(),
       userName: this.taskService.GetUserName(),
       userPass: ['',[Validators.required]],
       newUserPass: ['',[Validators.required]],

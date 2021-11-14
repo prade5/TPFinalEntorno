@@ -43,17 +43,18 @@ class AuthUpdate extends genericMethod
             echo json_encode(['response' => ['status' => 301, "message" => "La nueva contraseña es diferente de la confirmación"]]);
             exit;
         }
-        $this->CheckPassWord($this->newUserPass);
+        $pass = Security::Encrypt($this->newUserPass);
 
-        $result = mysqli_query($cnn,"update users set userPass ='$this->newUserPass'
+        $result = mysqli_query($cnn,"update users set userPass ='$pass'
                                     where id =".$id);
         if($result){
             echo json_encode(['response' => ['status' => SUCCESS_RESPONSE, "message" => "La contraseña fue modificada con exito."]]);
+            exit;
         }
         else{
             echo json_encode(['response' => ['status' => SUCCESS_RESPONSE, "message" => "NO se pudo modificar la contraseña."]]);
+            exit;
         }
-        exit;
     }
 }
 
@@ -61,7 +62,7 @@ $_PUT = json_decode(file_get_contents('php://input'), true);
 
 $cnn = Connection();
 
-$id = $_GET['id'];
+$id = $_PUT['id'];
 
 if($id == null) {
     return http_response_code(400);

@@ -132,7 +132,7 @@
               <div class="col-xl-10 col-lg-6 col-md-8 col-sm-10 mx-auto text-center form">
                 <div class="px-4">
                   <!--Start user-->
-                  <form class="justify-content-center" *ngIf="actionbtn =='user'"  [formGroup]="browserForm" (ngSubmit)="UpdateUser()">
+                  <form class="justify-content-center" *ngIf="actionbtn ==='user'"  [formGroup]="browserForm" (ngSubmit)="UpdateUser()">
                     <div class="form-row">
                       <div class="form-group col-md-6">
                         <label for="inputfirstName">Nombre</label>
@@ -211,7 +211,7 @@
                   <!--End user-->
 
                   <!--Start profil-->
-                  <form action="" class="justify-content-center" *ngIf="actionbtn =='perfil'"  [formGroup]="perfilForm" (ngSubmit)="CreateOrUpdatePerfil()">
+                  <form action="" class="justify-content-center" *ngIf="actionbtn ==='perfil'"  [formGroup]="perfilForm" (ngSubmit)="CreateOrUpdatePerfil()">
                     <div class="form-row">
                       <div class="form-group col-md-4 float-left">
                         <h2  class="float-left"><strong>Usuario: </strong>{{userPerfilName}}</h2>
@@ -286,7 +286,7 @@
                   <!--End profil-->
 
                   <!--Start knowlage-->
-                  <form action="" class="justify-content-center" *ngIf="actionbtn =='knowlage'"  [formGroup]="knowlageForm" (ngSubmit)="CreateOrUpdateKnowlage()">
+                  <form action="" class="justify-content-center" *ngIf="actionbtn ==='knowlage'"  [formGroup]="knowlageForm" (ngSubmit)="CreateOrUpdateKnowlage()">
                     <div class="form-row">
                       <div class="form-group col-md-6">
                         <label for="inputknowlagename">Nombre actividad</label>

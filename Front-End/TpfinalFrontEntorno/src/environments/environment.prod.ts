@@ -1,4 +1,9 @@
 export const environment = {
   production: true,
-  api_url:"https://tpfinalentornos.000webhostapp.com/Back-End/api/"
+  api_url:"http://localhost:80/Entorno/TPFinalEntorno/Back-End/api/"
 };
+
+// export const environment = {
+//   production: true,
+//   api_url:"https://tpfinalentornos.000webhostapp.com/Back-End/api/"
+// };

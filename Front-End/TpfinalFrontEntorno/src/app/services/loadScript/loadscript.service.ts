@@ -14,7 +14,6 @@ export class LoadscriptService {
     node.src = urljs;
     node.type = 'text/javascript';
     node.async = true;
-    // tslint:disable-next-line: deprecation
     node.charset = 'utf-8';
     document.getElementsByTagName('head')[0].appendChild(node);
   }

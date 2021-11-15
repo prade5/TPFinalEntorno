@@ -146,8 +146,8 @@
                           </div>
 
                           <div class="float-right mb-3">
-                            <button [routerLink]="isRegister != true ? ['/User'] : ['/Account']" class="btn btn-primary mr-3">Cancelar</button>
-                            <button type="submit" class="btn btn-primary">{{OptionBtn == false ? "Guardar" : "Actualizar"}}</button>
+                            <button [routerLink]="isRegister !== true ? ['/User'] : ['/Account']" class="btn btn-primary mr-3">Cancelar</button>
+                            <button type="submit" class="btn btn-primary">{{OptionBtn === false ? "Guardar" : "Actualizar"}}</button>
                           </div>
                       </form>
                   </div>

@@ -77,9 +77,9 @@
             </td>
             <td>
                 {{competition.finalDate | date: 'dd/MM/yyyy'}}
-            </td>            
+            </td>
             <td>
-                {{competition.isActive == true ? 'Activo' : 'Finalizado'}}
+                {{competition.isActive === true ? 'Activo' : 'Finalizado'}}
             </td>
             <td>
               <button pButton pRipple icon="pi pi-search" aria-label="Buscar" title="Ver detalle" class="p-button-rounded p-button-success p-mr-2"  [routerLink]="['/Detalle/'+ competition.id]"></button>

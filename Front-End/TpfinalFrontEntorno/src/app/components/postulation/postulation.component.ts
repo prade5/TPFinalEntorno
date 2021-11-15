@@ -59,7 +59,7 @@ export class PostulationComponent implements OnInit {
       if (data.response.status === 200){
         if(this.taskservice.GetIspostulateOut() != null){
           this.taskservice.RemoveIspostulateOut();
-        };
+        }
         this.GetAll();
         $('#exampleModal').modal("hide");
       }

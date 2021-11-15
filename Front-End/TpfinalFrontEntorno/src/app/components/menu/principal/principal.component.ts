@@ -20,7 +20,6 @@ export class PrincipalComponent implements OnInit {
     private router: Router,private userService: UserService) { }
 
   ngOnInit(): void {
-    // this. GetTypeUser();
     this.GetAllUser();
     this.linkprincipal ="/Principal";
   }

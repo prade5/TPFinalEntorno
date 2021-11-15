@@ -1,4 +1,5 @@
 <?php
+include_once("../../Config/cors.php");
 include_once("../../Config/db.php");
 include_once('../../middleware/genericMethod.php');
 include_once('../../Config/constant.php');

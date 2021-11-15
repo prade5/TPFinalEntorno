@@ -92,7 +92,6 @@ export class PerfilComponent implements OnInit {
       if(result !== ""){
         this.isKnowlageCreate = false;
       }
-      // this.profiluser = result;
       this.porcent = result.nivel;
       this.knowlageForm.patchValue(result);
     })
@@ -132,8 +131,6 @@ export class PerfilComponent implements OnInit {
     if (readerEvt == "Id") {
       this.profilphoto = "data:image/jpeg;base64," +btoa(binaryString);
       this.perfilForm.value.img = this.profilphoto;
-      // $('#exampleModal').modal('toggle');
-      // $('.modal').modal('toggle');
       $('#photoperfil').hide('toggle');
     }
   }

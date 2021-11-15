@@ -1,7 +1,7 @@
 <?php
-    include_once('../Config/constant.php');
-    include_once("../Config/db.php");
-    // require("../Config/cors.php");
+    include_once '../Config/cors.php';
+    include_once '../Config/constant.php';
+    include_once '../Config/db.php';
     class genericMethod{
         protected $request;
         protected $serviceName;

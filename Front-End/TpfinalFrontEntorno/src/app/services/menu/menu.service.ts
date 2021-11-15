@@ -61,22 +61,6 @@ export class MenuService {
         displayName:"Concursos abiertos",
         active:"active Applicant"
       }
-      // {
-      //   url:"/calificate",
-      //   displayName:"Mis Calificaciones",
-      //   active:"calificate"
-      // },
-      // {
-      //   url:"/Postulate",
-      //   displayName:"Mis Postulaciones",
-      //   active:"Postulate"
-      // }
-      // ,
-      // {
-      //   url:"/Home",
-      //   displayName:"Concursos abiertos",
-      //   active:"Concursos"
-      // }
     ]
     return this.menunav;
   }
@@ -88,11 +72,6 @@ export class MenuService {
         displayName:"Mis Cursos",
         active:"active Course"
       },
-      // {
-      //   url:"/Rating",
-      //   displayName:"Calificaciones",
-      //   active:"Rating"
-      // },
       {
         url:"/Competition",
         displayName:"Crear concurso",

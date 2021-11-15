@@ -17,7 +17,8 @@ exports.config = {
   },
   directConnect: true,
   SELENIUM_PROMISE_MANAGER: false,
-  baseUrl: 'https://tpfinalentornos.000webhostapp.com/',
+  // baseUrl: 'https://tpfinalentornos.000webhostapp.com/',
+  baseUrl: 'http://localhost:8080/',
   framework: 'jasmine',
   jasmineNodeOpts: {
     showColors: true,

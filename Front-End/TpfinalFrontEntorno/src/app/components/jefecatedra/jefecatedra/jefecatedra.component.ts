@@ -27,29 +27,6 @@ export class JefecatedraComponent implements OnInit {
     });
   }
 
-  // Delete(id: number){
-  //   Swal.fire({
-  //     title: '¿Esta seguro desea eliminarlo?',
-  //     text: 'Este archivo se va a eliminar para siempre',
-  //     icon: 'warning',
-  //     showCancelButton: true,
-  //     confirmButtonText: 'Aceptar',
-  //     cancelButtonText: 'Cancel'
-  //   }).then((result) => {
-  //     if (result.isConfirmed) {
-  //       debugger;
-  //       this.jcatedraservice.Delete(id);
-  //       this.GetAll();
-  //     } else if (result.dismiss === Swal.DismissReason.cancel) {
-  //       Swal.fire(
-  //         'Cancelado',
-  //         'El archivo fue cancelado',
-  //         'error'
-  //       )
-  //     }
-  //   })
-  // }
-
   Delete(id){
     Swal.fire({
       title: '¿Esta seguro desea eliminarlo?',

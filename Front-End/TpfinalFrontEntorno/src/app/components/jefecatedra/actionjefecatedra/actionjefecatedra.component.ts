@@ -31,7 +31,7 @@ export class ActionjefecatedraComponent implements OnInit {
 
   constructor(private subservice: SubjectService, private userService: UserService,
     private messageService: MessageService, private fb:FormBuilder,private router:Router,
-    private jefeservice: JefecatedraService, private route: ActivatedRoute) { 
+    private jefeservice: JefecatedraService, private route: ActivatedRoute) {
       let id = this.route.snapshot.paramMap.get('id');
       Active();
       if(id !== null){
@@ -64,13 +64,13 @@ export class ActionjefecatedraComponent implements OnInit {
       Active();
     });
   }
-  
+
   GetByIJCM(id){
     debugger;
     this.jefeservice.GetById(id).subscribe((result:any) =>{
       debugger;
       var subject = {
-        IdSubject:{          
+        IdSubject:{
           Id:result.Id,
           name:result.name,
           id:result.IdSubject
@@ -78,7 +78,7 @@ export class ActionjefecatedraComponent implements OnInit {
       }
 
       var IdJefeDeCatedra = {
-        IdJefeDeCatedra:{      
+        IdJefeDeCatedra:{
           Id:result.Id,
           firstName:result.firstName,
           id:result.IdJefeDeCatedra
@@ -88,17 +88,10 @@ export class ActionjefecatedraComponent implements OnInit {
       debugger;
       this.browserForm.patchValue(subject);
       this.browserForm.patchValue(IdJefeDeCatedra);
-      // this.initialValue = result.name;
-      // this.initialValueuser = result.firstName;
     })
   }
   selectEvent(item) {
     debugger;
-    // $('.material-icons').on('click', function(){
-    //   ng-pristine
-    //   debugger;
-    // });
-    // do something with selected item
   }
 
   isValidField(field: string): string{
@@ -109,27 +102,23 @@ export class ActionjefecatedraComponent implements OnInit {
   }
 
   onChangeSearch(val: string) {
-    // fetch remote data from here
-    // And reassign the 'data' which is binded to 'data' property.
   }
-  
+
   onFocused(e){
     debugger;
-    // do something when input is focused
   }
   private initForm():void{
     this.browserForm = this.fb.group({
-      Id:0,      
+      Id:0,
       IdJefeDeCatedra: ['',[Validators.required]],
       IdSubject: ['',[Validators.required]],
       state:1
-    });  
+    });
   }
   Create (){
     let jcm = this.browserForm.value;
     debugger;
-    // let isvalid = this.browserForm.valid;
-    var subjselect =$($('.subjselect').find('.ng-touched')).val();    
+    var subjselect =$($('.subjselect').find('.ng-touched')).val();
     let userselect = $($('.userselect').find('.ng-touched')).val();
     if(this.browserForm.valid) {
       var jefecatedra ={
@@ -146,7 +135,7 @@ export class ActionjefecatedraComponent implements OnInit {
       }
     }
   }
-  
+
   ActionCreate(jefecatedra){
     this.jefeservice.Post(jefecatedra).subscribe((data:any) =>{
       debugger;

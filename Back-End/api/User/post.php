@@ -1,4 +1,5 @@
 <?php
+include_once("../../Config/cors.php");
 include_once("../../Config/db.php");
 include_once('../../middleware/genericMethod.php');
 include_once('../../Config/constant.php');
@@ -126,7 +127,10 @@ class PostUser extends genericMethod
     }
 
     public static function MessageRegister($full_name, $username, $password, $id){
-        $baseLink ="https://tpfinalentornos.000webhostapp.com/Back-End/api/User/confirmRegister.php?confirmuser=".$id;
+        $baseLink ="http://localhost:8080/Back-End/api/User/confirmRegister.php?confirmuser=".$id;
+
+//        Para la version deployada
+//        $baseLink ="https://tpfinalentornos.000webhostapp.com/Back-End/api/User/confirmRegister.php?confirmuser=".$id;
 
         return '<div>
             <div style="text-align: left; margin-top: 25px;"><img src="'.PHOTOHEADER.'"  alt="cabecera"/></div>

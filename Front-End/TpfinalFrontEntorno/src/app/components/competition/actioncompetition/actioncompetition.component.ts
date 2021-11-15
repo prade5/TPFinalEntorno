@@ -35,7 +35,7 @@ export class ActioncompetitionComponent implements OnInit {
   curUserId : number;
   curUserRole: string;
   dateCreateBind : string;
-  
+
   subject: Subject[];
   keyword = 'firstName';
   keywordname = 'name';
@@ -88,7 +88,7 @@ export class ActioncompetitionComponent implements OnInit {
       Active();
     });
   }
-  
+
   private initForm(): void{
     this.browserForm = this.fb.group({
       id: 0,
@@ -113,7 +113,7 @@ export class ActioncompetitionComponent implements OnInit {
       this.validDates = false;
     }
   }
-  
+
   selectEvent(item:any) {
     this.idselectmateria = item.id;
   }
@@ -140,7 +140,6 @@ export class ActioncompetitionComponent implements OnInit {
   }
 
   getMaterias() {
-    // if(this.curUserRole === 'admin') {
       this.subjectService.GetAll().subscribe(result => {
         this.catedras = JSON.parse(JSON.stringify(result));
       });
@@ -181,7 +180,7 @@ export class ActioncompetitionComponent implements OnInit {
             description: result.posdescription,
             id:  result.idPosition,
             name: result.posname,
-            state: "1" 
+            state: "1"
           },
           idUser:{
             idUser: result.idUser,
@@ -210,7 +209,6 @@ GetJCMAdmin(id){
 }
   Create(){
     debugger;
-    // this.rolactual === 'admin' ? '' : this.userFinder.GetIdUser()
     if (this.browserForm.valid) {
       var competition ={
         id:this.browserForm.value.id,
@@ -230,9 +228,6 @@ GetJCMAdmin(id){
         this.ActionUpdate(competition);
       }
     }
-    // else {
-    //   this.messageService.Error('Error', 'Ingrese el nombre');
-    // }
   }
 
   ActionCreate(competition){

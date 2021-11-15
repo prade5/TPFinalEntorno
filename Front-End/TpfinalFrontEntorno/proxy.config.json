@@ -1,6 +1,6 @@
 {
   "/Back-End/api/*": {
-      "target": "https://tpfinalentornos.000webhostapp.com",
+    "target":"http://localhost:8080",
       "secure": false,
       "logLevel": "debug"
   }

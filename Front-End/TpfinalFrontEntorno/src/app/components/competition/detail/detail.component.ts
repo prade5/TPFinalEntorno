@@ -9,7 +9,7 @@ import { CompetitionService } from 'src/app/services/competition/competition.ser
   styleUrls: ['./detail.component.css']
 })
 export class DetailComponent implements OnInit {
-  
+
   Competition: any;
 
   constructor( private route: ActivatedRoute, private competitionService: CompetitionService) { }
@@ -25,44 +25,6 @@ export class DetailComponent implements OnInit {
       this.Competition = JSON.parse(JSON.stringify(result));
       console.log(this.Competition);
       debugger;
-      // if (this.Competition != null){
-      //   const competitionThis = {
-      //     id:  this.Competition.id,
-      //     creationDate: moment(this.Competition.creationDate).format("YYYY-MM-DDThh:mm"),
-      //     finalDate: moment(this.Competition.finalDate).format("YYYY-MM-DDThh:mm"),
-      //     idSubject:{
-      //       creationDate:  moment(this.Competition.creationDate).format("YYYY-MM-DDThh:mm"),
-      //       description: result.subdescription,
-      //       finalDate: moment(this.Competition.finalDate).format("YYYY-MM-DDThh:mm"),
-      //       id: result.idsub,
-      //       idUser: result.idUser,
-      //       img: "data:image/jpg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD",
-      //       name: result.subname,
-      //       state: "1"
-      //     },
-      //     idPosition:{
-      //       description: result.posdescription,
-      //       id:  result.idPosition,
-      //       name: result.posname,
-      //       state: "1" 
-      //     },
-      //     idUser:{
-      //       idUser: result.idUser,
-      //       idSubject: result.idSubject,
-      //       firstName: result.firstName,
-      //       id: result.jcmid,
-      //       img: "data:image/jpg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD",
-      //       lastName: result.lastName,
-      //       name: result.subname
-      //     },
-      //     description:  this.Competition.description
-      //   };
-
-      //   this.dateCreateBind = new Date(this.Competition.creationDate).toISOString().slice(0, 16);
-      //   this.dateFinalBind = new Date(this.Competition.finalDate).toISOString().slice(0, 16);
-      //   this.browserForm.patchValue(competitionThis);
-      // }
-
     });
   }
 }

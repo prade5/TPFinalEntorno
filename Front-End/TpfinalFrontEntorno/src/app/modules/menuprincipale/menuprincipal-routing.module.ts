@@ -35,26 +35,6 @@ const routes: Routes = [
             title: 'Bienvienido al sistema de concurso'
           }
         },
-        // {
-        //   path: 'Role',
-        //   component: RoleComponent,
-        //   canLoad: [AuthGuard],
-        //   canActivate: [RoleGuardGuard],
-        //   data: {
-        //     expectedRole: 'admin',
-        //     title: 'Permiso'
-        //   }
-        // },
-        // {
-        //   path: 'ActionRole',
-        //   canLoad: [AuthGuard],
-        //   canActivate: [RoleGuardGuard],
-        //   component: ActionroleComponent,
-        //    data: {
-        //     expectedRole: 'admin',
-        //      title: 'Acceder permiso'
-        //     }
-        // },
         {
           path: 'jefedecatedra_materia',
           loadChildren: () => import("../../modules/jefecatedra/jefecatedra.module").then((c) => c.JefecatedraModule)

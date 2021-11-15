@@ -43,8 +43,6 @@ export class AplicantWinnerComponent implements OnInit {
     );
   }
 
-  //Esto es lo que hay que ver.
-
   DeclareWinner(idUserG, idCompetitionG){
     Swal.fire({
       title: '¿Esta seguro desea declarar el ganador del concurso?',
@@ -85,7 +83,7 @@ export class AplicantWinnerComponent implements OnInit {
   }
 
   CambiarMerito(aplicant){
-    debugger; 
+    debugger;
     if(aplicant.merit > 11){
       this.messageService.Error("Error", "El merito no se puede ser mayor que 10");
       return;

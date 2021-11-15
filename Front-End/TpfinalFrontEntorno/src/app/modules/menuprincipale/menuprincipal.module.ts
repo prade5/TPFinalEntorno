@@ -1,6 +1,5 @@
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { MenuprincipalRoutingModule } from './menuprincipal-routing.module';
 import { SharedModule } from 'src/app/components/shared/shared.module';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
@@ -8,10 +7,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { AccordionModule } from 'primeng/accordion';
 import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
-// import { TooltipModule } from 'primeng/tooltip';
-import { UserComponent } from 'src/app/components/user/user.component';
 import { AdminComponent } from 'src/app/components/admin/admin.component';
-import { ActioncompetitionComponent } from 'src/app/components/competition/actioncompetition/actioncompetition.component';
 import { MenuadminComponent } from 'src/app/components/menu/menuadmin/menuadmin.component';
 import { ActionroleComponent } from 'src/app/components/role/actionrole/actionrole.component';
 import { RoleComponent } from 'src/app/components/role/role.component';

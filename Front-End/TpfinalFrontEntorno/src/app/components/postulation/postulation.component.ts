@@ -45,11 +45,12 @@ export class PostulationComponent implements OnInit {
     $('#exampleModal').modal("show");
   }
   Subscribe(){
+    let date = new Date().toISOString().slice(0, 19).replace('T', ' ');
     let postulate ={
       id:0,
       idUser: $('.idUser').val(),
       idCompetition:$('.idCompetition').val(),
-      applicantDate:new Date(),
+      applicantDate: date,
       merit: 0,
       state:1
     };

@@ -1,5 +1,4 @@
 <?php
-
 //Conección a la version deployada.
 //function Connection(){
 //    $conn = mysqli_connect(

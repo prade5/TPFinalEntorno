@@ -110,7 +110,7 @@ export class ActionsubjectComponent implements OnInit {
   }
 
   ActionCreate(){
-    this.subservice.Post(this.form .value).subscribe((data:any) =>{
+    this.subservice.Post(this.form.value).subscribe((data:any) =>{
       debugger;
       if(data.response.status === 200){
         setTimeout(()=>{
@@ -128,8 +128,8 @@ export class ActionsubjectComponent implements OnInit {
   }
 
   ActionUpdate(){
-    this.subservice.Put(this.form .value).subscribe((data:any) =>{
-      if(data.response.status === 200){ 
+    this.subservice.Put(this.form.value).subscribe((data:any) =>{
+      if(data.response.status === 200){
         setTimeout(()=>{
           this.router.navigate(['/Subject']);
         }, 5000);

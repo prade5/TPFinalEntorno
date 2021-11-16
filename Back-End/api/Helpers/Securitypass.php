@@ -1,5 +1,5 @@
 <?php
-    include_once('../../Config/constant.php');
+    include_once('../Config/constant.php');
     class Security{
 		
         public static function Encrypt($string){

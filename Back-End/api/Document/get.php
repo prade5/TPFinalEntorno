@@ -1,9 +1,9 @@
 <?php
-include_once("../../Config/cors.php");
-include_once("../../Config/db.php");
-include_once('../../middleware/genericMethod.php');
-include_once('../../Config/constant.php');
-include_once('../../Helpers/Security/Securitypass.php');
+include_once("../Config/cors.php");
+include_once("../Config/db.php");
+include_once('../middleware/genericMethod.php');
+include_once('../Config/constant.php');
+include_once('../Helpers/Securitypass.php');
 
 $cnn = Connection();
 $userRegisters = mysqli_query($cnn,"select * from documenttype where state = 1 ORDER BY id DESC");

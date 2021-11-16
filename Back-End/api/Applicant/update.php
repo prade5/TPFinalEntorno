@@ -1,6 +1,8 @@
 <?php
-    require("../../Config/cors.php");
-    include_once("../../Config/db.php");
+    require("../Config/cors.php");
+    require("../middleware/genericMethod.php");
+    include_once("../Config/db.php");
+
 
 class ApplicantUpdate extends genericMethod
 {
@@ -24,7 +26,7 @@ class ApplicantUpdate extends genericMethod
     public function Put($id){
         $cnn = Connection();
         $result = mysqli_query($cnn,"update applicants set merit=$this->merit
-                                    where id =".$id);
+                                    where id =".$this->id);
         if($result){
             $this->ReturnReponse(SUCCESS_RESPONSE, "La postulación fue modificada con exito.");
         }

@@ -1,6 +1,6 @@
 <?php
-include_once(__DIR__ .'../PHPMailer/PHPMailerAutoload.php');
-include_once(__DIR__ .'../Config/constant.php');
+include_once('../PHPMailer/PHPMailerAutoload.php');
+include_once('../Config/constant.php');
 
     class Send{
         public function __construct(){           

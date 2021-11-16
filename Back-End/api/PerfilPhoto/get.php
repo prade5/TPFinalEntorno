@@ -1,12 +1,12 @@
 <?php
-include_once("../../Config/cors.php");
-include_once("../../Config/db.php");
-include_once('../../middleware/genericMethod.php');
-include_once('../../Config/constant.php');
-include_once('../../Helpers/Security/Securitypass.php');
+include_once("../Config/cors.php");
+include_once("../Config/db.php");
+include_once('../middleware/genericMethod.php');
+include_once('../Config/constant.php');
+include_once('../Helpers/Securitypass.php');
 
 
-$data = file_get_contents("../../Data/perfil.json");
+$data = file_get_contents("../Data/perfil.json");
 $products = json_decode($data, true);
 $sum = 0;
 echo("[");

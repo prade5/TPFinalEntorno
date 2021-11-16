@@ -1,6 +1,6 @@
 <?php
-    require("../../Config/cors.php");
-    include_once("../../Config/db.php");
+    require("../Config/cors.php");
+    include_once("../Config/db.php");
 
     $cnn = Connection();
 

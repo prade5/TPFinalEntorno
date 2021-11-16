@@ -1,10 +1,10 @@
 <?php
-include_once("../../Config/cors.php");
-include_once("../../Config/db.php");
-include_once('../../middleware/genericMethod.php');
-include_once('../../middleware/JWT.php');
-include_once('../../Config/constant.php');
-include_once('../../Helpers/Security/Securitypass.php');
+include_once("../Config/cors.php");
+include_once("../Config/db.php");
+include_once('../middleware/genericMethod.php');
+include_once('../middleware/JWT.php');
+include_once('../Config/constant.php');
+include_once('../Helpers/Securitypass.php');
 
 class AuthPost extends genericMethod
 {

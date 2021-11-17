@@ -11,22 +11,22 @@ $cnn = Connection();
 
 $select ="";
 if($idUser == 0){
-    $select = "app.state = 1";
+    $select = "jcm.state = 1 ";
 }
 else{
-    $select = "app.state = 1 and app.idUser = $idUser";
-}
-$users = mysqli_query($cnn,"select app.id, app.idUser, app.idCompetition, CONCAT(urs.firstName ,' - ', urs.lastName) as fullName, app.state,
-                                        sub.img, pos.name as position, app.applicantDate, app.merit, sub.name as subject, comp.creationDate, comp.finalDate 
-                                        from applicants app inner join users urs on app.idUser = urs.id 
-                                        inner join competitions comp on app.idCompetition = comp.id
-                                        inner join subjects sub on comp.idSubject = sub.id inner join positions pos on comp.idPosition = pos.id
-                                        where $select ORDER BY app.id DESC");
-$userList = [];
-
-while($reg = mysqli_fetch_array($users,MYSQLI_ASSOC)){
-    $userList[] = $reg;
+    $select = "jcm.state = 1 and jcm.IdJefeDeCatedra = $idUser";
 }
 
-$finalList = json_encode($userList);
+$perfil = mysqli_query($cnn,"select jcm.id, jcm.IdJefeDeCatedra, jcm.IdSubject , sub.name, sub.img, 
+            rol.name as position from jefedecatedra_materia jcm inner join subjects sub on jcm.IdSubject = sub.id 
+            inner join  users urs on jcm.IdJefeDeCatedra = urs.id inner join roles rol on rol.id = urs.idRole 
+            where $select ORDER BY jcm.id DESC");
+
+$perfilList = [];
+
+while($reg = mysqli_fetch_array($perfil,MYSQLI_ASSOC)){
+    $perfilList[] = $reg;
+}
+
+$finalList = json_encode($perfilList);
 echo $finalList;

@@ -41,3 +41,4 @@ $_POST= json_decode(file_get_contents('php://input'), true);
 $jefecatedra = new PostJefedeCatedraMateria($_POST["Id"],$_POST['IdJefeDeCatedra'],$_POST["IdSubject"],$_POST["state"]);
 
 $jefecatedra->Post();
+

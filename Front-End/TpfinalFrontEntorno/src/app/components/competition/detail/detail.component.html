@@ -9,35 +9,27 @@
 
                 <div class="form-row">
                   <div class="form-group col-md-12">
-                    <dl>
-                        <td> <strong>Nombre </strong> </td>
-                        <dd> <strong>{{ this.Competition.firstName }}</strong></dd>
-
-                        <td> <strong> Apellido </strong> </td>
-                        <dd> <strong> {{ this.Competition.lastName }}</strong></dd>
-
-                        <td> <strong> Materia </strong> </td>
+                    <dl class="tab-content">
+                        <td> <strong>Materia</strong> </td>
                         <dd> <strong>{{ this.Competition.subname }}</strong> </dd>
 
                         <td> <strong> Puesto </strong> </td>
                         <dd> <strong>{{ this.Competition.posname }}</strong> </dd>
 
-                        <td> <strong> Descripcion </strong>  </td>
-                        <dd> <strong>{{ this.Competition.subdescription }}</strong> </dd>
-
-                        <td> <strong> Fecha de inicip </strong>  </td>
+                        <td> <strong> Fecha de inicio </strong>  </td>
                         <dd> <strong>{{ this.Competition.creationDate  | date:'dd/MM/yyyy  HH:mm'}}</strong> </dd>
 
                         <td> <strong> Fecha fin </strong>  </td>
                         <dd> <strong>{{ this.Competition.finalDate  | date:'dd/MM/yyyy  HH:mm'}}</strong> </dd>
 
+                        <td> <strong> Descripcion </strong>  </td>
+                        <dd> <strong>{{ this.Competition.subdescription }}</strong> </dd>
                     </dl>
                   </div>
                 </div>
                 <div class="float-right mb-3">
-                  <button [routerLink]="['/Competition']" class="btn btn-primary mr-3">Cancelar</button>
+                  <button (click)="back()" class="btn btn-primary mr-3">Cancelar</button>
                 </div>
-
               </form>
             </div>
           </div>

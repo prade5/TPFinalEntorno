@@ -50,11 +50,13 @@
         <h5 class="card-title"><strong>Materia: {{comp.materia}}</strong></h5>
         <h5 class="card-title"><strong>Posicion: {{comp.puesto}}</strong></h5>
         <h5 class="card-title"><strong>Fecha de Cierre: {{comp.finalDate | date: 'dd/MM/yyyy'}}</strong></h5>
-        <div class="card-text  overflow-auto" style="height: 19vh;">
-          {{comp.description}}
-        </div>
+<!--        <div class="card-text  overflow-auto" style="height: 19vh;">-->
+<!--          {{comp.description}}-->
+<!--        </div>-->
       </div>
       <div class="card-footer">
+        <button type="button" title="Ver detalle" class="btn btn-primary col" [routerLink]="['/Detalle/'+ comp.id]">Ver Detalle</button>
+        <br><br>
         <button type="button" [attr.disabled]="comp.isActive !== true? true : null" (click)="inscribe(comp.id)" class="btn btn-primary col">{{comp.isActive === true ? 'Postularse' : 'Finalizado'}}</button>
       </div>
     </div>

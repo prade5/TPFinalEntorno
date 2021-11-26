@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Competition } from 'src/app/classes/competition';
 import { CompetitionService } from 'src/app/services/competition/competition.service';
+import { Location } from '@angular/common'
 
 @Component({
   selector: 'app-detail',
@@ -12,7 +13,7 @@ export class DetailComponent implements OnInit {
 
   Competition: any;
 
-  constructor( private route: ActivatedRoute, private competitionService: CompetitionService) { }
+  constructor( private route: ActivatedRoute, private competitionService: CompetitionService, private location: Location) { }
 
   ngOnInit(): void {
     debugger;
@@ -26,5 +27,9 @@ export class DetailComponent implements OnInit {
       console.log(this.Competition);
       debugger;
     });
+  }
+
+  back(): void {
+    this.location.back()
   }
 }

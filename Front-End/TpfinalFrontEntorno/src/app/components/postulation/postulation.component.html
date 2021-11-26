@@ -17,6 +17,8 @@
             </div>
           </div>
           <div class="card-footer">
+            <button type="button" title="Ver detalle" class="btn btn-primary col" [routerLink]="['/Detalle/'+ comp.id]">Ver Detalle</button>
+            <br><br>
             <button type="button" [disabled]="comp.isPostulate ? 'disabled' : null" (click)="inscribe(comp.id)" class="btn btn-primary col">{{comp.isPostulate !== true ? 'Postularse' : 'Ya estás postulado'}}</button>
           </div>
         </div>

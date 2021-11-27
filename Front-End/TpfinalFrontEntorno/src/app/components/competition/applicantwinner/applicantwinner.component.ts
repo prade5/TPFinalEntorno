@@ -45,8 +45,8 @@ export class AplicantWinnerComponent implements OnInit {
 
   DeclareWinner(idUserG, idCompetitionG){
     Swal.fire({
-      title: '¿Esta seguro desea declarar el ganador del concurso?',
-      text: 'Se declarara el ganador y cerrara el concurso',
+      title: '¿Está seguro que desea declarar el ganador del concurso?',
+      text: 'Se declarará el ganador y cerrará el concurso',
       icon: 'warning',
       showCancelButton: true,
       confirmButtonText: 'Aceptar',
@@ -85,7 +85,7 @@ export class AplicantWinnerComponent implements OnInit {
   CambiarMerito(aplicant){
     debugger;
     if(aplicant.merit > 11){
-      this.messageService.Error("Error", "El merito no se puede ser mayor que 10");
+      this.messageService.Error("Error", "El mérito no se puede ser mayor que 10");
       return;
     }
     this.applicant.Put(aplicant).subscribe((data2: any) => {

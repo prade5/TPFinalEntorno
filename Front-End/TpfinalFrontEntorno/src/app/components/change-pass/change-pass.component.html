@@ -1,4 +1,3 @@
-<!-- <app-navbar [isLogin]="isLogin"></app-navbar> -->
 <div class="container">
     <div class="abs-center">
       <form id="formulario" [formGroup]="accountForm"  class="form border p-3 form" (ngSubmit)="OnSubmit()">
@@ -9,24 +8,24 @@
           [class]="isValidField('userPass')">
           <div class="invalid-feedback">
             <span *ngIf="accountForm.get('userPass').errors?.required">
-                Ingresa contreseña actual
+                Ingresa contraseña actual
             </span>
           </div>
         </div>
         <div class="form-group">
-            <label for="newUserPass">Contreseña Nueva</label>
+            <label for="newUserPass">Contraseña Nueva</label>
             <input type="password"  name="newUserPass" id="newUserPass" class="form-control email-login" formControlName="newUserPass"
             [class]="isValidField('newUserPass')">
             <div class="invalid-feedback">
               <span *ngIf="accountForm.get('newUserPass').errors?.required">
-                  Ingresa contrasena nueva
+                  Ingresa contraseña nueva
               </span>
             </div>
           </div>
         <div class="form-group">
           <label for="confirmPass">Confirmar Contraseña</label>
           <input type="password" name="confirmPass" id="confirmPass" class="form-control password-login"
-          formControlName="confirmPass" [class]="isValidField('confirmPass')"> 
+          formControlName="confirmPass" [class]="isValidField('confirmPass')">
           <div class="invalid-feedback">
             <span *ngIf="accountForm.get('confirmPass').errors?.required">
                 Confirma contraseña nueva
@@ -43,9 +42,8 @@
             <div class="form-group col-md-6">
                 <button type="submit" class="btn btn-primary btn-block">Ingresar</button>
             </div>
-          
         </div>
       </form>
     </div>
   </div>
-  
+

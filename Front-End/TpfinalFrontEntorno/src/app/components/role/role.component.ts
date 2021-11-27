@@ -27,7 +27,7 @@ export class RoleComponent implements OnInit {
 
   Delete(id){
     Swal.fire({
-      title: '¿Esta seguro desea eliminarlo?',
+      title: '¿Está seguro desea eliminarlo?',
       text: 'Este archivo se va a eliminar para siempre',
       icon: 'warning',
       showCancelButton: true,
@@ -41,7 +41,7 @@ export class RoleComponent implements OnInit {
           debugger;
           Swal.fire(
             'Eliminado!',
-            'El archivo fue eliminado con exito',
+            'El archivo fue eliminado con éxito',
             'success'
           ).then((result) =>{
               this.GetAll();

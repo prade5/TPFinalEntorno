@@ -1,4 +1,3 @@
-<!--Navbar -->
 <nav class="navbar sticky-top  mb-3 navbar navbar-expand-xl navbar-dark bg-dark" style="height: 7vh;">
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-4"
     aria-controls="navbarSupportedContent-4" aria-expanded="false" aria-label="Toggle navigation">
@@ -22,7 +21,6 @@
     </ul>
   </div>
 </nav>
-<!--/.Navbar -->
 
 <div>
   <h1 class="text-center">Sistema de Coordinación de concursos de cátedras</h1>
@@ -33,7 +31,7 @@
       administrar el proceso de concursos para cátedra para la
       Universidad Tecnológica Nacional de Rosario. <br>
          Tanto para administradores como para concursantes.
-       <br><br>El primer paso es <a [routerLink]="['/Register']" class="pull-right">crear un usuario</a>  si no lo posee.</b></p-card>
+       <br><br>El primer paso es <a [routerLink]="['/Register']" class="pull-right">crear un usuario</a> si no lo posee.</b></p-card>
 
   </div>
   <br>
@@ -41,8 +39,6 @@
 </div>
 <br>
 <div class="row  m-0  row-cols-1 row-cols-md-4">
-<!--  <button (click)="showMyData()">show</button>-->
-
   <div class="col mb-4" *ngFor="let comp of complist">
     <div class="card h-100">
       <img src="{{comp.img}}" class="card-img-top" alt="Quimica">
@@ -50,9 +46,6 @@
         <h5 class="card-title"><strong>Materia: {{comp.materia}}</strong></h5>
         <h5 class="card-title"><strong>Posicion: {{comp.puesto}}</strong></h5>
         <h5 class="card-title"><strong>Fecha de Cierre: {{comp.finalDate | date: 'dd/MM/yyyy'}}</strong></h5>
-<!--        <div class="card-text  overflow-auto" style="height: 19vh;">-->
-<!--          {{comp.description}}-->
-<!--        </div>-->
       </div>
       <div class="card-footer">
         <button type="button" title="Ver detalle" class="btn btn-primary col" [routerLink]="['/Detalle/'+ comp.id]">Ver Detalle</button>

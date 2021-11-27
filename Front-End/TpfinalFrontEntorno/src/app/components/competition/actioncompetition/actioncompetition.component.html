@@ -18,7 +18,7 @@
                   </div>
                   <div>
                     <span [attr.hidden]="validDates? true : null"  class="text-danger">
-                        La fecha de creacion debe ser antes de la de finalizacion.
+                        La fecha de creación debe ser antes de la de finalización.
                     </span>
                   </div>
                 </div>
@@ -33,14 +33,14 @@
                   </div>
                   <div>
                     <span [attr.hidden]="validDates? true : null" class="text-danger">
-                        La fecha de creacion debe ser antes de la de finalizacion.
+                        La fecha de creación debe ser antes de la de finalización.
                     </span>
                   </div>
                 </div>
               </div>
               <div class="form-row">
                 <div class="form-group col-md-6">
-                  <label>Sleccionar una materia</label>
+                  <label>Seleccionar una materia</label>
                   <div class="ng-autocomplete userselect selectSubject">
                     <ng-autocomplete
                         [data]="catedras"
@@ -56,7 +56,7 @@
 
                     <div class="invalid-feedback">
                       <span *ngIf="browserForm.get('idSubject').errors?.required">
-                        Debe Seleccionar jefe de catedra
+                        Debe Seleccionar jefe de cátedra
                       </span>
                     </div>
 
@@ -70,7 +70,7 @@
                   </div>
                 </div>
                 <div class="form-group col-md-6">
-                  <label for="idPosition">Sleccionar un puesto</label>
+                  <label for="idPosition">Seleccionar un puesto</label>
                   <div class="ng-autocomplete userselect selectSubject">
                     <ng-autocomplete
                         [data]="posiciones"
@@ -84,12 +84,6 @@
                         [notFoundTemplate]="notFoundTemplate">
                     </ng-autocomplete>
 
-                    <!-- <div class="invalid-feedback">
-                      <span *ngIf="browserForm.get('idPosition').errors?.required">
-                        Debe Seleccionar jefe de catedra
-                      </span>
-                    </div> -->
-
                     <ng-template #itemTemplate let-item>
                     <a [innerHTML]="item.firstName" #object></a>
                     </ng-template>
@@ -101,7 +95,7 @@
                 </div>
               </div>
               <div class="form-row" *ngIf='isadmCreateJC'>
-                <label>Jefe catedra</label>
+                <label>Jefe de cátedra</label>
                  <div class="form-group col-md-12">
                     <div class="ng-autocomplete userselect">
                         <ng-autocomplete
@@ -116,7 +110,7 @@
 
                         <div class="invalid-feedback">
                           <span *ngIf="browserForm.get('idUser').errors?.required">
-                            Debe Seleccionar jefe de catedra
+                            Debe Seleccionar jefe de cátedra
                           </span>
                         </div>
 
@@ -126,7 +120,7 @@
 
                         <ng-template #notFoundTemplatepos let-NoEncontrado>
                         <div>
-                          NO hay jefe de catedra asignado para esa materia.
+                          No hay jefe de cátedra asignado para esa materia.
                         </div>
                         </ng-template>
                     </div>

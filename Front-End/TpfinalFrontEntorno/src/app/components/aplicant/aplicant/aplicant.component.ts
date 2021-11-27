@@ -37,8 +37,8 @@ export class AplicantComponent implements OnInit {
 
   DeclareWinner(idUserG, idCompetitionG){
     Swal.fire({
-      title: '¿Esta seguro desea declarar el ganador del concurso?',
-      text: 'Se declarara el ganador y cerrara el concurso',
+      title: '¿Está seguro que desea declarar el ganador del concurso?',
+      text: 'Se declarará el ganador y cerrará el concurso',
       icon: 'warning',
       showCancelButton: true,
       confirmButtonText: 'Aceptar',
@@ -77,7 +77,7 @@ export class AplicantComponent implements OnInit {
         if (data2.response.status === 200){
           Swal.fire(
             'Actualizado',
-            'El valor de merito del concursante fue actualizado',
+            'El valor de mérito del concursante fue actualizado',
             'success'
           ).then((result) =>{
           })

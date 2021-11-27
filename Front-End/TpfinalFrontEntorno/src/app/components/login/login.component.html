@@ -1,4 +1,3 @@
-<!-- <app-navbar [isLogin]="isLogin"></app-navbar> -->
 <div class="container">
   <div class="abs-center">
     <form id="formulario" [formGroup]="accountForm"  class="form border p-3 form" (ngSubmit)="OnSubmit()">
@@ -16,7 +15,7 @@
       <div class="form-group">
         <label for="password">Password</label>
         <input type="password" name="userPass" id="userPass" class="form-control password-login"
-        formControlName="userPass" [class]="isValidField('userPass')"> 
+        formControlName="userPass" [class]="isValidField('userPass')">
         <div class="invalid-feedback">
           <span *ngIf="accountForm.get('userPass').errors?.required">
               Campo obligatorio
@@ -30,7 +29,6 @@
         <button type="submit" class="btn btn-primary btn-block">Ingresar</button>
       </div>
       <div class="clearfix">
-        <!-- <label class="pull-right"><input type="checkbox">Recuerda</label> -->
         <a [routerLink]="['/Register']" class="pull-right">Registrarse</a>
         <a href="#" class="col-md-offset-2" style="float: right;">¿Olvidar contraseña?</a>
       </div>

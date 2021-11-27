@@ -40,7 +40,7 @@ export class CompetitionComponent implements OnInit {
 
   Delete(id){
     Swal.fire({
-      title: '¿Esta seguro desea eliminar el concurso?',
+      title: '¿Está seguro desea eliminar el concurso?',
       text: 'Este concurso se va a eliminar para siempre',
       icon: 'warning',
       showCancelButton: true,
@@ -52,7 +52,7 @@ export class CompetitionComponent implements OnInit {
           if(data.result === 'Ok')
           Swal.fire(
             'Eliminado!',
-            'El concurso fue eliminado con exito',
+            'El concurso fue eliminado con éxito',
             'success'
           ).then((result) =>{
             this.GetAll();
@@ -70,6 +70,6 @@ export class CompetitionComponent implements OnInit {
 }
 function Active(){
   $('.actionmenu').removeClass('active');
-  $('.dropdown').removeClass('active');   
+  $('.dropdown').removeClass('active');
   $('.Competition  ').addClass('active');
 }

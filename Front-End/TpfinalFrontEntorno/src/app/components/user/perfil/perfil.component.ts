@@ -257,7 +257,7 @@ export class PerfilComponent implements OnInit {
   DeleteKnowlage(id):void{
     Swal.fire({
       title: '¿Esta seguro desea eliminarlo?',
-      text: 'Este archivo se va a eliminar para siempre',
+      text: 'Este conocimiento se va a eliminar para siempre',
       icon: 'warning',
       showCancelButton: true,
       confirmButtonText: 'Aceptar',
@@ -270,7 +270,7 @@ export class PerfilComponent implements OnInit {
           debugger;
           Swal.fire(
             'Eliminado!',
-            'El archivo fue eliminado con exito',
+            'El conocimiento fue eliminado con éxito',
             'success'
           ).then((result) =>{
               this.LoadAll();
@@ -279,7 +279,7 @@ export class PerfilComponent implements OnInit {
       } else if (result.dismiss === Swal.DismissReason.cancel) {
         Swal.fire(
           'Cancelado',
-          'El archivo fue cancelado',
+          'El borrado fue cancelado',
           'error'
         )
       }

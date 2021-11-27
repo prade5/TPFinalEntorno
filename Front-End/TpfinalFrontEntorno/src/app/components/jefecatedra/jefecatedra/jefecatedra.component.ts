@@ -3,7 +3,6 @@ import { JefecatedraService } from '../../../services/jefecatedra/jefecatedra.se
 import { JefedeCatedraMateria } from '../../../classes/jefedecatedra_materia';
 import Swal from 'sweetalert2';
 import { UserService } from 'src/app/services/user/user.service';
-import {addWarning} from "@angular-devkit/build-angular/src/utils/webpack-diagnostics";
 
 declare var $: any;
 
@@ -29,8 +28,8 @@ export class JefecatedraComponent implements OnInit {
 
   Delete(id){
     Swal.fire({
-      title: '¿Esta seguro desea eliminarlo?',
-      text: 'Este archivo se va a eliminar para siempre',
+      title: '¿Está seguro desea eliminarlo?',
+      text: 'El jefe de cátedra será eliminado para siempre',
       icon: 'warning',
       showCancelButton: true,
       confirmButtonText: 'Aceptar',
@@ -41,7 +40,7 @@ export class JefecatedraComponent implements OnInit {
         this.jcatedraservice.Delete(id).subscribe((data:any) =>{
             Swal.fire(
               'Eliminado!',
-              'El archivo fue eliminado con exito',
+              'El jefe de cátedra fue eliminado con éxito',
               'success'
             ).then((data) =>{
               this.GetAll();
@@ -51,7 +50,7 @@ export class JefecatedraComponent implements OnInit {
       } else if (result.dismiss === Swal.DismissReason.cancel) {
         Swal.fire(
           'Cancelado',
-          'El archivo fue cancelado',
+          'El jefe de cátedra no fue eliminado',
           'error'
         )
       }

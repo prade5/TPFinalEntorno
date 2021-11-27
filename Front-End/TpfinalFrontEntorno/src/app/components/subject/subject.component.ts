@@ -28,8 +28,8 @@ export class SubjectComponent implements OnInit {
 
   Delete(id){
     Swal.fire({
-      title: '¿Esta seguro desea eliminarlo?',
-      text: 'Este archivo se va a eliminar para siempre',
+      title: '¿Está seguro desea eliminarlo?',
+      text: 'La materia será eliminada para siempre',
       icon: 'warning',
       showCancelButton: true,
       confirmButtonText: 'Aceptar',
@@ -42,7 +42,7 @@ export class SubjectComponent implements OnInit {
           debugger;
           Swal.fire(
             'Eliminado!',
-            'El archivo fue eliminado con exito',
+            'La materia fue eliminada con éxito',
             'success'
           ).then((result) =>{
               this.GetAll();
@@ -51,7 +51,7 @@ export class SubjectComponent implements OnInit {
       } else if (result.dismiss === Swal.DismissReason.cancel) {
         Swal.fire(
           'Cancelado',
-          'El archivo fue cancelado',
+          'El borrado fue cancelado',
           'error'
         )
       }

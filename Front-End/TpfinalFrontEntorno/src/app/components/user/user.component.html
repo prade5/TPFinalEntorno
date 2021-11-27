@@ -18,7 +18,7 @@
         <tr>
           <th pSortableColumn="id">
             <div class="p-d-flex p-jc-between p-ai-center">
-                Codigo
+                Código
                 <p-sortIcon field="id"></p-sortIcon>
             </div>
           </th>
@@ -48,7 +48,7 @@
             </th>
             <th pSortableColumn="phone">
                 <div class="p-d-flex p-jc-between p-ai-center">
-                    Telefono
+                    Teléfono
                     <p-sortIcon field="phone"></p-sortIcon>
                 </div>
             </th>
@@ -60,7 +60,7 @@
             </th>
             <th>
                 <div class="p-d-flex p-jc-between p-ai-center">
-                    Action
+                    Acción
                 </div>
             </th>
         </tr>
@@ -89,7 +89,7 @@
                 {{user.position}}
             </td>
             <td>
-                <button pButton pRipple icon="pi pi-eye" aria-label="Cambioderol" title="Ver profil" class="p-button-rounded p-button-secondary p-mr-2" [routerLink]="['/User/perfil/'+ user.id]"></button>
+                <button pButton pRipple icon="pi pi-eye" aria-label="Cambioderol" title="Ver perfil" class="p-button-rounded p-button-secondary p-mr-2" [routerLink]="['/User/perfil/'+ user.id]"></button>
                 <button pButton pRipple icon="pi pi-user" aria-label="Cambioderol" title="Cambio de rol" class="p-button-rounded p-button-primary p-mr-2"  (click)="ChangeRole(user.id)"></button>
                 <button pButton pRipple icon="pi pi-pencil" aria-label="Editar" title="Actualizar usuario" class="p-button-rounded p-button-success p-mr-2"  [routerLink]="['/User/ActionUser/'+ user.id]"></button>
                 <button pButton pRipple icon="pi pi-trash" aria-label="Eliminar" title="Eliminar usuario" class="p-button-rounded p-button-warning" (click)="Delete(user.id)"></button>
@@ -103,8 +103,6 @@
     </ng-template>
 </p-table>
 
-<!--Modal change role-->
-  <!-- Modal -->
   <div class="modal fade" id="exampleModal" data-backdrop="static" data-keyboard="false"  tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">

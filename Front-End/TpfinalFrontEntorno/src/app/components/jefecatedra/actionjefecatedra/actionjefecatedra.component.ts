@@ -2,7 +2,6 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { find } from 'rxjs/operators';
 import { Subject } from 'src/app/classes/subject';
 import { User } from 'src/app/classes/user';
 import { MessageService } from 'src/app/services/message/message.service';
@@ -19,7 +18,7 @@ declare var $: any;
 })
 export class ActionjefecatedraComponent implements OnInit {
   @ViewChild('object') object;
-  Option = 'Asignar jefe de catedra';
+  Option = 'Asignar jefe de cátedra';
   OptionBtn: boolean = false;
   subjectlist :Array<Subject> = [];
   usertlist :Array<User> = [];
@@ -35,12 +34,12 @@ export class ActionjefecatedraComponent implements OnInit {
       let id = this.route.snapshot.paramMap.get('id');
       Active();
       if(id !== null){
-        this.Option ="Actualizar jefe de catedra";
+        this.Option ="Actualizar jefe de cátedra";
         this.OptionBtn = true;
         this.GetByIJCM(parseInt(id));
       }
       else{
-        this.Option ="Asignar jefe de catedra";
+        this.Option ="Asignar jefe de cátedra";
         this.OptionBtn = false;
       }
     }
@@ -143,7 +142,7 @@ export class ActionjefecatedraComponent implements OnInit {
         setTimeout(()=>{
           this.router.navigate(['/jefedecatedra_materia']);
         }, 5000);
-        this.messageService.Success('Asignar jefe de catedra', data.response.message);
+        this.messageService.Success('Asignar jefe de cátedra', data.response.message);
       }
       else{
         this.messageService.Error('Error', data.response.message);
@@ -161,7 +160,7 @@ export class ActionjefecatedraComponent implements OnInit {
         setTimeout(()=>{
           this.router.navigate(['/jefedecatedra_materia']);
         }, 5000);
-        this.messageService.Success('Actualizar jefe de catedra', data.response.message);
+        this.messageService.Success('Actualizar jefe de cátedra', data.response.message);
       }
       else{
         this.messageService.Error('Error', data.response.message);

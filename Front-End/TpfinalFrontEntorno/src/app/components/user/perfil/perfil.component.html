@@ -11,7 +11,7 @@
                       <h4>{{user?.firstName}} -  {{user?.lastName}}</h4>
                       <p class="text-secondary mb-1">Puesto</p>
                       <p class="text-secondary mb-1">{{profiluser?.title}}</p>
-                      <p class="text-muted font-size-sm">Enpresas</p>
+                      <p class="text-muted font-size-sm">Empresas</p>
                       <p class="text-muted font-size-sm">{{profiluser?.workplace}}</p>
                       <button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" (click)="ActionPerfil()">{{isPerfilCreate === true ? "Crear perfil" : "Actualizar perfil"}}</button>
                     </div>
@@ -131,7 +131,6 @@
             <div class="row text-white">
               <div class="col-xl-10 col-lg-6 col-md-8 col-sm-10 mx-auto text-center form">
                 <div class="px-4">
-                  <!--Start user-->
                   <form class="justify-content-center" *ngIf="actionbtn ==='user'"  [formGroup]="browserForm" (ngSubmit)="UpdateUser()">
                     <div class="form-row">
                       <div class="form-group col-md-6">
@@ -170,12 +169,12 @@
                         </div>
                       </div>
                       <div class="form-group col-md-6">
-                        <label for="inputdocnumber">Numero de documento</label>
-                        <input type="text" class="form-control" id="inputdocnumber" placeholder="Numero de documento" name="docNumber"
+                        <label for="inputdocnumber">Número de documento</label>
+                        <input type="text" class="form-control" id="inputdocnumber" placeholder="Número de documento" name="docNumber"
                         formControlName="docNumber"  [class]="isValidField('docNumber')">
                         <div class="invalid-feedback">
                           <span *ngIf="browserForm.get('docNumber').errors?.required">
-                              Debe ingresar el numero de documento
+                              Debe ingresar el número de documento
                           </span>
                         </div>
                       </div>
@@ -188,7 +187,7 @@
                           formControlName="phone"  [class]="isValidField('phone')">
                           <div class="invalid-feedback">
                             <span *ngIf="browserForm.get('phone').errors?.required">
-                                Debe ingresar el Telefono
+                                Debe ingresar el Teléfono
                             </span>
                           </div>
                         </div>
@@ -208,9 +207,7 @@
                       <button type="submit" class="btn btn-primary">Actualizar usuario</button>
                   </div>
                   </form>
-                  <!--End user-->
 
-                  <!--Start profil-->
                   <form action="" class="justify-content-center" *ngIf="actionbtn ==='perfil'"  [formGroup]="perfilForm" (ngSubmit)="CreateOrUpdatePerfil()">
                     <div class="form-row">
                       <div class="form-group col-md-4 float-left">
@@ -283,9 +280,7 @@
                       <button type="submit" class="btn btn-primary">{{isPerfilCreate === true ? "Crear perfil" : "Actualizar perfil"}}</button>
                   </div>
                   </form>
-                  <!--End profil-->
 
-                  <!--Start knowlage-->
                   <form action="" class="justify-content-center" *ngIf="actionbtn ==='knowlage'"  [formGroup]="knowlageForm" (ngSubmit)="CreateOrUpdateKnowlage()">
                     <div class="form-row">
                       <div class="form-group col-md-6">
@@ -324,8 +319,6 @@
                       <button type="submit" class="btn btn-primary">{{isKnowlageCreate === true ? "Agregar conocimiento" : "Actualizar conocimiento"}}</button>
                   </div>
                   </form>
-                  <!--End knowlage-->
-
                 </div>
               </div>
             </div>
@@ -334,7 +327,6 @@
       </div>
     </div>
 
-<!-- Modal foto-->
 <div class="modal fade" id="photoperfil" tabindex="-1" aria-labelledby="photoperfilLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -384,7 +376,7 @@
     <tr>
       <th pSortableColumn="id">
         <div class="p-d-flex p-jc-between p-ai-center">
-          Codigo
+          Código
         </div>
       </th>
       <th pSortableColumn="materia">
@@ -399,7 +391,7 @@
       </th>
       <th pSortableColumn="creationDate">
         <div class="p-d-flex p-jc-between p-ai-center">
-          Fecha de Inscripcion
+          Fecha de Inscripción
         </div>
       </th>
       <th pSortableColumn="finalDate">
@@ -438,7 +430,7 @@
   </ng-template>
   <ng-template pTemplate="emptymessage">
     <tr>
-      <td colspan="8">No esta aplicado a ningun concurso.</td>
+      <td colspan="8">No está aplicado a ningun concurso.</td>
     </tr>
   </ng-template>
 </p-table>

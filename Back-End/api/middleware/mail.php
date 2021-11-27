@@ -1,5 +1,5 @@
 <?php
-include_once('../PHPMailer/PHPMailerAutoload.php');
+include_once('../PhpMailer/PHPMailerAutoload.php');
 include_once('../Config/constant.php');
 
     class Send{

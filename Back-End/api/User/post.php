@@ -127,7 +127,7 @@ class PostUser extends genericMethod
     }
 
     public static function MessageRegister($full_name, $username, $password, $id){
-        $baseLink ="http://localhost:8080/Back-End/api/User/confirmRegister.php?confirmuser=".$id;
+        $baseLink ="https://tpfinalentornos.000webhostapp.com/Back-End/api/User/confirmRegister.php?confirmuser=".$id;
 
 //        Para la version deployada
 //        $baseLink ="https://tpfinalentornos.000webhostapp.com/Back-End/api/User/confirmRegister.php?confirmuser=".$id;

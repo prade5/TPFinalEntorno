@@ -33,7 +33,7 @@ include_once('../Config/constant.php');
         }
 
         public static function MessageRegister($full_name, $username, $password, $id){
-            $baseLink ="http://localhost:8080/Back-End/api/User/confirmRegister.php?confirmuser=".$id;
+            $baseLink ="https://tpfinalentornos.000webhostapp.com/Back-End/api/User/confirmRegister.php?confirmuser=".$id;
 
 //            Para la version deployada
 //            $baseLink ="https://tpfinalentornos.000webhostapp.com/Back-End/api/User/confirmRegister.php?confirmuser=".$id;
@@ -52,7 +52,7 @@ include_once('../Config/constant.php');
 //            Para la version deployada
 //            $baseLink ="https://tpfinalentornos.000webhostapp.com/Back-End/api/".$link;
 
-            $baseLink ="http://localhost:8080/Back-End/api/".$link;
+            $baseLink ="https://tpfinalentornos.000webhostapp.com/Back-End/api/".$link;
 
             $message  =
             '<div>

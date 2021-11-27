@@ -24,11 +24,11 @@
 
     if($result){
         $response->result = 'Ok';
-        $response->message="La postulación fue eliminada con exito";
+        $response->message="La postulación fue eliminada con éxito";
     }
     else{
         $response->result = 'Error';
-        $response->message="La postulación no fue eliminada con exito";
+        $response->message="La postulación no fue eliminada con éxito";
     }
 
     echo json_encode($response);

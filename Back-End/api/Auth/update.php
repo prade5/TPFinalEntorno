@@ -29,15 +29,15 @@ class AuthUpdate extends genericMethod
         $cnn = Connection();
 
         if($this->userPass == ""){
-            echo json_encode(['response' => ['status' => 301, "message" => "Ingresa la contraseña."]]);
+            echo json_encode(['response' => ['status' => 301, "message" => "Ingrese la contraseña."]]);
             exit;
         }
         if($this->newUserPass == ""){
-            echo json_encode(['response' => ['status' => 301, "message" => "Ingresa la nueva contraseña."]]);
+            echo json_encode(['response' => ['status' => 301, "message" => "Ingrese la nueva contraseña."]]);
             exit;
         }
         if($this->confirmPass == ""){
-            echo json_encode(['response' => ['status' => 301, "message" => "Confirma la nueva contraseña."]]);
+            echo json_encode(['response' => ['status' => 301, "message" => "Confirme la nueva contraseña."]]);
             exit;
         }
         if($this->newUserPass != $this->confirmPass){
@@ -49,11 +49,11 @@ class AuthUpdate extends genericMethod
         $result = mysqli_query($cnn,"update users set userPass ='$pass'
                                     where id =".$id);
         if($result){
-            echo json_encode(['response' => ['status' => SUCCESS_RESPONSE, "message" => "La contraseña fue modificada con exito."]]);
+            echo json_encode(['response' => ['status' => SUCCESS_RESPONSE, "message" => "La contraseña fue modificada con éxito."]]);
             exit;
         }
         else{
-            echo json_encode(['response' => ['status' => SUCCESS_RESPONSE, "message" => "NO se pudo modificar la contraseña."]]);
+            echo json_encode(['response' => ['status' => SUCCESS_RESPONSE, "message" => "No se pudo modificar la contraseña."]]);
             exit;
         }
     }

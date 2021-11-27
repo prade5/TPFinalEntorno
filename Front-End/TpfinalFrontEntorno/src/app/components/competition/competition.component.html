@@ -85,7 +85,7 @@
               <button pButton pRipple icon="pi pi-search" aria-label="Buscar" title="Ver detalle" class="p-button-rounded p-button-success p-mr-2"  [routerLink]="['/Detalle/'+ competition.id]"></button>
               <button pButton pRipple icon="pi pi-user" aria-label="Ver Postulantes" title="Declarar ganador" class="p-button-rounded p-button-success" [attr.disabled]="competition.state === '2'? true : null"  [routerLink] = " ['/Competition/ApplicantWinner/'+ competition.id] "></button>
               <button pButton pRipple icon="pi pi-pencil" aria-label="Editar" title="Modificar concurso" class="p-button-rounded p-button-success p-mr-2"   [attr.disabled]="competition.state === '2'? true : null" [routerLink]="['/Competition/ActionCompetition/'+ competition.id]"></button>
-              <button pButton pRipple icon="pi pi-trash" aria-label="Eliminar" title="{{competition.isActive === true ? 'Eliminar concurso': 'Concurso finalizado'}}" class="p-button-rounded p-button-warning" [attr.disabled]="competition.isActive !== true? true : null"  (click)="Delete(competition.id)"></button>
+              <button pButton pRipple icon="pi pi-trash" aria-label="Eliminar" title="{{competition.isActive === true ? 'Eliminar concurso': 'Concurso finalizado'}}" class="p-button-rounded p-button-warning" [attr.disabled]="competition.state !== '1'? true : null"  (click)="Delete(competition.id)"></button>
           </td>
         </tr>
     </ng-template>

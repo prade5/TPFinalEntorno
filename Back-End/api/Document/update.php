@@ -31,10 +31,10 @@ class UpdateDocument extends genericMethod
                                                 description='$this->description'
                                                 where id =".$idrole);
         if($result){
-            $this->ReturnReponse(SUCCESS_RESPONSE, "El documento fue modificado con exito");
+            $this->ReturnReponse(SUCCESS_RESPONSE, "El documento fue modificado con éxito");
         }
         else{
-            $this->ReturnReponse(ERROR_RESPONSE, "El documento no fue modificado con exito");
+            $this->ReturnReponse(ERROR_RESPONSE, "El documento no fue modificado con éxito");
         }
     }
 }

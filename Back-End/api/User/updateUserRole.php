@@ -35,10 +35,10 @@ class UpdateUserRole extends genericMethod
             $result = mysqli_query($cnn, "update users set idRole =".$idRole." where id =".$id);
             if ($result) {
                 $response->status = SUCCESS_RESPONSE;
-                $response->message = "El rol del usuario fue cambiado con exito.";
+                $response->message = "El rol del usuario fue modificado con éxito.";
             } else {
                 $response->status = SUCCESS_RESPONSE;
-                $response->message = "El  rol del usuario no fue cambiado con exito.";
+                $response->message = "El  rol del usuario no fue modificado con éxito.";
             }
             echo json_encode($response);
         } catch (\Exception $e) {

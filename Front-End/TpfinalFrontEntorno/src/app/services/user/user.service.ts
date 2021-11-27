@@ -34,5 +34,7 @@ export class UserService {
   Delete(id){
     return this.http.post(`${environment.api_url}${this.folderName}delete.php?id=${id}`,JSON.stringify(id));
   }
-
+  GetApplications(id){
+    return this.http.post(`${environment.api_url}${this.folderName}getApplications.php?id=${id}`,JSON.stringify(id));
+  }
 }

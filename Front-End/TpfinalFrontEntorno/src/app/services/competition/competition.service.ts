@@ -27,6 +27,9 @@ export class CompetitionService {
   GetById(id): Observable<Competition>{
     return this.http.get<Competition>(`${environment.api_url}${this.folderName}getById.php?id=${id}`);
   }
+  GetDetail(id): Observable<Competition>{
+    return this.http.get<Competition>(`${environment.api_url}${this.folderName}getDetail.php?id=${id}`);
+  }
   Post(competition){
     return this.http.post(`${environment.api_url}${this.folderName}post.php`, JSON.stringify(competition));
   }

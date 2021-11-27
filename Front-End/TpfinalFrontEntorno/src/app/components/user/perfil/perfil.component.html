@@ -364,3 +364,81 @@
     </div>
   </div>
 </div>
+
+<p-table #dt [value]="applications"  dataKey="id" styleClass="p-datatable-customers" [rowHover]="true"
+         [rows]="10" [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50]"
+         [paginator]="true" currentPageReportTemplate="Mostrando {first} de {last}. De un total de {totalRecords} Registros"
+         [filterDelay]="0" [globalFilterFields]="['name','description','creationDate']">
+  <ng-template pTemplate="caption">
+    <div class="table-header">
+      <div class="row">
+        <div class="col-md-12 col-md-offset-2">
+          <div class="card-body d-flex justify-content-between align-items-center">
+            <h1>Lista de aplicaciones</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+  <ng-template pTemplate="header">
+    <tr>
+      <th pSortableColumn="id">
+        <div class="p-d-flex p-jc-between p-ai-center">
+          Codigo
+        </div>
+      </th>
+      <th pSortableColumn="materia">
+        <div class="p-d-flex p-jc-between p-ai-center">
+          Materia
+        </div>
+      </th>
+      <th pSortableColumn="puesto">
+        <div class="p-d-flex p-jc-between p-ai-center">
+          Puesto
+        </div>
+      </th>
+      <th pSortableColumn="creationDate">
+        <div class="p-d-flex p-jc-between p-ai-center">
+          Fecha de Inscripcion
+        </div>
+      </th>
+      <th pSortableColumn="finalDate">
+        <div class="p-d-flex p-jc-between">
+          Fecha de finalización
+        </div>
+      </th>
+      <th pSortableColumn="finalDate">
+        <div class="p-d-flex p-jc-between">
+          Estado
+        </div>
+      </th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-application>
+    <tr class="p-selectable-row" >
+      <td   [style]="application.state === '2'? 'color: red' : null">
+        {{application.idCompetition}}
+      </td>
+      <td>
+        {{application.materia}}
+      </td>
+      <td>
+        {{application.name}}
+      </td>
+      <td>
+        {{application.applicantDate | date: 'dd/MM/yyyy'}}
+      </td>
+      <td>
+        {{application.finalDate | date: 'dd/MM/yyyy'}}
+      </td>
+      <td>
+        {{application.state === '1' ? 'En Proceso' : application.state === '2' ? 'Finalizado' : 'Ganador'}}
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="emptymessage">
+    <tr>
+      <td colspan="8">No esta aplicado a ningun concurso.</td>
+    </tr>
+  </ng-template>
+</p-table>

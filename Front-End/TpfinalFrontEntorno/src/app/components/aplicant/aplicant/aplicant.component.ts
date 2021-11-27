@@ -80,7 +80,6 @@ export class AplicantComponent implements OnInit {
             'El valor de merito del concursante fue actualizado',
             'success'
           ).then((result) =>{
-            this.router.navigate(['/Competition']);
           })
         }
       },

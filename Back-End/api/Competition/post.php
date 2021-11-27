@@ -46,9 +46,9 @@ class CompetitionPost extends genericMethod
             $result = mysqli_query($cnn, $vSql);
 
             if ($result) {
-                $this->ReturnReponse(SUCCESS_RESPONSE, "El concurso fue guardado con exito.");
+                $this->ReturnReponse(SUCCESS_RESPONSE, "El concurso fue guardado con éxito.");
             } else {
-                $this->ReturnReponse(ERROR_RESPONSE, "El concurso no fue guardado con exito.");
+                $this->ReturnReponse(ERROR_RESPONSE, "El concurso no fue guardado con éxito.");
             }
         } catch (\Exception $e) {
             $this->throwError(REQUEST_NOT_VALID, $e->getMessage());

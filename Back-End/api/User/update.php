@@ -64,9 +64,9 @@ class UpdateUser extends genericMethod
                                     address='$this->address', phone='$this->phone'
                                     where id =" . $id);
         if ($result) {
-            $this->ReturnReponse(SUCCESS_RESPONSE, "El usuario fue modificado con exito.");
+            $this->ReturnReponse(SUCCESS_RESPONSE, "El usuario fue modificado con éxito.");
         } else {
-            $this->ReturnReponse(ERROR_RESPONSE, "El usuario no fue modificado con exito.");
+            $this->ReturnReponse(ERROR_RESPONSE, "El usuario no fue modificado con éxito.");
         }
     }
 }

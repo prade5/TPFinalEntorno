@@ -24,10 +24,10 @@ class deleteUser extends genericMethod
         $result = mysqli_query($cnn,"update users set state = 2 where id =".$this->id);
 
         if($result){
-            $this->ReturnReponse(SUCCESS_RESPONSE, "El usuario fue borrado con exito.");
+            $this->ReturnReponse(SUCCESS_RESPONSE, "El usuario fue borrado con éxito.");
         }
         else{
-            $this->ReturnReponse(ERROR_RESPONSE, "El usuario no fue borrado con exito.");
+            $this->ReturnReponse(ERROR_RESPONSE, "El usuario no fue borrado con éxito.");
         }
     }
 }

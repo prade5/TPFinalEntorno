@@ -27,10 +27,10 @@ $result = mysqli_query($cnn,"update subjects set state = 2 where id =".$id);
 
 if($result){
     $response->result = 'Ok';
-    $response->message="La materia fue eliminada con exito";
+    $response->message="La materia fue eliminada con éxito";
 }
 else{
     $response->result = 'Error';
-    $response->message="La materia no fue eliminada con exito";
+    $response->message="La materia no fue eliminada con éxito";
 }
 echo json_encode($response);

@@ -43,10 +43,10 @@ class CompetitionUpdate extends genericMethod
             $result =  mysqli_query($cnn, $vSql);
 
             if($result){
-                $this->ReturnReponse(SUCCESS_RESPONSE, "El concurso fue modificado con exito.");
+                $this->ReturnReponse(SUCCESS_RESPONSE, "El concurso fue modificado con éxito.");
             }
             else{
-                $this->ReturnReponse(ERROR_RESPONSE, "El concurso no fue modificado con exito.");
+                $this->ReturnReponse(ERROR_RESPONSE, "El concurso no fue modificado con éxito.");
             }
         }
         catch(\Exception $e){

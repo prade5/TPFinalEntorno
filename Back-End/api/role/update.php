@@ -33,9 +33,9 @@ class UpdateRole extends genericMethod
                                                 description='$this->description'
                                                 where id =" . $id);
         if ($result) {
-            $this->ReturnReponse(SUCCESS_RESPONSE, "El permiso fue modificado con exito");
+            $this->ReturnReponse(SUCCESS_RESPONSE, "El permiso fue modificado con éxito");
         } else {
-            $this->ReturnReponse(ERROR_RESPONSE, "El permiso no fue modificado con exito");
+            $this->ReturnReponse(ERROR_RESPONSE, "El permiso no fue modificado con éxito");
         }
     }
 }

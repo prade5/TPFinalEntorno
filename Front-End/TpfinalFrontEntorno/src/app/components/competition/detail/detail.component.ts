@@ -21,7 +21,7 @@ export class DetailComponent implements OnInit {
     this.GetById(id);
   }
   GetById(id){
-    this.competitionService.GetById(id).subscribe((result:any) => {
+    this.competitionService.GetDetail(id).subscribe((result:any) => {
       debugger;
       this.Competition = JSON.parse(JSON.stringify(result));
       console.log(this.Competition);

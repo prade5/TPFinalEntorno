@@ -11,16 +11,16 @@ $cnn = Connection();
 
 $select ="";
 if($idUser == 0){
-    $select = "jcm.state = 1 ";
+    $select = "jm.state = 1 ";
 }
 else{
-    $select = "jcm.state = 1 and jcm.IdJefeDeCatedra = $idUser";
+    $select = "jm.state = 1 and jm.IdJefeDeCatedra = $idUser";
 }
 
-$perfil = mysqli_query($cnn,"select jcm.id, jcm.IdJefeDeCatedra, jcm.IdSubject , sub.name, sub.img, 
-            rol.name as position from jefedecatedra_materia jcm inner join subjects sub on jcm.IdSubject = sub.id 
-            inner join  users urs on jcm.IdJefeDeCatedra = urs.id inner join roles rol on rol.id = urs.idRole 
-            where $select ORDER BY jcm.id DESC");
+$perfil = mysqli_query($cnn,"SELECT jm.Id, s.name, s.img, CONCAT(u.firstName, ' ', u.lastName) AS nombre, jm.State 
+    FROM `jefedecatedra_materia` jm 
+    INNER JOIN `subjects` s on jm.IdSubject = s.id 
+    INNER JOIN `users` u ON jm.IdJefeDeCatedra = u.id WHERE ".$select);
 
 $perfilList = [];
 

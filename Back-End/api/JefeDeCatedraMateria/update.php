@@ -28,10 +28,10 @@ class UpdateJefedeCatedraMateria extends genericMethod
         $result = mysqli_query($cnn,"update jefedecatedra_materia set IdJefeDeCatedra ='$this->IdJefeDeCatedra',
                                                 IdSubject='$this->IdSubject' where Id =".$_id);
         if($result){
-            $this->ReturnReponse(SUCCESS_RESPONSE, "El jefe de catedra fue modificado con exito");
+            $this->ReturnReponse(SUCCESS_RESPONSE, "El jefe de cátedra fue modificado con éxito");
         }
         else{
-            $this->ReturnReponse(ERROR_RESPONSE, "El jefe de catedra no fue modificado con exito");
+            $this->ReturnReponse(ERROR_RESPONSE, "El jefe de cátedra no fue modificado con éxito");
         }
     }
 }

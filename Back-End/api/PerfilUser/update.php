@@ -43,10 +43,10 @@ class UpdateProfileUser extends genericMethod {
                                                 workplace='$this->workplace', img='$this->img'
                                                 where id =".$_id ." and idUser=".$this->idUser);
         if($result){
-            $this->ReturnReponse(SUCCESS_RESPONSE, "El perfil fue modificado con exito");
+            $this->ReturnReponse(SUCCESS_RESPONSE, "El perfil fue modificado con éxito");
         }
         else{
-            $this->ReturnReponse(ERROR_RESPONSE, "El perfil no fue modificado con exito");
+            $this->ReturnReponse(ERROR_RESPONSE, "El perfil no fue modificado con éxito");
         }
     }
 }

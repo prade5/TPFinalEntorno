@@ -27,15 +27,15 @@ class ApplicantPost extends genericMethod
         try{
             $cnn = Connection();
             $this->ValidateRolePostulation($this->idUser);
-            $this->checkNonerepeat2('applicants', 'idCompetition', $this->idCompetition, 'idUser', $this->idUser, "Ya esta aplicado(a) para ese concurso");
+            $this->checkNonerepeat2('applicants', 'idCompetition', $this->idCompetition, 'idUser', $this->idUser, "Ya está aplicado/a a este concurso");
 
             $result = mysqli_query($cnn,"insert into applicants (idUser,idCompetition,applicantDate, state) 
                 values($this->idUser , $this->idCompetition  , '$this->applicantDate', 1)");
             if($result){
-                $this->ReturnReponse(SUCCESS_RESPONSE, "La postulación fue guardada con exito.");
+                $this->ReturnReponse(SUCCESS_RESPONSE, "La postulación fue guardada con éxito.");
             }
             else{
-                $this->ReturnReponse(ERROR_RESPONSE, "La postulación no fue guardada con exito.");
+                $this->ReturnReponse(ERROR_RESPONSE, "La postulación no fue guardada con éxito.");
             }
         }
         catch(\Exception $e){

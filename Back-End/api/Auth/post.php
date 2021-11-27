@@ -58,7 +58,7 @@ class AuthPost extends genericMethod
                 }
 
             } else {
-                $this->ReturnReponse(ERROR_RESPONSE, "Usuario y/o contraseña incorrecto." . $this->userPass);
+                $this->ReturnReponse(ERROR_RESPONSE, "Error: Usuario y/o contraseña incorrecto.");
             }
         } catch (\Exception $e) {
             $this->ReturnReponse(ERROR_RESPONSE, $e->getMessage());

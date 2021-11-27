@@ -29,9 +29,9 @@ class PostJefedeCatedraMateria extends genericMethod
         $result = mysqli_query($cnn, "insert into jefedecatedra_materia (IdJefeDeCatedra, IdSubject, State) 
                 values($this->IdJefeDeCatedra, $this->IdSubject, 1)");
         if ($result) {
-            $this->ReturnReponse(SUCCESS_RESPONSE, "El jefe de catedra  fue guardado con exito");
+            $this->ReturnReponse(SUCCESS_RESPONSE, "El jefe de cátedra  fue guardado con éxito");
         } else {
-            $this->ReturnReponse(ERROR_RESPONSE, "El jefe de catedra no fue guardado con exito");
+            $this->ReturnReponse(ERROR_RESPONSE, "El jefe de cátedra no fue guardado con éxito");
         }
     }
 }

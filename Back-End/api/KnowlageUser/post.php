@@ -32,9 +32,9 @@ class PostKnowledgeUser extends genericMethod
         $result = mysqli_query($cnn, "insert into knowlageusers (name, description, state, idUser, nivel) 
             values('$this->name', '$this->description', 1, $this->idUser, $this->nivel)");
         if ($result) {
-            $this->ReturnReponse(SUCCESS_RESPONSE, "El conocimiento fue guardado con exito");
+            $this->ReturnReponse(SUCCESS_RESPONSE, "El conocimiento fue guardado con éxito");
         } else {
-            $this->ReturnReponse(ERROR_RESPONSE, "El conocimiento no fue guardado con exito");
+            $this->ReturnReponse(ERROR_RESPONSE, "El conocimiento no fue guardado con éxito");
         }
     }
 }

@@ -30,6 +30,7 @@ export class PerfilComponent implements OnInit {
   profilphoto:any;
   kownlageuser:any;
   porcent = 0;
+  applications:any;
 
   titleModal: string;
   actionbtn:string;
@@ -59,12 +60,20 @@ export class PerfilComponent implements OnInit {
   this.GetProfilById(this.idperfil);
   this.GetAllKownlage(this.idperfil);
   this.GetAllPhotoDefault();
+  this.GetApplications(this.idperfil);
  }
+
   GetById(id){
     this.userService.GetById(id).subscribe((result:any) =>{
       this.user = result;
       this.browserForm.patchValue(this.user);
       Active();
+    })
+  }
+
+  GetApplications(id){
+    this.userService.GetApplications(id).subscribe((result:any) =>{
+      this.applications = result;
     })
   }
 

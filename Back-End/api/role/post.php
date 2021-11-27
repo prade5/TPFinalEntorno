@@ -32,9 +32,9 @@ class PostRole extends genericMethod
 
         $result = mysqli_query($cnn, "insert into Roles (name,description,state) values('$this->name' , '$this->description',1)");
         if ($result) {
-            $this->ReturnReponse(SUCCESS_RESPONSE, "El permiso fue guardado con exito");
+            $this->ReturnReponse(SUCCESS_RESPONSE, "El permiso fue guardado con éxito");
         } else {
-            $this->ReturnReponse(ERROR_RESPONSE, "El permiso no fue guardado con exito");
+            $this->ReturnReponse(ERROR_RESPONSE, "El permiso no fue guardado con éxito");
         }
     }
 }

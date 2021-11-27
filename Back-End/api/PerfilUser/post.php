@@ -42,9 +42,9 @@ class PostProfilUser extends genericMethod
         $result = mysqli_query($cnn, "insert into profilusers (idUser, title, instagram, twitter, facebook, website, gitHub, workplace, state, img) 
             values($this->idUser, '$this->title', '$this->instagram', '$this->twitter', '$this->facebook', '$this->website', '$this->gitHub', '$this->workplace', 1 , '$this->img')");
         if ($result) {
-            $this->ReturnReponse(SUCCESS_RESPONSE, "El perfil fue guardado con exito");
+            $this->ReturnReponse(SUCCESS_RESPONSE, "El perfil fue guardado con éxito");
         } else {
-            $this->ReturnReponse(ERROR_RESPONSE, "El perfil no fue guardado con exito");
+            $this->ReturnReponse(ERROR_RESPONSE, "El perfil no fue guardado con éxito");
         }
     }
 }

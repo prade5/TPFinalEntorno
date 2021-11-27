@@ -27,10 +27,10 @@ $result = mysqli_query($cnn,"update competitions set state = 2 where id =".$id);
 
 if($result){
     $response->result = 'Ok';
-    $response->message="El concurso fue eliminado con exito";
+    $response->message="El concurso fue eliminado con éxito";
 }
 else{
     $response->result = 'Error';
-    $response->message="El concurso no fue eliminado con exito";
+    $response->message="El concurso no fue eliminado con éxito";
 }
 echo json_encode($response);

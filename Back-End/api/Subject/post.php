@@ -41,9 +41,9 @@ class PostSubject extends genericMethod
             $result = mysqli_query($cnn, "insert into subjects (name, description, state, idUser, img) 
                 values('$this->name' , '$this->description' , 1 , $this->idUser, '$this->img')");
             if ($result) {
-                $this->ReturnReponse(SUCCESS_RESPONSE, "La materia fue guardada con exito.");
+                $this->ReturnReponse(SUCCESS_RESPONSE, "La materia fue guardada con éxito.");
             } else {
-                $this->ReturnReponse(ERROR_RESPONSE, "La materia no fue guardada con exito.");
+                $this->ReturnReponse(ERROR_RESPONSE, "La materia no fue guardada con éxito.");
             }
         } catch (\Exception $e) {
             $this->throwError(REQUEST_NOT_VALID, $e->getMessage());

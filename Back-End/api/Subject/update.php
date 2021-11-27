@@ -39,9 +39,9 @@ class UpdateSubject extends genericMethod
                                     description='$this->description', idUser='$this->idUser', img='$this->img'
                                     where id =" . $id);
         if ($result) {
-            $this->ReturnReponse(SUCCESS_RESPONSE, "La materia fue modificada con exito.");
+            $this->ReturnReponse(SUCCESS_RESPONSE, "La materia fue modificada con éxito.");
         } else {
-            $this->ReturnReponse(ERROR_RESPONSE, "La materia no fue modificada con exito.");
+            $this->ReturnReponse(ERROR_RESPONSE, "La materia no fue modificada con éxito.");
         }
     }
 }

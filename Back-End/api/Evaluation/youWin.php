@@ -22,11 +22,17 @@ class UpdateEvaluation extends genericMethod
     public function YouWin(){
         try{
             $cnn = Connection();
-            $vSql = "update applicants set state = 3 where idUser=$this->idUser and idCompetition=$this->idCompetition";
 
-            $result =  mysqli_query($cnn, $vSql);
+            $vSql1 = "update `competitions` set winner = 1, state = 3
+                        where id =$this->idCompetition";
 
-            if($result){
+            $result1 =  mysqli_query($cnn, $vSql1) or die (mysqli_error($cnn));
+
+            $vSql2 = "update applicants set state = 3 where idUser=$this->idUser and idCompetition=$this->idCompetition";
+
+            $result2=  mysqli_query($cnn, $vSql2);
+
+            if($result2){
                 $this->ReturnReponse(SUCCESS_RESPONSE, "El ganador del concurso fue declarado.");
             }
             else{

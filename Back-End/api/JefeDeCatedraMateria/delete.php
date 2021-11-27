@@ -27,11 +27,11 @@ $result = mysqli_query($cnn,"update jefedecatedra_materia set state = 2 where Id
 
 if($result){
     $response->result = 'Ok';
-    $response->message="El jefe de catedra fue eliminado con exito";
+    $response->message="El jefe de cátedra fue eliminado con éxito";
 }
 else{
     $response->result = 'Error';
-    $response->message="El jefe de catedra no fue eliminado con exito";
+    $response->message="El jefe de cátedra no fue eliminado con éxito";
 }
 
 echo json_encode($response);

@@ -31,10 +31,10 @@ class PostDocument extends genericMethod
 
         $result = mysqli_query($cnn,"insert into documenttype (name,description,state) values('$this->name' , '$this->description',1)");
         if($result){
-            $this->ReturnReponse(SUCCESS_RESPONSE, "El documento fue guardado con exito");
+            $this->ReturnReponse(SUCCESS_RESPONSE, "El documento fue guardado con éxito");
         }
         else{
-            $this->ReturnReponse(ERROR_RESPONSE, "El documento no fue guardado con exito");
+            $this->ReturnReponse(ERROR_RESPONSE, "El documento no fue guardado con éxito");
         }
     }
 }

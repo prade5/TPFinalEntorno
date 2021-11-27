@@ -26,19 +26,19 @@
           </th>
             <th pSortableColumn="idUser">
                 <div class="p-d-flex p-jc-between p-ai-center">
-                    Materia
+                    Nombre
                     <p-sortIcon field="idUser"></p-sortIcon>
                 </div>
             </th>
             <th pSortableColumn="idCompetition">
                 <div class="p-d-flex p-jc-between p-ai-center">
-                    Puesto
+                    Materia
                     <p-sortIcon field="idCompetition"></p-sortIcon>
                 </div>
             </th>
             <th>
                 <div class="p-d-flex p-jc-between p-ai-center">
-                    Action
+                    Acción
                 </div>
             </th>
         </tr>
@@ -46,17 +46,17 @@
     <ng-template pTemplate="body" let-jcm>
         <tr class="p-selectable-row">
             <td>
-                {{jcm.id}}
+                {{jcm.Id}}
             </td>
             <td>
                 {{jcm.name}}
             </td>
             <td>
-                {{jcm.position}}
+                {{jcm.nombre}}
             </td>
             <td>
-                <button pButton pRipple icon="pi pi-pencil" aria-label="Editar" class="p-button-rounded p-button-success p-mr-2"  [routerLink]="['/jefedecatedra_materia/ActionJefeCatedra/'+ jcm.id]"></button>
-                <button pButton pRipple icon="pi pi-trash" aria-label="Eliminar" class="p-button-rounded p-button-warning" (click)="Delete(jcm.id)"></button>
+                <button pButton pRipple icon="pi pi-pencil" aria-label="Editar" class="p-button-rounded p-button-success p-mr-2"  [routerLink]="['/jefedecatedra_materia/ActionJefeCatedra/'+ jcm.Id]"></button>
+                <button pButton pRipple icon="pi pi-trash" aria-label="Eliminar" class="p-button-rounded p-button-warning" (click)="Delete(jcm.Id)"></button>
           </td>
         </tr>
     </ng-template>

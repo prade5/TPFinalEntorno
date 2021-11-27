@@ -27,11 +27,11 @@ $result = mysqli_query($cnn,"update knowlageusers set state = 2 where id =".$id)
 
 if($result){
     $response->result = 'Ok';
-    $response->message="El conocimiento fue eliminado con exito";
+    $response->message="El conocimiento fue eliminado con éxito";
 }
 else{
     $response->result = 'Error';
-    $response->message="El conocimiento no fue eliminado con exito";
+    $response->message="El conocimiento no fue eliminado con éxito";
 }
 
 echo json_encode($response);

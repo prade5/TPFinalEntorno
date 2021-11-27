@@ -27,11 +27,11 @@ $result = mysqli_query($cnn,"update Roles set state = 2 where id =".$id);
 
 if($result){
     $response->result = 'Ok';
-    $response->message="El permiso fue eliminado con exito";
+    $response->message="El permiso fue eliminado con éxito";
 }
 else{
     $response->result = 'Error';
-    $response->message="El permiso no fue eliminado con exito";
+    $response->message="El permiso no fue eliminado con éxito";
 }
 
 echo json_encode($response);

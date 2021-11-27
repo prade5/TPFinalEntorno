@@ -34,9 +34,9 @@ class UpdateKnowledgeUser extends genericMethod
                                                 description='$this->description', nivel=$this->nivel
                                                 where id =" . $_id . " and idUser=" . $this->idUser);
         if ($result) {
-            $this->ReturnReponse(SUCCESS_RESPONSE, "El conocimiento fue modificado con exito");
+            $this->ReturnReponse(SUCCESS_RESPONSE, "El conocimiento fue modificado con éxito");
         } else {
-            $this->ReturnReponse(ERROR_RESPONSE, "El conocimiento no fue modificado con exito");
+            $this->ReturnReponse(ERROR_RESPONSE, "El conocimiento no fue modificado con éxito");
         }
     }
 }

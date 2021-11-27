@@ -28,10 +28,10 @@ class ApplicantUpdate extends genericMethod
         $result = mysqli_query($cnn,"update applicants set merit=$this->merit
                                     where id =".$this->id);
         if($result){
-            $this->ReturnReponse(SUCCESS_RESPONSE, "La postulación fue modificada con exito.");
+            $this->ReturnReponse(SUCCESS_RESPONSE, "La postulación fue modificada con éxito.");
         }
         else{
-            $this->ReturnReponse(ERROR_RESPONSE, "La postulación no fue modificada con exito.");
+            $this->ReturnReponse(ERROR_RESPONSE, "La postulación no fue modificada con éxito.");
         }
     }
 }

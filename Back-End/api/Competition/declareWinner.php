@@ -32,10 +32,10 @@ try{
     $result =  mysqli_query($cnn, $vSql) or die (mysqli_error($cnn));
 
     if($result){
-        $this->ReturnReponse(SUCCESS_RESPONSE, "El ganador del concurso fue declarado con exito.");
+        $this->ReturnReponse(SUCCESS_RESPONSE, "Se declaró el ganador del concurso con éxito.");
     }
     else{
-        $this->ReturnReponse(ERROR_RESPONSE, "El ganador del concurso no fue declarado con exito.");
+        $this->ReturnReponse(ERROR_RESPONSE, "El ganador del concurso no fue declarado con éxito.");
     }
 }
 catch(Exception $e){

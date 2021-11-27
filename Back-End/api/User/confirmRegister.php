@@ -39,7 +39,7 @@ class UpdateUserStatus extends genericMethod
 
         if($result){
             $response->result = 'Ok';
-            $response->message="El usuario fue confirmado con exito. Puede cerrar la pantalla.";
+            $response->message="El usuario fue confirmado con éxito. Puede cerrar la pantalla.";
         }
         else{
             $response->result = 'Error';

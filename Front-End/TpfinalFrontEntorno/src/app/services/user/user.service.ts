@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { User } from '../../classes/user';
 import { environment } from '../../../environments/environment';
@@ -13,8 +13,8 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-  GetAll(isAdmin = false): Observable<User[]> {
-    return this.http.get<User[]>(`${environment.api_url}${this.folderName}get.php?jcm=${isAdmin}`);
+  GetAll(): Observable<User[]> {
+    return this.http.get<User[]>(`${environment.api_url}${this.folderName}get.php`);
   }
   ValidateRolePostulation(iduser): Observable<User[]> {
     return this.http.get<User[]>(`${environment.api_url}${this.folderName}confirmRegister.php?isValPostulate=${iduser}`);

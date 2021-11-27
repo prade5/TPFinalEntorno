@@ -1,13 +1,13 @@
-import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Subject } from 'src/app/classes/subject';
-import { User } from 'src/app/classes/user';
-import { MessageService } from 'src/app/services/message/message.service';
-import { SubjectService } from 'src/app/services/subject/subject.service';
-import { UserService } from 'src/app/services/user/user.service';
-import { JefecatedraService } from '../../../services/jefecatedra/jefecatedra.service';
+import {HttpErrorResponse} from '@angular/common/http';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {ActivatedRoute, Router} from '@angular/router';
+import {Subject} from 'src/app/classes/subject';
+import {User} from 'src/app/classes/user';
+import {MessageService} from 'src/app/services/message/message.service';
+import {SubjectService} from 'src/app/services/subject/subject.service';
+import {UserService} from 'src/app/services/user/user.service';
+import {JefecatedraService} from '../../../services/jefecatedra/jefecatedra.service';
 
 declare var $: any;
 
@@ -58,7 +58,7 @@ export class ActionjefecatedraComponent implements OnInit {
   }
 
   GetAllJefeCatedra(): void{
-    this.userService.GetAll(true).subscribe( (sub) =>{
+    this.userService.GetAll().subscribe( (sub) =>{
       this.usertlist = sub;
       Active();
     });
@@ -95,9 +95,8 @@ export class ActionjefecatedraComponent implements OnInit {
 
   isValidField(field: string): string{
     const validatedField = this.browserForm.get(field);
-    let result = (!validatedField.valid && validatedField.touched) ?
-    'is-invalid': validatedField.touched ? 'is-valid':'';
-    return result;
+    return (!validatedField.valid && validatedField.touched) ?
+      'is-invalid' : validatedField.touched ? 'is-valid' : '';
   }
 
   onChangeSearch(val: string) {
@@ -115,10 +114,7 @@ export class ActionjefecatedraComponent implements OnInit {
     });
   }
   Create (){
-    let jcm = this.browserForm.value;
     debugger;
-    var subjselect =$($('.subjselect').find('.ng-touched')).val();
-    let userselect = $($('.userselect').find('.ng-touched')).val();
     if(this.browserForm.valid) {
       var jefecatedra ={
         IdJefeDeCatedra:this.browserForm.value.IdJefeDeCatedra.id,

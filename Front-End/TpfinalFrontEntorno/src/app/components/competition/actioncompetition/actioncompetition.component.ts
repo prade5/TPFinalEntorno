@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {RoleService} from "../../../services/role/role.service";
 import {MessageService} from "../../../services/message/message.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {HttpErrorResponse} from "@angular/common/http";
@@ -12,10 +11,9 @@ import {SubjectService} from "../../../services/subject/subject.service";
 import {PositionService} from "../../../services/position/position.service";
 import * as moment from "moment";
 import {TaskService} from "../../../services/auth/task.service";
-import {StructureIsReused} from "@angular/compiler-cli/src/transformers/util";
-import { JefecatedraService } from 'src/app/services/jefecatedra/jefecatedra.service';
-import { UserService } from 'src/app/services/user/user.service';
-import { User } from 'src/app/classes/user';
+import {JefecatedraService} from 'src/app/services/jefecatedra/jefecatedra.service';
+import {UserService} from 'src/app/services/user/user.service';
+import {User} from 'src/app/classes/user';
 
 declare var $: any;
 
@@ -82,7 +80,7 @@ export class ActioncompetitionComponent implements OnInit {
   }
 
   GetAllJefeCatedra(): void{
-    this.userService.GetAll(true).subscribe( (sub) =>{
+    this.userService.GetAll().subscribe( (sub) =>{
       debugger;
       this.usertlist = sub;
       Active();
@@ -107,11 +105,7 @@ export class ActioncompetitionComponent implements OnInit {
     var despues = this.browserForm.get('finalDate');
     var dantes = new Date(antes.value).toISOString().slice(0, 19).replace('T', ' ');
     var ddespues = new Date(despues.value).toISOString().slice(0, 19).replace('T', ' ');
-    if(dantes < ddespues) {
-      this.validDates = true;
-    } else {
-      this.validDates = false;
-    }
+    this.validDates = dantes < ddespues;
   }
 
   selectEvent(item:any) {
@@ -134,9 +128,8 @@ export class ActioncompetitionComponent implements OnInit {
 
   isValidField(field: string): string{
     const validatedField = this.browserForm.get(field);
-    const result = (!validatedField.valid && validatedField.touched) ?
+    return (!validatedField.valid && validatedField.touched) ?
       'is-invalid' : validatedField.touched ? 'is-valid' : '';
-    return result;
   }
 
   getMaterias() {
@@ -264,7 +257,7 @@ GetJCMAdmin(id){
           this.messageService.Error('Error', data.response.message);
         }
       },
-      (err: HttpErrorResponse) => {
+      () => {
 
       });
   }

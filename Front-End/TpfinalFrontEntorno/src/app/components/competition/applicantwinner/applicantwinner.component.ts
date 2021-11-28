@@ -37,7 +37,6 @@ export class AplicantWinnerComponent implements OnInit {
       idComp = 0;
     this.applicant.GetAllByComp(idComp).subscribe( (applicants) => {
       this.aplicantlist = applicants;
-      console.log(applicants)
     },
     (e: HttpErrorResponse)=>{ console.log(e) }
     );

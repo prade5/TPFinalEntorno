@@ -19,7 +19,7 @@ export class CompetitionService {
   GetAllPostulation(iduser): Observable<Competition[]> {
     debugger;
     return this.http.get<Competition[]>(`${environment.api_url}${this.folderName}getAllPostulation.php?iduser=${iduser}`);
-   }
+  }
   GetByUserId(id): Observable<Competition> {
     debugger;
     return this.http.get<Competition>(`${environment.api_url}${this.folderName}getByUserId.php?idu=${id}`);

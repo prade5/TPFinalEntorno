@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Competition } from 'src/app/classes/competition';
 import { CompetitionService } from 'src/app/services/competition/competition.service';
 import { Location } from '@angular/common'
 
@@ -24,7 +23,6 @@ export class DetailComponent implements OnInit {
     this.competitionService.GetDetail(id).subscribe((result:any) => {
       debugger;
       this.Competition = JSON.parse(JSON.stringify(result));
-      console.log(this.Competition);
       debugger;
     });
   }

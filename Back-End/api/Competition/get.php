@@ -22,7 +22,7 @@ if($isAdmin === "true"){
     $select = "comp.state = 1 or comp.state = 3";
 }
 else{
-    $select = "(comp.state = 1 or comp.state = 3) and comp.idUser = $idAdmin";
+    $select = "(comp.state = 1 or comp.state = 3) and sub.id IN (SELECT jm.IdSubject from jefedecatedra_materia jm WHERE jm.IdJefeDeCatedra = $idAdmin)";
 }
 $query = "select comp.*, sub.name as materia, sub.img, pos.name as puesto from competitions comp inner join subjects sub on comp.idSubject = sub.id  
             inner join positions pos on comp.idPosition = pos.id where $select and pos.state = 1 ORDER BY comp.finalDate DESC";

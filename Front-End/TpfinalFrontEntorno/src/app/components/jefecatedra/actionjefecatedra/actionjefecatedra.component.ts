@@ -58,7 +58,7 @@ export class ActionjefecatedraComponent implements OnInit {
   }
 
   GetAllJefeCatedra(): void{
-    this.userService.GetAll(true).subscribe( (sub) =>{
+    this.userService.GetAll().subscribe( (sub) =>{
       this.usertlist = sub;
       Active();
     });
@@ -95,9 +95,8 @@ export class ActionjefecatedraComponent implements OnInit {
 
   isValidField(field: string): string{
     const validatedField = this.browserForm.get(field);
-    let result = (!validatedField.valid && validatedField.touched) ?
-    'is-invalid': validatedField.touched ? 'is-valid':'';
-    return result;
+    return (!validatedField.valid && validatedField.touched) ?
+      'is-invalid' : validatedField.touched ? 'is-valid' : '';
   }
 
   onChangeSearch(val: string) {
@@ -115,10 +114,7 @@ export class ActionjefecatedraComponent implements OnInit {
     });
   }
   Create (){
-    let jcm = this.browserForm.value;
     debugger;
-    var subjselect =$($('.subjselect').find('.ng-touched')).val();
-    let userselect = $($('.userselect').find('.ng-touched')).val();
     if(this.browserForm.valid) {
       var jefecatedra ={
         IdJefeDeCatedra:this.browserForm.value.IdJefeDeCatedra.id,

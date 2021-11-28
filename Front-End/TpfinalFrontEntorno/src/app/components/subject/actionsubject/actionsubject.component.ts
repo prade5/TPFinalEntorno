@@ -110,6 +110,7 @@ export class ActionsubjectComponent implements OnInit {
   }
 
   ActionCreate(){
+    this.form.value.img = this.photostring;
     this.subservice.Post(this.form.value).subscribe((data:any) =>{
       debugger;
       if(data.response.status === 200){

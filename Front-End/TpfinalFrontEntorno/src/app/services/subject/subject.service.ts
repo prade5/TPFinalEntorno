@@ -24,11 +24,11 @@ export class SubjectService {
   GetById(id){
     return this.http.get(`${environment.api_url}${this.folderName}getById.php?id=${id}`);
   }
-  Post(role){
-    return this.http.post(`${environment.api_url}${this.folderName}post.php`,JSON.stringify(role));
+  Post(subject){
+    return this.http.post(`${environment.api_url}${this.folderName}post.php`,JSON.stringify(subject));
   }
-  Put(role){
-    return this.http.post(`${environment.api_url}${this.folderName}update.php?id=${role.id}`,JSON.stringify(role));
+  Put(subject){
+    return this.http.post(`${environment.api_url}${this.folderName}update.php?id=${subject.id}`,JSON.stringify(subject));
   }
   Delete(id){
     return this.http.post(`${environment.api_url}${this.folderName}delete.php?id=${id}`,JSON.stringify(id));

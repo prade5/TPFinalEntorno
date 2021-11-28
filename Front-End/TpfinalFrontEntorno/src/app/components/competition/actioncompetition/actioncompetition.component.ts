@@ -140,9 +140,18 @@ export class ActioncompetitionComponent implements OnInit {
   }
 
   getMaterias() {
+    debugger;
+    if(this.curUserRole === 'Jefe de catedra') {
+      this.subjectService.GetByUserId(this.curUserId).subscribe(result => {
+        this.catedras = JSON.parse(JSON.stringify(result));
+      });
+    }
+    else
+    {
       this.subjectService.GetAll().subscribe(result => {
         this.catedras = JSON.parse(JSON.stringify(result));
       });
+    }
   }
 
   getPosiciones() {

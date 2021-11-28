@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {MessageService} from "../../../services/message/message.service";
 import {ActivatedRoute, Router} from "@angular/router";
@@ -11,9 +11,9 @@ import {SubjectService} from "../../../services/subject/subject.service";
 import {PositionService} from "../../../services/position/position.service";
 import * as moment from "moment";
 import {TaskService} from "../../../services/auth/task.service";
-import { JefecatedraService } from 'src/app/services/jefecatedra/jefecatedra.service';
-import { UserService } from 'src/app/services/user/user.service';
-import { User } from 'src/app/classes/user';
+import {JefecatedraService} from 'src/app/services/jefecatedra/jefecatedra.service';
+import {UserService} from 'src/app/services/user/user.service';
+import {User} from 'src/app/classes/user';
 
 declare var $: any;
 
@@ -133,9 +133,18 @@ export class ActioncompetitionComponent implements OnInit {
   }
 
   getMaterias() {
+    debugger;
+    if(this.curUserRole === 'Jefe de catedra') {
+      this.subjectService.GetByUserId(this.curUserId).subscribe(result => {
+        this.catedras = JSON.parse(JSON.stringify(result));
+      });
+    }
+    else
+    {
       this.subjectService.GetAll().subscribe(result => {
         this.catedras = JSON.parse(JSON.stringify(result));
       });
+    }
   }
 
   getPosiciones() {
@@ -257,7 +266,7 @@ GetJCMAdmin(id){
           this.messageService.Error('Error', data.response.message);
         }
       },
-      (err: HttpErrorResponse) => {
+      () => {
 
       });
   }

@@ -17,7 +17,7 @@ if($id == null)
 
 $applications = mysqli_query($cnn,"SELECT a.*, c.finalDate, p.name, s.name as 'materia' FROM `applicants` a 
     INNER JOIN `competitions` c on a.idCompetition = c.id 
-    INNER JOIN `positions` p on c.idSubject = p.id 
+    INNER JOIN `positions` p on c.idPosition = p.id 
     INNER JOIN `subjects` s on c.idSubject = s.id WHERE a.idUser =".$id);
 
 $userApplications = [];

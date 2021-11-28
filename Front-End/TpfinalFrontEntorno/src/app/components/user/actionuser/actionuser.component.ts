@@ -1,14 +1,14 @@
-import { Component, OnInit } from '@angular/core';
-import { RoleService } from '../../../services/role/role.service';
-import { Role } from '../../../classes/role';
-import { User } from '../../../classes/user';
-import { Document } from '../../../classes/document';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
-import { UserService } from 'src/app/services/user/user.service';
-import { DocumenttypeService } from '../../../services/documenttype/documenttype.service';
-import { HttpErrorResponse } from '@angular/common/http';
-import { MessageService } from '../../../services/message/message.service';
+import {Component, OnInit} from '@angular/core';
+import {RoleService} from '../../../services/role/role.service';
+import {Role} from '../../../classes/role';
+import {User} from '../../../classes/user';
+import {Document} from '../../../classes/document';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {ActivatedRoute, Router} from '@angular/router';
+import {UserService} from 'src/app/services/user/user.service';
+import {DocumenttypeService} from '../../../services/documenttype/documenttype.service';
+import {HttpErrorResponse} from '@angular/common/http';
+import {MessageService} from '../../../services/message/message.service';
 
 declare var $: any;
 
@@ -26,7 +26,7 @@ export class ActionuserComponent implements OnInit {
   isRegister:boolean;
 
   browserForm: FormGroup;
-  private isEmail = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+  private isEmail = /^([a-zA-Z0-9_.+-])+@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
 
   constructor(private roleService: RoleService, private fb:FormBuilder, private route: ActivatedRoute,
     private router:Router,private userService: UserService,private messageService: MessageService,
@@ -98,9 +98,8 @@ GetById(id){
 
   isValidField(field: string): string{
     const validatedField = this.browserForm.get(field);
-    let result = (!validatedField.valid && validatedField.touched) ?
-    'is-invalid': validatedField.touched ? 'is-valid':'';
-    return result;
+    return (!validatedField.valid && validatedField.touched) ?
+      'is-invalid' : validatedField.touched ? 'is-valid' : '';
   }
   Create (){
     if(this.browserForm.valid && this.OptionBtn == false)
@@ -121,7 +120,7 @@ GetById(id){
             this.router.navigate(['/Account']);
           }
           else{
-            this.router.navigate(['/Principal']);
+            this.router.navigate(['/User']);
           }
         }, 5000);
         this.messageService.Success('Crear Usuario', data.response.message);
@@ -140,7 +139,7 @@ GetById(id){
     this.userService.Put(this.browserForm.value).subscribe((data:any) =>{
       if(data.response.status === 200){
         setTimeout(()=>{
-          this.router.navigate(['/Principal']);
+          this.router.navigate(['/User']);
         }, 5000);
         this.messageService.Success('Actualizar Usuario', data.response.message);
       }

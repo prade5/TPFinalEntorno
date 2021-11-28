@@ -25,8 +25,6 @@ export class LoginComponent implements OnInit {
     this.initForm();
   }
   register() {
-    console.log(this.email);
-    console.log(this.password);
   }
   private initForm():void{
     this.accountForm = this.fb.group({

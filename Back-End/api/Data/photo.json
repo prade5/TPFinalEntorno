@@ -1,22 +1,22 @@
 [
     {
         "name": "Quimica",
-        "url": "https://tpfinalentornos.000webhostapp.com/Back-End/Images/quimica.jpg"
+        "url": "https://tpfinalentornos.000webhostapp.com/Back-End/api/Images/quimica.jpg"
     },
     {
         "name": "Administracion de recurso",
-        "url": "https://tpfinalentornos.000webhostapp.com/Back-End/Images/ADR.jpeg"
+        "url": "https://tpfinalentornos.000webhostapp.com/Back-End/api/Images/ADR.jpeg"
     },
     {
         "name": "Economia",
-        "url": "https://tpfinalentornos.000webhostapp.com/Back-End/Images/Economia.jpg"
+        "url": "https://tpfinalentornos.000webhostapp.com/Back-End/api/Images/Economia.jpg"
     },
     {
         "name": "ESTRUCTURA DE DATOS",
-        "url": "https://tpfinalentornos.000webhostapp.com/Back-End/Images/ed.jpg"
+        "url": "https://tpfinalentornos.000webhostapp.com/Back-End/api/Images/ed.jpg"
     },
     {
         "name": "Legislation",
-        "url": "https://tpfinalentornos.000webhostapp.com/Back-End/Images/legislacion.png"
+        "url": "https://tpfinalentornos.000webhostapp.com/Back-End/api/Images/legislacion.png"
     }
 ]

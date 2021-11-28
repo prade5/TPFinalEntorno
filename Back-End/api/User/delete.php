@@ -17,7 +17,7 @@ class deleteUser extends genericMethod
         #endregion
     }
 
-    public function DeleteUser($id)
+    public function DeleteUser()
     {
         $cnn = Connection();
 
@@ -33,8 +33,6 @@ class deleteUser extends genericMethod
 }
 
 $id = json_decode(file_get_contents('php://input'), true);
-
-$id = ((int)$id);
 
 $userDelete = new deleteUser($id);
 

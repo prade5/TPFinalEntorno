@@ -32,7 +32,7 @@
     "ngx-toastr": "^13.2.1",
     "popper.js": "^1.16.1",
     "primeicons": "^4.1.0",
-    "primeng": "^11.3.2",
+    "primeng": "^13.0.0",
     "rxjs": "~6.6.0",
     "sweetalert2": "^11.0.5",
     "toastr": "^2.1.4",

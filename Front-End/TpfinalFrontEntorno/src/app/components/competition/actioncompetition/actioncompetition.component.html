@@ -40,11 +40,12 @@
               </div>
               <div class="form-row">
                 <div class="form-group col-md-6">
-                  <label>Seleccionar una materia</label>
+                  <label for="idSubject" aria-label="Id Materia">Seleccionar una materia</label>
                   <div class="ng-autocomplete userselect selectSubject">
                     <ng-autocomplete
                         [data]="catedras"
                         formControlName="idSubject"
+                        id="idSubject"
                         [initialValue]="initialValuesubject"
                         [disabled]="isDisabled? true : null"
                         [class]="isValidField('idSubject')"
@@ -70,12 +71,13 @@
                   </div>
                 </div>
                 <div class="form-group col-md-6">
-                  <label for="idPosition">Seleccionar un puesto</label>
+                  <label for="idPosition" aria-label="id Posicion">Seleccionar un puesto</label>
                   <div class="ng-autocomplete userselect selectSubject">
                     <ng-autocomplete
                         [data]="posiciones"
                         [disabled]="isDisabled? true : null"
                         formControlName="idPosition"
+                        id = "idPosition"
                         [initialValue]="initialValueuser"
                         [class]="isValidField('idPosition')"
                         (selected)='selectPosition($event)'
@@ -98,9 +100,11 @@
                 <label>Jefe de cátedra</label>
                  <div class="form-group col-md-12">
                     <div class="ng-autocomplete userselect">
+                        <label for="idUser" aria-label="id usuario"></label>
                         <ng-autocomplete
                             [data]="subject"
                             formControlName="idUser"
+                            id="idUser"
                             [initialValue]="initialValueJCM"
                             [class]="isValidField('idUser')"
                             [searchKeyword]="keyword"
